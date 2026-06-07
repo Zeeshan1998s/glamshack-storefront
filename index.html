@@ -2906,66 +2906,223 @@
       }
     }
 
-    /* Expandable Search Bar CSS */
-    .header-search-container {
-      display: flex !important;
-      align-items: center !important;
-      position: relative !important;
+    /* CUSTOM SEARCH DRAWER SIDEBAR */
+    .search-drawer {
+      visibility: hidden;
+      transition: visibility 0.3s ease;
+    }
+
+    .search-drawer.open {
+      visibility: visible;
+    }
+
+    .search-drawer-overlay {
+      position: fixed !important;
+      top: 0 !important;
+      bottom: 0 !important;
+      left: 0 !important;
+      right: 0 !important;
+      background: rgba(15, 23, 42, 0.3) !important;
+      opacity: 0 !important;
+      pointer-events: none !important;
+      transition: opacity 0.3s ease !important;
+      z-index: 1000 !important;
+      backdrop-filter: blur(4px) !important;
+      -webkit-backdrop-filter: blur(4px) !important;
+    }
+
+    .search-drawer.open .search-drawer-overlay {
+      opacity: 1 !important;
+      pointer-events: auto !important;
+    }
+
+    .search-drawer-content {
+      position: fixed !important;
+      top: 0 !important;
+      bottom: 0 !important;
+      right: -420px !important;
+      width: 420px !important;
+      max-width: 100% !important;
       background: var(--bg-card) !important;
-      border: 1px solid var(--border-color) !important;
-      border-radius: 24px !important;
-      padding: 2px 6px 2px 12px !important;
-      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1) !important;
-      max-width: 38px !important;
-      height: 38px !important;
-      overflow: hidden !important;
+      box-shadow: -10px 0 40px rgba(15, 23, 42, 0.1) !important;
+      z-index: 1001 !important;
+      transition: right 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+      display: flex !important;
+      flex-direction: column !important;
       box-sizing: border-box !important;
     }
 
-    .header-search-container.active {
-      max-width: 240px !important;
-      border-color: var(--accent-red) !important;
-      box-shadow: 0 4px 12px rgba(15, 23, 42, 0.05) !important;
+    .search-drawer.open .search-drawer-content {
+      right: 0 !important;
     }
 
-    .header-search-input {
-      border: none !important;
-      background: transparent !important;
-      outline: none !important;
-      font-size: 0.8rem !important;
-      font-family: var(--font-body) !important;
-      color: var(--text-main) !important;
-      width: 0 !important;
-      transition: width 0.35s cubic-bezier(0.16, 1, 0.3, 1) !important;
-      padding: 0 !important;
-      margin: 0 !important;
-      opacity: 0 !important;
-    }
-
-    .header-search-container.active .header-search-input {
-      width: 150px !important;
-      opacity: 1 !important;
-    }
-
-    .header-search-btn {
-      background: transparent !important;
-      border: none !important;
-      padding: 0 !important;
-      cursor: pointer !important;
-      font-size: 1.1rem !important;
-      color: var(--text-main) !important;
+    .search-drawer-header {
       display: flex !important;
+      justify-content: space-between !important;
       align-items: center !important;
-      justify-content: center !important;
-      width: 26px !important;
-      height: 26px !important;
-      min-width: 26px !important;
+      padding: 24px !important;
+      border-bottom: 1px solid var(--border-color) !important;
+    }
+
+    .search-drawer-title {
+      font-family: var(--font-display) !important;
+      font-size: 1.5rem !important;
+      font-weight: 500 !important;
+      color: var(--text-main) !important;
+      margin: 0 !important;
+    }
+
+    .search-drawer-close-btn {
+      background: transparent !important;
+      border: none !important;
+      font-size: 1.25rem !important;
+      cursor: pointer !important;
+      color: var(--text-main) !important;
+      padding: 4px !important;
       transition: transform 0.2s ease !important;
     }
 
-    .header-search-btn:hover {
+    .search-drawer-close-btn:hover {
       color: var(--accent-red) !important;
       transform: scale(1.1) !important;
+    }
+
+    .search-drawer-body {
+      flex: 1 !important;
+      display: flex !important;
+      flex-direction: column !important;
+      padding: 24px !important;
+      overflow: hidden !important;
+    }
+
+    .search-drawer-input-wrapper {
+      position: relative !important;
+      margin-bottom: 16px !important;
+    }
+
+    .search-drawer-input {
+      width: 100% !important;
+      padding: 12px 40px 12px 16px !important;
+      border: 1px solid var(--border-color) !important;
+      border-radius: 30px !important;
+      background: var(--bg-base) !important;
+      color: var(--text-main) !important;
+      font-family: var(--font-body) !important;
+      font-size: 0.9rem !important;
+      outline: none !important;
+      box-sizing: border-box !important;
+      transition: border-color 0.2s ease !important;
+    }
+
+    .search-drawer-input:focus {
+      border-color: var(--accent-red) !important;
+      box-shadow: 0 0 0 3px rgba(204, 0, 0, 0.05) !important;
+    }
+
+    .search-drawer-clear-btn {
+      position: absolute !important;
+      right: 14px !important;
+      top: 50% !important;
+      transform: translateY(-50%) !important;
+      background: transparent !important;
+      border: none !important;
+      font-size: 0.95rem !important;
+      cursor: pointer !important;
+      color: var(--text-muted) !important;
+      padding: 4px !important;
+      z-index: 5 !important;
+    }
+
+    .search-drawer-clear-btn:hover {
+      color: var(--text-main) !important;
+    }
+
+    .search-drawer-status {
+      font-size: 0.8rem !important;
+      color: var(--text-muted) !important;
+      margin-bottom: 12px !important;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .search-drawer-results-list {
+      flex: 1 !important;
+      overflow-y: auto !important;
+      display: flex !important;
+      flex-direction: column !important;
+      gap: 4px !important;
+      scrollbar-width: thin !important;
+      padding-right: 4px !important;
+    }
+
+    .search-drawer-results-list::-webkit-scrollbar {
+      width: 4px !important;
+    }
+    .search-drawer-results-list::-webkit-scrollbar-track {
+      background: transparent !important;
+    }
+    .search-drawer-results-list::-webkit-scrollbar-thumb {
+      background: var(--border-color) !important;
+      border-radius: 4px !important;
+    }
+
+    .search-result-item {
+      display: flex !important;
+      align-items: center !important;
+      gap: 16px !important;
+      padding: 12px !important;
+      border-radius: 12px !important;
+      cursor: pointer !important;
+      transition: background 0.2s ease, border-color 0.2s ease !important;
+      border: 1px solid transparent !important;
+      box-sizing: border-box !important;
+    }
+
+    .search-result-item:hover {
+      background: var(--bg-base) !important;
+      border-color: var(--border-color) !important;
+    }
+
+    .search-result-media {
+      width: 60px !important;
+      height: 60px !important;
+      min-width: 60px !important;
+      border-radius: 8px !important;
+      background: #eaebef !important;
+      overflow: hidden !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+    }
+
+    .search-result-media shopify-media,
+    .search-result-media img {
+      width: 100% !important;
+      height: 100% !important;
+      object-fit: cover !important;
+    }
+
+    .search-result-info {
+      flex: 1 !important;
+      display: flex !important;
+      flex-direction: column !important;
+      gap: 4px !important;
+    }
+
+    .search-result-title {
+      font-family: var(--font-body) !important;
+      font-size: 0.85rem !important;
+      font-weight: 500 !important;
+      color: var(--text-main) !important;
+      line-height: 1.4 !important;
+      margin: 0 !important;
+    }
+
+    .search-result-price {
+      font-family: var(--font-body) !important;
+      font-size: 0.8rem !important;
+      font-weight: 600 !important;
+      color: var(--accent-red) !important;
     }
   </style>
 </head>
@@ -2997,13 +3154,10 @@
       
       <!-- Right: Search & Cart -->
       <div class="header-actions-right">
-        <!-- Expandable Search Bar -->
-        <div class="header-search-container" id="search-container">
-          <input type="text" id="header-search-input" class="header-search-input" placeholder="Search products..." oninput="handleHeaderSearch(this.value)">
-          <button class="header-search-btn" onclick="toggleHeaderSearch()" title="Toggle Search">
-            🔍
-          </button>
-        </div>
+        <!-- Search Trigger (Sidebar Drawer) -->
+        <button class="header-icon-btn search-btn" onclick="openSearchDrawer()" title="Search Catalog">
+          🔍
+        </button>
         <button class="btn-open-cart" onclick="document.getElementById('cart').showModal()">
           <span>Cart</span>
           <span class="cart-count-badge"></span>
@@ -3682,6 +3836,33 @@
     <div slot="checkout-button">Complete Order</div>
   </shopify-cart>
 
+  <!-- CUSTOM SEARCH SIDEBAR DRAWER -->
+  <div id="search-drawer" class="search-drawer">
+    <div class="search-drawer-overlay" onclick="closeSearchDrawer()"></div>
+    <div class="search-drawer-content">
+      <div class="search-drawer-header">
+        <h3 class="search-drawer-title">Search Products</h3>
+        <button class="search-drawer-close-btn" onclick="closeSearchDrawer()">✕</button>
+      </div>
+      <div class="search-drawer-body">
+        <div class="search-drawer-input-wrapper">
+          <input type="text" id="search-drawer-input" class="search-drawer-input" placeholder="Type to search..." oninput="handleDrawerSearch(this.value)">
+          <button id="search-drawer-clear-btn" class="search-drawer-clear-btn" onclick="clearDrawerSearch()" style="display: none;">✕</button>
+        </div>
+        
+        <!-- Search Results Count/Status -->
+        <div id="search-drawer-status" class="search-drawer-status">
+          Featured Products
+        </div>
+
+        <!-- Search Results Listing Container -->
+        <div id="search-drawer-results" class="search-drawer-results-list">
+          <!-- Rendered dynamically by javascript -->
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- FOOTER -->
   <footer>
     <div class="container footer-grid-container">
@@ -3907,70 +4088,154 @@
       });
     }
 
-    // Handles live search inputs from the header search bar
-    function handleHeaderSearch(query) {
-      headerSearchQuery = query.trim();
+    // Custom Search Drawer Sidebar Operations
+    function openSearchDrawer() {
+      const drawer = document.getElementById('search-drawer');
+      const input = document.getElementById('search-drawer-input');
+      if (!drawer || !input) return;
       
-      // Auto-navigate to Catalog view if user types when on another page
-      const activeView = document.querySelector('.page-view.active-view');
-      if (activeView && activeView.id !== 'view-shop') {
-        navigateTo('view-shop');
-        
-        // Reset category filter tabs to "All Products" to widen search scope
-        activeShopFilter = 'all';
-        document.querySelectorAll('.btn-tab').forEach(btn => {
-          btn.classList.remove('active-tab');
-        });
-        const allTab = document.getElementById('tab-all');
-        if (allTab) allTab.classList.add('active-tab');
-      }
+      drawer.classList.add('open');
+      document.body.style.overflow = 'hidden'; // Lock background scrolling
+      setTimeout(() => input.focus(), 150);
       
-      applyProductFilter();
+      // Load initial suggestions / featured items
+      handleDrawerSearch('');
     }
 
-    // Expands or collapses the search pill bar in the header
-    function toggleHeaderSearch() {
-      const container = document.getElementById('search-container');
-      const input = document.getElementById('header-search-input');
-      if (!container || !input) return;
+    function closeSearchDrawer() {
+      const drawer = document.getElementById('search-drawer');
+      const input = document.getElementById('search-drawer-input');
+      if (!drawer) return;
+      
+      drawer.classList.remove('open');
+      document.body.style.overflow = ''; // Restore background scrolling
+      if (input) {
+        input.value = '';
+      }
+      clearDrawerSearch();
+    }
 
-      const isActive = container.classList.contains('active');
-      if (!isActive) {
-        container.classList.add('active');
-        setTimeout(() => input.focus(), 150);
+    function clearDrawerSearch() {
+      const input = document.getElementById('search-drawer-input');
+      const clearBtn = document.getElementById('search-drawer-clear-btn');
+      if (input) input.value = '';
+      if (clearBtn) clearBtn.style.display = 'none';
+      handleDrawerSearch('');
+    }
+
+    function handleDrawerSearch(query) {
+      const clearBtn = document.getElementById('search-drawer-clear-btn');
+      if (clearBtn) {
+        clearBtn.style.display = query.trim() !== '' ? 'block' : 'none';
+      }
+
+      const statusEl = document.getElementById('search-drawer-status');
+      const resultsContainer = document.getElementById('search-drawer-results');
+      if (!resultsContainer) return;
+
+      const trimmedQuery = query.trim().toLowerCase();
+      const allProducts = getAllProducts();
+
+      // Filter products based on search term, show first 8 as suggestions if empty
+      const matchingProducts = trimmedQuery === ''
+        ? allProducts.slice(0, 8)
+        : allProducts.filter(p => p.title.toLowerCase().includes(trimmedQuery));
+
+      if (trimmedQuery === '') {
+        if (statusEl) statusEl.textContent = 'Featured Products';
       } else {
-        if (input.value.trim() === '') {
-          container.classList.remove('active');
-        } else {
-          // If query was present, first click clears search, second closes
-          input.value = '';
-          handleHeaderSearch('');
-          container.classList.remove('active');
+        if (statusEl) {
+          statusEl.textContent = matchingProducts.length > 0 
+            ? `Found ${matchingProducts.length} product${matchingProducts.length > 1 ? 's' : ''}`
+            : 'No matching products found';
         }
       }
+
+      resultsContainer.innerHTML = '';
+      matchingProducts.forEach(product => {
+        const itemEl = document.createElement('div');
+        itemEl.className = 'search-result-item';
+        
+        itemEl.onclick = () => {
+          closeSearchDrawer();
+          if (product.originalCard) {
+            product.originalCard.click();
+          }
+        };
+
+        const mediaBox = document.createElement('div');
+        mediaBox.className = 'search-result-media';
+        
+        const originalMedia = product.originalCard.querySelector('shopify-media');
+        if (originalMedia) {
+          const mediaClone = originalMedia.cloneNode(true);
+          mediaBox.appendChild(mediaClone);
+        } else {
+          const fallbackImg = document.createElement('img');
+          fallbackImg.src = 'https://images.unsplash.com/photo-1549465220-1a8b9238cd48?w=100';
+          mediaBox.appendChild(fallbackImg);
+        }
+
+        const infoBox = document.createElement('div');
+        infoBox.className = 'search-result-info';
+
+        const titleEl = document.createElement('h4');
+        titleEl.className = 'search-result-title';
+        titleEl.textContent = product.title;
+
+        const priceEl = document.createElement('span');
+        priceEl.className = 'search-result-price';
+        priceEl.textContent = product.price;
+
+        infoBox.appendChild(titleEl);
+        infoBox.appendChild(priceEl);
+
+        itemEl.appendChild(mediaBox);
+        itemEl.appendChild(infoBox);
+
+        resultsContainer.appendChild(itemEl);
+      });
     }
 
-    // Auto-close search container on click away or escape key
-    document.addEventListener('click', (event) => {
-      const container = document.getElementById('search-container');
-      const input = document.getElementById('header-search-input');
-      if (!container || !input) return;
+    // Scrapes DOM for loaded products to dynamically search
+    function getAllProducts() {
+      // Find cards inside shop list context, trousseau list, and engagement list
+      const cards = document.querySelectorAll('#shop-list-context .glam-card, #trousseau-list-context .glam-card, #engagement-list-context .glam-card');
+      const products = [];
+      const seenTitles = new Set();
 
-      if (!container.contains(event.target) && container.classList.contains('active') && input.value.trim() === '') {
-        container.classList.remove('active');
+      cards.forEach(card => {
+        const attrTitle = card.getAttribute('data-title') || card.getAttribute('shopify-attr--data-title') || '';
+        const htmlTitle = card.querySelector('.card-title')?.innerText || '';
+        const title = (attrTitle || htmlTitle).trim();
+        
+        if (title && !seenTitles.has(title)) {
+          seenTitles.add(title);
+          const price = card.querySelector('.card-price')?.innerText || '';
+          products.push({
+            title: title,
+            price: price,
+            originalCard: card
+          });
+        }
+      });
+      return products;
+    }
+
+    // Auto-close search drawer on click outside or escape key
+    document.addEventListener('click', (event) => {
+      const drawer = document.getElementById('search-drawer');
+      const trigger = document.querySelector('.search-btn');
+      if (!drawer || !trigger) return;
+
+      if (drawer.classList.contains('open') && !drawer.querySelector('.search-drawer-content').contains(event.target) && !trigger.contains(event.target)) {
+        closeSearchDrawer();
       }
     });
 
     document.addEventListener('keydown', (event) => {
       if (event.key === 'Escape') {
-        const container = document.getElementById('search-container');
-        const input = document.getElementById('header-search-input');
-        if (container && container.classList.contains('active')) {
-          input.value = '';
-          handleHeaderSearch('');
-          container.classList.remove('active');
-          input.blur();
-        }
+        closeSearchDrawer();
       }
     });
 
