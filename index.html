@@ -115,62 +115,98 @@
       position: sticky;
       top: 0;
       z-index: 100;
-      padding: calc(var(--spacing-grid) * 2.5) 0;
+      padding: calc(var(--spacing-grid) * 1.5) 0;
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
     }
 
-    .header-inner {
+    .header-top-row {
       display: flex;
       align-items: center;
       justify-content: space-between;
+      width: 100%;
+    }
+
+    .header-actions-right {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .header-icon-btn {
+      background: transparent;
+      border: none;
+      color: #fff;
+      font-size: 1.25rem;
+      cursor: pointer;
+      padding: 6px;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .header-icon-btn:hover {
+      color: var(--accent-gold);
+      transform: scale(1.15);
     }
 
     .logo {
       font-family: var(--font-display);
       font-weight: 700;
-      font-size: 2.3rem;
-      letter-spacing: -0.01em;
-      font-style: italic;
+      font-size: 2.1rem;
+      letter-spacing: 0.08em;
       color: #fff;
+      text-transform: uppercase;
       text-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+      transition: color 0.3s ease;
     }
 
-    nav ul {
+    .logo:hover {
+      color: var(--accent-gold);
+    }
+
+    /* Category Navigation */
+    .category-nav {
+      border-top: 1px solid rgba(255, 255, 255, 0.03);
+      padding-top: 10px;
+      width: 100%;
+    }
+
+    .category-nav-list {
       display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 14px;
       list-style: none;
-      gap: calc(var(--spacing-grid) * 4.5);
+      flex-wrap: wrap;
     }
 
-    nav button.nav-link {
-      font-size: 0.8rem;
+    .cat-nav-link {
+      font-family: var(--font-body);
+      font-size: 0.72rem;
       font-weight: 600;
       color: var(--text-muted);
       text-transform: uppercase;
-      letter-spacing: 0.18em;
+      letter-spacing: 0.15em;
       position: relative;
-      padding: 6px 0;
-      transition: color 0.4s ease;
+      padding: 4px 0;
+      transition: color 0.3s ease;
+      background: none;
+      border: none;
+      cursor: pointer;
     }
 
-    nav button.nav-link::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 50%;
-      width: 0;
-      height: 1px;
-      background-color: var(--accent-gold);
-      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-      transform: translateX(-50%);
-    }
-
-    nav button.nav-link:hover,
-    nav button.nav-link.active {
+    .cat-nav-link:hover {
       color: #fff;
     }
 
-    nav button.nav-link.active::after {
-      width: 100%;
+    .nav-divider {
+      color: rgba(255, 255, 255, 0.08);
+      font-size: 0.72rem;
+      user-select: none;
     }
 
     .btn-open-cart {
@@ -1452,17 +1488,657 @@
     /* Footer area */
     footer {
       border-top: 1px solid var(--border-color);
-      padding: calc(var(--spacing-grid) * 6) 0;
+      padding: calc(var(--spacing-grid) * 10) 0 calc(var(--spacing-grid) * 6) 0;
       margin-top: calc(var(--spacing-grid) * 12);
       background-color: #030406;
-      text-align: center;
-      font-size: 0.8rem;
+      font-size: 0.85rem;
       color: var(--text-muted);
-      letter-spacing: 0.05em;
+      text-align: left;
     }
-
-    footer p {
-      margin-bottom: calc(var(--spacing-grid) * 1);
+    
+    .footer-grid-container {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr 0.8fr 1.2fr;
+      gap: 40px;
+      margin-bottom: 48px;
+    }
+    
+    @media (max-width: 1024px) {
+      .footer-grid-container {
+        grid-template-columns: 1fr 1fr;
+        gap: 32px;
+      }
+    }
+    @media (max-width: 600px) {
+      .footer-grid-container {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+    }
+    
+    .footer-col {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    
+    .footer-logo {
+      font-family: var(--font-display);
+      font-size: 2rem;
+      font-weight: 700;
+      color: #fff;
+      letter-spacing: -0.01em;
+    }
+    
+    .footer-brand-desc {
+      font-size: 0.85rem;
+      line-height: 1.6;
+      color: var(--text-muted);
+    }
+    
+    .footer-contact {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      font-size: 0.8rem;
+    }
+    
+    .footer-socials {
+      display: flex;
+      gap: 12px;
+      margin-top: 8px;
+    }
+    
+    .footer-socials a {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      transition: all 0.3s ease;
+    }
+    
+    .footer-socials a:hover {
+      background: var(--accent-gold);
+      border-color: var(--accent-gold);
+      transform: translateY(-3px);
+    }
+    
+    .footer-col-title {
+      font-family: var(--font-display);
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #fff;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      padding-bottom: 8px;
+    }
+    
+    .footer-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    
+    .footer-links a {
+      color: var(--text-muted);
+      transition: color 0.3s ease;
+    }
+    
+    .footer-links a:hover {
+      color: var(--accent-gold);
+      padding-left: 4px;
+    }
+    
+    .newsletter-desc {
+      font-size: 0.85rem;
+      line-height: 1.6;
+      margin-bottom: 8px;
+    }
+    
+    .newsletter-form {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    
+    .newsletter-input {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      padding: 12px 16px;
+      color: #fff;
+      font-family: var(--font-body);
+      font-size: 0.85rem;
+      outline: none;
+      transition: all 0.3s ease;
+    }
+    
+    .newsletter-input:focus {
+      border-color: var(--accent-gold);
+      background: rgba(255, 255, 255, 0.05);
+    }
+    
+    .newsletter-submit-btn {
+      background-color: var(--accent-pink);
+      color: #fff;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      font-size: 0.75rem;
+      padding: 12px;
+      border-radius: 6px;
+      transition: all 0.3s ease;
+    }
+    
+    .newsletter-submit-btn:hover {
+      background-color: #fff;
+      color: #000;
+      box-shadow: 0 10px 20px rgba(255,255,255,0.1);
+    }
+    
+    .footer-bottom-bar {
+      border-top: 1px solid var(--border-color);
+      padding-top: 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      font-size: 0.75rem;
+    }
+    
+    @media (max-width: 768px) {
+      .footer-bottom-bar {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+    
+    /* Homepage Redesign Styling Extensions */
+    .hero-left-card {
+      background: linear-gradient(135deg, #7a0c1e 0%, #4a0511 100%);
+      border-radius: 24px;
+      padding: calc(var(--spacing-grid) * 8);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      height: 520px;
+    }
+    
+    .hero-card-subtitle {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.25em;
+      color: rgba(255, 255, 255, 0.7);
+      text-transform: uppercase;
+      margin-bottom: calc(var(--spacing-grid) * 2.5);
+    }
+    
+    .hero-card-title {
+      font-size: clamp(2.8rem, 6vw, 4.5rem);
+      line-height: 1.0;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: calc(var(--spacing-grid) * 3);
+      letter-spacing: -0.02em;
+    }
+    
+    .hero-card-title em {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-weight: 300;
+      color: var(--accent-gold);
+    }
+    
+    .hero-card-desc {
+      font-size: 1.05rem;
+      font-weight: 300;
+      color: rgba(255, 255, 255, 0.85);
+      line-height: 1.7;
+      margin-bottom: calc(var(--spacing-grid) * 5);
+      max-width: 460px;
+    }
+    
+    .hero-card-cta {
+      align-self: flex-start;
+      border: 1.5px solid #fff;
+      border-radius: 30px;
+      color: #fff;
+      font-weight: 600;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      padding: 12px 28px;
+      transition: all 0.3s ease;
+    }
+    
+    .hero-card-cta:hover {
+      background-color: #fff;
+      color: #7a0c1e;
+      box-shadow: 0 10px 20px rgba(255, 255, 255, 0.25);
+    }
+    
+    /* Horizontal Carousels */
+    #trousseau-list-context,
+    #engagement-list-context {
+      display: flex;
+      gap: 24px;
+      overflow-x: auto;
+      scroll-behavior: smooth;
+      padding: 16px 4px;
+      scrollbar-width: none;
+      width: 100%;
+    }
+    
+    #trousseau-list-context::-webkit-scrollbar,
+    #engagement-list-context::-webkit-scrollbar {
+      display: none;
+    }
+    
+    #trousseau-list-context .glam-card,
+    #engagement-list-context .glam-card {
+      flex: 0 0 calc(20% - 20px);
+      min-width: 230px;
+    }
+    
+    @media (max-width: 1024px) {
+      #trousseau-list-context .glam-card,
+      #engagement-list-context .glam-card {
+        flex: 0 0 calc(33.333% - 16px);
+      }
+    }
+    @media (max-width: 768px) {
+      #trousseau-list-context .glam-card,
+      #engagement-list-context .glam-card {
+        flex: 0 0 calc(50% - 12px);
+      }
+    }
+    @media (max-width: 480px) {
+      #trousseau-list-context .glam-card,
+      #engagement-list-context .glam-card {
+        flex: 0 0 85%;
+      }
+    }
+    
+    .scroll-row-inner {
+      display: flex;
+      gap: 24px;
+      width: 100%;
+    }
+    
+    .carousel-section-header {
+      margin-bottom: calc(var(--spacing-grid) * 4);
+    }
+    
+    .carousel-header-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: calc(var(--spacing-grid) * 2);
+    }
+    
+    .carousel-view-all-btn {
+      color: var(--accent-gold);
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      transition: all 0.3s ease;
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+    
+    .carousel-view-all-btn:hover {
+      color: #fff;
+      transform: translateX(4px);
+    }
+    
+    .carousel-submenu {
+      display: flex;
+      gap: 16px;
+      margin-bottom: calc(var(--spacing-grid) * 2);
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    
+    .submenu-link {
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      transition: all 0.3s ease;
+      background: none;
+      border: none;
+      padding: 4px 0;
+      cursor: pointer;
+    }
+    
+    .submenu-link:hover,
+    .submenu-link.active-submenu {
+      color: var(--accent-gold);
+      text-shadow: 0 0 10px rgba(201, 160, 84, 0.2);
+    }
+    
+    .submenu-divider {
+      color: rgba(255, 255, 255, 0.08);
+      font-size: 0.75rem;
+      user-select: none;
+    }
+    
+    /* Haldi Split Section */
+    .haldi-split-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.1fr;
+      gap: 48px;
+      align-items: center;
+    }
+    
+    @media (max-width: 900px) {
+      .haldi-split-grid {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+    }
+    
+    .haldi-featured-box {
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 0 30px 60px rgba(0,0,0,0.6);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      height: 520px;
+    }
+    
+    .haldi-featured-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    
+    .haldi-featured-box:hover .haldi-featured-img {
+      transform: scale(1.04);
+    }
+    
+    .haldi-details-box {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    
+    .haldi-desc {
+      color: var(--text-muted);
+      margin-bottom: 24px;
+      line-height: 1.7;
+      font-size: 0.95rem;
+    }
+    
+    #haldi-list-context {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      width: 100%;
+      margin-top: 16px;
+    }
+    
+    @media (max-width: 600px) {
+      #haldi-list-context {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    @media (max-width: 400px) {
+      #haldi-list-context {
+        grid-template-columns: 1fr;
+      }
+    }
+    
+    .glam-mini-card {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 12px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    
+    .glam-mini-card:hover {
+      background: rgba(255, 255, 255, 0.05);
+      border-color: var(--accent-gold);
+      transform: translateY(-2px);
+    }
+    
+    .mini-card-media {
+      width: 50px;
+      height: 50px;
+      border-radius: 8px;
+      overflow: hidden;
+      background: #101116;
+      flex-shrink: 0;
+    }
+    
+    .mini-card-media shopify-media {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+    
+    .mini-card-info {
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    
+    .mini-card-title {
+      font-size: 0.8rem;
+      color: #fff;
+      font-weight: 500;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    
+    .mini-card-price {
+      font-size: 0.75rem;
+      color: var(--accent-gold);
+      font-weight: 600;
+    }
+    
+    /* Categories Grid styling */
+    .categories-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 16px;
+    }
+    
+    @media (max-width: 768px) {
+      .categories-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    @media (max-width: 480px) {
+      .categories-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    
+    .category-block-card {
+      position: relative;
+      border-radius: 16px;
+      overflow: hidden;
+      aspect-ratio: 16 / 10;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+      cursor: pointer;
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    
+    .category-block-card:hover {
+      transform: scale(1.02);
+      border-color: var(--accent-gold);
+      box-shadow: 0 20px 45px rgba(201, 160, 84, 0.15);
+    }
+    
+    .category-block-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 6s ease;
+    }
+    
+    .category-block-card:hover .category-block-img {
+      transform: scale(1.05);
+    }
+    
+    .category-block-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to top, rgba(5, 6, 10, 0.85) 0%, rgba(5, 6, 10, 0.25) 100%);
+      transition: background 0.3s ease;
+    }
+    
+    .category-block-card:hover .category-block-overlay {
+      background: linear-gradient(to top, rgba(5, 6, 10, 0.95) 0%, rgba(5, 6, 10, 0.35) 100%);
+    }
+    
+    .category-block-title {
+      position: absolute;
+      bottom: 20px;
+      left: 20px;
+      right: 20px;
+      font-family: var(--font-display);
+      font-size: 1.45rem;
+      font-weight: 500;
+      color: #fff;
+      letter-spacing: 0.02em;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+    }
+    
+    /* Product Index Grid styling */
+    .product-index-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 32px;
+      margin-top: 16px;
+      border-top: 1px solid var(--border-color);
+      padding-top: 32px;
+    }
+    
+    @media (max-width: 768px) {
+      .product-index-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 24px;
+      }
+    }
+    @media (max-width: 480px) {
+      .product-index-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    
+    .index-column {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    
+    .index-column-title {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: #fff;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      padding-bottom: 8px;
+    }
+    
+    .index-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    
+    .index-list a {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      transition: color 0.3s ease;
+    }
+    
+    .index-list a:hover {
+      color: var(--accent-gold);
+    }
+    
+    /* Why Glamshack Values grid */
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+      margin-top: 32px;
+    }
+    
+    @media (max-width: 768px) {
+      .values-grid {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+    }
+    
+    .value-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+    
+    .value-circle-badge {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      border: 1px solid rgba(201, 160, 84, 0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.2rem;
+      margin-bottom: 16px;
+      background: radial-gradient(circle, rgba(18, 20, 29, 0.4) 0%, rgba(8, 9, 13, 0.6) 100%);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+      transition: all 0.3s ease;
+    }
+    
+    .value-item:hover .value-circle-badge {
+      transform: scale(1.05);
+      border-color: var(--accent-gold);
+      box-shadow: 0 12px 25px rgba(201, 160, 84, 0.2);
+    }
+    
+    .value-title {
+      font-family: var(--font-display);
+      font-size: 1.35rem;
+      color: #fff;
+      margin-bottom: 8px;
+    }
+    
+    .value-text {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+      max-width: 280px;
     }
   </style>
 </head>
@@ -1478,25 +2154,53 @@
 
   <!-- HEADER NAV BAR -->
   <header>
-    <div class="container header-inner">
-      <a href="#" class="logo" onclick="navigateTo('view-home')">Glamshack<span style="color: var(--accent-gold);">.</span></a>
-      
-      <nav>
-        <ul>
-          <li><button class="nav-link active" id="nav-home" onclick="navigateTo('view-home')">Home</button></li>
-          <li><button class="nav-link" id="nav-shop" onclick="navigateTo('view-shop')">Collection</button></li>
-          <li><button class="nav-link" id="nav-about" onclick="navigateTo('view-about')">About</button></li>
-          <li><button class="nav-link" id="nav-blog" onclick="navigateTo('view-blog')">Journal</button></li>
-          <li><button class="nav-link" id="nav-profile" onclick="navigateTo('view-profile')">My Profile</button></li>
-        </ul>
-      </nav>
-      
-      <!-- Open Cart Trigger Button -->
-      <button class="btn-open-cart" onclick="document.getElementById('cart').showModal()">
-        <span>Cart</span>
-        <span class="cart-count-badge"></span>
+    <div class="container header-top-row">
+      <!-- Left: Profile Shortcut -->
+      <button class="header-icon-btn profile-btn" onclick="navigateTo('view-profile')" title="My Profile">
+        👤
       </button>
+      
+      <!-- Center: Brand Logo -->
+      <a href="#" class="logo" onclick="navigateTo('view-home')">GLAMSHACK</a>
+      
+      <!-- Right: Search & Cart -->
+      <div class="header-actions-right">
+        <button class="header-icon-btn search-btn" onclick="navigateTo('view-shop')" title="Search Catalog">
+          🔍
+        </button>
+        <button class="btn-open-cart" onclick="document.getElementById('cart').showModal()">
+          <span>Cart</span>
+          <span class="cart-count-badge"></span>
+        </button>
+      </div>
     </div>
+    
+    <!-- Category Nav Links Centered Below Logo -->
+    <nav class="category-nav">
+      <div class="container">
+        <ul class="category-nav-list">
+          <li><button class="cat-nav-link" onclick="navigateTo('view-home')">Home</button></li>
+          <li><span class="nav-divider">|</span></li>
+          <li><button class="cat-nav-link" onclick="navigateTo('view-about')">Info</button></li>
+          <li><span class="nav-divider">|</span></li>
+          <li><button class="cat-nav-link" onclick="handleCategoryNav('hampers')">Hampers</button></li>
+          <li><span class="nav-divider">|</span></li>
+          <li><button class="cat-nav-link" onclick="handleCategoryNav('trays')">Trays</button></li>
+          <li><span class="nav-divider">|</span></li>
+          <li><button class="cat-nav-link" onclick="handleCategoryNav('saree-covers')">Saree Covers</button></li>
+          <li><span class="nav-divider">|</span></li>
+          <li><button class="cat-nav-link" onclick="handleCategoryNav('bags')">Bags</button></li>
+          <li><span class="nav-divider">|</span></li>
+          <li><button class="cat-nav-link" onclick="handleCategoryNav('baskets')">Basket / Trunks</button></li>
+          <li><span class="nav-divider">|</span></li>
+          <li><button class="cat-nav-link" onclick="handleCategoryNav('pouches')">Pouches</button></li>
+          <li><span class="nav-divider">|</span></li>
+          <li><button class="cat-nav-link" onclick="handleCategoryNav('bands')">Bands</button></li>
+          <li><span class="nav-divider">|</span></li>
+          <li><button class="cat-nav-link" onclick="navigateTo('view-blog')">Journal</button></li>
+        </ul>
+      </div>
+    </nav>
   </header>
 
   <!-- =========================================================
@@ -1506,49 +2210,47 @@
     <!-- HERO SECTION -->
     <section class="hero">
       <div class="container hero-grid">
-        <div class="hero-content">
-          <span class="hero-subtitle">Premium Editorial Collection</span>
-          <h1 class="hero-title">Reveal Your <br><em>Inner Glow</em></h1>
-          <p class="hero-desc">Experience high-pigment, clean formulas designed to nourish and elevate your skin's natural aesthetic. 100% cruelty-free luxury makeup.</p>
-          <button onclick="navigateTo('view-shop')" class="hero-cta">Explore Collection</button>
+        <div class="hero-left-card">
+          <span class="hero-card-subtitle">FOR THE MODERN BRIDE</span>
+          <h1 class="hero-card-title">HELLO <br><em>Bride</em></h1>
+          <p class="hero-card-desc">Make your special day more elegant with our customized trousseau packing sets and engagement platters.</p>
+          <button onclick="navigateTo('view-shop')" class="hero-card-cta">Shop Collection</button>
         </div>
         
         <div class="hero-img-container">
-          <!-- beauty editorial portrait placeholder -->
-          <img class="hero-img" src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=1000&auto=format&fit=crop" alt="Glamshack Cosmetics Editorial Model">
+          <img class="hero-img" src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=1000&auto=format&fit=crop" alt="Glamshack Luxury Bridal Trousseau">
         </div>
       </div>
     </section>
 
-    <!-- BRAND VALUE TICKER MARQUEE -->
-    <section class="marquee-section">
-      <div class="marquee-content">
-        <span class="marquee-item"><span class="marquee-bullet">•</span>100% CRUELTY-FREE FORMULAS</span>
-        <span class="marquee-item"><span class="marquee-bullet">•</span>VEGAN BEAUTY INGREDIENTS</span>
-        <span class="marquee-item"><span class="marquee-bullet">•</span>DERMATOLOGIST TESTED</span>
-        <span class="marquee-item"><span class="marquee-bullet">•</span>FREE SHIPPING ON ORDERS OVER $50</span>
-        <!-- Duplicate content for infinite scrolling wrapper loop -->
-        <span class="marquee-item"><span class="marquee-bullet">•</span>100% CRUELTY-FREE FORMULAS</span>
-        <span class="marquee-item"><span class="marquee-bullet">•</span>VEGAN BEAUTY INGREDIENTS</span>
-        <span class="marquee-item"><span class="marquee-bullet">•</span>DERMATOLOGIST TESTED</span>
-        <span class="marquee-item"><span class="marquee-bullet">•</span>FREE SHIPPING ON ORDERS OVER $50</span>
+    <!-- TROUSSEAU PACKING SETS SECTION -->
+    <section class="container" style="padding-top: calc(var(--spacing-grid) * 10);">
+      <div class="carousel-section-header">
+        <div class="carousel-header-top">
+          <h2 class="section-main-title">TROUSSEAU PACKING SETS</h2>
+          <button onclick="handleCategoryNav('saree-covers')" class="carousel-view-all-btn">View All →</button>
+        </div>
+        <div class="carousel-submenu">
+          <button class="submenu-link active-submenu" onclick="filterTrousseauCarousel(this, 'all')">All Trousseau</button>
+          <span class="submenu-divider">|</span>
+          <button class="submenu-link" onclick="filterTrousseauCarousel(this, 'saree')">Saree Covers</button>
+          <span class="submenu-divider">|</span>
+          <button class="submenu-link" onclick="filterTrousseauCarousel(this, 'suit')">Suit Covers</button>
+          <span class="submenu-divider">|</span>
+          <button class="submenu-link" onclick="filterTrousseauCarousel(this, 'pouch')">Makeup Pouches</button>
+          <span class="submenu-divider">|</span>
+          <button class="submenu-link" onclick="filterTrousseauCarousel(this, 'basket')">Baskets</button>
+          <span class="submenu-divider">|</span>
+          <button class="submenu-link" onclick="filterTrousseauCarousel(this, 'band')">Bands</button>
+        </div>
       </div>
-    </section>
-
-    <!-- FEATURED / BEST SELLERS SECTION -->
-    <section class="container" style="padding-top: calc(var(--spacing-grid) * 4);">
-      <div class="section-header">
-        <span class="section-title-tag">The Best Sellers</span>
-        <h2 class="section-main-title">Customer Favorites</h2>
-      </div>
-
-      <div class="product-grid-container">
-        <!-- Render first 4 products for homepage -->
-        <shopify-list-context type="product" query="products" first="4">
+      
+      <div class="scroll-row-container">
+        <shopify-list-context id="trousseau-list-context" type="product" query="products" first="40">
           <template>
-            <div class="glam-card">
+            <div class="glam-card" shopify-attr--data-title="product.title">
               <div class="card-media-wrapper">
-                <div class="card-badge">Luxe</div>
+                <div class="card-badge">Trousseau</div>
                 <shopify-media width="300" height="300" query="product.selectedOrFirstAvailableVariant.image"></shopify-media>
                 <div class="card-hover-overlay">View Details</div>
               </div>
@@ -1559,13 +2261,234 @@
               </div>
             </div>
           </template>
-          <div slot="loading" class="product-grid">
-            <div class="glam-card loading-pulse" style="height:380px;"></div>
-            <div class="glam-card loading-pulse" style="height:380px;"></div>
-            <div class="glam-card loading-pulse" style="height:380px;"></div>
-            <div class="glam-card loading-pulse" style="height:380px;"></div>
+          <div slot="loading" class="scroll-row-inner">
+            <div class="glam-card loading-pulse" style="height:360px; flex: 0 0 calc(20% - 20px); min-width:230px;"></div>
+            <div class="glam-card loading-pulse" style="height:360px; flex: 0 0 calc(20% - 20px); min-width:230px;"></div>
+            <div class="glam-card loading-pulse" style="height:360px; flex: 0 0 calc(20% - 20px); min-width:230px;"></div>
+            <div class="glam-card loading-pulse" style="height:360px; flex: 0 0 calc(20% - 20px); min-width:230px;"></div>
+            <div class="glam-card loading-pulse" style="height:360px; flex: 0 0 calc(20% - 20px); min-width:230px;"></div>
           </div>
         </shopify-list-context>
+      </div>
+    </section>
+
+    <!-- ENGAGEMENT PLATTERS SECTION -->
+    <section class="container" style="padding-top: calc(var(--spacing-grid) * 10);">
+      <div class="carousel-section-header">
+        <div class="carousel-header-top">
+          <h2 class="section-main-title">ENGAGEMENT PLATTERS</h2>
+          <button onclick="handleCategoryNav('trays')" class="carousel-view-all-btn">View All →</button>
+        </div>
+      </div>
+      
+      <div class="scroll-row-container">
+        <shopify-list-context id="engagement-list-context" type="product" query="products" first="40">
+          <template>
+            <div class="glam-card" shopify-attr--data-title="product.title">
+              <div class="card-media-wrapper">
+                <div class="card-badge">Engagement</div>
+                <shopify-media width="300" height="300" query="product.selectedOrFirstAvailableVariant.image"></shopify-media>
+                <div class="card-hover-overlay">View Details</div>
+              </div>
+              <div class="card-details">
+                <h3 class="card-title"><shopify-data query="product.title"></shopify-data></h3>
+                <div class="card-price"><shopify-money query="product.selectedOrFirstAvailableVariant.price"></shopify-money></div>
+                <button class="card-view-btn" onclick="openProductPage(event)">View Details</button>
+              </div>
+            </div>
+          </template>
+          <div slot="loading" class="scroll-row-inner">
+            <div class="glam-card loading-pulse" style="height:360px; flex: 0 0 calc(20% - 20px); min-width:230px;"></div>
+            <div class="glam-card loading-pulse" style="height:360px; flex: 0 0 calc(20% - 20px); min-width:230px;"></div>
+            <div class="glam-card loading-pulse" style="height:360px; flex: 0 0 calc(20% - 20px); min-width:230px;"></div>
+            <div class="glam-card loading-pulse" style="height:360px; flex: 0 0 calc(20% - 20px); min-width:230px;"></div>
+            <div class="glam-card loading-pulse" style="height:360px; flex: 0 0 calc(20% - 20px); min-width:230px;"></div>
+          </div>
+        </shopify-list-context>
+      </div>
+    </section>
+
+    <!-- HALDI / MEHENDI PLATTERS SECTION -->
+    <section class="container" style="padding-top: calc(var(--spacing-grid) * 12);">
+      <div class="haldi-split-grid">
+        <!-- Left Column: Featured Image -->
+        <div class="haldi-featured-box">
+          <img class="haldi-featured-img" src="https://images.unsplash.com/photo-1604713784414-bbf40f2f3d61?w=800&auto=format&fit=crop" alt="Haldi Mehendi Ceremony Decor">
+        </div>
+        
+        <!-- Right Column: Details & Mini-Grid -->
+        <div class="haldi-details-box">
+          <span class="section-title-tag">Ceremonial Sunshine</span>
+          <h2 class="section-main-title" style="text-align: left; margin-bottom: 16px;">Haldi / Mehendi Platters</h2>
+          <p class="haldi-desc">Celebrate your pre-wedding rituals with our specially curated marigold and mirror-finish platters, custom nameplates, and colorful thalis designed to brighten your ceremony photos.</p>
+          
+          <shopify-list-context id="haldi-list-context" type="product" query="products" first="40">
+            <template>
+              <div class="glam-mini-card" shopify-attr--data-title="product.title" onclick="openProductPage(event)">
+                <div class="mini-card-media">
+                  <shopify-media width="100" height="100" query="product.selectedOrFirstAvailableVariant.image"></shopify-media>
+                </div>
+                <div class="mini-card-info">
+                  <span class="mini-card-title"><shopify-data query="product.title"></shopify-data></span>
+                  <span class="mini-card-price"><shopify-money query="product.selectedOrFirstAvailableVariant.price"></shopify-money></span>
+                </div>
+              </div>
+            </template>
+            <div slot="loading" id="haldi-list-context">
+              <div class="glam-mini-card loading-pulse" style="height:76px;"></div>
+              <div class="glam-mini-card loading-pulse" style="height:76px;"></div>
+              <div class="glam-mini-card loading-pulse" style="height:76px;"></div>
+              <div class="glam-mini-card loading-pulse" style="height:76px;"></div>
+              <div class="glam-mini-card loading-pulse" style="height:76px;"></div>
+            </div>
+          </shopify-list-context>
+          
+          <button onclick="handleCategoryNav('trays')" class="hero-cta" style="align-self: flex-start; margin-top: 24px;">Explore More</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ALL CATEGORIES SECTION -->
+    <section class="container" style="padding-top: calc(var(--spacing-grid) * 12);">
+      <div class="section-header">
+        <span class="section-title-tag">Bespoke Curation</span>
+        <h2 class="section-main-title">All Categories</h2>
+      </div>
+      
+      <div class="categories-grid">
+        <!-- Card 1: Trousseau Sets -->
+        <div class="category-block-card" onclick="handleCategoryNav('hampers')">
+          <img class="category-block-img" src="https://images.unsplash.com/photo-1549465220-1a8b9238cd48?w=500&auto=format&fit=crop" alt="Trousseau Packing Sets">
+          <div class="category-block-overlay"></div>
+          <h3 class="category-block-title">Trousseau Sets</h3>
+        </div>
+        
+        <!-- Card 2: Engagement Platters -->
+        <div class="category-block-card" onclick="handleCategoryNav('trays')">
+          <img class="category-block-img" src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=500&auto=format&fit=crop" alt="Engagement Platters">
+          <div class="category-block-overlay"></div>
+          <h3 class="category-block-title">Engagement Platters</h3>
+        </div>
+        
+        <!-- Card 3: Saree Covers -->
+        <div class="category-block-card" onclick="handleCategoryNav('saree-covers')">
+          <img class="category-block-img" src="https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?w=500&auto=format&fit=crop" alt="Saree Covers">
+          <div class="category-block-overlay"></div>
+          <h3 class="category-block-title">Saree Covers</h3>
+        </div>
+        
+        <!-- Card 4: Suit Covers -->
+        <div class="category-block-card" onclick="handleCategoryNav('saree-covers')">
+          <img class="category-block-img" src="https://images.unsplash.com/photo-1608248597279-f99d160bfcbc?w=500&auto=format&fit=crop" alt="Suit Covers">
+          <div class="category-block-overlay"></div>
+          <h3 class="category-block-title">Suit Covers</h3>
+        </div>
+        
+        <!-- Card 5: Baskets / Trunks -->
+        <div class="category-block-card" onclick="handleCategoryNav('baskets')">
+          <img class="category-block-img" src="https://images.unsplash.com/photo-1523293182086-7651a899d37f?w=500&auto=format&fit=crop" alt="Baskets / Trunks">
+          <div class="category-block-overlay"></div>
+          <h3 class="category-block-title">Baskets & Trunks</h3>
+        </div>
+        
+        <!-- Card 6: Pouches & Bags -->
+        <div class="category-block-card" onclick="handleCategoryNav('bags')">
+          <img class="category-block-img" src="https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?w=500&auto=format&fit=crop" alt="Pouches & Bags">
+          <div class="category-block-overlay"></div>
+          <h3 class="category-block-title">Pouches & Bags</h3>
+        </div>
+      </div>
+      
+      <div style="text-align: center; margin-top: 32px;">
+        <button onclick="handleCategoryNav('all')" class="hero-cta">View All Products</button>
+      </div>
+    </section>
+
+    <!-- PRODUCT INDEX SECTION -->
+    <section class="container" style="padding-top: calc(var(--spacing-grid) * 12); padding-bottom: calc(var(--spacing-grid) * 6);">
+      <div class="section-header">
+        <span class="section-title-tag">Directory</span>
+        <h2 class="section-main-title">Product Index</h2>
+      </div>
+      
+      <div class="product-index-grid">
+        <!-- Column 1: Trousseau -->
+        <div class="index-column">
+          <h3 class="index-column-title">Trousseau Packing</h3>
+          <ul class="index-list">
+            <li><a href="#" onclick="handleCategoryNav('saree-covers')">Saree Covers</a></li>
+            <li><a href="#" onclick="handleCategoryNav('saree-covers')">Suit Covers</a></li>
+            <li><a href="#" onclick="handleCategoryNav('saree-covers')">Lehenga Covers</a></li>
+            <li><a href="#" onclick="handleCategoryNav('saree-covers')">Gown Covers</a></li>
+            <li><a href="#" onclick="handleCategoryNav('saree-covers')">Sherwani Covers</a></li>
+          </ul>
+        </div>
+        
+        <!-- Column 2: Platters -->
+        <div class="index-column">
+          <h3 class="index-column-title">Ceremonial Platters</h3>
+          <ul class="index-list">
+            <li><a href="#" onclick="handleCategoryNav('trays')">Engagement Platters</a></li>
+            <li><a href="#" onclick="handleCategoryNav('trays')">Ring Trays</a></li>
+            <li><a href="#" onclick="handleCategoryNav('trays')">Coin Trays</a></li>
+            <li><a href="#" onclick="handleCategoryNav('trays')">Shagun Trays</a></li>
+            <li><a href="#" onclick="handleCategoryNav('trays')">Dry Fruit Trays</a></li>
+          </ul>
+        </div>
+        
+        <!-- Column 3: Bags & Pouches -->
+        <div class="index-column">
+          <h3 class="index-column-title">Bags & Pouches</h3>
+          <ul class="index-list">
+            <li><a href="#" onclick="handleCategoryNav('bags')">Potli Bags</a></li>
+            <li><a href="#" onclick="handleCategoryNav('pouches')">Makeup Pouches</a></li>
+            <li><a href="#" onclick="handleCategoryNav('pouches')">Jewelry Pouches</a></li>
+            <li><a href="#" onclick="handleCategoryNav('bags')">Bridal Clutches</a></li>
+            <li><a href="#" onclick="handleCategoryNav('bags')">Gift Envelopes</a></li>
+          </ul>
+        </div>
+        
+        <!-- Column 4: Trunks & Baskets -->
+        <div class="index-column">
+          <h3 class="index-column-title">Trunks & Baskets</h3>
+          <ul class="index-list">
+            <li><a href="#" onclick="handleCategoryNav('baskets')">Velvet Trunks</a></li>
+            <li><a href="#" onclick="handleCategoryNav('baskets')">Brocade Baskets</a></li>
+            <li><a href="#" onclick="handleCategoryNav('baskets')">Dry Fruit Boxes</a></li>
+            <li><a href="#" onclick="handleCategoryNav('bags')">Safa Accessories</a></li>
+            <li><a href="#" onclick="handleCategoryNav('bands')">Decorative Bands</a></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- WHY GLAMSHACK SECTION -->
+    <section class="marquee-section" style="background-color: rgba(18, 20, 29, 0.2); padding: calc(var(--spacing-grid) * 10) 0; border-top: 1px solid rgba(201, 160, 84, 0.15); border-bottom: 1px solid rgba(201, 160, 84, 0.15);">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-title-tag">The Glamshack Standard</span>
+          <h2 class="section-main-title">Why Glamshack</h2>
+        </div>
+        
+        <div class="values-grid">
+          <div class="value-item">
+            <div class="value-circle-badge">🎨</div>
+            <h3 class="value-title">Premium Handcrafts</h3>
+            <p class="value-text">Every piece is finished by hand with raw silk, Zardosi, and fine velvet by master artisans.</p>
+          </div>
+          
+          <div class="value-item">
+            <div class="value-circle-badge">📦</div>
+            <h3 class="value-title">Secure Shipping</h3>
+            <p class="value-text">We package and ship each order with extra care to ensure it arrives in pristine condition.</p>
+          </div>
+          
+          <div class="value-item">
+            <div class="value-circle-badge">✨</div>
+            <h3 class="value-title">Bespoke Customization</h3>
+            <p class="value-text">Customize colors, sizes, and monogram nameplates to match your unique wedding theme.</p>
+          </div>
+        </div>
       </div>
     </section>
   </div>
@@ -1583,9 +2506,13 @@
       <!-- Dynamic filter tabs matching the actual store catalog -->
       <div class="collection-tabs">
         <button class="btn-tab active-tab" id="tab-all" onclick="filterShopProducts('all')">All Products</button>
-        <button class="btn-tab" id="tab-hampers" onclick="filterShopProducts('hampers')">Gift Hampers</button>
-        <button class="btn-tab" id="tab-trays" onclick="filterShopProducts('trays')">Ring Trays & Platters</button>
-        <button class="btn-tab" id="tab-boxes" onclick="filterShopProducts('boxes')">Luxury Boxes & Bags</button>
+        <button class="btn-tab" id="tab-hampers" onclick="filterShopProducts('hampers')">Hampers</button>
+        <button class="btn-tab" id="tab-trays" onclick="filterShopProducts('trays')">Platters & Trays</button>
+        <button class="btn-tab" id="tab-saree-covers" onclick="filterShopProducts('saree-covers')">Saree Covers</button>
+        <button class="btn-tab" id="tab-bags" onclick="filterShopProducts('bags')">Bags & Potlis</button>
+        <button class="btn-tab" id="tab-baskets" onclick="filterShopProducts('baskets')">Baskets & Trunks</button>
+        <button class="btn-tab" id="tab-pouches" onclick="filterShopProducts('pouches')">Pouches</button>
+        <button class="btn-tab" id="tab-bands" onclick="filterShopProducts('bands')">Bands & Jewelry</button>
       </div>
 
       <div class="product-grid-container">
@@ -1924,10 +2851,63 @@
 
   <!-- FOOTER -->
   <footer>
-    <div class="container">
-      <p style="font-family: var(--font-display); font-weight: 400; font-style: italic; color: #fff; font-size:1.4rem; margin-bottom:12px;">Glamshack</p>
-      <p>© 2026 Glamshack Beauty. All rights reserved.</p>
-      <p style="font-size:0.7rem; color: var(--text-dark); margin-top:10px; text-transform:uppercase; letter-spacing:0.1em;">Headless Web Components Storefront • tbxtcm-tf.myshopify.com</p>
+    <div class="container footer-grid-container">
+      <!-- Col 1: Brand Info -->
+      <div class="footer-col brand-col">
+        <h3 class="footer-logo">Glamshack</h3>
+        <p class="footer-brand-desc">Premium customized trousseau packing sets, designer ring platters, and luxury wedding packaging designed to make your celebrations unforgettable.</p>
+        <div class="footer-contact">
+          <p>📍 Lucknow, Uttar Pradesh, India</p>
+          <p>📞 +91 99999 88888</p>
+          <p>✉️ hello@glamshack.in</p>
+        </div>
+        <div class="footer-socials">
+          <a href="#" title="Instagram">📸</a>
+          <a href="#" title="Facebook">📘</a>
+          <a href="#" title="Pinterest">📌</a>
+          <a href="#" title="WhatsApp">💬</a>
+        </div>
+      </div>
+      
+      <!-- Col 2: Customer Care -->
+      <div class="footer-col">
+        <h4 class="footer-col-title">Customer Care</h4>
+        <ul class="footer-links">
+          <li><a href="#" onclick="alert('FAQs are synced with our Shopify support dashboard.')">FAQs</a></li>
+          <li><a href="#" onclick="alert('Our standard shipping is complimentary on orders above Rs. 5000.')">Shipping & Returns</a></li>
+          <li><a href="#" onclick="navigateTo('view-about')">Contact Us</a></li>
+          <li><a href="#" onclick="alert('Your privacy is protected with industry-standard SSL encryption.')">Privacy Policy</a></li>
+          <li><a href="#" onclick="alert('Standard merchant Terms of Service apply.')">Terms of Service</a></li>
+        </ul>
+      </div>
+      
+      <!-- Col 3: Quick Shop -->
+      <div class="footer-col">
+        <h4 class="footer-col-title">Quick Shop</h4>
+        <ul class="footer-links">
+          <li><a href="#" onclick="handleCategoryNav('hampers')">Gift Hampers</a></li>
+          <li><a href="#" onclick="handleCategoryNav('trays')">Ring Trays & Platters</a></li>
+          <li><a href="#" onclick="handleCategoryNav('saree-covers')">Saree Covers</a></li>
+          <li><a href="#" onclick="handleCategoryNav('baskets')">Baskets & Trunks</a></li>
+          <li><a href="#" onclick="handleCategoryNav('bands')">Decorative Bands</a></li>
+        </ul>
+      </div>
+      
+      <!-- Col 4: Newsletter -->
+      <div class="footer-col newsletter-col">
+        <h4 class="footer-col-title">Glamshack Newsletter</h4>
+        <p class="newsletter-desc">Subscribe to receive collections updates, seasonal design catalogs, and custom wedding inspiration.</p>
+        <form class="newsletter-form" onsubmit="event.preventDefault(); alert('Thank you for subscribing to Glamshack updates!'); this.reset();">
+          <input type="email" placeholder="Your Email Address" required class="newsletter-input">
+          <button type="submit" class="newsletter-submit-btn">Subscribe</button>
+        </form>
+      </div>
+    </div>
+    
+    <!-- Footer bottom copyright bar -->
+    <div class="container footer-bottom-bar">
+      <p>© 2026 Glamshack Beauty & Luxury Packaging. All rights reserved.</p>
+      <p style="font-size:0.7rem; color: var(--text-dark); margin-top:6px; text-transform:uppercase; letter-spacing:0.1em;">Headless Web Components Storefront • tbxtcm-tf.myshopify.com</p>
     </div>
   </footer>
 
@@ -1936,6 +2916,7 @@
     // Keep track of navigation history stack for back button support
     let navigationHistory = ['view-home'];
     let activeShopFilter = 'all';
+    let activeTrousseauFilter = 'all';
 
     // Mock articles database for the Glamshack Journal
     const ARTICLES_DB = {
@@ -1996,16 +2977,9 @@
       }
 
       // Update active state in nav link buttons
-      document.querySelectorAll('nav button.nav-link').forEach(link => {
+      document.querySelectorAll('.cat-nav-link').forEach(link => {
         link.classList.remove('active');
       });
-
-      // Map view id to nav buttons
-      if (viewId === 'view-home') document.getElementById('nav-home').classList.add('active');
-      if (viewId === 'view-shop') document.getElementById('nav-shop').classList.add('active');
-      if (viewId === 'view-about') document.getElementById('nav-about').classList.add('active');
-      if (viewId === 'view-blog') document.getElementById('nav-blog').classList.add('active');
-      if (viewId === 'view-profile') document.getElementById('nav-profile').classList.add('active');
 
       // Scroll window to top
       window.scrollTo(0, 0);
@@ -2038,6 +3012,12 @@
       }
     }
 
+    // Navigates to shop and triggers category filtering
+    function handleCategoryNav(category) {
+      navigateTo('view-shop');
+      filterShopProducts(category);
+    }
+
     // Handles dynamic filtering of products on the Shop page client-side
     function filterShopProducts(category) {
       activeShopFilter = category;
@@ -2060,22 +3040,108 @@
       if (cards.length === 0) return;
 
       cards.forEach(card => {
-        const title = card.getAttribute('data-title') || '';
-        const titleLower = title.toLowerCase();
+        const attrTitle = card.getAttribute('data-title') || card.getAttribute('shopify-attr--data-title') || '';
+        const htmlTitle = card.querySelector('.card-title')?.innerText || '';
+        const title = (attrTitle || htmlTitle).toLowerCase();
         
         let show = false;
         if (activeShopFilter === 'all') {
           show = true;
         } else if (activeShopFilter === 'hampers') {
-          show = titleLower.includes('hamper');
+          show = title.includes('hamper');
         } else if (activeShopFilter === 'trays') {
-          show = titleLower.includes('tray') || titleLower.includes('platter');
-        } else if (activeShopFilter === 'boxes') {
-          show = titleLower.includes('box') || titleLower.includes('safa') || titleLower.includes('potli') || titleLower.includes('bag');
+          show = title.includes('tray') || title.includes('platter');
+        } else if (activeShopFilter === 'saree-covers') {
+          show = title.includes('saree') || title.includes('cover') || title.includes('suit');
+        } else if (activeShopFilter === 'bags') {
+          show = title.includes('bag') || title.includes('potli') || title.includes('envelope') || title.includes('clutch');
+        } else if (activeShopFilter === 'baskets') {
+          show = title.includes('basket') || title.includes('trunk') || title.includes('box') || title.includes('baksa');
+        } else if (activeShopFilter === 'pouches') {
+          show = title.includes('pouch') || title.includes('organizer');
+        } else if (activeShopFilter === 'bands') {
+          show = title.includes('band') || title.includes('bangle') || title.includes('necklace') || title.includes('set') || title.includes('earring') || title.includes('choker') || title.includes('pendant');
         }
         
         if (show) {
           card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+
+    // Filter carousel rows on Homepage
+    function filterTrousseauCarousel(btnEl, filter) {
+      activeTrousseauFilter = filter;
+      
+      // Toggle submenu links active states
+      const section = btnEl.closest('.carousel-section-header');
+      if (section) {
+        section.querySelectorAll('.submenu-link').forEach(link => {
+          link.classList.remove('active-submenu');
+        });
+      }
+      btnEl.classList.add('active-submenu');
+      
+      applyCarouselFilters();
+    }
+
+    function applyCarouselFilters() {
+      // Filter Trousseau Carousel
+      const trousseauCards = document.querySelectorAll('#trousseau-list-context .glam-card');
+      trousseauCards.forEach(card => {
+        const attrTitle = card.getAttribute('data-title') || card.getAttribute('shopify-attr--data-title') || '';
+        const htmlTitle = card.querySelector('.card-title')?.innerText || '';
+        const title = (attrTitle || htmlTitle).toLowerCase();
+        
+        // Default trousseau criteria: boxes, hampers, covers, bags, pouches, organizers
+        const isTrousseau = title.includes('box') || title.includes('hamper') || title.includes('cover') || title.includes('bag') || title.includes('pouch') || title.includes('trunk') || title.includes('basket') || title.includes('safa') || title.includes('organizer');
+        
+        let match = false;
+        if (activeTrousseauFilter === 'all') {
+          match = isTrousseau;
+        } else if (activeTrousseauFilter === 'saree') {
+          match = title.includes('saree') && isTrousseau;
+        } else if (activeTrousseauFilter === 'suit') {
+          match = (title.includes('suit') || title.includes('velvet')) && isTrousseau;
+        } else if (activeTrousseauFilter === 'pouch') {
+          match = (title.includes('pouch') || title.includes('bag') || title.includes('organizer')) && isTrousseau;
+        } else if (activeTrousseauFilter === 'basket') {
+          match = (title.includes('basket') || title.includes('trunk') || title.includes('box') || title.includes('baksa')) && isTrousseau;
+        } else if (activeTrousseauFilter === 'band') {
+          match = (title.includes('band') || title.includes('bangle') || title.includes('jewelry') || title.includes('set')) && isTrousseau;
+        }
+        
+        card.style.display = match ? 'flex' : 'none';
+      });
+
+      // Filter Engagement Carousel
+      const engagementCards = document.querySelectorAll('#engagement-list-context .glam-card');
+      engagementCards.forEach(card => {
+        const attrTitle = card.getAttribute('data-title') || card.getAttribute('shopify-attr--data-title') || '';
+        const htmlTitle = card.querySelector('.card-title')?.innerText || '';
+        const title = (attrTitle || htmlTitle).toLowerCase();
+        
+        // Engagement criteria: tray, platter, thali
+        const isEngagement = title.includes('tray') || title.includes('platter') || title.includes('thali');
+        card.style.display = isEngagement ? 'flex' : 'none';
+      });
+
+      // Filter Haldi Mini-Grid
+      const haldiCards = document.querySelectorAll('#haldi-list-context .glam-mini-card');
+      let count = 0;
+      haldiCards.forEach(card => {
+        const attrTitle = card.getAttribute('data-title') || card.getAttribute('shopify-attr--data-title') || '';
+        const htmlTitle = card.querySelector('.mini-card-title')?.innerText || '';
+        const title = (attrTitle || htmlTitle).toLowerCase();
+        
+        // Match Haldi or Mehendi or floral
+        const isHaldi = title.includes('haldi') || title.includes('mehendi') || title.includes('floral') || title.includes('kundan') || title.includes('yellow') || title.includes('rose gold');
+        
+        if (isHaldi && count < 5) {
+          card.style.display = 'flex';
+          count++;
         } else {
           card.style.display = 'none';
         }
@@ -2148,6 +3214,32 @@
       }
     });
 
+    // Observer to automatically trigger filtering on product rows as they render
+    const homeObserver = new MutationObserver((mutations) => {
+      let shouldFilter = false;
+      for (const mutation of mutations) {
+        if (mutation.addedNodes.length > 0) {
+          for (const node of mutation.addedNodes) {
+            if (node.nodeType === Node.ELEMENT_NODE) {
+              if (
+                node.classList.contains('glam-card') ||
+                node.classList.contains('glam-mini-card') ||
+                node.querySelector('.glam-card') ||
+                node.querySelector('.glam-mini-card')
+              ) {
+                shouldFilter = true;
+                break;
+              }
+            }
+          }
+        }
+        if (shouldFilter) break;
+      }
+      if (shouldFilter) {
+        applyCarouselFilters();
+      }
+    });
+
     // Initialize listeners
     window.addEventListener('DOMContentLoaded', () => {
       const targetNode = document.querySelector('#view-shop .product-grid-container');
@@ -2155,11 +3247,21 @@
         shopObserver.observe(targetNode, { childList: true, subtree: true });
       }
 
+      // Observe Home Page rows
+      const homeNode = document.getElementById('view-home');
+      if (homeNode) {
+        homeObserver.observe(homeNode, { childList: true, subtree: true });
+      }
+
       // Sync cart count badge initially
       updateCartBadge();
+      
+      // In case data is already loaded, apply filters immediately
+      applyCarouselFilters();
+      applyProductFilter();
     });
 
-    // Automatically trigger cart count check on user click interactions (adding to cart, updating quantity)
+    // Automatically trigger cart count check on user click interactions
     document.addEventListener('click', () => {
       setTimeout(updateCartBadge, 800);
     });
