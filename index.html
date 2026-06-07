@@ -2877,6 +2877,34 @@
         display: none !important;
       }
     }
+
+    /* Collection Page Catalog Grid Layout */
+    #shop-list-context {
+      display: grid !important;
+      grid-template-columns: repeat(4, 1fr) !important;
+      gap: 24px !important;
+      width: 100% !important;
+      margin-bottom: 40px !important;
+    }
+
+    #shop-list-context .glam-card {
+      flex: none !important;
+      width: 100% !important;
+      min-width: 0 !important;
+    }
+
+    @media (max-width: 1024px) {
+      #shop-list-context {
+        grid-template-columns: repeat(3, 1fr) !important;
+      }
+    }
+
+    @media (max-width: 768px) {
+      #shop-list-context {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 16px !important;
+      }
+    }
   </style>
 </head>
 <body>
