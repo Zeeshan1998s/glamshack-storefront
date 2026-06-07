@@ -443,21 +443,23 @@
 
     /* Product Card Styling */
     .glam-card {
-      background: var(--bg-card);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      border: 1px solid var(--border-color);
+      background: linear-gradient(135deg, rgba(18, 20, 29, 0.5) 0%, rgba(8, 9, 13, 0.8) 100%);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.04);
       border-radius: 16px;
       padding: calc(var(--spacing-grid) * 2.5);
       display: flex;
       flex-direction: column;
-      transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+      position: relative;
+      overflow: hidden;
+      transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     .glam-card:hover {
-      transform: translateY(-6px);
-      border-color: rgba(201, 160, 84, 0.3);
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+      transform: translateY(-8px);
+      border-color: rgba(201, 160, 84, 0.25);
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.7), 0 0 40px rgba(201, 160, 84, 0.05);
     }
 
     .card-media-wrapper {
@@ -466,11 +468,55 @@
       border-radius: 12px;
       overflow: hidden;
       margin-bottom: calc(var(--spacing-grid) * 2.5);
-      background-color: #0d0e14;
+      background: radial-gradient(circle, #181921 0%, #0d0e14 100%);
       aspect-ratio: 1 / 1;
       display: flex;
       align-items: center;
       justify-content: center;
+      border: 1px solid rgba(255, 255, 255, 0.02);
+    }
+
+    .card-badge {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      background-color: rgba(5, 6, 10, 0.8);
+      color: var(--accent-gold);
+      border: 1px solid rgba(201, 160, 84, 0.4);
+      font-size: 0.6rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      padding: 4px 10px;
+      border-radius: 4px;
+      z-index: 5;
+      backdrop-filter: blur(4px);
+    }
+
+    .card-hover-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(5, 6, 10, 0.6);
+      color: var(--accent-gold);
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: all 0.4s ease;
+      pointer-events: none;
+      z-index: 3;
+      backdrop-filter: blur(2px);
+    }
+
+    .card-media-wrapper:hover .card-hover-overlay {
+      opacity: 1;
     }
 
     .card-media-wrapper shopify-media {
@@ -482,12 +528,12 @@
     .card-media-wrapper img {
       width: 100% !important;
       height: 100% !important;
-      object-fit: contain !important; /* Display full uncropped image */
-      transition: transform 0.5s ease;
+      object-fit: contain !important;
+      transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     .glam-card:hover .card-media-wrapper img {
-      transform: scale(1.05);
+      transform: scale(1.08);
     }
 
     .card-details {
@@ -508,6 +554,7 @@
       overflow: hidden;
       line-height: 1.4;
       font-family: var(--font-display);
+      letter-spacing: 0.01em;
     }
 
     .card-price {
@@ -515,27 +562,31 @@
       font-size: 0.95rem;
       font-weight: 600;
       color: var(--accent-gold);
+      letter-spacing: 0.02em;
     }
 
     .card-view-btn {
-      margin-top: calc(var(--spacing-grid) * 1);
+      margin-top: calc(var(--spacing-grid) * 1.5);
       width: 100%;
       background-color: transparent;
-      border: 1px solid var(--border-color);
-      color: var(--text-main);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      color: var(--text-muted);
       font-family: var(--font-body);
       font-weight: 600;
-      font-size: 0.75rem;
+      font-size: 0.7rem;
       text-transform: uppercase;
-      letter-spacing: 0.10em;
-      padding: calc(var(--spacing-grid) * 1.75);
+      letter-spacing: 0.15em;
+      padding: calc(var(--spacing-grid) * 2);
       border-radius: 4px;
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     .glam-card:hover .card-view-btn {
-      background-color: var(--accent-pink);
-      border-color: var(--accent-pink);
-      color: #fff;
+      background-color: #fff;
+      border-color: #fff;
+      color: #000;
+      letter-spacing: 0.20em;
+      box-shadow: 0 10px 20px rgba(255, 255, 255, 0.1);
     }
 
     /* ---------------------------------------------------------
@@ -547,46 +598,51 @@
 
     .btn-back {
       background-color: transparent;
-      border: 1px solid var(--border-color);
+      border: 1px solid rgba(255, 255, 255, 0.08);
       color: var(--text-muted);
-      font-size: 0.75rem;
+      font-size: 0.7rem;
       text-transform: uppercase;
-      letter-spacing: 0.1em;
-      padding: 10px 18px;
-      border-radius: 4px;
+      letter-spacing: 0.15em;
+      padding: 12px 24px;
+      border-radius: 30px;
       display: inline-flex;
       align-items: center;
-      gap: 8px;
-      margin-bottom: calc(var(--spacing-grid) * 4);
+      gap: 10px;
+      margin-bottom: calc(var(--spacing-grid) * 6);
+      transition: all 0.3s ease;
     }
 
     .btn-back:hover {
       color: #fff;
       border-color: #fff;
+      background-color: rgba(255, 255, 255, 0.02);
+      transform: translateX(-4px);
     }
 
     .pdp-layout {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: calc(var(--spacing-grid) * 6);
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: calc(var(--spacing-grid) * 8);
       align-items: start;
     }
 
     @media (max-width: 768px) {
       .pdp-layout {
         grid-template-columns: 1fr;
+        gap: calc(var(--spacing-grid) * 6);
       }
     }
 
     .pdp-media-box {
-      border-radius: 16px;
+      border-radius: 20px;
       overflow: hidden;
-      background-color: #0d0e14;
+      background: radial-gradient(circle, #1b1d28 0%, #0c0d12 100%);
       display: flex;
       align-items: center;
       justify-content: center;
-      border: 1px solid var(--border-color);
+      border: 1px solid rgba(255, 255, 255, 0.04);
       aspect-ratio: 1 / 1;
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
     }
 
     .pdp-media-box shopify-media {
@@ -598,122 +654,129 @@
     .pdp-media-box img {
       width: 100% !important;
       height: 100% !important;
-      object-fit: contain !important; /* Full uncropped image display */
+      object-fit: contain !important;
     }
 
     .pdp-details-box {
       display: flex;
       flex-direction: column;
-      gap: calc(var(--spacing-grid) * 3);
+      gap: calc(var(--spacing-grid) * 4);
     }
 
     .pdp-vendor {
       font-size: 0.75rem;
-      font-weight: 600;
+      font-weight: 700;
       text-transform: uppercase;
-      letter-spacing: 0.2em;
+      letter-spacing: 0.25em;
       color: var(--accent-gold);
+      display: block;
+      margin-bottom: 4px;
     }
 
     .pdp-title {
-      font-size: 2.75rem;
+      font-size: clamp(2.2rem, 4vw, 3.2rem);
       font-weight: 300;
       line-height: 1.1;
       color: #fff;
+      letter-spacing: -0.01em;
     }
 
     .pdp-price {
-      font-size: 1.45rem;
+      font-size: 1.65rem;
       font-weight: 600;
-      color: var(--text-main);
+      color: #fff;
       font-family: var(--font-body);
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: calc(var(--spacing-grid) * 3);
     }
 
     /* Dynamic variant selector overrides on PDP */
     #pdp-context shopify-variant-selector::part(form) {
-      padding: calc(var(--spacing-grid) * 2.5) 0;
-      border-top: 1px solid var(--border-color);
-      border-bottom: 1px solid var(--border-color);
+      padding: calc(var(--spacing-grid) * 2) 0;
       display: flex;
       flex-direction: column;
-      gap: 16px;
+      gap: 20px;
     }
 
     #pdp-context shopify-variant-selector::part(label) {
       font-weight: 600;
-      font-size: 0.75rem;
+      font-size: 0.7rem;
       text-transform: uppercase;
-      letter-spacing: 0.15em;
+      letter-spacing: 0.2em;
       color: var(--text-muted);
-      margin-bottom: 6px;
+      margin-bottom: 10px;
     }
 
     #pdp-context shopify-variant-selector::part(radio) {
-      background-color: rgba(255, 255, 255, 0.02);
+      background-color: rgba(255, 255, 255, 0.01);
       color: var(--text-main);
-      border: 1px solid var(--border-color);
-      border-radius: 4px;
-      padding: 10px 20px;
-      font-size: 0.8rem;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 30px;
+      padding: 10px 22px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
       cursor: pointer;
-      margin-right: 8px;
-      margin-bottom: 8px;
+      margin-right: 10px;
+      margin-bottom: 10px;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     #pdp-context shopify-variant-selector::part(radio-selected) {
-      background-color: #fff;
+      background-color: var(--accent-gold);
       color: #000;
-      border-color: #fff;
+      border-color: var(--accent-gold);
+      box-shadow: 0 5px 15px rgba(201, 160, 84, 0.25);
     }
 
     #pdp-context shopify-variant-selector::part(color-swatch) {
-      width: 32px;
-      height: 32px;
+      width: 36px;
+      height: 36px;
       border-radius: 50%;
-      border: 1px solid rgba(255, 255, 255, 0.2);
+      border: 1px solid rgba(255, 255, 255, 0.15);
       cursor: pointer;
-      margin-right: 12px;
+      margin-right: 14px;
+      transition: all 0.3s ease;
+      position: relative;
     }
 
     #pdp-context shopify-variant-selector::part(color-swatch-selected) {
       border-color: #fff;
-      box-shadow: 0 0 0 2px var(--accent-pink);
+      box-shadow: 0 0 0 2px var(--accent-pink), 0 0 15px var(--accent-pink);
     }
 
     .pdp-actions {
       display: flex;
       flex-direction: column;
-      gap: 12px;
-      margin-top: calc(var(--spacing-grid) * 1.5);
+      gap: 14px;
+      margin-top: calc(var(--spacing-grid) * 2);
     }
 
     .pdp-actions button {
       width: 100%;
       padding: calc(var(--spacing-grid) * 2.5);
-      border-radius: 4px;
+      border-radius: 6px;
       font-family: var(--font-body);
       font-weight: 600;
       font-size: 0.8rem;
       text-transform: uppercase;
-      letter-spacing: 0.15em;
+      letter-spacing: 0.2em;
     }
 
     .pdp-actions button:disabled {
-      opacity: 0.35;
+      opacity: 0.25;
       cursor: not-allowed;
     }
 
     .pdp-description-box {
-      border-top: 1px solid var(--border-color);
-      padding-top: calc(var(--spacing-grid) * 2.5);
-      margin-top: calc(var(--spacing-grid) * 1.5);
+      margin-top: calc(var(--spacing-grid) * 2);
     }
 
     .pdp-description-title {
       font-size: 0.75rem;
-      font-weight: 600;
+      font-weight: 700;
       text-transform: uppercase;
-      letter-spacing: 0.15em;
+      letter-spacing: 0.2em;
       color: var(--accent-gold);
       margin-bottom: 12px;
     }
@@ -721,6 +784,56 @@
     .pdp-description-html {
       font-size: 0.85rem;
       color: var(--text-muted);
+      line-height: 1.7;
+    }
+
+    /* Elegant PDP Details Accordion */
+    .pdp-accordion {
+      margin-top: calc(var(--spacing-grid) * 2);
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .pdp-accordion details {
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      padding: 16px 0;
+    }
+
+    .pdp-accordion summary {
+      font-family: var(--font-body);
+      font-weight: 600;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--text-main);
+      cursor: pointer;
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      user-select: none;
+    }
+
+    .pdp-accordion summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .pdp-accordion summary::after {
+      content: '+';
+      font-size: 1.25rem;
+      color: var(--accent-gold);
+      font-weight: 300;
+      transition: transform 0.3s ease;
+    }
+
+    .pdp-accordion details[open] summary::after {
+      transform: rotate(45deg);
+      color: var(--accent-pink);
+    }
+
+    .pdp-accordion .details-content {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      padding-top: 12px;
       line-height: 1.6;
     }
 
@@ -733,7 +846,7 @@
 
     .profile-grid {
       display: grid;
-      grid-template-columns: 0.9fr 1.1fr;
+      grid-template-columns: 0.85fr 1.15fr;
       gap: calc(var(--spacing-grid) * 6);
       align-items: start;
     }
@@ -745,49 +858,59 @@
     }
 
     .profile-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border-color);
-      padding: calc(var(--spacing-grid) * 4);
+      background: linear-gradient(135deg, rgba(18, 20, 29, 0.5) 0%, rgba(8, 9, 13, 0.8) 100%);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.04);
+      padding: calc(var(--spacing-grid) * 5);
       border-radius: 16px;
       text-align: center;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
     }
 
     .profile-avatar {
-      width: 80px;
-      height: 80px;
+      width: 90px;
+      height: 90px;
       border-radius: 50%;
       background: linear-gradient(135deg, var(--accent-pink), var(--accent-gold));
-      margin: 0 auto calc(var(--spacing-grid) * 2.5) auto;
+      margin: 0 auto calc(var(--spacing-grid) * 3) auto;
       display: flex;
       align-items: center;
       justify-content: center;
       font-family: var(--font-display);
-      font-size: 2rem;
+      font-size: 2.2rem;
       color: #fff;
+      font-weight: 500;
+      box-shadow: 0 10px 25px rgba(216, 27, 96, 0.25);
+      border: 2px solid rgba(255, 255, 255, 0.1);
     }
 
     .profile-name {
-      font-size: 1.5rem;
+      font-family: var(--font-display);
+      font-size: 1.8rem;
       color: #fff;
-      margin-bottom: 4px;
+      margin-bottom: 6px;
+      letter-spacing: 0.015em;
     }
 
     .profile-email {
       font-size: 0.85rem;
       color: var(--text-muted);
-      margin-bottom: calc(var(--spacing-grid) * 3);
+      margin-bottom: calc(var(--spacing-grid) * 4);
+      letter-spacing: 0.05em;
     }
 
     .profile-meta-row {
       display: flex;
       justify-content: space-between;
-      border-top: 1px solid var(--border-color);
-      padding: 12px 0;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      padding: 14px 0;
       font-size: 0.85rem;
     }
 
     .profile-meta-lbl {
       color: var(--text-muted);
+      letter-spacing: 0.05em;
     }
 
     .profile-meta-val {
@@ -797,7 +920,7 @@
 
     .profile-meta-val.tier {
       color: var(--accent-gold);
-      font-weight: 600;
+      font-weight: 700;
       letter-spacing: 0.05em;
     }
 
@@ -1059,7 +1182,7 @@
   <!-- HEADER NAV BAR -->
   <header>
     <div class="container header-inner">
-      <a href="#" class="logo" onclick="navigateTo('view-home')">Glamshack</a>
+      <a href="#" class="logo" onclick="navigateTo('view-home')">Glamshack<span style="color: var(--accent-gold);">.</span></a>
       
       <nav>
         <ul>
@@ -1126,7 +1249,9 @@
           <template>
             <div class="glam-card">
               <div class="card-media-wrapper">
+                <div class="card-badge">Luxe</div>
                 <shopify-media width="300" height="300" query="product.selectedOrFirstAvailableVariant.image"></shopify-media>
+                <div class="card-hover-overlay">View Details</div>
               </div>
               <div class="card-details">
                 <h3 class="card-title"><shopify-data query="product.title"></shopify-data></h3>
@@ -1170,7 +1295,9 @@
           <template>
             <div class="glam-card" shopify-attr--data-title="product.title">
               <div class="card-media-wrapper">
+                <div class="card-badge">Luxe</div>
                 <shopify-media width="300" height="300" query="product.selectedOrFirstAvailableVariant.image"></shopify-media>
+                <div class="card-hover-overlay">View Details</div>
               </div>
               <div class="card-details">
                 <h3 class="card-title"><shopify-data query="product.title"></shopify-data></h3>
@@ -1241,10 +1368,32 @@
 
               <!-- Product Details -->
               <div class="pdp-description-box">
-                <h4 class="pdp-description-title">Luxe Formula & Ingredients</h4>
+                <h4 class="pdp-description-title">Luxe Details & Notes</h4>
                 <div class="pdp-description-html">
                   <shopify-data query="product.descriptionHtml"></shopify-data>
                 </div>
+              </div>
+
+              <!-- Accordion Details -->
+              <div class="pdp-accordion">
+                <details open>
+                  <summary>Premium Ingredients & Craftsmanship</summary>
+                  <div class="details-content">
+                    <p>Handcrafted using ethically-sourced materials, fine velvet details, premium metallic closures, and cruelty-free finishes. Built to deliver a sensory luxury experience.</p>
+                  </div>
+                </details>
+                <details>
+                  <summary>Packaging & Unboxing</summary>
+                  <div class="details-content">
+                    <p>Every purchase arrives in our signature Glamshack gold-embossed matte black boxes, wrapped in protective acid-free tissue paper with a personalized authenticity card.</p>
+                  </div>
+                </details>
+                <details>
+                  <summary>Shipping & Return Policy</summary>
+                  <div class="details-content">
+                    <p>Complimentary signature shipping on all orders over $50. Returns are accepted within 30 days of delivery for fully unused products in their original packaging.</p>
+                  </div>
+                </details>
               </div>
             </div>
 
