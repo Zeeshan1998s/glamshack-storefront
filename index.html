@@ -2140,9 +2140,478 @@
       line-height: 1.6;
       max-width: 280px;
     }
+
+    /* ---------------------------------------------------------
+       LIGHT MODE STYLE OVERRIDES (EXACT WIREFRAME DESIGN)
+       --------------------------------------------------------- */
+    :root {
+      --bg-base: #f8fafc;
+      --bg-card: #ffffff;
+      --bg-header: rgba(255, 255, 255, 0.95);
+      --border-color: #cbd5e1;
+      
+      --text-main: #0f172a;
+      --text-muted: #64748b;
+      --text-dark: #334155;
+      
+      --accent-pink: #d81b60;
+      --accent-red: #cc0000;
+      --accent-gold: #b8860b;
+      --accent-navy: #0f172a;
+      --accent-white: #ffffff;
+    }
+
+    body {
+      background-color: var(--bg-base);
+      color: var(--text-main);
+    }
+
+    /* Announcement Banner */
+    .top-banner {
+      background-color: var(--accent-navy);
+      color: #ffffff;
+      font-size: 0.65rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      text-align: center;
+      padding: 8px 16px;
+      z-index: 101;
+      position: relative;
+    }
+
+    /* Header Nav Bar Light Mode */
+    header {
+      background-color: var(--bg-header) !important;
+      border-bottom: 1px solid var(--border-color) !important;
+      box-shadow: 0 4px 20px rgba(15, 23, 42, 0.05) !important;
+    }
+
+    .logo {
+      color: var(--text-main) !important;
+    }
+
+    .header-icon-btn {
+      color: var(--text-main) !important;
+    }
+
+    .nav-divider {
+      color: rgba(15, 23, 42, 0.08) !important;
+    }
+
+    .cat-nav-link {
+      color: var(--text-muted) !important;
+    }
+
+    .cat-nav-link:hover {
+      color: var(--text-main) !important;
+    }
+
+    .btn-open-cart {
+      color: var(--text-main) !important;
+      border: 1px solid rgba(15, 23, 42, 0.15) !important;
+    }
+
+    .btn-open-cart:hover {
+      background-color: var(--accent-navy) !important;
+      color: #ffffff !important;
+      border-color: var(--accent-navy) !important;
+    }
+
+    /* Titles */
+    .section-main-title {
+      color: var(--text-main) !important;
+    }
+
+    .carousel-view-all-btn {
+      color: var(--accent-navy) !important;
+    }
+
+    .carousel-view-all-btn:hover {
+      color: var(--accent-red) !important;
+    }
+
+    /* Submenu scroll categories */
+    .submenu-link {
+      color: var(--text-muted) !important;
+    }
+
+    .submenu-link:hover,
+    .submenu-link.active-submenu {
+      color: var(--accent-red) !important;
+    }
+
+    .submenu-divider {
+      color: rgba(15, 23, 42, 0.08) !important;
+    }
+
+    /* Product Cards in Light Mode */
+    .glam-card {
+      background: #ffffff !important;
+      border: 1px solid var(--border-color) !important;
+      box-shadow: 0 4px 12px rgba(15, 23, 42, 0.02) !important;
+    }
+
+    .glam-card:hover {
+      border-color: var(--accent-red) !important;
+      box-shadow: 0 20px 40px rgba(15, 23, 42, 0.08), 0 0 30px rgba(204, 0, 0, 0.02) !important;
+    }
+
+    .card-media-wrapper {
+      background: #f1f5f9 !important;
+      border: 1px solid var(--border-color) !important;
+    }
+
+    .card-badge {
+      background-color: rgba(255, 255, 255, 0.9) !important;
+      color: var(--accent-navy) !important;
+      border: 1px solid var(--border-color) !important;
+    }
+
+    .card-title {
+      color: var(--text-main) !important;
+    }
+
+    .card-price {
+      color: var(--accent-red) !important;
+    }
+
+    .card-view-btn {
+      border: 1px solid var(--border-color) !important;
+      color: var(--text-muted) !important;
+    }
+
+    .glam-card:hover .card-view-btn {
+      background-color: var(--accent-navy) !important;
+      border-color: var(--accent-navy) !important;
+      color: #ffffff !important;
+    }
+
+    /* Haldi Section */
+    .haldi-desc {
+      color: var(--text-muted) !important;
+    }
+
+    .glam-mini-card {
+      background: #ffffff !important;
+      border: 1px solid var(--border-color) !important;
+      box-shadow: 0 2px 8px rgba(15, 23, 42, 0.01) !important;
+    }
+
+    .glam-mini-card:hover {
+      background: #f8fafc !important;
+      border-color: var(--accent-red) !important;
+    }
+
+    .mini-card-media {
+      background: #f1f5f9 !important;
+    }
+
+    .mini-card-title {
+      color: var(--text-main) !important;
+    }
+
+    .mini-card-price {
+      color: var(--accent-red) !important;
+    }
+
+    /* Categories Grid */
+    .category-block-card {
+      border: 1px solid var(--border-color) !important;
+    }
+
+    .category-block-overlay {
+      background: linear-gradient(to top, rgba(15, 23, 42, 0.85) 0%, rgba(15, 23, 42, 0.1) 100%) !important;
+    }
+
+    .category-block-card:hover .category-block-overlay {
+      background: linear-gradient(to top, rgba(15, 23, 42, 0.95) 0%, rgba(15, 23, 42, 0.2) 100%) !important;
+    }
+
+    /* Index Columns Header Bars */
+    .index-column-title {
+      color: var(--accent-navy) !important;
+      background-color: #f1f5f9 !important;
+      border: 1px solid var(--border-color) !important;
+      border-radius: 8px !important;
+      padding: 10px 16px !important;
+      text-align: center !important;
+    }
+
+    .index-list a {
+      color: var(--text-muted) !important;
+    }
+
+    .index-list a:hover {
+      color: var(--accent-red) !important;
+    }
+
+    /* Why Glamshack Circle Badges */
+    .value-circle-badge {
+      border: 1px solid rgba(15, 23, 42, 0.15) !important;
+      background: #ffffff !important;
+      box-shadow: 0 10px 20px rgba(15, 23, 42, 0.03) !important;
+    }
+
+    .value-item:hover .value-circle-badge {
+      border-color: var(--accent-red) !important;
+      box-shadow: 0 12px 25px rgba(204, 0, 0, 0.1) !important;
+    }
+
+    .value-title {
+      color: var(--text-main) !important;
+    }
+
+    .value-text {
+      color: var(--text-muted) !important;
+    }
+
+    /* Tabs buttons in Shop View */
+    .btn-tab {
+      background-color: #ffffff !important;
+      border: 1px solid var(--border-color) !important;
+      color: var(--text-muted) !important;
+      box-shadow: 0 2px 4px rgba(15, 23, 42, 0.01) !important;
+    }
+
+    .btn-tab:hover {
+      color: var(--text-main) !important;
+      background-color: #f8fafc !important;
+    }
+
+    .btn-tab.active-tab {
+      background-color: var(--accent-navy) !important;
+      color: #ffffff !important;
+      border-color: var(--accent-navy) !important;
+      box-shadow: 0 8px 20px rgba(15, 23, 42, 0.12) !important;
+    }
+
+    /* PDP Full View */
+    .pdp-title {
+      color: var(--text-main) !important;
+    }
+
+    .pdp-price {
+      color: var(--accent-red) !important;
+      border-bottom: 1px solid var(--border-color) !important;
+    }
+
+    .pdp-media-box {
+      background: #f1f5f9 !important;
+      border: 1px solid var(--border-color) !important;
+      box-shadow: 0 20px 40px rgba(15, 23, 42, 0.03) !important;
+    }
+
+    .btn-back {
+      border: 1px solid var(--border-color) !important;
+      color: var(--text-muted) !important;
+    }
+
+    .btn-back:hover {
+      color: var(--text-main) !important;
+      border-color: var(--text-main) !important;
+      background-color: #f1f5f9 !important;
+    }
+
+    #pdp-context shopify-variant-selector::part(radio) {
+      background-color: #f1f5f9 !important;
+      color: var(--text-main) !important;
+      border: 1px solid #cbd5e1 !important;
+    }
+
+    #pdp-context shopify-variant-selector::part(radio-selected) {
+      background-color: var(--accent-red) !important;
+      color: #ffffff !important;
+      border-color: var(--accent-red) !important;
+      box-shadow: 0 5px 15px rgba(204, 0, 0, 0.25) !important;
+    }
+
+    #pdp-context shopify-variant-selector::part(color-swatch-selected) {
+      border-color: var(--text-main) !important;
+      box-shadow: 0 0 0 2px #ffffff, 0 0 15px var(--accent-red) !important;
+    }
+
+    .pdp-description-title {
+      color: var(--accent-gold) !important;
+    }
+
+    .pdp-description-html {
+      color: var(--text-dark) !important;
+    }
+
+    .pdp-accordion {
+      border-top: 1px solid var(--border-color) !important;
+    }
+
+    .pdp-accordion details {
+      border-bottom: 1px solid var(--border-color) !important;
+    }
+
+    .pdp-accordion summary {
+      color: var(--text-main) !important;
+    }
+
+    .pdp-accordion .details-content {
+      color: var(--text-muted) !important;
+    }
+
+    .btn-buy-now {
+      border: 1px solid var(--text-main) !important;
+      color: var(--text-main) !important;
+    }
+
+    .btn-buy-now:hover {
+      background-color: var(--text-main) !important;
+      color: #ffffff !important;
+    }
+
+    /* Cart Widget Dialog Overrides */
+    shopify-cart::part(dialog) {
+      background-color: #ffffff !important;
+      border-left: 1px solid var(--border-color) !important;
+      color: var(--text-main) !important;
+      box-shadow: -15px 0 50px rgba(15, 23, 42, 0.08) !important;
+    }
+
+    shopify-cart::part(line-heading) {
+      color: var(--text-main) !important;
+    }
+
+    shopify-cart::part(line-image) {
+      border-radius: 8px !important;
+      border: 1px solid var(--border-color) !important;
+      background-color: #f8fafc !important;
+    }
+
+    shopify-cart::part(line-options) {
+      color: var(--text-muted) !important;
+    }
+
+    shopify-cart::part(line-price) {
+      color: var(--accent-red) !important;
+    }
+
+    shopify-cart::part(primary-button) {
+      background-color: var(--accent-red) !important;
+      color: #ffffff !important;
+    }
+
+    shopify-cart::part(primary-button):hover {
+      background-color: var(--accent-navy) !important;
+      color: #ffffff !important;
+    }
+
+    shopify-cart::part(secondary-button) {
+      background-color: #f8fafc !important;
+      color: var(--text-main) !important;
+      fill: var(--text-main) !important;
+      border: 1px solid var(--border-color) !important;
+    }
+
+    shopify-cart::part(secondary-button):hover {
+      background-color: #f1f5f9 !important;
+      border-color: #cbd5e1 !important;
+    }
+
+    /* Profile Account views */
+    .profile-card {
+      background: #ffffff !important;
+      border: 1px solid var(--border-color) !important;
+      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.02) !important;
+    }
+
+    .profile-name {
+      color: var(--text-main) !important;
+    }
+
+    .profile-meta-row {
+      border-top: 1px solid var(--border-color) !important;
+    }
+
+    .profile-meta-val {
+      color: var(--text-main) !important;
+    }
+
+    .orders-card {
+      background: #ffffff !important;
+      border: 1px solid var(--border-color) !important;
+      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.02) !important;
+    }
+
+    .orders-title {
+      color: var(--text-main) !important;
+      border-bottom: 1px solid var(--border-color) !important;
+    }
+
+    .order-item {
+      background-color: #f8fafc !important;
+      border: 1px solid var(--border-color) !important;
+    }
+
+    .order-info h5 {
+      color: var(--text-main) !important;
+    }
+
+    /* About view */
+    .about-subtitle {
+      color: var(--text-main) !important;
+    }
+
+    .about-img-box {
+      border: 1px solid var(--border-color) !important;
+      box-shadow: 0 20px 40px rgba(15, 23, 42, 0.04) !important;
+    }
+
+    .pillar-card {
+      background: #ffffff !important;
+      border: 1px solid var(--border-color) !important;
+      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.02) !important;
+    }
+
+    .pillar-title {
+      color: var(--text-main) !important;
+    }
+
+    .pillar-text {
+      color: var(--text-muted) !important;
+    }
+
+    /* Blog view */
+    .blog-card {
+      background: #ffffff !important;
+      border: 1px solid var(--border-color) !important;
+      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.02) !important;
+    }
+
+    .blog-card:hover {
+      border-color: var(--accent-red) !important;
+      box-shadow: 0 20px 40px rgba(15, 23, 42, 0.05) !important;
+    }
+
+    .blog-card-title {
+      color: var(--text-main) !important;
+    }
+
+    .article-title {
+      color: var(--text-main) !important;
+    }
+
+    .article-hero-img-box {
+      border: 1px solid var(--border-color) !important;
+      box-shadow: 0 20px 40px rgba(15, 23, 42, 0.04) !important;
+    }
+
+    .article-body-content {
+      color: var(--text-dark) !important;
+    }
   </style>
 </head>
 <body>
+
+  <!-- Top Announcement Banner -->
+  <div class="top-banner">
+    FREE SHIPPING ON ORDERS ABOVE Rs. 5000 | 100% HANDCRAFTED LUXURY PACKAGING
+  </div>
 
   <!-- Shopify Store Connection Configuration Context -->
   <shopify-store 
