@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Glamshack — High-End Luxury Cosmetics</title>
+  <title>Glamshack — Customized Wedding Trousseau & Platters</title>
   
   <!-- Shopify Storefront Components SDK -->
   <script type="module" src="https://cdn.shopify.com/storefront/web-components.js"></script>
@@ -154,18 +154,23 @@
     }
 
     .logo {
-      font-family: var(--font-display);
-      font-weight: 700;
-      font-size: 2.1rem;
-      letter-spacing: 0.08em;
-      color: #fff;
-      text-transform: uppercase;
-      text-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
-      transition: color 0.3s ease;
+      font-family: var(--font-body) !important;
+      font-weight: 700 !important;
+      font-size: 1.8rem !important;
+      letter-spacing: 0.15em !important;
+      color: var(--text-main) !important;
+      text-transform: uppercase !important;
+      border: 1.5px solid var(--text-main) !important;
+      padding: 6px 20px !important;
+      display: inline-block !important;
+      text-decoration: none !important;
+      text-shadow: none !important;
+      transition: all 0.3s ease !important;
     }
 
     .logo:hover {
-      color: var(--accent-gold);
+      border-color: var(--accent-red) !important;
+      color: var(--accent-red) !important;
     }
 
     /* Category Navigation */
@@ -2604,6 +2609,190 @@
     .article-body-content {
       color: var(--text-dark) !important;
     }
+
+    /* Additional Exact Wireframe Overrides */
+    .hero-grid {
+      display: grid !important;
+      grid-template-columns: 1fr 1fr !important;
+      gap: 0 !important;
+      border-radius: 0 !important;
+      overflow: hidden !important;
+    }
+
+    @media (max-width: 768px) {
+      .hero-grid {
+        grid-template-columns: 1fr !important;
+      }
+    }
+
+    .hero-left-card {
+      background: #cc0000 !important;
+      border-radius: 0 !important;
+      height: 520px !important;
+      padding: 48px !important;
+      border: none !important;
+      box-shadow: none !important;
+    }
+
+    .hero-img-container {
+      border-radius: 0 !important;
+      height: 520px !important;
+      box-shadow: none !important;
+    }
+
+    .hero-img-container::after {
+      display: none !important;
+    }
+
+    .hero-img {
+      border-radius: 0 !important;
+      height: 100% !important;
+      border: none !important;
+      transform: none !important;
+    }
+
+    .hero-img-container:hover .hero-img {
+      transform: none !important;
+    }
+
+    /* Product Cards wireframe clean cards style */
+    .glam-card {
+      background: transparent !important;
+      border: none !important;
+      box-shadow: none !important;
+      padding: 0 !important;
+      border-radius: 0 !important;
+      display: flex !important;
+      flex-direction: column !important;
+      gap: 10px !important;
+    }
+
+    .glam-card:hover {
+      transform: none !important;
+      box-shadow: none !important;
+      border-color: transparent !important;
+    }
+
+    .card-media-wrapper {
+      background: #eaebef !important;
+      border: none !important;
+      border-radius: 12px !important;
+      aspect-ratio: 1 / 1 !important;
+      width: 100% !important;
+      overflow: hidden !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      box-shadow: none !important;
+    }
+
+    .card-media-wrapper img {
+      width: 100% !important;
+      height: 100% !important;
+      object-fit: contain !important;
+      transition: none !important;
+    }
+
+    .glam-card:hover .card-media-wrapper img {
+      transform: none !important;
+    }
+
+    .card-details {
+      padding: 0 !important;
+      gap: 4px !important;
+    }
+
+    .card-title {
+      font-family: var(--font-body) !important;
+      font-size: 0.9rem !important;
+      font-weight: 500 !important;
+      color: var(--text-main) !important;
+      min-height: auto !important;
+      margin-bottom: 0 !important;
+      line-height: 1.4 !important;
+    }
+
+    .card-price {
+      font-family: var(--font-body) !important;
+      font-size: 0.85rem !important;
+      font-weight: 600 !important;
+      color: var(--text-muted) !important;
+    }
+
+    /* Hide View Details buttons on homepage carousels */
+    #trousseau-list-context .card-view-btn,
+    #engagement-list-context .card-view-btn {
+      display: none !important;
+    }
+
+    /* Subcategories submenu text formatting */
+    .carousel-submenu {
+      justify-content: center !important;
+    }
+
+    /* Categories blocks style */
+    .category-block-card {
+      background: transparent !important;
+      border: none !important;
+      box-shadow: none !important;
+      padding: 0 !important;
+      border-radius: 0 !important;
+      display: flex !important;
+      flex-direction: column !important;
+      gap: 12px !important;
+    }
+
+    .category-block-card:hover {
+      transform: none !important;
+      box-shadow: none !important;
+      border-color: transparent !important;
+    }
+
+    .category-block-img {
+      background: #eaebef !important;
+      border-radius: 12px !important;
+      width: 100% !important;
+      aspect-ratio: 16 / 10 !important;
+      object-fit: cover !important;
+      transition: none !important;
+    }
+
+    .category-block-card:hover .category-block-img {
+      transform: none !important;
+    }
+
+    .category-block-overlay {
+      display: none !important;
+    }
+
+    .category-block-title {
+      position: static !important;
+      font-family: var(--font-body) !important;
+      font-size: 0.95rem !important;
+      font-weight: 600 !important;
+      color: var(--text-main) !important;
+      text-align: center !important;
+      margin-top: 4px !important;
+      text-shadow: none !important;
+    }
+
+    /* Product Index list bullets */
+    .index-list {
+      padding-left: 8px !important;
+    }
+    
+    .index-list li {
+      position: relative !important;
+      padding-left: 14px !important;
+    }
+    
+    .index-list li::before {
+      content: "•" !important;
+      position: absolute !important;
+      left: 0 !important;
+      color: var(--accent-red) !important;
+      font-size: 0.9rem !important;
+    }
   </style>
 </head>
 <body>
@@ -2717,18 +2906,17 @@
       <div class="scroll-row-container">
         <shopify-list-context id="trousseau-list-context" type="product" query="products" first="40">
           <template>
-            <div class="glam-card" shopify-attr--data-title="product.title">
-              <div class="card-media-wrapper">
-                <div class="card-badge">Trousseau</div>
-                <shopify-media width="300" height="300" query="product.selectedOrFirstAvailableVariant.image"></shopify-media>
-                <div class="card-hover-overlay">View Details</div>
+              <div class="glam-card" shopify-attr--data-title="product.title" onclick="openProductPage(event)" style="cursor: pointer;">
+                <div class="card-media-wrapper">
+                  <div class="card-badge">Trousseau</div>
+                  <shopify-media width="300" height="300" query="product.selectedOrFirstAvailableVariant.image"></shopify-media>
+                  <div class="card-hover-overlay">View Details</div>
+                </div>
+                <div class="card-details">
+                  <h3 class="card-title"><shopify-data query="product.title"></shopify-data></h3>
+                  <div class="card-price"><shopify-money query="product.selectedOrFirstAvailableVariant.price"></shopify-money></div>
+                </div>
               </div>
-              <div class="card-details">
-                <h3 class="card-title"><shopify-data query="product.title"></shopify-data></h3>
-                <div class="card-price"><shopify-money query="product.selectedOrFirstAvailableVariant.price"></shopify-money></div>
-                <button class="card-view-btn" onclick="openProductPage(event)">View Details</button>
-              </div>
-            </div>
           </template>
           <div slot="loading" class="scroll-row-inner">
             <div class="glam-card loading-pulse" style="height:360px; flex: 0 0 calc(20% - 20px); min-width:230px;"></div>
@@ -2753,18 +2941,17 @@
       <div class="scroll-row-container">
         <shopify-list-context id="engagement-list-context" type="product" query="products" first="40">
           <template>
-            <div class="glam-card" shopify-attr--data-title="product.title">
-              <div class="card-media-wrapper">
-                <div class="card-badge">Engagement</div>
-                <shopify-media width="300" height="300" query="product.selectedOrFirstAvailableVariant.image"></shopify-media>
-                <div class="card-hover-overlay">View Details</div>
+              <div class="glam-card" shopify-attr--data-title="product.title" onclick="openProductPage(event)" style="cursor: pointer;">
+                <div class="card-media-wrapper">
+                  <div class="card-badge">Engagement</div>
+                  <shopify-media width="300" height="300" query="product.selectedOrFirstAvailableVariant.image"></shopify-media>
+                  <div class="card-hover-overlay">View Details</div>
+                </div>
+                <div class="card-details">
+                  <h3 class="card-title"><shopify-data query="product.title"></shopify-data></h3>
+                  <div class="card-price"><shopify-money query="product.selectedOrFirstAvailableVariant.price"></shopify-money></div>
+                </div>
               </div>
-              <div class="card-details">
-                <h3 class="card-title"><shopify-data query="product.title"></shopify-data></h3>
-                <div class="card-price"><shopify-money query="product.selectedOrFirstAvailableVariant.price"></shopify-money></div>
-                <button class="card-view-btn" onclick="openProductPage(event)">View Details</button>
-              </div>
-            </div>
           </template>
           <div slot="loading" class="scroll-row-inner">
             <div class="glam-card loading-pulse" style="height:360px; flex: 0 0 calc(20% - 20px); min-width:230px;"></div>
@@ -2988,7 +3175,7 @@
         <!-- Load all products from the store directly so we filter client-side and prevent empty results -->
         <shopify-list-context id="shop-list-context" type="product" query="products" first="28">
           <template>
-            <div class="glam-card" shopify-attr--data-title="product.title">
+            <div class="glam-card" shopify-attr--data-title="product.title" onclick="openProductPage(event)" style="cursor: pointer;">
               <div class="card-media-wrapper">
                 <div class="card-badge">Luxe</div>
                 <shopify-media width="300" height="300" query="product.selectedOrFirstAvailableVariant.image"></shopify-media>
@@ -2997,7 +3184,6 @@
               <div class="card-details">
                 <h3 class="card-title"><shopify-data query="product.title"></shopify-data></h3>
                 <div class="card-price"><shopify-money query="product.selectedOrFirstAvailableVariant.price"></shopify-money></div>
-                <button class="card-view-btn" onclick="openProductPage(event)">View Details</button>
               </div>
             </div>
           </template>
