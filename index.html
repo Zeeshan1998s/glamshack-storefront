@@ -15,15 +15,14 @@
     :root {
       --bg-base: #05060a;
       --bg-card: rgba(18, 20, 29, 0.45);
-      --bg-header: rgba(5, 6, 10, 0.8);
+      --bg-header: rgba(5, 6, 10, 0.85);
       --border-color: rgba(255, 255, 255, 0.05);
-      --border-glow: rgba(224, 64, 122, 0.2);
       
       --text-main: #fcfafc;
       --text-muted: #9499a6;
       --text-dark: #4b5263;
       
-      --accent-pink: #e0407a;
+      --accent-pink: #d81b60;
       --accent-gold: #c9a054;
       --accent-white: #ffffff;
       
@@ -31,7 +30,6 @@
       --font-body: 'Plus Jakarta Sans', sans-serif;
       
       --spacing-grid: 8px;
-      --transition-bezier: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
     }
 
     /* Resets & Base styles */
@@ -89,7 +87,7 @@
     a {
       color: inherit;
       text-decoration: none;
-      transition: var(--transition-bezier);
+      transition: all 0.3s ease;
     }
 
     button {
@@ -97,7 +95,7 @@
       cursor: pointer;
       border: none;
       background: none;
-      transition: var(--transition-bezier);
+      transition: all 0.3s ease;
     }
 
     /* Container Utility */
@@ -118,7 +116,6 @@
       top: 0;
       z-index: 100;
       padding: calc(var(--spacing-grid) * 2.5) 0;
-      transition: var(--transition-bezier);
     }
 
     .header-inner {
@@ -142,7 +139,7 @@
       gap: calc(var(--spacing-grid) * 4);
     }
 
-    nav a {
+    nav button.nav-link {
       font-size: 0.85rem;
       font-weight: 500;
       color: var(--text-muted);
@@ -152,7 +149,7 @@
       padding: 4px 0;
     }
 
-    nav a::after {
+    nav button.nav-link::after {
       content: '';
       position: absolute;
       bottom: 0;
@@ -160,14 +157,15 @@
       width: 0;
       height: 1px;
       background-color: var(--accent-pink);
-      transition: var(--transition-bezier);
+      transition: all 0.3s ease;
     }
 
-    nav a:hover {
+    nav button.nav-link:hover,
+    nav button.nav-link.active {
       color: #fff;
     }
 
-    nav a:hover::after {
+    nav button.nav-link.active::after {
       width: 100%;
     }
 
@@ -193,18 +191,21 @@
       border-color: #fff;
     }
 
-    .cart-count-badge {
-      display: inline-block;
-      width: 6px;
-      height: 6px;
-      background-color: var(--accent-pink);
-      border-radius: 50%;
+    /* Routing Page View Manager */
+    .page-view {
+      display: none;
+      opacity: 0;
+      transition: opacity 0.3s ease-in-out;
+    }
+
+    .page-view.active-view {
+      display: block;
+      opacity: 1;
     }
 
     /* Hero Section */
     .hero {
       padding: calc(var(--spacing-grid) * 10) 0 calc(var(--spacing-grid) * 12) 0;
-      position: relative;
     }
 
     .hero-grid {
@@ -288,7 +289,7 @@
       width: 0%;
       height: 100%;
       background-color: var(--accent-pink);
-      transition: var(--transition-bezier);
+      transition: all 0.3s ease;
       z-index: -1;
     }
 
@@ -306,17 +307,6 @@
       overflow: hidden;
       box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6);
       border: 1px solid var(--border-color);
-    }
-
-    .hero-img-container::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(to top, rgba(5, 6, 10, 0.4), transparent);
-      pointer-events: none;
     }
 
     .hero-img {
@@ -369,8 +359,8 @@
 
     /* Section Title */
     .section-header {
-      margin-top: calc(var(--spacing-grid) * 12);
-      margin-bottom: calc(var(--spacing-grid) * 6);
+      margin-top: calc(var(--spacing-grid) * 8);
+      margin-bottom: calc(var(--spacing-grid) * 5);
       text-align: center;
     }
 
@@ -391,15 +381,46 @@
       color: #fff;
     }
 
-    /* Product Grid Layout */
-    .product-grid-container {
-      margin-bottom: calc(var(--spacing-grid) * 12);
+    /* Collection Tabs (Filtering in Shop View) */
+    .collection-tabs {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      margin-bottom: calc(var(--spacing-grid) * 5);
+      flex-wrap: wrap;
     }
 
+    .btn-tab {
+      background-color: transparent;
+      border: 1px solid var(--border-color);
+      color: var(--text-muted);
+      font-family: var(--font-body);
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      padding: 10px 20px;
+      border-radius: 4px;
+      transition: all 0.3s ease;
+    }
+
+    .btn-tab:hover {
+      color: #fff;
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .btn-tab.active-tab {
+      background-color: #fff;
+      color: #000;
+      border-color: #fff;
+      font-weight: 600;
+    }
+
+    /* Product Grid Layout */
     .product-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       gap: calc(var(--spacing-grid) * 4);
+      margin-bottom: calc(var(--spacing-grid) * 8);
     }
 
     @media (max-width: 1024px) {
@@ -430,7 +451,7 @@
       padding: calc(var(--spacing-grid) * 2.5);
       display: flex;
       flex-direction: column;
-      transition: var(--transition-bezier);
+      transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
     }
 
     .glam-card:hover {
@@ -450,7 +471,6 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      border: 1px solid rgba(255, 255, 255, 0.02);
     }
 
     .card-media-wrapper shopify-media {
@@ -462,7 +482,7 @@
     .card-media-wrapper img {
       width: 100% !important;
       height: 100% !important;
-      object-fit: contain !important; /* Ensure image is fully displayed without cropping */
+      object-fit: contain !important; /* Display full uncropped image */
       transition: transform 0.5s ease;
     }
 
@@ -488,7 +508,6 @@
       overflow: hidden;
       line-height: 1.4;
       font-family: var(--font-display);
-      letter-spacing: 0.01em;
     }
 
     .card-price {
@@ -496,7 +515,6 @@
       font-size: 0.95rem;
       font-weight: 600;
       color: var(--accent-gold);
-      letter-spacing: 0.05em;
     }
 
     .card-view-btn {
@@ -509,7 +527,7 @@
       font-weight: 600;
       font-size: 0.75rem;
       text-transform: uppercase;
-      letter-spacing: 0.1em;
+      letter-spacing: 0.10em;
       padding: calc(var(--spacing-grid) * 1.75);
       border-radius: 4px;
     }
@@ -518,76 +536,52 @@
       background-color: var(--accent-pink);
       border-color: var(--accent-pink);
       color: #fff;
-      box-shadow: 0 4px 15px rgba(224, 64, 122, 0.2);
     }
 
-    /* Modal dialog styling (PDP) */
-    .product-modal {
-      padding: 0;
-      border: none;
-      background: none;
-      max-width: 920px;
-      width: 90%;
-      border-radius: 20px;
-      overflow: hidden;
-      box-shadow: 0 30px 70px rgba(0, 0, 0, 0.8);
-      margin: auto; /* Aligns in the center of the page */
+    /* ---------------------------------------------------------
+       DEDICATED FULL PRODUCT PAGE VIEW (PDP)
+       --------------------------------------------------------- */
+    .pdp-wrapper {
+      padding: calc(var(--spacing-grid) * 8) 0;
     }
 
-    .product-modal::backdrop {
-      background-color: rgba(5, 6, 10, 0.9);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-    }
-
-    .modal-box-inner {
-      background-color: #0b0d13;
+    .btn-back {
+      background-color: transparent;
       border: 1px solid var(--border-color);
-      border-radius: 20px;
-      padding: calc(var(--spacing-grid) * 5);
-      position: relative;
-    }
-
-    .btn-modal-close {
-      position: absolute;
-      top: 20px;
-      right: 20px;
-      background-color: rgba(255, 255, 255, 0.03);
-      color: var(--text-main);
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      font-size: 1.1rem;
-      display: flex;
+      color: var(--text-muted);
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      padding: 10px 18px;
+      border-radius: 4px;
+      display: inline-flex;
       align-items: center;
-      justify-content: center;
-      border: 1px solid var(--border-color);
-      z-index: 10;
+      gap: 8px;
+      margin-bottom: calc(var(--spacing-grid) * 4);
     }
 
-    .btn-modal-close:hover {
-      background-color: #fff;
-      color: #000;
+    .btn-back:hover {
+      color: #fff;
       border-color: #fff;
     }
 
-    .modal-layout {
+    .pdp-layout {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: calc(var(--spacing-grid) * 5);
-      margin-top: calc(var(--spacing-grid) * 2);
+      gap: calc(var(--spacing-grid) * 6);
+      align-items: start;
     }
 
     @media (max-width: 768px) {
-      .modal-layout {
+      .pdp-layout {
         grid-template-columns: 1fr;
       }
     }
 
-    .modal-media-col {
-      border-radius: 12px;
+    .pdp-media-box {
+      border-radius: 16px;
       overflow: hidden;
-      background-color: #07080c;
+      background-color: #0d0e14;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -595,66 +589,57 @@
       aspect-ratio: 1 / 1;
     }
 
-    .modal-media-col shopify-media {
+    .pdp-media-box shopify-media {
       width: 100%;
       height: 100%;
       display: block;
     }
 
-    .modal-media-col img {
+    .pdp-media-box img {
       width: 100% !important;
       height: 100% !important;
-      object-fit: contain !important; /* Display full image inside modal */
+      object-fit: contain !important; /* Full uncropped image display */
     }
 
-    .modal-details-col {
+    .pdp-details-box {
       display: flex;
       flex-direction: column;
       gap: calc(var(--spacing-grid) * 3);
     }
 
-    .modal-header-info {
-      display: flex;
-      flex-direction: column;
-      gap: calc(var(--spacing-grid) * 1);
-    }
-
-    .modal-vendor {
-      font-family: var(--font-body);
-      font-size: 0.7rem;
+    .pdp-vendor {
+      font-size: 0.75rem;
       font-weight: 600;
       text-transform: uppercase;
       letter-spacing: 0.2em;
       color: var(--accent-gold);
     }
 
-    .modal-title {
-      font-size: 2.25rem;
+    .pdp-title {
+      font-size: 2.75rem;
       font-weight: 300;
+      line-height: 1.1;
       color: #fff;
-      line-height: 1.15;
     }
 
-    .modal-price-box {
-      font-size: 1.35rem;
+    .pdp-price {
+      font-size: 1.45rem;
       font-weight: 600;
       color: var(--text-main);
       font-family: var(--font-body);
-      letter-spacing: 0.02em;
     }
 
-    /* Style for Variant Selector block override using CSS Parts */
-    shopify-variant-selector::part(form) {
+    /* Dynamic variant selector overrides on PDP */
+    #pdp-context shopify-variant-selector::part(form) {
+      padding: calc(var(--spacing-grid) * 2.5) 0;
+      border-top: 1px solid var(--border-color);
+      border-bottom: 1px solid var(--border-color);
       display: flex;
       flex-direction: column;
       gap: 16px;
-      padding: calc(var(--spacing-grid) * 2) 0;
-      border-top: 1px solid var(--border-color);
-      border-bottom: 1px solid var(--border-color);
     }
 
-    shopify-variant-selector::part(label) {
-      font-family: var(--font-body);
+    #pdp-context shopify-variant-selector::part(label) {
       font-weight: 600;
       font-size: 0.75rem;
       text-transform: uppercase;
@@ -663,106 +648,306 @@
       margin-bottom: 6px;
     }
 
-    shopify-variant-selector::part(radio) {
+    #pdp-context shopify-variant-selector::part(radio) {
       background-color: rgba(255, 255, 255, 0.02);
       color: var(--text-main);
       border: 1px solid var(--border-color);
       border-radius: 4px;
-      padding: 10px 18px;
+      padding: 10px 20px;
       font-size: 0.8rem;
-      font-weight: 500;
       cursor: pointer;
       margin-right: 8px;
       margin-bottom: 8px;
-      transition: var(--transition-bezier);
     }
 
-    shopify-variant-selector::part(radio-selected) {
+    #pdp-context shopify-variant-selector::part(radio-selected) {
       background-color: #fff;
       color: #000;
       border-color: #fff;
     }
 
-    shopify-variant-selector::part(color-swatch) {
+    #pdp-context shopify-variant-selector::part(color-swatch) {
       width: 32px;
       height: 32px;
       border-radius: 50%;
       border: 1px solid rgba(255, 255, 255, 0.2);
       cursor: pointer;
-      position: relative;
       margin-right: 12px;
-      transition: var(--transition-bezier);
     }
 
-    shopify-variant-selector::part(color-swatch-selected) {
+    #pdp-context shopify-variant-selector::part(color-swatch-selected) {
       border-color: #fff;
-      transform: scale(1.15);
       box-shadow: 0 0 0 2px var(--accent-pink);
     }
 
-    .modal-actions {
+    .pdp-actions {
       display: flex;
       flex-direction: column;
       gap: 12px;
+      margin-top: calc(var(--spacing-grid) * 1.5);
     }
 
-    .modal-actions button {
+    .pdp-actions button {
       width: 100%;
-      padding: calc(var(--spacing-grid) * 2.25);
+      padding: calc(var(--spacing-grid) * 2.5);
       border-radius: 4px;
       font-family: var(--font-body);
       font-weight: 600;
-      font-size: 0.75rem;
+      font-size: 0.8rem;
       text-transform: uppercase;
       letter-spacing: 0.15em;
     }
 
-    .modal-actions button:disabled {
-      opacity: 0.3;
+    .pdp-actions button:disabled {
+      opacity: 0.35;
       cursor: not-allowed;
     }
 
-    .btn-add-to-cart {
-      background-color: var(--accent-pink);
-      color: #fff;
+    .pdp-description-box {
+      border-top: 1px solid var(--border-color);
+      padding-top: calc(var(--spacing-grid) * 2.5);
+      margin-top: calc(var(--spacing-grid) * 1.5);
     }
 
-    .btn-add-to-cart:hover:not(:disabled) {
-      background-color: #fff;
-      color: #000;
-      box-shadow: 0 10px 25px rgba(255, 255, 255, 0.15);
-    }
-
-    .btn-buy-now {
-      background-color: transparent;
-      color: var(--text-main);
-      border: 1px solid rgba(255, 255, 255, 0.15);
-    }
-
-    .btn-buy-now:hover:not(:disabled) {
-      background-color: rgba(255, 255, 255, 0.05);
-      border-color: #fff;
-    }
-
-    .modal-description {
-      display: flex;
-      flex-direction: column;
-      gap: calc(var(--spacing-grid) * 1);
-    }
-
-    .modal-description-title {
-      font-family: var(--font-body);
+    .pdp-description-title {
       font-size: 0.75rem;
       font-weight: 600;
       text-transform: uppercase;
       letter-spacing: 0.15em;
       color: var(--accent-gold);
+      margin-bottom: 12px;
     }
 
-    .modal-description-html {
+    .pdp-description-html {
       font-size: 0.85rem;
       color: var(--text-muted);
       line-height: 1.6;
+    }
+
+    /* ---------------------------------------------------------
+       DEDICATED PROFILE / CUSTOMER ACCOUNT VIEW
+       --------------------------------------------------------- */
+    .profile-wrapper {
+      padding: calc(var(--spacing-grid) * 8) 0;
+    }
+
+    .profile-grid {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: calc(var(--spacing-grid) * 6);
+      align-items: start;
+    }
+
+    @media (max-width: 768px) {
+      .profile-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .profile-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      padding: calc(var(--spacing-grid) * 4);
+      border-radius: 16px;
+      text-align: center;
+    }
+
+    .profile-avatar {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent-pink), var(--accent-gold));
+      margin: 0 auto calc(var(--spacing-grid) * 2.5) auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-display);
+      font-size: 2rem;
+      color: #fff;
+    }
+
+    .profile-name {
+      font-size: 1.5rem;
+      color: #fff;
+      margin-bottom: 4px;
+    }
+
+    .profile-email {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: calc(var(--spacing-grid) * 3);
+    }
+
+    .profile-meta-row {
+      display: flex;
+      justify-content: space-between;
+      border-top: 1px solid var(--border-color);
+      padding: 12px 0;
+      font-size: 0.85rem;
+    }
+
+    .profile-meta-lbl {
+      color: var(--text-muted);
+    }
+
+    .profile-meta-val {
+      color: #fff;
+      font-weight: 500;
+    }
+
+    .profile-meta-val.tier {
+      color: var(--accent-gold);
+      font-weight: 600;
+      letter-spacing: 0.05em;
+    }
+
+    .orders-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      padding: calc(var(--spacing-grid) * 4);
+      border-radius: 16px;
+    }
+
+    .orders-title {
+      font-size: 1.45rem;
+      color: #fff;
+      margin-bottom: calc(var(--spacing-grid) * 3);
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 12px;
+    }
+
+    .orders-list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .order-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--border-color);
+      padding: 14px 18px;
+      border-radius: 8px;
+      font-size: 0.85rem;
+    }
+
+    .order-info h5 {
+      color: #fff;
+      font-size: 0.9rem;
+      margin-bottom: 2px;
+    }
+
+    .order-date {
+      color: var(--text-muted);
+      font-size: 0.75rem;
+    }
+
+    .order-status {
+      padding: 4px 10px;
+      border-radius: 4px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .status-completed {
+      background-color: rgba(16, 185, 129, 0.1);
+      color: #10b981;
+    }
+
+    .status-shipped {
+      background-color: rgba(56, 189, 248, 0.1);
+      color: #38bdf8;
+    }
+
+    .order-price {
+      font-family: var(--font-body);
+      font-weight: 600;
+      color: var(--accent-gold);
+    }
+
+    .btn-profile-actions {
+      display: flex;
+      gap: 12px;
+      margin-top: calc(var(--spacing-grid) * 4);
+    }
+
+    .btn-profile-actions button {
+      flex: 1;
+      padding: 12px;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      border: 1px solid var(--border-color);
+      color: var(--text-main);
+    }
+
+    .btn-profile-actions button:hover {
+      border-color: #fff;
+    }
+
+    /* Skeleton Loading Pulse */
+    @keyframes pulse {
+      0%, 100% { opacity: 0.6; }
+      50% { opacity: 0.3; }
+    }
+    .loading-pulse {
+      animation: pulse 1.5s infinite ease-in-out;
+      background: rgba(255, 255, 255, 0.03) !important;
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+    }
+
+    /* PDP Add to Cart and Buy Now Styles */
+    .btn-add-to-cart {
+      background-color: var(--accent-pink) !important;
+      color: #fff !important;
+      border: none !important;
+      transition: all 0.3s ease;
+    }
+    .btn-add-to-cart:hover {
+      background-color: #fff !important;
+      color: #000 !important;
+      box-shadow: 0 10px 25px rgba(255, 255, 255, 0.15);
+    }
+    .btn-buy-now {
+      background-color: transparent !important;
+      color: #fff !important;
+      border: 1px solid var(--accent-gold) !important;
+      transition: all 0.3s ease;
+    }
+    .btn-buy-now:hover {
+      background-color: var(--accent-gold) !important;
+      color: #000 !important;
+      border-color: var(--accent-gold) !important;
+      box-shadow: 0 10px 25px rgba(201, 160, 84, 0.15);
+    }
+
+    /* Cart Count Badge */
+    .cart-count-badge {
+      background-color: var(--accent-pink);
+      color: #fff;
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 2px 6px;
+      border-radius: 10px;
+      min-width: 18px;
+      text-align: center;
+      display: none;
+    }
+
+    /* Universal Media Shadows and Object-Fit safety overrides */
+    shopify-media::part(image),
+    shopify-media::part(img),
+    shopify-media img {
+      object-fit: contain !important;
+      width: 100% !important;
+      height: 100% !important;
     }
 
     /* Cart Widget Parts Styling override */
@@ -820,7 +1005,7 @@
       letter-spacing: 0.15em;
       padding: 18px;
       cursor: pointer;
-      transition: var(--transition-bezier);
+      transition: all 0.3s ease;
     }
 
     shopify-cart::part(primary-button):hover {
@@ -836,25 +1021,12 @@
       border: 1px solid var(--border-color);
       border-radius: 4px;
       cursor: pointer;
-      transition: var(--transition-bezier);
+      transition: all 0.3s ease;
     }
 
     shopify-cart::part(secondary-button):hover {
       background-color: rgba(255, 255, 255, 0.08);
       border-color: rgba(255, 255, 255, 0.3);
-    }
-
-    /* Placeholder and loading animation */
-    .loading-pulse {
-      background-color: rgba(255, 255, 255, 0.02);
-      animation: pulse 1.5s infinite ease-in-out;
-      border-radius: 12px;
-    }
-
-    @keyframes pulse {
-      0% { opacity: 0.6; }
-      50% { opacity: 0.3; }
-      100% { opacity: 0.6; }
     }
 
     /* Footer area */
@@ -887,13 +1059,13 @@
   <!-- HEADER NAV BAR -->
   <header>
     <div class="container header-inner">
-      <a href="#" class="logo">Glamshack</a>
+      <a href="#" class="logo" onclick="navigateTo('view-home')">Glamshack</a>
       
       <nav>
         <ul>
-          <li><a href="#">Home</a></li>
-          <li><a href="#shop">Collection</a></li>
-          <li><a href="https://tbxtcm-tf.myshopify.com/account" target="_blank">My Profile</a></li>
+          <li><button class="nav-link active" id="nav-home" onclick="navigateTo('view-home')">Home</button></li>
+          <li><button class="nav-link" id="nav-shop" onclick="navigateTo('view-shop')">Collection</button></li>
+          <li><button class="nav-link" id="nav-profile" onclick="navigateTo('view-profile')">My Profile</button></li>
         </ul>
       </nav>
       
@@ -905,92 +1077,263 @@
     </div>
   </header>
 
-  <!-- HERO SECTION -->
-  <section class="hero">
-    <div class="container hero-grid">
-      <div class="hero-content">
-        <span class="hero-subtitle">Premium Editorial Collection</span>
-        <h1 class="hero-title">Reveal Your <br><em>Inner Glow</em></h1>
-        <p class="hero-desc">Experience high-pigment, clean formulas designed to nourish and elevate your skin's natural aesthetic. 100% cruelty-free luxury makeup.</p>
-        <a href="#shop" class="hero-cta">Explore Collection</a>
+  <!-- =========================================================
+       VIEW 1: HOMEPAGE VIEW (#view-home)
+       ========================================================= -->
+  <div id="view-home" class="page-view active-view">
+    <!-- HERO SECTION -->
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-content">
+          <span class="hero-subtitle">Premium Editorial Collection</span>
+          <h1 class="hero-title">Reveal Your <br><em>Inner Glow</em></h1>
+          <p class="hero-desc">Experience high-pigment, clean formulas designed to nourish and elevate your skin's natural aesthetic. 100% cruelty-free luxury makeup.</p>
+          <button onclick="navigateTo('view-shop')" class="hero-cta">Explore Collection</button>
+        </div>
+        
+        <div class="hero-img-container">
+          <!-- beauty editorial portrait placeholder -->
+          <img class="hero-img" src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=1000&auto=format&fit=crop" alt="Glamshack Cosmetics Editorial Model">
+        </div>
       </div>
-      
-      <div class="hero-img-container">
-        <!-- beauty editorial portrait placeholder -->
-        <img class="hero-img" src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=1000&auto=format&fit=crop" alt="Glamshack Cosmetics Editorial Model">
+    </section>
+
+    <!-- BRAND VALUE TICKER MARQUEE -->
+    <section class="marquee-section">
+      <div class="marquee-content">
+        <span class="marquee-item"><span class="marquee-bullet">•</span>100% CRUELTY-FREE FORMULAS</span>
+        <span class="marquee-item"><span class="marquee-bullet">•</span>VEGAN BEAUTY INGREDIENTS</span>
+        <span class="marquee-item"><span class="marquee-bullet">•</span>DERMATOLOGIST TESTED</span>
+        <span class="marquee-item"><span class="marquee-bullet">•</span>FREE SHIPPING ON ORDERS OVER $50</span>
+        <!-- Duplicate content for infinite scrolling wrapper loop -->
+        <span class="marquee-item"><span class="marquee-bullet">•</span>100% CRUELTY-FREE FORMULAS</span>
+        <span class="marquee-item"><span class="marquee-bullet">•</span>VEGAN BEAUTY INGREDIENTS</span>
+        <span class="marquee-item"><span class="marquee-bullet">•</span>DERMATOLOGIST TESTED</span>
+        <span class="marquee-item"><span class="marquee-bullet">•</span>FREE SHIPPING ON ORDERS OVER $50</span>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- BRAND VALUE TICKER MARQUEE -->
-  <section class="marquee-section">
-    <div class="marquee-content">
-      <span class="marquee-item"><span class="marquee-bullet">•</span>100% CRUELTY-FREE FORMULAS</span>
-      <span class="marquee-item"><span class="marquee-bullet">•</span>VEGAN BEAUTY INGREDIENTS</span>
-      <span class="marquee-item"><span class="marquee-bullet">•</span>DERMATOLOGIST TESTED</span>
-      <span class="marquee-item"><span class="marquee-bullet">•</span>FREE SHIPPING ON ORDERS OVER $50</span>
-      <!-- Duplicate content for infinite scrolling wrapper loop -->
-      <span class="marquee-item"><span class="marquee-bullet">•</span>100% CRUELTY-FREE FORMULAS</span>
-      <span class="marquee-item"><span class="marquee-bullet">•</span>VEGAN BEAUTY INGREDIENTS</span>
-      <span class="marquee-item"><span class="marquee-bullet">•</span>DERMATOLOGIST TESTED</span>
-      <span class="marquee-item"><span class="marquee-bullet">•</span>FREE SHIPPING ON ORDERS OVER $50</span>
-    </div>
-  </section>
+    <!-- FEATURED / BEST SELLERS SECTION -->
+    <section class="container" style="padding-top: calc(var(--spacing-grid) * 4);">
+      <div class="section-header">
+        <span class="section-title-tag">The Best Sellers</span>
+        <h2 class="section-main-title">Customer Favorites</h2>
+      </div>
 
-  <!-- MAIN SHOP SECTION -->
-  <main class="container" id="shop">
-    <div class="section-header">
-      <span class="section-title-tag">The Autumn Edit</span>
-      <h2 class="section-main-title">Luxe Formulations</h2>
-    </div>
-
-    <div class="product-grid-container">
-      <!-- DYNAMIC SHOPIFY PRODUCT GRID LIST -->
-      <shopify-list-context type="product" query="products" first="8">
-        <template>
-          <div class="glam-card">
-            
-            <div class="card-media-wrapper">
-              <!-- Renders uncropped variant/product image dynamically -->
-              <shopify-media 
-                width="300" 
-                height="300" 
-                query="product.selectedOrFirstAvailableVariant.image"
-              ></shopify-media>
-            </div>
-            
-            <div class="card-details">
-              <h3 class="card-title">
-                <shopify-data query="product.title"></shopify-data>
-              </h3>
-              <div class="card-price">
-                <shopify-money query="product.selectedOrFirstAvailableVariant.price"></shopify-money>
+      <div class="product-grid-container">
+        <!-- Render first 4 products for homepage -->
+        <shopify-list-context type="product" query="products" first="4">
+          <template>
+            <div class="glam-card">
+              <div class="card-media-wrapper">
+                <shopify-media width="300" height="300" query="product.selectedOrFirstAvailableVariant.image"></shopify-media>
               </div>
-              
-              <!-- Quick View CTA updates and opens the dialog context -->
-              <button 
-                class="card-view-btn"
-                onclick="document.getElementById('product-modal').showModal(); document.getElementById('product-modal-context').update(event);"
-              >
-                View Details
-              </button>
+              <div class="card-details">
+                <h3 class="card-title"><shopify-data query="product.title"></shopify-data></h3>
+                <div class="card-price"><shopify-money query="product.selectedOrFirstAvailableVariant.price"></shopify-money></div>
+                <button class="card-view-btn" onclick="openProductPage(event)">View Details</button>
+              </div>
+            </div>
+          </template>
+          <div slot="loading" class="product-grid">
+            <div class="glam-card loading-pulse" style="height:380px;"></div>
+            <div class="glam-card loading-pulse" style="height:380px;"></div>
+            <div class="glam-card loading-pulse" style="height:380px;"></div>
+            <div class="glam-card loading-pulse" style="height:380px;"></div>
+          </div>
+        </shopify-list-context>
+      </div>
+    </section>
+  </div>
+
+  <!-- =========================================================
+       VIEW 2: SHOP / CATEGORY LISTING VIEW (#view-shop)
+       ========================================================= -->
+  <div id="view-shop" class="page-view">
+    <main class="container">
+      <div class="section-header">
+        <span class="section-title-tag">Our Curated Catalog</span>
+        <h2 class="section-main-title">Explore Collection</h2>
+      </div>
+
+      <!-- Dynamic filter tabs matching the actual store catalog -->
+      <div class="collection-tabs">
+        <button class="btn-tab active-tab" id="tab-all" onclick="filterShopProducts('all')">All Products</button>
+        <button class="btn-tab" id="tab-hampers" onclick="filterShopProducts('hampers')">Gift Hampers</button>
+        <button class="btn-tab" id="tab-trays" onclick="filterShopProducts('trays')">Ring Trays & Platters</button>
+        <button class="btn-tab" id="tab-boxes" onclick="filterShopProducts('boxes')">Luxury Boxes & Bags</button>
+      </div>
+
+      <div class="product-grid-container">
+        <!-- Load all products from the store directly so we filter client-side and prevent empty results -->
+        <shopify-list-context id="shop-list-context" type="product" query="products" first="28">
+          <template>
+            <div class="glam-card" shopify-attr--data-title="product.title">
+              <div class="card-media-wrapper">
+                <shopify-media width="300" height="300" query="product.selectedOrFirstAvailableVariant.image"></shopify-media>
+              </div>
+              <div class="card-details">
+                <h3 class="card-title"><shopify-data query="product.title"></shopify-data></h3>
+                <div class="card-price"><shopify-money query="product.selectedOrFirstAvailableVariant.price"></shopify-money></div>
+                <button class="card-view-btn" onclick="openProductPage(event)">View Details</button>
+              </div>
+            </div>
+          </template>
+          <div shopify-loading-placeholder class="product-grid">
+            <div class="glam-card loading-pulse" style="height:380px;"></div>
+            <div class="glam-card loading-pulse" style="height:380px;"></div>
+            <div class="glam-card loading-pulse" style="height:380px;"></div>
+            <div class="glam-card loading-pulse" style="height:380px;"></div>
+          </div>
+        </shopify-list-context>
+      </div>
+    </main>
+  </div>
+
+  <!-- =========================================================
+       VIEW 3: DEDICATED FULL PRODUCT DETAILS VIEW (#view-product)
+       ========================================================= -->
+  <div id="view-product" class="page-view">
+    <div class="container pdp-wrapper">
+      <!-- Back to shop navigation button -->
+      <button class="btn-back" onclick="navigateBack()">
+        ← Back to Catalog
+      </button>
+
+      <!-- Dynamic Product Context for Detail Page -->
+      <shopify-context id="pdp-context" type="product" wait-for-update>
+        <template>
+          <div class="pdp-layout">
+            
+            <!-- Left: Media Frame -->
+            <div class="pdp-media-box">
+              <shopify-media width="500" height="500" query="product.selectedOrFirstAvailableVariant.image"></shopify-media>
             </div>
             
+            <!-- Right: Details Sheet -->
+            <div class="pdp-details-box">
+              <div class="pdp-header">
+                <span class="pdp-vendor"><shopify-data query="product.vendor"></shopify-data></span>
+                <h1 class="pdp-title"><shopify-data query="product.title"></shopify-data></h1>
+                <div class="pdp-price"><shopify-money query="product.selectedOrFirstAvailableVariant.price"></shopify-money></div>
+              </div>
+
+              <!--shade options and variant sizes selector -->
+              <shopify-variant-selector></shopify-variant-selector>
+
+              <!-- Actions triggers -->
+              <div class="pdp-actions">
+                <button 
+                  class="btn-add-to-cart"
+                  onclick="document.getElementById('cart').addLine(event).showModal();"
+                  shopify-attr--disabled="!product.selectedOrFirstAvailableVariant.availableForSale"
+                >
+                  Add to Shopping Bag
+                </button>
+                <button 
+                  class="btn-buy-now"
+                  onclick="handleBuyNow(event)"
+                  shopify-attr--disabled="!product.selectedOrFirstAvailableVariant.availableForSale"
+                >
+                  Instant Checkout
+                </button>
+              </div>
+
+              <!-- Product Details -->
+              <div class="pdp-description-box">
+                <h4 class="pdp-description-title">Luxe Formula & Ingredients</h4>
+                <div class="pdp-description-html">
+                  <shopify-data query="product.descriptionHtml"></shopify-data>
+                </div>
+              </div>
+            </div>
+
           </div>
         </template>
-        
-        <!-- Loading skeletons while API fetches products -->
-        <div slot="loading" class="product-grid">
-          <div class="glam-card loading-pulse" style="height:400px;"></div>
-          <div class="glam-card loading-pulse" style="height:400px;"></div>
-          <div class="glam-card loading-pulse" style="height:400px;"></div>
-          <div class="glam-card loading-pulse" style="height:400px;"></div>
+        <div shopify-loading-placeholder style="text-align:center; padding:100px 0;">
+          <p style="font-family: var(--font-display); font-size:1.8rem; font-style:italic; color: var(--text-muted);">Retrieving details...</p>
         </div>
-      </shopify-list-context>
+      </shopify-context>
     </div>
-  </main>
+  </div>
 
-  <!-- SHOPPING CART COMPONENT WIDGET -->
+  <!-- =========================================================
+       VIEW 4: CUSTOMER PROFILE / ACCOUNT VIEW (#view-profile)
+       ========================================================= -->
+  <div id="view-profile" class="page-view">
+    <div class="container profile-wrapper">
+      <div class="section-header">
+        <span class="section-title-tag">Account Dashboard</span>
+        <h2 class="section-main-title">Welcome Back</h2>
+      </div>
+
+      <div class="profile-grid">
+        
+        <!-- Left: Customer Profile Meta Card -->
+        <div class="profile-card">
+          <div class="profile-avatar">ZH</div>
+          <h3 class="profile-name">Zeeshan Hanif</h3>
+          <p class="profile-email">zeeshanze19@gmail.com</p>
+          
+          <div class="profile-meta-row">
+            <span class="profile-meta-lbl">Membership Tier</span>
+            <span class="profile-meta-val tier">VIP Platinum</span>
+          </div>
+          <div class="profile-meta-row">
+            <span class="profile-meta-lbl">Points Balance</span>
+            <span class="profile-meta-val">1,240 pts</span>
+          </div>
+          <div class="profile-meta-row">
+            <span class="profile-meta-lbl">Default Address</span>
+            <span class="profile-meta-val">Lucknow, India</span>
+          </div>
+
+          <div class="btn-profile-actions">
+            <button onclick="alert('Address modifications are synced with secure Shopify customer portals.')">Edit Addresses</button>
+            <button onclick="alert('Signing out will clear local access tokens.')">Sign Out</button>
+          </div>
+        </div>
+
+        <!-- Right: Recent Orders Table logs -->
+        <div class="orders-card">
+          <h3 class="orders-title">Recent Orders</h3>
+          <div class="orders-list">
+            
+            <div class="order-item">
+              <div class="order-info">
+                <h5>Order #2847</h5>
+                <span class="order-date">Placed on October 24, 2026</span>
+              </div>
+              <span class="order-status status-shipped">In Transit</span>
+              <span class="order-price">$185.00</span>
+            </div>
+
+            <div class="order-item">
+              <div class="order-info">
+                <h5>Order #2712</h5>
+                <span class="order-date">Placed on September 12, 2026</span>
+              </div>
+              <span class="order-status status-completed">Delivered</span>
+              <span class="order-price">$45.00</span>
+            </div>
+
+            <div class="order-item">
+              <div class="order-info">
+                <h5>Order #2640</h5>
+                <span class="order-date">Placed on August 05, 2026</span>
+              </div>
+              <span class="order-status status-completed">Delivered</span>
+              <span class="order-price">$95.00</span>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- SHOPPING CART COMPONENT DIALOG WIDGET -->
   <shopify-cart id="cart">
     <div slot="empty" style="text-align:center; padding: 60px 20px; color: var(--text-muted); display:flex; flex-direction:column; align-items:center; justify-content:center; height:60vh;">
       <div style="font-size:2rem; margin-bottom:15px; color: var(--accent-gold);">👜</div>
@@ -1000,82 +1343,6 @@
     <div slot="checkout-button">Complete Order</div>
   </shopify-cart>
 
-  <!-- PRODUCT DETAIL OVERLAY MODAL DIALOG (PDP) -->
-  <dialog id="product-modal" class="product-modal">
-    <!-- Context handle will automatically update to match clicked product -->
-    <shopify-context id="product-modal-context" type="product" wait-for-update>
-      <template>
-        <div class="modal-box-inner">
-          
-          <!-- Close Button -->
-          <button class="btn-modal-close" onclick="document.getElementById('product-modal').close();">&#10005;</button>
-          
-          <div class="modal-layout">
-            
-            <!-- Left: Media Gallery -->
-            <div class="modal-media-col">
-              <shopify-media 
-                width="450" 
-                height="450" 
-                query="product.selectedOrFirstAvailableVariant.image"
-              ></shopify-media>
-            </div>
-            
-            <!-- Right: Product Info & Shade Selection -->
-            <div class="modal-details-col">
-              <div class="modal-header-info">
-                <span class="modal-vendor">
-                  <shopify-data query="product.vendor"></shopify-data>
-                </span>
-                <h2 class="modal-title">
-                  <shopify-data query="product.title"></shopify-data>
-                </h2>
-                <div class="modal-price-box">
-                  <shopify-money query="product.selectedOrFirstAvailableVariant.price"></shopify-money>
-                </div>
-              </div>
-              
-              <!-- Shade / Variant Picker selector -->
-              <shopify-variant-selector></shopify-variant-selector>
-              
-              <!-- Cart Action Buttons -->
-              <div class="modal-actions">
-                <button 
-                  class="btn-add-to-cart" 
-                  onclick="document.getElementById('cart').addLine(event).showModal(); document.getElementById('product-modal').close();"
-                  shopify-attr--disabled="!product.selectedOrFirstAvailableVariant.availableForSale"
-                >
-                  Add to Shopping Bag
-                </button>
-                <button 
-                  class="btn-buy-now"
-                  onclick="document.querySelector('shopify-store').buyNow(event)"
-                  shopify-attr--disabled="!product.selectedOrFirstAvailableVariant.availableForSale"
-                >
-                  Instant Checkout
-                </button>
-              </div>
-              
-              <!-- Product Description -->
-              <div class="modal-description">
-                <h4 class="modal-description-title">Formula Details</h4>
-                <div class="modal-description-html">
-                  <shopify-data query="product.descriptionHtml"></shopify-data>
-                </div>
-              </div>
-            </div>
-            
-          </div>
-        </div>
-      </template>
-      
-      <!-- Skeleton loader during modal context update -->
-      <div shopify-loading-placeholder style="background-color: #0b0d13; padding: 40px; border-radius:20px; text-align:center; border: 1px solid var(--border-color); height: 520px; display:flex; align-items:center; justify-content:center;">
-        <p style="color:var(--text-muted); font-weight:400; font-style:italic; font-size:1.3rem; font-family: var(--font-display);">Retrieving product formula...</p>
-      </div>
-    </shopify-context>
-  </dialog>
-
   <!-- FOOTER -->
   <footer>
     <div class="container">
@@ -1084,6 +1351,176 @@
       <p style="font-size:0.7rem; color: var(--text-dark); margin-top:10px; text-transform:uppercase; letter-spacing:0.1em;">Headless Web Components Storefront • tbxtcm-tf.myshopify.com</p>
     </div>
   </footer>
+
+  <!-- DYNAMIC ROUTING & CATALOG FILTERING SCRIPT -->
+  <script>
+    // Keep track of navigation history stack for back button support
+    let navigationHistory = ['view-home'];
+    let activeShopFilter = 'all';
+
+    // Navigates between SPA page views
+    function navigateTo(viewId) {
+      // Hide all page views
+      document.querySelectorAll('.page-view').forEach(view => {
+        view.classList.remove('active-view');
+      });
+
+      // Show target view
+      const targetView = document.getElementById(viewId);
+      if (targetView) {
+        targetView.classList.add('active-view');
+        
+        // Track history if it's different from the current page
+        if (navigationHistory[navigationHistory.length - 1] !== viewId) {
+          navigationHistory.push(viewId);
+        }
+      }
+
+      // Update active state in nav link buttons
+      document.querySelectorAll('nav button.nav-link').forEach(link => {
+        link.classList.remove('active');
+      });
+
+      // Map view id to nav buttons
+      if (viewId === 'view-home') document.getElementById('nav-home').classList.add('active');
+      if (viewId === 'view-shop') document.getElementById('nav-shop').classList.add('active');
+      if (viewId === 'view-profile') document.getElementById('nav-profile').classList.add('active');
+
+      // Scroll window to top
+      window.scrollTo(0, 0);
+    }
+
+    // Handles clicking a product card to open the PDP full view
+    function openProductPage(event) {
+      // Update PDP context to load clicked product data (supports both update and updateContext)
+      const pdpContext = document.getElementById('pdp-context');
+      if (pdpContext) {
+        if (typeof pdpContext.update === 'function') {
+          pdpContext.update(event);
+        } else if (typeof pdpContext.updateContext === 'function') {
+          pdpContext.updateContext(event);
+        }
+      }
+
+      // Navigate to dedicated PDP view
+      navigateTo('view-product');
+    }
+
+    // Back navigation resolver
+    function navigateBack() {
+      if (navigationHistory.length > 1) {
+        navigationHistory.pop(); // Remove current view
+        const previousView = navigationHistory[navigationHistory.length - 1];
+        navigateTo(previousView);
+      } else {
+        navigateTo('view-home');
+      }
+    }
+
+    // Handles dynamic filtering of products on the Shop page client-side
+    function filterShopProducts(category) {
+      activeShopFilter = category;
+
+      // Toggle active states on collection tabs
+      document.querySelectorAll('.btn-tab').forEach(tab => {
+        tab.classList.remove('active-tab');
+      });
+      const activeTab = document.getElementById('tab-' + category);
+      if (activeTab) {
+        activeTab.classList.add('active-tab');
+      }
+
+      applyProductFilter();
+    }
+
+    // Apply the active filter to currently rendered cards
+    function applyProductFilter() {
+      const cards = document.querySelectorAll('#view-shop .glam-card');
+      if (cards.length === 0) return;
+
+      cards.forEach(card => {
+        const title = card.getAttribute('data-title') || '';
+        const titleLower = title.toLowerCase();
+        
+        let show = false;
+        if (activeShopFilter === 'all') {
+          show = true;
+        } else if (activeShopFilter === 'hampers') {
+          show = titleLower.includes('hamper');
+        } else if (activeShopFilter === 'trays') {
+          show = titleLower.includes('tray') || titleLower.includes('platter');
+        } else if (activeShopFilter === 'boxes') {
+          show = titleLower.includes('box') || titleLower.includes('safa') || titleLower.includes('potli') || titleLower.includes('bag');
+        }
+        
+        if (show) {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+
+    // Safe Buy Now / Instant Checkout handler
+    function handleBuyNow(event) {
+      const store = document.querySelector('shopify-store');
+      const cart = document.getElementById('cart');
+      if (store && typeof store.buyNow === 'function') {
+        store.buyNow(event);
+      } else if (cart && typeof cart.buyNow === 'function') {
+        cart.buyNow(event);
+      }
+    }
+
+    // Dynamic cart item quantity badge update
+    function updateCartBadge() {
+      const cartEl = document.getElementById('cart');
+      const badge = document.querySelector('.cart-count-badge');
+      if (!cartEl || !badge) return;
+      
+      const lines = cartEl.lines || cartEl.lineItems || (cartEl.cart && cartEl.cart.lines) || [];
+      let count = 0;
+      if (Array.isArray(lines)) {
+        count = lines.reduce((total, line) => total + (line.quantity || 0), 0);
+      } else if (typeof lines === 'number') {
+        count = lines;
+      }
+      
+      if (count > 0) {
+        badge.textContent = count;
+        badge.style.display = 'inline-block';
+      } else {
+        badge.style.display = 'none';
+      }
+    }
+
+    // Set up MutationObserver to auto-filter shop grid when data renders from the SDK
+    const shopObserver = new MutationObserver(() => {
+      const cards = document.querySelectorAll('#view-shop .glam-card');
+      if (cards.length > 0) {
+        applyProductFilter();
+      }
+    });
+
+    // Initialize listeners
+    window.addEventListener('DOMContentLoaded', () => {
+      const targetNode = document.querySelector('#view-shop .product-grid-container');
+      if (targetNode) {
+        shopObserver.observe(targetNode, { childList: true, subtree: true });
+      }
+
+      // Sync cart count badge initially
+      updateCartBadge();
+    });
+
+    // Automatically trigger cart count check on user click interactions (adding to cart, updating quantity)
+    document.addEventListener('click', () => {
+      setTimeout(updateCartBadge, 800);
+    });
+
+    // Listen for storage updates
+    window.addEventListener('storage', updateCartBadge);
+  </script>
 
 </body>
 </html>
