@@ -2611,17 +2611,29 @@
     }
 
     /* Additional Exact Wireframe Overrides */
+    .hero {
+      padding: 0 !important;
+      margin: 0 !important;
+      width: 100% !important;
+      max-width: 100% !important;
+    }
+
     .hero-grid {
       display: grid !important;
       grid-template-columns: 1fr 1fr !important;
       gap: 0 !important;
       border-radius: 0 !important;
       overflow: hidden !important;
+      width: 100% !important;
+      max-width: 100% !important;
+      margin: 0 !important;
+      padding: 0 !important;
     }
 
     @media (max-width: 768px) {
       .hero-grid {
         grid-template-columns: 1fr !important;
+        height: auto !important;
       }
     }
 
@@ -2867,7 +2879,7 @@
   <div id="view-home" class="page-view active-view">
     <!-- HERO SECTION -->
     <section class="hero">
-      <div class="container hero-grid">
+      <div class="hero-grid">
         <div class="hero-left-card">
           <span class="hero-card-subtitle">FOR THE MODERN BRIDE</span>
           <h1 class="hero-card-title">HELLO <br><em>Bride</em></h1>
