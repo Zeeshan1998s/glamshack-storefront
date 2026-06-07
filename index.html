@@ -2905,6 +2905,68 @@
         gap: 16px !important;
       }
     }
+
+    /* Expandable Search Bar CSS */
+    .header-search-container {
+      display: flex !important;
+      align-items: center !important;
+      position: relative !important;
+      background: var(--bg-card) !important;
+      border: 1px solid var(--border-color) !important;
+      border-radius: 24px !important;
+      padding: 2px 6px 2px 12px !important;
+      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1) !important;
+      max-width: 38px !important;
+      height: 38px !important;
+      overflow: hidden !important;
+      box-sizing: border-box !important;
+    }
+
+    .header-search-container.active {
+      max-width: 240px !important;
+      border-color: var(--accent-red) !important;
+      box-shadow: 0 4px 12px rgba(15, 23, 42, 0.05) !important;
+    }
+
+    .header-search-input {
+      border: none !important;
+      background: transparent !important;
+      outline: none !important;
+      font-size: 0.8rem !important;
+      font-family: var(--font-body) !important;
+      color: var(--text-main) !important;
+      width: 0 !important;
+      transition: width 0.35s cubic-bezier(0.16, 1, 0.3, 1) !important;
+      padding: 0 !important;
+      margin: 0 !important;
+      opacity: 0 !important;
+    }
+
+    .header-search-container.active .header-search-input {
+      width: 150px !important;
+      opacity: 1 !important;
+    }
+
+    .header-search-btn {
+      background: transparent !important;
+      border: none !important;
+      padding: 0 !important;
+      cursor: pointer !important;
+      font-size: 1.1rem !important;
+      color: var(--text-main) !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      width: 26px !important;
+      height: 26px !important;
+      min-width: 26px !important;
+      transition: transform 0.2s ease !important;
+    }
+
+    .header-search-btn:hover {
+      color: var(--accent-red) !important;
+      transform: scale(1.1) !important;
+    }
   </style>
 </head>
 <body>
@@ -2935,9 +2997,13 @@
       
       <!-- Right: Search & Cart -->
       <div class="header-actions-right">
-        <button class="header-icon-btn search-btn" onclick="navigateTo('view-shop')" title="Search Catalog">
-          🔍
-        </button>
+        <!-- Expandable Search Bar -->
+        <div class="header-search-container" id="search-container">
+          <input type="text" id="header-search-input" class="header-search-input" placeholder="Search products..." oninput="handleHeaderSearch(this.value)">
+          <button class="header-search-btn" onclick="toggleHeaderSearch()" title="Toggle Search">
+            🔍
+          </button>
+        </div>
         <button class="btn-open-cart" onclick="document.getElementById('cart').showModal()">
           <span>Cart</span>
           <span class="cart-count-badge"></span>
@@ -3684,6 +3750,7 @@
     let navigationHistory = ['view-home'];
     let activeShopFilter = 'all';
     let activeTrousseauFilter = 'all';
+    let headerSearchQuery = '';
 
     // Mock articles database for the Glamshack Journal
     const ARTICLES_DB = {
@@ -3801,7 +3868,7 @@
       applyProductFilter();
     }
 
-    // Apply the active filter to currently rendered cards
+    // Apply the active filter and search query to currently rendered cards
     function applyProductFilter() {
       const cards = document.querySelectorAll('#view-shop .glam-card');
       if (cards.length === 0) return;
@@ -3811,32 +3878,101 @@
         const htmlTitle = card.querySelector('.card-title')?.innerText || '';
         const title = (attrTitle || htmlTitle).toLowerCase();
         
-        let show = false;
+        let matchesCategory = false;
         if (activeShopFilter === 'all') {
-          show = true;
+          matchesCategory = true;
         } else if (activeShopFilter === 'hampers') {
-          show = title.includes('hamper');
+          matchesCategory = title.includes('hamper');
         } else if (activeShopFilter === 'trays') {
-          show = title.includes('tray') || title.includes('platter');
+          matchesCategory = title.includes('tray') || title.includes('platter');
         } else if (activeShopFilter === 'saree-covers') {
-          show = title.includes('saree') || title.includes('cover') || title.includes('suit');
+          matchesCategory = title.includes('saree') || title.includes('cover') || title.includes('suit');
         } else if (activeShopFilter === 'bags') {
-          show = title.includes('bag') || title.includes('potli') || title.includes('envelope') || title.includes('clutch');
+          matchesCategory = title.includes('bag') || title.includes('potli') || title.includes('envelope') || title.includes('clutch');
         } else if (activeShopFilter === 'baskets') {
-          show = title.includes('basket') || title.includes('trunk') || title.includes('box') || title.includes('baksa');
+          matchesCategory = title.includes('basket') || title.includes('trunk') || title.includes('box') || title.includes('baksa');
         } else if (activeShopFilter === 'pouches') {
-          show = title.includes('pouch') || title.includes('organizer');
+          matchesCategory = title.includes('pouch') || title.includes('organizer');
         } else if (activeShopFilter === 'bands') {
-          show = title.includes('band') || title.includes('bangle') || title.includes('necklace') || title.includes('set') || title.includes('earring') || title.includes('choker') || title.includes('pendant');
+          matchesCategory = title.includes('band') || title.includes('bangle') || title.includes('necklace') || title.includes('set') || title.includes('earring') || title.includes('choker') || title.includes('pendant');
         }
         
-        if (show) {
+        const matchesSearch = title.includes(headerSearchQuery.toLowerCase());
+        
+        if (matchesCategory && matchesSearch) {
           card.style.display = 'flex';
         } else {
           card.style.display = 'none';
         }
       });
     }
+
+    // Handles live search inputs from the header search bar
+    function handleHeaderSearch(query) {
+      headerSearchQuery = query.trim();
+      
+      // Auto-navigate to Catalog view if user types when on another page
+      const activeView = document.querySelector('.page-view.active-view');
+      if (activeView && activeView.id !== 'view-shop') {
+        navigateTo('view-shop');
+        
+        // Reset category filter tabs to "All Products" to widen search scope
+        activeShopFilter = 'all';
+        document.querySelectorAll('.btn-tab').forEach(btn => {
+          btn.classList.remove('active-tab');
+        });
+        const allTab = document.getElementById('tab-all');
+        if (allTab) allTab.classList.add('active-tab');
+      }
+      
+      applyProductFilter();
+    }
+
+    // Expands or collapses the search pill bar in the header
+    function toggleHeaderSearch() {
+      const container = document.getElementById('search-container');
+      const input = document.getElementById('header-search-input');
+      if (!container || !input) return;
+
+      const isActive = container.classList.contains('active');
+      if (!isActive) {
+        container.classList.add('active');
+        setTimeout(() => input.focus(), 150);
+      } else {
+        if (input.value.trim() === '') {
+          container.classList.remove('active');
+        } else {
+          // If query was present, first click clears search, second closes
+          input.value = '';
+          handleHeaderSearch('');
+          container.classList.remove('active');
+        }
+      }
+    }
+
+    // Auto-close search container on click away or escape key
+    document.addEventListener('click', (event) => {
+      const container = document.getElementById('search-container');
+      const input = document.getElementById('header-search-input');
+      if (!container || !input) return;
+
+      if (!container.contains(event.target) && container.classList.contains('active') && input.value.trim() === '') {
+        container.classList.remove('active');
+      }
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') {
+        const container = document.getElementById('search-container');
+        const input = document.getElementById('header-search-input');
+        if (container && container.classList.contains('active')) {
+          input.value = '';
+          handleHeaderSearch('');
+          container.classList.remove('active');
+          input.blur();
+        }
+      }
+    });
 
     // Filter carousel rows on Homepage
     function filterTrousseauCarousel(btnEl, filter) {
