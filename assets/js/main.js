@@ -633,12 +633,22 @@
         const addBtn = cardEl.querySelector('.pairs-add-btn');
         addBtn.onclick = (e) => {
            e.stopPropagation();
-           const originalBtn = product.originalCard.querySelector('button[type="submit"]') || product.originalCard.querySelector('button');
-           if (originalBtn) {
-             originalBtn.click();
-             addBtn.innerHTML = 'ADDED <span>✓</span>';
-             setTimeout(() => { addBtn.innerHTML = 'ADD <span>—</span>'; }, 2000);
-           }
+           
+           // Inject a temporary hidden button into the original card's context so addLine works
+           const tempAddBtn = document.createElement('button');
+           tempAddBtn.style.display = 'none';
+           tempAddBtn.onclick = (evt) => {
+               const cart = document.getElementById('cart');
+               if (cart && cart.addLine) {
+                   cart.addLine(evt);
+               }
+           };
+           product.originalCard.appendChild(tempAddBtn);
+           tempAddBtn.click();
+           tempAddBtn.remove();
+           
+           addBtn.innerHTML = 'ADDED <span>✓</span>';
+           setTimeout(() => { addBtn.innerHTML = 'ADD <span>—</span>'; }, 2000);
         };
         
         pairsContent.appendChild(cardEl);
@@ -788,11 +798,18 @@
           cart.shadowRoot.appendChild(style);
         }
         
-        // Dynamically find and style the checkout button by text content to bypass all class/part restrictions
+        // Dynamically find and style the checkout button by text content or slot to bypass all class/part restrictions
         const allBtns = cart.shadowRoot.querySelectorAll('button, a');
         allBtns.forEach(btn => {
           const txt = btn.textContent.toUpperCase();
-          if (txt.includes('CHECKOUT') || txt.includes('ORDER')) {
+          const html = btn.outerHTML.toUpperCase();
+          const hasSlot = btn.querySelector('slot[name="checkout-button"]');
+          const isCheckout = hasSlot || 
+                             txt.includes('CHECKOUT') || 
+                             txt.includes('ORDER') || 
+                             html.includes('CHECKOUT');
+                             
+          if (isCheckout) {
             btn.style.backgroundColor = '#4b5344';
             btn.style.color = '#ffffff';
             btn.style.borderRadius = '0';
