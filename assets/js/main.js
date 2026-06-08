@@ -219,6 +219,26 @@
       handleDrawerSearch('');
     }
 
+    function executeSearch(query) {
+      if (!query || query.trim() === '') {
+        headerSearchQuery = '';
+        const wrapper = document.getElementById('search-title-wrapper');
+        const defaultHeader = document.getElementById('shop-default-header');
+        if (wrapper) wrapper.style.display = 'none';
+        if (defaultHeader) defaultHeader.style.display = 'block';
+      } else {
+        headerSearchQuery = query.trim();
+        const wrapper = document.getElementById('search-title-wrapper');
+        const defaultHeader = document.getElementById('shop-default-header');
+        const titleEl = document.getElementById('shop-search-title');
+        if (wrapper) wrapper.style.display = 'block';
+        if (defaultHeader) defaultHeader.style.display = 'none';
+        if (titleEl) titleEl.textContent = headerSearchQuery;
+      }
+      closeSearchDrawer();
+      handleCategoryNav('all');
+    }
+
     function handleDrawerSearch(query) {
       const clearBtn = document.getElementById('search-drawer-clear-btn');
       if (clearBtn) {
@@ -247,7 +267,7 @@
 
       if (statusEl) {
         statusEl.innerHTML = `
-          <button style="width: 100%; background: transparent; border: 1px solid var(--border-color); padding: 12px; margin-bottom: 24px; font-family: var(--font-body); font-size: 0.75rem; letter-spacing: 0.1em; color: var(--text-main); cursor: pointer;" onclick="closeSearchDrawer(); handleCategoryNav('all');">
+          <button style="width: 100%; background: transparent; border: 1px solid var(--border-color); padding: 12px; margin-bottom: 24px; font-family: var(--font-body); font-size: 0.75rem; letter-spacing: 0.1em; color: var(--text-main); cursor: pointer;" onclick="executeSearch('${trimmedQuery.replace(/'/g, "\\'")}');">
             VIEW ALL ${matchingProducts.length} RESULTS
           </button>
           <div style="font-size: 0.7rem; color: var(--text-muted); display: flex; gap: 16px;">

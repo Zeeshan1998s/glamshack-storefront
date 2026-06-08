@@ -370,7 +370,16 @@
        ========================================================= -->
   <div id="view-shop" class="page-view">
     <main class="container">
-      <div class="section-header">
+      <div class="shop-header-wrapper" style="margin-top: 40px; margin-bottom: 20px;">
+        <div class="breadcrumb" style="font-size: 0.7rem; text-transform: uppercase; color: var(--text-muted); margin-bottom: 20px; font-weight: 600; letter-spacing: 0.1em;">
+          HOME / PRODUCTS
+        </div>
+        <div id="search-title-wrapper" style="display: none; border-bottom: 1px solid var(--text-main); padding-bottom: 10px; margin-bottom: 40px;">
+          <h1 id="shop-search-title" style="font-family: var(--font-display); font-size: 2.5rem; color: var(--text-main); margin: 0; text-transform: capitalize;"></h1>
+        </div>
+      </div>
+      
+      <div class="section-header" id="shop-default-header">
         <span class="section-title-tag">Our Curated Catalog</span>
         <h2 class="section-main-title">Explore Collection</h2>
       </div>
@@ -417,6 +426,12 @@
           <h3 class="empty-state-title">No Products Found</h3>
           <p class="empty-state-text">We couldn't find any products matching your selection. Try browsing another category or clearing your search.</p>
           <button onclick="filterShopProducts('all')" class="empty-state-btn">View All Products</button>
+        </div>
+
+        <div class="load-more-wrapper" style="text-align: center; margin-top: 40px; margin-bottom: 60px;">
+          <button class="btn-load-more" style="background: transparent; border: 1px solid var(--text-main); color: var(--text-main); padding: 12px 40px; font-family: var(--font-body); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; cursor: pointer; transition: all 0.3s ease;">
+            LOAD MORE
+          </button>
         </div>
       </div>
     </main>
@@ -745,7 +760,7 @@
       
       <!-- Search Input -->
       <div class="search-drawer-input-wrapper">
-        <input type="text" id="search-drawer-input" class="search-drawer-input" placeholder="TYPE TO SEARCH" oninput="handleDrawerSearch(this.value)">
+        <input type="text" id="search-drawer-input" class="search-drawer-input" placeholder="TYPE TO SEARCH" oninput="handleDrawerSearch(this.value)" onkeydown="if(event.key === 'Enter') executeSearch(this.value)">
         <button id="search-drawer-clear-btn" class="search-drawer-clear-btn" onclick="clearDrawerSearch()" style="display: none;">✕</button>
       </div>
       
