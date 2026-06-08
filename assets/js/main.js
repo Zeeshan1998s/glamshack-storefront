@@ -722,12 +722,14 @@
               border-radius: 0 !important;
               color: #12141d !important;
             }
-            .checkout-button, button, [part="checkout-button"] {
+            .checkout-button, [part="checkout-button"], button[type="submit"], a[href*="checkout"] {
               background-color: #4b5344 !important;
               color: #ffffff !important;
               border-radius: 0 !important;
               text-transform: uppercase !important;
               border: none !important;
+              outline: none !important;
+              box-shadow: none !important;
             }
           `;
           cart.shadowRoot.appendChild(style);
