@@ -26,7 +26,12 @@
     language="en"
   ></shopify-store>
 
-  <!-- HEADER NAV BAR -->
+  <!-- =========================================================
+       HEADER NAVIGATION BAR
+       How to edit:
+       - To change category names, find the <li> tags inside the <nav> element. 
+       - Inside the <a> tags, you will see the text (e.g., 'Hampers', 'Trays'). Edit this text to rename the tabs.
+       ========================================================= -->
   <header>
     <div class="container header-top-row">
       <!-- Left: Profile Shortcut -->
@@ -82,7 +87,14 @@
        VIEW 1: HOMEPAGE VIEW (#view-home)
        ========================================================= -->
   <div id="view-home" class="page-view active-view">
-    <!-- SECTION 1: FULL BLEED HERO -->
+    <!-- =========================================================
+         SECTION 1: FULL BLEED HERO
+         How to edit:
+         - Change the main background image by replacing the link in <img src="..."> inside this section.
+         - Change the main big title by editing the text inside <h1 class="hero-display-title">...</h1>.
+         - Change the smaller subtitle text by editing the text inside the <p> tag right below the <h1>.
+         - Change the button text by editing the text inside the <button> tag (e.g., 'Shop Collection').
+         ========================================================= -->
     <section class="home-hero-full">
       <img class="home-hero-bg" src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=2000&auto=format&fit=crop" alt="Wedding Preparation">
       <div class="home-hero-content">
@@ -92,7 +104,14 @@
       </div>
     </section>
 
-    <!-- SECTION 2: BRAND STORY & TRUST BADGES -->
+    <!-- =========================================================
+         SECTION 2: BRAND STORY & TRUST BADGES
+         How to edit:
+         - Change the large quote text by editing the text inside the <h2 class="quote-text">...</h2> tag.
+         - Change the trust badges (the emojis and text like "SCIENCE BASED TARGETS") by editing the text/emojis inside the <div class="trust-badges"> section.
+         - Change the main lifestyle image on the right by replacing the <img class="brand-story-img-main" src="..."> link.
+         - Change the smaller overlapping image by replacing the <img class="brand-story-img-small" src="..."> link.
+         ========================================================= -->
     <section class="home-brand-story">
       <div class="brand-story-left">
         <h2 class="quote-text" style="font-size: clamp(1.8rem, 2.5vw, 2.5rem); margin-bottom: 50px; line-height: 1.3;">
@@ -129,7 +148,13 @@
       </div>
     </section>
 
-    <!-- SECTION 3: BESTSELLERS -->
+    <!-- =========================================================
+         SECTION 3: BESTSELLERS
+         How to edit:
+         - Change the title "Signature Collections" by editing the text inside the <h2> tag.
+         - Change the tab names (e.g., "MID SEASON REDUCTIONS") by editing the text inside the <span class="story-tab"> tags.
+         - Note: The products shown here are automatically fetched from Shopify using the <shopify-list-context> tag. You don't need to manually change the product images or prices here; they will sync with your Shopify store!
+         ========================================================= -->
     <section class="home-bestsellers" style="padding: 100px 4%; width: 100%; box-sizing: border-box;">
       <div class="section-header-left" style="margin-bottom: 40px;">
         <h2 class="section-main-title" style="font-family: var(--font-display), 'Playfair Display', serif; font-size: 2.8rem; color: #333; margin-bottom: 15px; font-weight: 300;">Signature Collections</h2>
@@ -190,7 +215,15 @@
       </div>
     </section>
 
-    <!-- SECTION 4: SPLIT FEATURE 50/50 -->
+    <!-- =========================================================
+         SECTION 4: SPLIT FEATURE 50/50
+         How to edit:
+         - This section has two halves. For each half:
+         - Change the background image by replacing the link in <img class="split-feature-img" src="...">.
+         - Change the title by editing the text inside the <h3> tag.
+         - Change the description paragraph by editing the text inside the <p> tag.
+         - Change the link text by editing the text inside the <a class="discover-link"> tag.
+         ========================================================= -->
     <section class="home-split-feature" style="gap: 4px; padding: 4px 0; background: #fff;">
       <div class="split-feature-item">
         <img class="split-feature-img" src="https://images.unsplash.com/photo-1520854221256-17451cc331bf?w=1200&auto=format&fit=crop" alt="Luxury Hampers">
@@ -212,7 +245,15 @@
       </div>
     </section>
 
-    <!-- SECTION 5: CATEGORIES -->
+    <!-- =========================================================
+         SECTION 5: CATEGORIES
+         How to edit:
+         - Change the main section title by editing the text inside the <h2> tag (e.g., "Shop by Category").
+         - Change the link next to it by editing the text inside the <a> tag (e.g., "DISCOVER MORE").
+         - For each category item in the slider:
+           1. Change the image by replacing the link in <img src="...">.
+           2. Change the category name below the image by editing the text inside the <p class="category-product-title"> tag.
+         ========================================================= -->
     <section class="home-categories">
       <div class="categories-header-left">
         <h2 class="section-main-title">Shop by Category</h2>
@@ -286,7 +327,15 @@
       </div>
     </section>
 
-    <!-- SECTION 6: CRAFTSMANSHIP SHOWCASE -->
+    <!-- =========================================================
+         SECTION 6: CRAFTSMANSHIP SHOWCASE
+         How to edit:
+         - Change the large background image by replacing the link in <img class="craftsmanship-bg" src="...">.
+         - Change the main title by editing the text inside the <h2> tag (e.g., "Handcrafted in India").
+         - Change the description paragraph by editing the text inside the <p> tag.
+         - Change the link text by editing the text inside the <a class="discover-link"> tag.
+         - Change the smaller inset image on the right by replacing the link in <img src="..."> under the <!-- Placeholder for store interior --> comment.
+         ========================================================= -->
     <section class="home-craftsmanship-banner">
       <div class="craftsmanship-bg-overlay"></div>
       <img class="craftsmanship-bg" src="https://images.unsplash.com/photo-1621607512214-68297480165e?w=2000&auto=format&fit=crop" alt="Handcrafted Details">
@@ -304,7 +353,15 @@
       </div>
     </section>
 
-    <!-- SECTION 7: FEATURED STORY / PRODUCT SPLIT -->
+    <!-- =========================================================
+         SECTION 7: FEATURED STORY / PRODUCT SPLIT
+         How to edit:
+         - Change the large lifestyle image on the left by replacing the link in <img class="story-split-bg" src="...">.
+         - Change the main title on the right by editing the text inside the <h2> tag.
+         - Change the subtitle below it by editing the text inside the <p class="story-split-subtitle"> tag.
+         - Change the tab names by editing the text inside the <span class="story-tab"> tags.
+         - The products shown here are also synced automatically from your Shopify store!
+         ========================================================= -->
     <section class="home-story-split">
       <div class="story-split-left">
         <img class="story-split-bg" src="https://images.unsplash.com/photo-1533090368676-1fd25485db88?w=1000&auto=format&fit=crop" alt="Wedding Setup">
@@ -372,7 +429,16 @@
       </div>
     </section>
 
-    <!-- SECTION 8: JOURNAL / BLOG -->
+    <!-- =========================================================
+         SECTION 8: JOURNAL / BLOG
+         How to edit:
+         - Change the main title by editing the text inside the <h2> tag (e.g., "Inspiration & Advice").
+         - Change the tab names by editing the text inside the <span class="story-tab"> tags.
+         - For each blog post in the slider:
+           1. Change the image by replacing the link in <img src="...">.
+           2. Change the date text by editing the text inside the <p class="journal-date"> tag.
+           3. Change the title of the post by editing the text inside the <h4> tag.
+         ========================================================= -->
     <section class="home-journal">
       <div class="journal-header-left">
         <h2 class="section-main-title">Inspiration & Advice</h2>
@@ -433,7 +499,11 @@
       </div>
     </section>
 
-    <!-- SECTION 9: PRE-FOOTER LANDSCAPE -->
+    <!-- =========================================================
+         SECTION 9: PRE-FOOTER LANDSCAPE
+         How to edit:
+         - Change this large landscape image by replacing the link in <img src="...">.
+         ========================================================= -->
     <section class="home-pre-footer">
       <img src="https://images.unsplash.com/photo-1513689125086-6c432170e843?w=2000&auto=format&fit=crop" alt="Mountains and Forests" style="width: 100%; height: 600px; object-fit: cover; display: block;">
     </section>
@@ -1040,7 +1110,14 @@
     </div>
   </div>
 
-  <!-- FOOTER -->
+  <!-- =========================================================
+       FOOTER
+       How to edit:
+       - To edit the column titles, look for <h4 class="footer-col-title"> tags.
+       - To edit the links under each column, look for the <li><a href="...">...</a></li> tags.
+       - To change social media links, update the <a href="..."> links wrapping the <svg> icons.
+       - To change copyright text, look for the <div class="footer-copyright"> tags at the bottom.
+       ========================================================= -->
   <footer class="site-footer">
     <div class="footer-grid">
       <!-- Col 1 -->
