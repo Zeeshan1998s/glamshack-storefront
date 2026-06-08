@@ -3785,49 +3785,85 @@
     .home-split-feature {
       display: flex;
       width: 100%;
+      height: 90vh;
     }
 
     .split-feature-item {
       flex: 1;
       position: relative;
-      height: 80vh;
+      height: 100%;
       overflow: hidden;
+      display: flex;
+      align-items: flex-end;
     }
 
     .split-feature-img {
+      position: absolute;
+      top: 0; left: 0;
       width: 100%;
       height: 100%;
       object-fit: cover;
       display: block;
       transition: transform 0.6s ease;
+      z-index: 1;
     }
     
+    .split-feature-overlay {
+      position: absolute;
+      bottom: 0; left: 0;
+      width: 100%;
+      height: 60%;
+      background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 100%);
+      z-index: 2;
+      pointer-events: none;
+    }
+
     .split-feature-item:hover .split-feature-img {
       transform: scale(1.03);
     }
 
     .split-feature-text {
-      position: absolute;
-      bottom: 40px;
-      left: 40px;
+      position: relative;
+      padding: 50px 60px;
       color: #fff;
       z-index: 10;
+      width: 100%;
     }
 
     .split-feature-text h3 {
-      font-family: var(--font-body);
-      font-size: 1.5rem;
-      margin-bottom: 8px;
+      font-family: var(--font-display), 'Playfair Display', serif;
+      font-size: 2.5rem;
+      margin-bottom: 15px;
       font-weight: 300;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
+      letter-spacing: normal;
+      text-transform: none;
+      color: #fff;
     }
-
+    
     .split-feature-text p {
       font-family: var(--font-body);
-      font-size: 0.95rem;
-      opacity: 0.8;
+      font-size: 0.8rem;
+      line-height: 1.5;
+      margin-bottom: 25px;
+      max-width: 90%;
+      opacity: 0.95;
     }
+    
+    .discover-link {
+      display: inline-block;
+      color: #fff;
+      text-decoration: none;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      transition: opacity 0.3s ease;
+    }
+    
+    .discover-link:hover {
+      opacity: 0.7;
+    }
+
+
 
     /* Section 5: Categories */
     .home-categories {
