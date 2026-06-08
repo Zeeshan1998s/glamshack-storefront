@@ -4126,54 +4126,7 @@
       width: max-content;
     }
 
-    .story-product-card {
-      width: 25vw;
-      min-width: 250px;
-      max-width: 320px;
-      display: flex;
-      flex-direction: column;
-    }
 
-    .story-product-image {
-      width: 100%;
-      aspect-ratio: 4 / 5;
-      background-color: #efece7;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 15px;
-    }
-
-    .story-product-image img {
-      width: 90%;
-      height: 90%;
-      object-fit: contain;
-      mix-blend-mode: multiply;
-    }
-
-    .story-product-info {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      font-family: var(--font-body);
-      font-size: 0.8rem;
-      color: #333;
-    }
-
-    .story-price-box {
-      display: flex;
-      gap: 8px;
-    }
-
-    .story-price-box .price-old {
-      text-decoration: line-through;
-      color: #999;
-    }
-
-    .story-price-box .price-new {
-      color: #d11e1e;
-      font-weight: 600;
-    }
 
     /* Section 8: Journal / Blog */
     .home-journal {
