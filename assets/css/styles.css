@@ -4357,6 +4357,13 @@
       width: 450px !important;
       max-width: 90vw !important;
       color: #12141d !important;
+      position: fixed !important;
+      right: 0 !important;
+      top: 0 !important;
+      height: 100vh !important;
+      max-height: 100vh !important;
+      margin: 0 !important;
+      border-radius: 0 !important;
     }
     
     shopify-cart::part(header) {
