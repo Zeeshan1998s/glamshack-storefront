@@ -531,6 +531,7 @@
       const cards = document.querySelectorAll('#view-shop .glam-card');
       if (cards.length > 0) {
         applyProductFilter();
+        setTimeout(populatePairsWith, 500);
       }
     });
 
@@ -560,6 +561,7 @@
         clearTimeout(carouselFilterTimeout);
         carouselFilterTimeout = setTimeout(() => {
           applyCarouselFilters();
+          populatePairsWith();
         }, 100);
       }
     });
@@ -583,7 +585,67 @@
       // In case data is already loaded, apply filters immediately
       applyCarouselFilters();
       applyProductFilter();
+      setTimeout(populatePairsWith, 1000);
     });
+
+    // Populate "Pairs With" sidebar with real products from the DOM
+    let pairsPopulated = false;
+    function populatePairsWith() {
+      if (pairsPopulated) return;
+      const pairsContent = document.querySelector('.pairs-content');
+      if (!pairsContent) return;
+      
+      const allProducts = getAllProducts();
+      // Filter products that successfully loaded images
+      const productsWithImages = allProducts.filter(p => {
+         const originalMedia = p.originalCard.querySelector('shopify-media');
+         const img = originalMedia ? originalMedia.querySelector('img') : null;
+         return !!img || !!(p.originalCard.querySelector('img'));
+      });
+      
+      if (productsWithImages.length < 2) return; // Wait until more products load
+      
+      // Take first 3 products for the sidebar
+      const selected = productsWithImages.slice(0, 3);
+      
+      pairsContent.innerHTML = '';
+      
+      selected.forEach(product => {
+        const originalMedia = product.originalCard.querySelector('shopify-media');
+        const originalImg = originalMedia ? originalMedia.querySelector('img') : product.originalCard.querySelector('img');
+        const imgSrc = originalImg ? originalImg.src : 'https://images.unsplash.com/photo-1549465220-1a8b9238cd48?w=300';
+        
+        const cardHtml = `
+          <div class="pairs-card">
+            <img src="${imgSrc}" alt="${product.title}" />
+            <div class="pairs-info">
+              <div class="pairs-title">${product.title}</div>
+              <div class="pairs-price">${product.price}</div>
+              <button class="pairs-add-btn">ADD <span>—</span></button>
+            </div>
+          </div>
+        `;
+        
+        const tempDiv = document.createElement('div');
+        tempDiv.innerHTML = cardHtml.trim();
+        const cardEl = tempDiv.firstChild;
+        
+        const addBtn = cardEl.querySelector('.pairs-add-btn');
+        addBtn.onclick = (e) => {
+           e.stopPropagation();
+           const originalBtn = product.originalCard.querySelector('button[type="submit"]') || product.originalCard.querySelector('button');
+           if (originalBtn) {
+             originalBtn.click();
+             addBtn.innerHTML = 'ADDED <span>✓</span>';
+             setTimeout(() => { addBtn.innerHTML = 'ADD <span>—</span>'; }, 2000);
+           }
+        };
+        
+        pairsContent.appendChild(cardEl);
+      });
+      
+      pairsPopulated = true;
+    }
 
     // Automatically trigger cart count check on user click interactions
     document.addEventListener('click', () => {
