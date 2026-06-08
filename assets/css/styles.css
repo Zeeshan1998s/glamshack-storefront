@@ -3614,6 +3614,19 @@
       letter-spacing: 0.05em;
     }
 
+    /* Shopify Web Component Internal List Overrides */
+    shopify-list-context::part(list) {
+      display: inherit !important;
+      grid-template-columns: inherit !important;
+      gap: inherit !important;
+      width: 100% !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      list-style: none !important;
+      overflow-x: inherit !important;
+      scrollbar-width: inherit !important;
+    }
+
     /* RELATED SECTION */
     .pdp-related-section {
       margin-top: 80px;
