@@ -2959,223 +2959,272 @@
       }
     }
 
-    /* CUSTOM SEARCH DRAWER SIDEBAR */
+    /* CUSTOM SEARCH DRAWER FULL SCREEN */
     .search-drawer {
-      visibility: hidden;
-      transition: visibility 0.3s ease;
+      position: fixed !important;
+      top: -100vh !important;
+      left: 0 !important;
+      width: 100vw !important;
+      height: 100vh !important;
+      background: #eae8e1 !important; /* light beige background */
+      z-index: 2000 !important;
+      display: flex !important;
+      transition: top 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+      overflow: hidden !important;
     }
 
     .search-drawer.open {
-      visibility: visible;
-    }
-
-    .search-drawer-overlay {
-      position: fixed !important;
       top: 0 !important;
-      bottom: 0 !important;
-      left: 0 !important;
-      right: 0 !important;
-      background: rgba(15, 23, 42, 0.3) !important;
-      opacity: 0 !important;
-      pointer-events: none !important;
-      transition: opacity 0.3s ease !important;
-      z-index: 1000 !important;
-      backdrop-filter: blur(4px) !important;
-      -webkit-backdrop-filter: blur(4px) !important;
     }
 
-    .search-drawer.open .search-drawer-overlay {
-      opacity: 1 !important;
-      pointer-events: auto !important;
-    }
-
-    .search-drawer-content {
-      position: fixed !important;
-      top: 0 !important;
-      bottom: 0 !important;
-      right: -420px !important;
-      width: 420px !important;
-      max-width: 100% !important;
-      background: var(--bg-card) !important;
-      box-shadow: -10px 0 40px rgba(15, 23, 42, 0.1) !important;
-      z-index: 1001 !important;
-      transition: right 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    .search-drawer-left {
+      width: 35% !important;
+      padding: 40px !important;
       display: flex !important;
       flex-direction: column !important;
       box-sizing: border-box !important;
+      border-right: 1px solid rgba(0,0,0,0.05) !important;
     }
 
-    .search-drawer.open .search-drawer-content {
-      right: 0 !important;
-    }
-
-    .search-drawer-header {
+    .search-drawer-nav {
       display: flex !important;
-      justify-content: space-between !important;
-      align-items: center !important;
-      padding: 24px !important;
-      border-bottom: 1px solid var(--border-color) !important;
+      gap: 20px !important;
+      margin-bottom: 80px !important;
     }
 
-    .search-drawer-title {
-      font-family: var(--font-display) !important;
-      font-size: 1.5rem !important;
-      font-weight: 500 !important;
-      color: var(--text-main) !important;
-      margin: 0 !important;
-    }
-
-    .search-drawer-close-btn {
+    .search-nav-link {
       background: transparent !important;
       border: none !important;
-      font-size: 1.25rem !important;
+      font-size: 0.75rem !important;
+      font-weight: 600 !important;
+      color: var(--text-muted) !important;
+      text-transform: uppercase !important;
+      letter-spacing: 0.15em !important;
       cursor: pointer !important;
+    }
+    .search-nav-link:hover {
       color: var(--text-main) !important;
-      padding: 4px !important;
-      transition: transform 0.2s ease !important;
-    }
-
-    .search-drawer-close-btn:hover {
-      color: var(--accent-red) !important;
-      transform: scale(1.1) !important;
-    }
-
-    .search-drawer-body {
-      flex: 1 !important;
-      display: flex !important;
-      flex-direction: column !important;
-      padding: 24px !important;
-      overflow: hidden !important;
     }
 
     .search-drawer-input-wrapper {
       position: relative !important;
-      margin-bottom: 16px !important;
+      margin-bottom: 24px !important;
+      width: 100% !important;
     }
 
     .search-drawer-input {
       width: 100% !important;
-      padding: 12px 40px 12px 16px !important;
-      border: 1px solid var(--border-color) !important;
-      border-radius: 30px !important;
-      background: var(--bg-base) !important;
+      padding: 12px 0 !important;
+      border: none !important;
+      border-bottom: 1px solid var(--text-main) !important;
+      background: transparent !important;
       color: var(--text-main) !important;
       font-family: var(--font-body) !important;
-      font-size: 0.9rem !important;
+      font-size: 0.85rem !important;
+      text-transform: uppercase !important;
+      letter-spacing: 0.15em !important;
       outline: none !important;
       box-sizing: border-box !important;
-      transition: border-color 0.2s ease !important;
     }
 
-    .search-drawer-input:focus {
-      border-color: var(--accent-red) !important;
-      box-shadow: 0 0 0 3px rgba(204, 0, 0, 0.05) !important;
+    .search-drawer-input::placeholder {
+      color: rgba(0,0,0,0.4) !important;
     }
 
     .search-drawer-clear-btn {
       position: absolute !important;
-      right: 14px !important;
+      right: 0 !important;
       top: 50% !important;
       transform: translateY(-50%) !important;
       background: transparent !important;
       border: none !important;
-      font-size: 0.95rem !important;
+      font-size: 1rem !important;
       cursor: pointer !important;
-      color: var(--text-muted) !important;
-      padding: 4px !important;
-      z-index: 5 !important;
-    }
-
-    .search-drawer-clear-btn:hover {
       color: var(--text-main) !important;
     }
 
     .search-drawer-status {
-      font-size: 0.8rem !important;
-      color: var(--text-muted) !important;
-      margin-bottom: 12px !important;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
+      font-size: 0.7rem !important;
+      font-weight: 600 !important;
+      color: var(--text-main) !important;
+      text-transform: uppercase !important;
+      letter-spacing: 0.1em !important;
+      margin-bottom: 24px !important;
     }
 
-    .search-drawer-results-list {
+    .search-drawer-footer-links {
+      margin-top: auto !important;
+      display: flex !important;
+      flex-direction: column !important;
+      gap: 16px !important;
+    }
+
+    .search-drawer-footer-links a {
+      font-size: 0.7rem !important;
+      font-weight: 600 !important;
+      color: var(--text-muted) !important;
+      text-transform: uppercase !important;
+      letter-spacing: 0.15em !important;
+      text-decoration: none !important;
+    }
+    .search-drawer-footer-links a:hover {
+      color: var(--text-main) !important;
+    }
+
+    .search-drawer-right {
+      width: 65% !important;
+      position: relative !important;
+      display: flex !important;
+      flex-direction: column !important;
+      background: #e2dfd8 !important; /* Slightly different background for the right panel */
+    }
+
+    .search-drawer-close-btn {
+      position: absolute !important;
+      top: 40px !important;
+      right: 40px !important;
+      background: transparent !important;
+      border: none !important;
+      font-size: 1.5rem !important;
+      cursor: pointer !important;
+      color: var(--text-main) !important;
+      z-index: 10 !important;
+    }
+
+    .search-drawer-default {
       flex: 1 !important;
-      overflow-y: auto !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      padding: 40px !important;
+    }
+
+    .featured-stories {
+      max-width: 500px !important;
+    }
+
+    .featured-title {
+      font-size: 0.8rem !important;
+      text-transform: uppercase !important;
+      margin-bottom: 16px !important;
+      color: var(--text-main) !important;
+    }
+
+    .featured-image {
+      width: 100% !important;
+      border-radius: 4px !important;
+      margin-bottom: 12px !important;
+    }
+
+    .featured-caption {
       display: flex !important;
       flex-direction: column !important;
       gap: 4px !important;
-      scrollbar-width: thin !important;
-      padding-right: 4px !important;
     }
 
-    .search-drawer-results-list::-webkit-scrollbar {
+    .featured-caption .date {
+      font-size: 0.7rem !important;
+      text-transform: uppercase !important;
+      color: var(--text-muted) !important;
+    }
+
+    .featured-caption .desc {
+      font-size: 0.85rem !important;
+      color: var(--text-main) !important;
+    }
+
+    .search-drawer-results-grid {
+      flex: 1 !important;
+      padding: 80px 40px 40px 40px !important;
+      display: grid !important;
+      grid-template-columns: repeat(3, 1fr) !important;
+      gap: 30px !important;
+      overflow-y: auto !important;
+    }
+
+    .search-drawer-results-grid::-webkit-scrollbar {
       width: 4px !important;
     }
-    .search-drawer-results-list::-webkit-scrollbar-track {
+    .search-drawer-results-grid::-webkit-scrollbar-track {
       background: transparent !important;
     }
-    .search-drawer-results-list::-webkit-scrollbar-thumb {
-      background: var(--border-color) !important;
+    .search-drawer-results-grid::-webkit-scrollbar-thumb {
+      background: rgba(0,0,0,0.2) !important;
       border-radius: 4px !important;
     }
 
+    /* Reskin result cards to match grid styling */
     .search-result-item {
       display: flex !important;
-      align-items: center !important;
-      gap: 16px !important;
-      padding: 12px !important;
-      border-radius: 12px !important;
+      flex-direction: column !important;
+      gap: 12px !important;
       cursor: pointer !important;
-      transition: background 0.2s ease, border-color 0.2s ease !important;
-      border: 1px solid transparent !important;
-      box-sizing: border-box !important;
-    }
-
-    .search-result-item:hover {
-      background: var(--bg-base) !important;
-      border-color: var(--border-color) !important;
     }
 
     .search-result-media {
-      width: 60px !important;
-      height: 60px !important;
-      min-width: 60px !important;
-      border-radius: 8px !important;
-      background: #eaebef !important;
-      overflow: hidden !important;
+      width: 100% !important;
+      aspect-ratio: 1 / 1 !important;
+      background: #f4f3ef !important;
       display: flex !important;
       align-items: center !important;
       justify-content: center !important;
     }
 
-    .search-result-media shopify-media,
-    .search-result-media img {
+    .search-result-media img,
+    .search-result-media shopify-media {
       width: 100% !important;
       height: 100% !important;
       object-fit: cover !important;
     }
 
     .search-result-info {
-      flex: 1 !important;
       display: flex !important;
-      flex-direction: column !important;
-      gap: 4px !important;
+      justify-content: space-between !important;
+      align-items: baseline !important;
+      width: 100% !important;
     }
 
     .search-result-title {
       font-family: var(--font-body) !important;
-      font-size: 0.85rem !important;
-      font-weight: 500 !important;
+      font-size: 0.8rem !important;
       color: var(--text-main) !important;
-      line-height: 1.4 !important;
       margin: 0 !important;
+      text-transform: capitalize !important;
     }
 
     .search-result-price {
       font-family: var(--font-body) !important;
       font-size: 0.8rem !important;
-      font-weight: 600 !important;
-      color: var(--accent-red) !important;
+      color: var(--text-main) !important;
+    }
+
+    @media (max-width: 900px) {
+      .search-drawer {
+        flex-direction: column !important;
+      }
+      .search-drawer-left {
+        width: 100% !important;
+        height: 40% !important;
+        padding: 20px !important;
+      }
+      .search-drawer-right {
+        width: 100% !important;
+        height: 60% !important;
+      }
+      .search-drawer-results-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        padding: 20px !important;
+      }
+      .search-drawer-nav {
+        display: none !important;
+      }
+      .search-drawer-footer-links {
+        display: none !important;
+      }
+      .search-drawer-close-btn {
+        top: 20px !important;
+        right: 20px !important;
+      }
     }
   </style>
 </head>
@@ -3898,28 +3947,56 @@
   </shopify-cart>
 
   <!-- CUSTOM SEARCH SIDEBAR DRAWER -->
+  <!-- CUSTOM FULL-SCREEN SEARCH OVERLAY -->
   <div id="search-drawer" class="search-drawer">
-    <div class="search-drawer-overlay" onclick="closeSearchDrawer()"></div>
-    <div class="search-drawer-content">
-      <div class="search-drawer-header">
-        <h3 class="search-drawer-title">Search Products</h3>
-        <button class="search-drawer-close-btn" onclick="closeSearchDrawer()">✕</button>
+    <div class="search-drawer-left">
+      <!-- Navigation Links -->
+      <nav class="search-drawer-nav">
+        <button class="search-nav-link" onclick="handleCategoryNav('all'); closeSearchDrawer();">SALE</button>
+        <button class="search-nav-link" onclick="handleCategoryNav('hampers'); closeSearchDrawer();">NEW</button>
+        <button class="search-nav-link" onclick="handleCategoryNav('bags'); closeSearchDrawer();">BAGS</button>
+        <button class="search-nav-link" onclick="handleCategoryNav('baskets'); closeSearchDrawer();">ACCESSORIES</button>
+        <button class="search-nav-link" onclick="handleCategoryNav('saree-covers'); closeSearchDrawer();">CASHMERE</button>
+        <button class="search-nav-link" onclick="handleCategoryNav('trays'); closeSearchDrawer();">GIFTS</button>
+      </nav>
+      
+      <!-- Search Input -->
+      <div class="search-drawer-input-wrapper">
+        <input type="text" id="search-drawer-input" class="search-drawer-input" placeholder="TYPE TO SEARCH" oninput="handleDrawerSearch(this.value)">
+        <button id="search-drawer-clear-btn" class="search-drawer-clear-btn" onclick="clearDrawerSearch()" style="display: none;">✕</button>
       </div>
-      <div class="search-drawer-body">
-        <div class="search-drawer-input-wrapper">
-          <input type="text" id="search-drawer-input" class="search-drawer-input" placeholder="Type to search..." oninput="handleDrawerSearch(this.value)">
-          <button id="search-drawer-clear-btn" class="search-drawer-clear-btn" onclick="clearDrawerSearch()" style="display: none;">✕</button>
+      
+      <!-- Left Panel Bottom Content (e.g. status/results count) -->
+      <div id="search-drawer-status" class="search-drawer-status">
+        <!-- Rendered dynamically -->
+      </div>
+      
+      <!-- Footer Links -->
+      <div class="search-drawer-footer-links">
+        <a href="#" onclick="closeSearchDrawer()">CONTACT US</a>
+        <a href="#" onclick="closeSearchDrawer()">FAQS</a>
+        <a href="#" onclick="closeSearchDrawer()">DELIVERY</a>
+        <a href="#" onclick="closeSearchDrawer()">RETURN POLICY</a>
+      </div>
+    </div>
+    <div class="search-drawer-right">
+      <button class="search-drawer-close-btn" onclick="closeSearchDrawer()">✕</button>
+      
+      <!-- Default view when empty -->
+      <div id="search-drawer-default" class="search-drawer-default">
+        <div class="featured-stories">
+          <p class="featured-title">Featured stories</p>
+          <img src="https://images.unsplash.com/photo-1549497554-469b6db94901?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Leather working" class="featured-image">
+          <div class="featured-caption">
+            <span class="date">MARCH 24, 2025</span>
+            <span class="desc">Facts, not fiction</span>
+          </div>
         </div>
-        
-        <!-- Search Results Count/Status -->
-        <div id="search-drawer-status" class="search-drawer-status">
-          Featured Products
-        </div>
-
-        <!-- Search Results Listing Container -->
-        <div id="search-drawer-results" class="search-drawer-results-list">
-          <!-- Rendered dynamically by javascript -->
-        </div>
+      </div>
+      
+      <!-- Grid view when searching -->
+      <div id="search-drawer-results" class="search-drawer-results-grid" style="display: none;">
+        <!-- Rendered dynamically by javascript -->
       </div>
     </div>
   </div>
@@ -4213,24 +4290,36 @@
 
       const statusEl = document.getElementById('search-drawer-status');
       const resultsContainer = document.getElementById('search-drawer-results');
-      if (!resultsContainer) return;
+      const defaultContainer = document.getElementById('search-drawer-default');
+      if (!resultsContainer || !defaultContainer) return;
 
       const trimmedQuery = query.trim().toLowerCase();
       const allProducts = getAllProducts();
 
-      // Filter products based on search term, show first 8 as suggestions if empty
-      const matchingProducts = trimmedQuery === ''
-        ? allProducts.slice(0, 8)
-        : allProducts.filter(p => p.title.toLowerCase().includes(trimmedQuery));
-
       if (trimmedQuery === '') {
-        if (statusEl) statusEl.textContent = 'Featured Products';
-      } else {
-        if (statusEl) {
-          statusEl.textContent = matchingProducts.length > 0 
-            ? `Found ${matchingProducts.length} product${matchingProducts.length > 1 ? 's' : ''}`
-            : 'No matching products found';
-        }
+        defaultContainer.style.display = 'flex';
+        resultsContainer.style.display = 'none';
+        if (statusEl) statusEl.innerHTML = '';
+        return;
+      }
+
+      defaultContainer.style.display = 'none';
+      resultsContainer.style.display = 'grid';
+
+      const matchingProducts = allProducts.filter(p => p.title.toLowerCase().includes(trimmedQuery));
+
+      if (statusEl) {
+        statusEl.innerHTML = `
+          <button style="width: 100%; background: transparent; border: 1px solid var(--border-color); padding: 12px; margin-bottom: 24px; font-family: var(--font-body); font-size: 0.75rem; letter-spacing: 0.1em; color: var(--text-main); cursor: pointer;" onclick="closeSearchDrawer(); handleCategoryNav('all');">
+            VIEW ALL ${matchingProducts.length} RESULTS
+          </button>
+          <div style="font-size: 0.7rem; color: var(--text-muted); display: flex; gap: 16px;">
+            <span>FILTERS:</span>
+            <span>DISCOUNTS</span>
+            <span>COLOR</span>
+            <span>STYLE</span>
+          </div>
+        `;
       }
 
       resultsContainer.innerHTML = '';
