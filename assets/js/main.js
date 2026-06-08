@@ -703,7 +703,7 @@
       const pairsSidebar = document.getElementById('cart-pairs-sidebar');
       const cart = document.getElementById('cart');
       if (cart && cart.shadowRoot) {
-        // Inject brute-force CSS if missing (bypasses ::part limitations)
+        // Inject brute-force CSS if missing for the dialog structure itself
         if (!cart.shadowRoot.getElementById('glamshack-custom-cart-css')) {
           const style = document.createElement('style');
           style.id = 'glamshack-custom-cart-css';
@@ -722,18 +722,23 @@
               border-radius: 0 !important;
               color: #12141d !important;
             }
-            .checkout-button, [part="checkout-button"], button[type="submit"], a[href*="checkout"] {
-              background-color: #4b5344 !important;
-              color: #ffffff !important;
-              border-radius: 0 !important;
-              text-transform: uppercase !important;
-              border: none !important;
-              outline: none !important;
-              box-shadow: none !important;
-            }
           `;
           cart.shadowRoot.appendChild(style);
         }
+        
+        // Dynamically find and style the checkout button by text content to bypass all class/part restrictions
+        const allBtns = cart.shadowRoot.querySelectorAll('button, a');
+        allBtns.forEach(btn => {
+          const txt = btn.textContent.toUpperCase();
+          if (txt.includes('CHECKOUT') || txt.includes('ORDER')) {
+            btn.style.backgroundColor = '#4b5344';
+            btn.style.color = '#ffffff';
+            btn.style.borderRadius = '0';
+            btn.style.border = 'none';
+            btn.style.outline = 'none';
+            btn.style.boxShadow = 'none';
+          }
+        });
         
         if (pairsSidebar && pairsSidebar.classList.contains('open')) {
           const dialog = cart.shadowRoot.querySelector('dialog');
