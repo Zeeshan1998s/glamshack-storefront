@@ -3867,46 +3867,100 @@
 
     /* Section 5: Categories */
     .home-categories {
-      padding: 100px 4%;
-      background-color: #f4f3ef;
+      padding: 100px 0 100px 4%; /* Bleed to the right */
+      background-color: #efece7; /* Match beige background */
+      overflow: hidden;
+    }
+
+    .categories-header-left {
+      margin-bottom: 40px;
+      padding-right: 4%;
     }
     
-    .home-categories .section-main-title {
-      color: #12141d;
-      margin-bottom: 40px;
+    .categories-header-left .section-main-title {
+      font-family: var(--font-display), 'Playfair Display', serif;
+      font-size: 2.8rem;
+      color: #333;
+      margin-bottom: 15px;
+      font-weight: 300;
     }
 
-    .home-categories-grid {
-      display: grid;
-      grid-template-columns: repeat(6, 1fr);
-      gap: 20px;
+    .discover-link-dark {
+      display: inline-block;
+      color: #111;
+      text-decoration: none;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      transition: opacity 0.3s ease;
+    }
+    
+    .discover-link-dark:hover {
+      opacity: 0.7;
     }
 
-    .home-category-item {
-      cursor: pointer;
-      text-align: center;
-    }
-
-    .home-category-item img {
+    .categories-slider-wrapper {
       width: 100%;
-      aspect-ratio: 1 / 1;
-      object-fit: cover;
-      background-color: #e5e4df;
-      margin-bottom: 16px;
-      transition: transform 0.3s ease;
+      overflow-x: auto;
+      scrollbar-width: none; /* Firefox */
+      -ms-overflow-style: none;  /* IE and Edge */
+    }
+    
+    .categories-slider-wrapper::-webkit-scrollbar {
+      display: none; /* Chrome, Safari and Opera */
     }
 
-    .home-category-item:hover img {
+    .categories-slider {
+      display: flex;
+      gap: 4px;
+      width: max-content; /* Let it stretch based on items */
+    }
+
+    .category-slide-item {
+      cursor: pointer;
+      width: 20vw; /* Shows roughly 5 items across */
+      min-width: 250px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .category-img-wrapper {
+      width: 100%;
+      aspect-ratio: 3 / 4; /* Tall images */
+      overflow: hidden;
+      margin-bottom: 20px;
+    }
+
+    .category-img-wrapper img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+
+    .category-slide-item:hover .category-img-wrapper img {
       transform: scale(1.03);
     }
 
-    .home-category-item h4 {
+    .category-slide-details {
+      padding-right: 20px;
+      text-align: left;
+    }
+
+    .category-product-title {
       font-family: var(--font-body);
-      color: #12141d;
+      color: #111;
       font-size: 0.85rem;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      font-weight: 600;
+      margin-bottom: 12px;
+      font-weight: 400;
+    }
+
+    .category-swatch {
+      width: 35px;
+      height: 25px;
+      object-fit: contain;
+      background: transparent;
+      mix-blend-mode: multiply;
     }
 
     /* Section 6: Craftsmanship Showcase */
