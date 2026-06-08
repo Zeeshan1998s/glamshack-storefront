@@ -16,6 +16,9 @@ import ArticleDetailView from './views/ArticleDetailView';
 
 import './index.css';
 
+const SHOPIFY_URL = 'https://tbxtcm-tf.myshopify.com/api/2023-07/graphql.json';
+const PUBLIC_TOKEN = 'a3347112f66392d3099d47bc3d451bae';
+
 export default function App() {
   return (
     <Router>
@@ -25,6 +28,20 @@ export default function App() {
 }
 
 function AppContent() {
+  const [customer, setCustomer] = useState(() => {
+    const demoUser = localStorage.getItem('glamshack_demo_user');
+    return demoUser ? JSON.parse(demoUser) : null;
+  });
+  const [isLoggedIn, setIsLoggedIn] = useState(() => {
+    const token = localStorage.getItem('glamshack_customer_token');
+    const demoUser = localStorage.getItem('glamshack_demo_user');
+    return !!(token || demoUser);
+  });
+  const [authLoading, setAuthLoading] = useState(() => {
+    const token = localStorage.getItem('glamshack_customer_token');
+    return !!token;
+  });
+
   const [cartCount, setCartCount] = useState(0);
   const [wishlist, setWishlist] = useState(() => {
     const saved = localStorage.getItem('glamshack_wishlist');
@@ -33,6 +50,76 @@ function AppContent() {
   const [isWishlistOpen, setIsWishlistOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [allProducts, setAllProducts] = useState([]);
+
+  const fetchCustomerData = async (token) => {
+    const response = await fetch(SHOPIFY_URL, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-Shopify-Storefront-Access-Token': PUBLIC_TOKEN
+      },
+      body: JSON.stringify({
+        query: `
+          query getCustomer($customerAccessToken: String!) {
+            customer(customerAccessToken: $customerAccessToken) {
+              firstName
+              lastName
+              email
+              phone
+              defaultAddress {
+                formatted
+                city
+                country
+              }
+              orders(first: 5) {
+                edges {
+                  node {
+                    orderNumber
+                    processedAt
+                    totalPrice {
+                      amount
+                      currencyCode
+                    }
+                    fulfillmentStatus
+                  }
+                }
+              }
+            }
+          }
+        `,
+        variables: { customerAccessToken: token }
+      })
+    });
+
+    const res = await response.json();
+    if (res.errors || !res.data || !res.data.customer) {
+      throw new Error(res.errors ? res.errors[0].message : 'Customer profile not found.');
+    }
+    return res.data.customer;
+  };
+
+  
+
+  const handleLogout = () => {
+    localStorage.removeItem('glamshack_customer_token');
+    localStorage.removeItem('glamshack_demo_user');
+    setCustomer(null);
+    setIsLoggedIn(false);
+  };
+
+  const handleLoginSuccess = async (token) => {
+    localStorage.setItem('glamshack_customer_token', token);
+    const data = await fetchCustomerData(token);
+    setCustomer(data);
+    setIsLoggedIn(true);
+    return data;
+  };
+
+  const handleDemoLogin = (mockUser) => {
+    localStorage.setItem('glamshack_demo_user', JSON.stringify(mockUser));
+    setCustomer(mockUser);
+    setIsLoggedIn(true);
+  };
 
   // Read current cart count from Shopify component state
   const updateCartBadge = () => {
@@ -47,6 +134,25 @@ function AppContent() {
     }
     setCartCount(count);
   };
+
+  useEffect(() => {
+    const token = localStorage.getItem('glamshack_customer_token');
+    
+    if (token) {
+      fetchCustomerData(token)
+        .then((data) => {
+          setCustomer(data);
+          setIsLoggedIn(true);
+        })
+        .catch((err) => {
+          console.error('Failed to load customer profile on mount:', err);
+          handleLogout();
+        })
+        .finally(() => {
+          setAuthLoading(false);
+        });
+    }
+  }, []);
 
   // Performant targeted MutationObserver for cart badge sync
   useEffect(() => {
@@ -185,6 +291,10 @@ function AppContent() {
         onOpenSearch={() => setIsSearchOpen(true)}
         onOpenWishlist={() => setIsWishlistOpen(true)}
         onOpenCart={handleOpenCart}
+        isLoggedIn={isLoggedIn}
+        customer={customer}
+        onLogout={handleLogout}
+        onDemoLogin={handleDemoLogin}
       />
 
       {/* Declarative View Routing Configuration */}
@@ -193,7 +303,39 @@ function AppContent() {
         <Route path="/home" element={<HomeView />} />
         <Route path="/shop" element={<ShopView />} />
         <Route path="/product" element={<ProductDetailView onToggleWishlist={handleToggleWishlist} />} />
-        <Route path="/profile" element={<ProfileView />} />
+        <Route path="/profile" element={
+          <ProfileView 
+            mode="profile" 
+            customer={customer}
+            isLoggedIn={isLoggedIn}
+            onLogout={handleLogout}
+            onLoginSuccess={handleLoginSuccess}
+            onDemoLogin={handleDemoLogin}
+            authLoading={authLoading}
+          />
+        } />
+        <Route path="/login" element={
+          <ProfileView 
+            mode="login" 
+            customer={customer}
+            isLoggedIn={isLoggedIn}
+            onLogout={handleLogout}
+            onLoginSuccess={handleLoginSuccess}
+            onDemoLogin={handleDemoLogin}
+            authLoading={authLoading}
+          />
+        } />
+        <Route path="/register" element={
+          <ProfileView 
+            mode="register" 
+            customer={customer}
+            isLoggedIn={isLoggedIn}
+            onLogout={handleLogout}
+            onLoginSuccess={handleLoginSuccess}
+            onDemoLogin={handleDemoLogin}
+            authLoading={authLoading}
+          />
+        } />
         <Route path="/about" element={<AboutView />} />
         <Route path="/blog" element={<BlogView />} />
         <Route path="/blog/:articleKey" element={<ArticleDetailView />} />
