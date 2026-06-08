@@ -183,10 +183,12 @@
     // Custom Search Drawer Sidebar Operations
     function openSearchDrawer() {
       const drawer = document.getElementById('search-drawer');
+      const overlay = document.getElementById('search-drawer-overlay');
       const input = document.getElementById('search-drawer-input');
       if (!drawer || !input) return;
       
       drawer.classList.add('open');
+      if (overlay) overlay.classList.add('open');
       document.body.style.overflow = 'hidden'; // Lock background scrolling
       setTimeout(() => input.focus(), 150);
       
@@ -196,10 +198,12 @@
 
     function closeSearchDrawer() {
       const drawer = document.getElementById('search-drawer');
+      const overlay = document.getElementById('search-drawer-overlay');
       const input = document.getElementById('search-drawer-input');
       if (!drawer) return;
       
       drawer.classList.remove('open');
+      if (overlay) overlay.classList.remove('open');
       document.body.style.overflow = ''; // Restore background scrolling
       if (input) {
         input.value = '';
