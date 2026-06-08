@@ -1,16 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Glamshack offers premium handcrafted wedding trousseau, platters, hampers, and custom luxury packaging. Elevate your gifting experience with our sustainable and beautifully designed accessories.">
+  <meta name="description"
+    content="Glamshack offers premium handcrafted wedding trousseau, platters, hampers, and custom luxury packaging. Elevate your gifting experience with our sustainable and beautifully designed accessories.">
   <title>Glamshack — Customized Wedding Trousseau & Platters</title>
-  
+
   <!-- Shopify Storefront Components SDK -->
   <script type="module" src="https://cdn.shopify.com/storefront/web-components.js"></script>
 
   <link rel="stylesheet" href="assets/css/styles.css">
 </head>
+
 <body>
 
   <!-- Top Announcement Banner -->
@@ -19,12 +22,8 @@
   </div>
 
   <!-- Shopify Store Connection Configuration Context -->
-  <shopify-store 
-    store-domain="tbxtcm-tf.myshopify.com" 
-    public-access-token="a3347112f66392d3099d47bc3d451bae" 
-    country="US" 
-    language="en"
-  ></shopify-store>
+  <shopify-store store-domain="tbxtcm-tf.myshopify.com" public-access-token="a3347112f66392d3099d47bc3d451bae"
+    country="US" language="en"></shopify-store>
 
   <!-- =========================================================
        HEADER NAVIGATION BAR
@@ -33,18 +32,28 @@
        - Inside the <a> tags, you will see the text (e.g., 'Hampers', 'Trays'). Edit this text to rename the tabs.
        ========================================================= -->
   <header>
-    <div class="container header-top-row">
-      <!-- Left: Profile Shortcut -->
-      <button class="header-icon-btn profile-btn" onclick="navigateTo('view-profile')" title="My Profile">
-        👤
-      </button>
-      
-      <!-- Center: Brand Logo -->
-      <a href="#" class="logo" onclick="navigateTo('view-home')">GLAMSHACK</a>
-      
-      <!-- Right: Search & Cart -->
+    <div class="container header-single-row">
+      <!-- Left side: Navigation Links -->
+      <nav class="category-nav">
+        <ul class="category-nav-list">
+          <li><a href="#" class="cat-nav-link" role="button" onclick="event.preventDefault(); navigateTo('view-home')">HOME</a></li>
+          <li><a href="#" class="cat-nav-link" role="button" onclick="event.preventDefault(); navigateTo('view-about')">INFO</a></li>
+          <li><a href="#" class="cat-nav-link" role="button" onclick="event.preventDefault(); handleCategoryNav('hampers')">HAMPERS</a></li>
+          <li><a href="#" class="cat-nav-link" role="button" onclick="event.preventDefault(); handleCategoryNav('trays')">TRAYS</a></li>
+          <li><a href="#" class="cat-nav-link" role="button" onclick="event.preventDefault(); handleCategoryNav('saree-covers')">SAREE COVERS</a></li>
+          <li><a href="#" class="cat-nav-link" role="button" onclick="event.preventDefault(); handleCategoryNav('bags')">BAGS</a></li>
+          <li><a href="#" class="cat-nav-link" role="button" onclick="event.preventDefault(); handleCategoryNav('baskets')">BASKET / TRUNKS</a></li>
+          <li><a href="#" class="cat-nav-link" role="button" onclick="event.preventDefault(); handleCategoryNav('pouches')">POUCHES</a></li>
+          <li><a href="#" class="cat-nav-link" role="button" onclick="event.preventDefault(); handleCategoryNav('bands')">BANDS</a></li>
+          <li><a href="#" class="cat-nav-link" role="button" onclick="event.preventDefault(); navigateTo('view-blog')">JOURNAL</a></li>
+        </ul>
+      </nav>
+
+      <!-- Right side: Actions & Logo -->
       <div class="header-actions-right">
-        <!-- Search Trigger (Sidebar Drawer) -->
+        <button class="header-icon-btn profile-btn" onclick="navigateTo('view-profile')" title="My Profile">
+          👤
+        </button>
         <button class="header-icon-btn search-btn" onclick="openSearchDrawer()" title="Search Catalog">
           🔍
         </button>
@@ -52,36 +61,11 @@
           <span>Cart</span>
           <span class="cart-count-badge"></span>
         </button>
+        <a href="#" class="logo" onclick="navigateTo('view-home')">GLAMSHACK</a>
       </div>
     </div>
-    
-    <!-- Category Nav Links Centered Below Logo -->
-    <nav class="category-nav">
-      <div class="container">
-        <ul class="category-nav-list">
-          <li><a href="#" class="cat-nav-link" role="button" onclick="event.preventDefault(); navigateTo('view-home')">Home</a></li>
-          <li><span class="nav-divider">|</span></li>
-          <li><a href="#" class="cat-nav-link" role="button" onclick="event.preventDefault(); navigateTo('view-about')">Info</a></li>
-          <li><span class="nav-divider">|</span></li>
-          <li><a href="#" class="cat-nav-link" role="button" onclick="event.preventDefault(); handleCategoryNav('hampers')">Hampers</a></li>
-          <li><span class="nav-divider">|</span></li>
-          <li><a href="#" class="cat-nav-link" role="button" onclick="event.preventDefault(); handleCategoryNav('trays')">Trays</a></li>
-          <li><span class="nav-divider">|</span></li>
-          <li><a href="#" class="cat-nav-link" role="button" onclick="event.preventDefault(); handleCategoryNav('saree-covers')">Saree Covers</a></li>
-          <li><span class="nav-divider">|</span></li>
-          <li><a href="#" class="cat-nav-link" role="button" onclick="event.preventDefault(); handleCategoryNav('bags')">Bags</a></li>
-          <li><span class="nav-divider">|</span></li>
-          <li><a href="#" class="cat-nav-link" role="button" onclick="event.preventDefault(); handleCategoryNav('baskets')">Basket / Trunks</a></li>
-          <li><span class="nav-divider">|</span></li>
-          <li><a href="#" class="cat-nav-link" role="button" onclick="event.preventDefault(); handleCategoryNav('pouches')">Pouches</a></li>
-          <li><span class="nav-divider">|</span></li>
-          <li><a href="#" class="cat-nav-link" role="button" onclick="event.preventDefault(); handleCategoryNav('bands')">Bands</a></li>
-          <li><span class="nav-divider">|</span></li>
-          <li><a href="#" class="cat-nav-link" role="button" onclick="event.preventDefault(); navigateTo('view-blog')">Journal</a></li>
-        </ul>
-      </div>
-    </nav>
   </header>
+
 
   <!-- =========================================================
        VIEW 1: HOMEPAGE VIEW (#view-home)
@@ -96,10 +80,13 @@
          - Change the button text by editing the text inside the <button> tag (e.g., 'Shop Collection').
          ========================================================= -->
     <section class="home-hero-full">
-      <img class="home-hero-bg" src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=2000&auto=format&fit=crop" alt="Wedding Preparation">
+      <img class="home-hero-bg"
+        src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=2000&auto=format&fit=crop"
+        alt="Wedding Preparation">
       <div class="home-hero-content">
         <h1 class="hero-display-title">PREMIUM WEDDING TROUSSEAU & LUXURY PACKAGING</h1>
-        <p class="hero-display-subtitle">Explore our handcrafted collection of ring platters, hampers, and bridal essentials.</p>
+        <p class="hero-display-subtitle">Explore our handcrafted collection of ring platters, hampers, and bridal
+          essentials.</p>
         <button class="btn-hero-shop" onclick="navigateTo('view-shop')">Shop Collection</button>
       </div>
     </section>
@@ -115,25 +102,33 @@
     <section class="home-brand-story">
       <div class="brand-story-left">
         <h2 class="quote-text" style="font-size: clamp(1.8rem, 2.5vw, 2.5rem); margin-bottom: 50px; line-height: 1.3;">
-          “We believe that every celebration deserves to be presented beautifully. Our bespoke trousseau trunks, elegant ring platters, and luxury gifting accessories are meticulously handcrafted to make your special moments truly unforgettable.”
+          “We believe that every celebration deserves to be presented beautifully. Our bespoke trousseau trunks, elegant
+          ring platters, and luxury gifting accessories are meticulously handcrafted to make your special moments truly
+          unforgettable.”
         </h2>
         <div class="trust-badges" style="align-items: center; gap: 30px; margin-top: 20px;">
-          <div style="font-size: 0.7rem; font-weight: bold; line-height: 1.2; text-align: left; max-width: 80px; color: #111;">
+          <div
+            style="font-size: 0.7rem; font-weight: bold; line-height: 1.2; text-align: left; max-width: 80px; color: #111;">
             <div style="font-size: 1.2rem; margin-bottom: 4px;">📈</div>
             SCIENCE<br>BASED<br>TARGETS
           </div>
-          <div style="font-size: 0.75rem; font-weight: bold; line-height: 1.2; color: #111; display: flex; align-items: center; gap: 6px;">
-            <div style="background: #27ae60; color: white; border-radius: 50%; width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; font-size: 0.7rem;">🌿</div>
+          <div
+            style="font-size: 0.75rem; font-weight: bold; line-height: 1.2; color: #111; display: flex; align-items: center; gap: 6px;">
+            <div
+              style="background: #27ae60; color: white; border-radius: 50%; width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; font-size: 0.7rem;">
+              🌿</div>
             <div>future Net Zero<br>STANDARD</div>
           </div>
           <div style="font-size: 2rem; color: #111;">
             🐼
           </div>
-          <div style="font-size: 0.75rem; font-weight: bold; line-height: 1.2; color: #111; display: flex; align-items: center; gap: 6px;">
+          <div
+            style="font-size: 0.75rem; font-weight: bold; line-height: 1.2; color: #111; display: flex; align-items: center; gap: 6px;">
             <div style="font-size: 1.5rem;">🌐</div>
             <div>United Nations<br>Global Compact</div>
           </div>
-          <div style="border: 2px solid #c9a753; border-radius: 50%; width: 55px; height: 55px; display: flex; flex-direction: column; align-items: center; justify-content: center; font-size: 0.5rem; font-weight: bold; color: #111; line-height: 1.1;">
+          <div
+            style="border: 2px solid #c9a753; border-radius: 50%; width: 55px; height: 55px; display: flex; flex-direction: column; align-items: center; justify-content: center; font-size: 0.5rem; font-weight: bold; color: #111; line-height: 1.1;">
             <span style="color:#c9a753;">GOLD</span>
             <span>2023</span>
             <span>ecovadis</span>
@@ -142,9 +137,13 @@
       </div>
       <div class="brand-story-right">
         <!-- Main Image: Woman with handbag -->
-        <img class="brand-story-img-main" src="https://images.unsplash.com/photo-1543163521-1bf539c55dd2?w=800&auto=format&fit=crop" alt="Lifestyle Shoot">
+        <img class="brand-story-img-main"
+          src="https://images.unsplash.com/photo-1543163521-1bf539c55dd2?w=800&auto=format&fit=crop"
+          alt="Lifestyle Shoot">
         <!-- Small Overlapping Image: Moodboard -->
-        <img class="brand-story-img-small" src="https://images.unsplash.com/photo-1586075010923-2dd4570fb338?w=400&auto=format&fit=crop" alt="Design Moodboard">
+        <img class="brand-story-img-small"
+          src="https://images.unsplash.com/photo-1586075010923-2dd4570fb338?w=400&auto=format&fit=crop"
+          alt="Design Moodboard">
       </div>
     </section>
 
@@ -157,46 +156,64 @@
          ========================================================= -->
     <section class="home-bestsellers" style="padding: 100px 4%; width: 100%; box-sizing: border-box;">
       <div class="section-header-left" style="margin-bottom: 40px;">
-        <h2 class="section-main-title" style="font-family: var(--font-display), 'Playfair Display', serif; font-size: 2.8rem; color: #333; margin-bottom: 15px; font-weight: 300;">Signature Collections</h2>
-        <div class="collection-tabs" style="display: flex; gap: 30px; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: #888;">
-          <span style="color: #111; cursor: pointer; border-bottom: 1px solid #111; padding-bottom: 2px;">MID SEASON REDUCTIONS</span>
+        <h2 class="section-main-title"
+          style="font-family: var(--font-display), 'Playfair Display', serif; font-size: 2.8rem; color: #333; margin-bottom: 15px; font-weight: 300;">
+          Signature Collections</h2>
+        <div class="collection-tabs"
+          style="display: flex; gap: 30px; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: #888;">
+          <span style="color: #111; cursor: pointer; border-bottom: 1px solid #111; padding-bottom: 2px;">MID SEASON
+            REDUCTIONS</span>
           <span style="cursor: pointer;">BESTSELLERS</span>
           <span style="cursor: pointer;">NEW ARRIVALS</span>
         </div>
       </div>
-      
-      <div class="bestsellers-grid-wrapper" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px; background: #fff;">
+
+      <div class="bestsellers-grid-wrapper"
+        style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px; background: #fff;">
         <shopify-list-context id="bestsellers-list" type="product" query="products" first="4">
           <template>
-            <div class="leather-family-card pdp-related-card" shopify-attr--data-title="product.title" onclick="openProductPage(event)">
-              
+            <div class="leather-family-card pdp-related-card" shopify-attr--data-title="product.title"
+              onclick="openProductPage(event)">
+
               <!-- Wishlist Icon -->
               <div class="wishlist-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <path
+                    d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z">
+                  </path>
+                </svg>
               </div>
 
               <!-- Media -->
               <div class="card-media-wrapper">
-                <shopify-media width="400" height="400" query="product.selectedOrFirstAvailableVariant.image"></shopify-media>
+                <shopify-media width="400" height="400"
+                  query="product.selectedOrFirstAvailableVariant.image"></shopify-media>
               </div>
-              
+
               <!-- Details -->
               <div class="card-details">
                 <div class="card-info-row">
                   <h3 class="card-title"><shopify-data query="product.title"></shopify-data></h3>
                   <div class="card-price-box">
                     <span class="price-old">₹44,600</span>
-                    <span class="price-new"><shopify-money query="product.selectedOrFirstAvailableVariant.price"></shopify-money></span>
+                    <span class="price-new"><shopify-money
+                        query="product.selectedOrFirstAvailableVariant.price"></shopify-money></span>
                   </div>
                 </div>
-                
+
                 <!-- Hover Expand Area -->
                 <div class="card-hover-actions">
                   <span class="add-to-bag-text">ADD TO BAG &mdash;</span>
                   <div class="swatches-container">
-                    <div class="swatch"><img src="https://images.unsplash.com/photo-1590874103328-eac38a683ce7?w=50&h=50&fit=crop" alt="swatch"></div>
-                    <div class="swatch"><img src="https://images.unsplash.com/photo-1584916201218-f4242ceb4809?w=50&h=50&fit=crop" alt="swatch"></div>
-                    <div class="swatch"><img src="https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=50&h=50&fit=crop" alt="swatch"></div>
+                    <div class="swatch"><img
+                        src="https://images.unsplash.com/photo-1590874103328-eac38a683ce7?w=50&h=50&fit=crop"
+                        alt="swatch"></div>
+                    <div class="swatch"><img
+                        src="https://images.unsplash.com/photo-1584916201218-f4242ceb4809?w=50&h=50&fit=crop"
+                        alt="swatch"></div>
+                    <div class="swatch"><img
+                        src="https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=50&h=50&fit=crop" alt="swatch">
+                    </div>
                     <span class="swatch-plus">+</span>
                   </div>
                 </div>
@@ -210,7 +227,9 @@
       <!-- Scrollbar/Slider Indicator -->
       <div class="slider-indicator" style="margin-top: 60px; display: flex; justify-content: center;">
         <div style="width: 400px; height: 1px; background: #ddd; position: relative;">
-          <div style="width: 10px; height: 10px; background: #111; border-radius: 50%; position: absolute; top: -4.5px; left: 30%;"></div>
+          <div
+            style="width: 10px; height: 10px; background: #111; border-radius: 50%; position: absolute; top: -4.5px; left: 30%;">
+          </div>
         </div>
       </div>
     </section>
@@ -226,20 +245,26 @@
          ========================================================= -->
     <section class="home-split-feature" style="gap: 4px; padding: 4px 0; background: #fff;">
       <div class="split-feature-item">
-        <img class="split-feature-img" src="https://images.unsplash.com/photo-1520854221256-17451cc331bf?w=1200&auto=format&fit=crop" alt="Luxury Hampers">
+        <img class="split-feature-img"
+          src="https://images.unsplash.com/photo-1520854221256-17451cc331bf?w=1200&auto=format&fit=crop"
+          alt="Luxury Hampers">
         <div class="split-feature-overlay"></div>
         <div class="split-feature-text">
           <h3>Luxury Hampers</h3>
-          <p>Curate the perfect gifting experience with our premium, fully customizable hampers. Designed with exquisite details to reflect the joy and elegance of your most cherished celebrations.</p>
+          <p>Curate the perfect gifting experience with our premium, fully customizable hampers. Designed with exquisite
+            details to reflect the joy and elegance of your most cherished celebrations.</p>
           <a href="#" class="discover-link">DISCOVER MORE &mdash;</a>
         </div>
       </div>
       <div class="split-feature-item">
-        <img class="split-feature-img" src="https://images.unsplash.com/photo-1606800052052-a08af7148866?w=1200&auto=format&fit=crop" alt="Bridal Trousseau">
+        <img class="split-feature-img"
+          src="https://images.unsplash.com/photo-1606800052052-a08af7148866?w=1200&auto=format&fit=crop"
+          alt="Bridal Trousseau">
         <div class="split-feature-overlay"></div>
         <div class="split-feature-text">
           <h3>Bridal Trousseau</h3>
-          <p>Preserve your most precious memories in our handcrafted trousseau trunks. Blending timeless traditions with contemporary luxury for the modern bride.</p>
+          <p>Preserve your most precious memories in our handcrafted trousseau trunks. Blending timeless traditions with
+            contemporary luxury for the modern bride.</p>
           <a href="#" class="discover-link">DISCOVER MORE &mdash;</a>
         </div>
       </div>
@@ -259,13 +284,14 @@
         <h2 class="section-main-title">Shop by Category</h2>
         <a href="#" class="discover-link-dark">DISCOVER MORE &mdash;</a>
       </div>
-      
+
       <div class="categories-slider-wrapper">
         <div class="categories-slider">
           <!-- Item 1 -->
           <div class="category-slide-item">
             <div class="category-img-wrapper">
-              <img src="https://images.unsplash.com/photo-1591561954557-26941169b49e?w=800&auto=format&fit=crop" alt="Luxury Hampers">
+              <img src="https://images.unsplash.com/photo-1591561954557-26941169b49e?w=800&auto=format&fit=crop"
+                alt="Luxury Hampers">
             </div>
             <div class="category-slide-details">
               <p class="category-product-title">Hampers</p>
@@ -274,7 +300,8 @@
           <!-- Item 2 -->
           <div class="category-slide-item">
             <div class="category-img-wrapper">
-              <img src="https://images.unsplash.com/photo-1584916201218-f4242ceb4809?w=800&auto=format&fit=crop" alt="Designer Platters">
+              <img src="https://images.unsplash.com/photo-1584916201218-f4242ceb4809?w=800&auto=format&fit=crop"
+                alt="Designer Platters">
             </div>
             <div class="category-slide-details">
               <p class="category-product-title">Platters & Trays</p>
@@ -283,7 +310,8 @@
           <!-- Item 3 -->
           <div class="category-slide-item">
             <div class="category-img-wrapper">
-              <img src="https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=800&auto=format&fit=crop" alt="Saree Covers">
+              <img src="https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=800&auto=format&fit=crop"
+                alt="Saree Covers">
             </div>
             <div class="category-slide-details">
               <p class="category-product-title">Saree Covers</p>
@@ -292,7 +320,8 @@
           <!-- Item 4 -->
           <div class="category-slide-item">
             <div class="category-img-wrapper">
-              <img src="https://images.unsplash.com/photo-1628149462104-e3dc122b5e28?w=800&auto=format&fit=crop" alt="Bridal Trunks">
+              <img src="https://images.unsplash.com/photo-1628149462104-e3dc122b5e28?w=800&auto=format&fit=crop"
+                alt="Bridal Trunks">
             </div>
             <div class="category-slide-details">
               <p class="category-product-title">Bridal Trunks</p>
@@ -301,7 +330,8 @@
           <!-- Item 5 -->
           <div class="category-slide-item">
             <div class="category-img-wrapper">
-              <img src="https://images.unsplash.com/photo-1559563458-527698bf5295?w=800&auto=format&fit=crop" alt="Potlis">
+              <img src="https://images.unsplash.com/photo-1559563458-527698bf5295?w=800&auto=format&fit=crop"
+                alt="Potlis">
             </div>
             <div class="category-slide-details">
               <p class="category-product-title">Embroidered Potlis</p>
@@ -310,7 +340,8 @@
           <!-- Item 6 -->
           <div class="category-slide-item">
             <div class="category-img-wrapper">
-              <img src="https://images.unsplash.com/photo-1590874103328-eac38a683ce7?w=800&auto=format&fit=crop" alt="Jewelry Boxes">
+              <img src="https://images.unsplash.com/photo-1590874103328-eac38a683ce7?w=800&auto=format&fit=crop"
+                alt="Jewelry Boxes">
             </div>
             <div class="category-slide-details">
               <p class="category-product-title">Jewelry Boxes</p>
@@ -322,7 +353,9 @@
       <!-- Scrollbar/Slider Indicator -->
       <div class="slider-indicator" style="margin-top: 60px; display: flex; justify-content: center;">
         <div style="width: 400px; height: 1px; background: #999; position: relative;">
-          <div style="width: 10px; height: 10px; background: #111; border-radius: 50%; position: absolute; top: -4.5px; left: 0%;"></div>
+          <div
+            style="width: 10px; height: 10px; background: #111; border-radius: 50%; position: absolute; top: -4.5px; left: 0%;">
+          </div>
         </div>
       </div>
     </section>
@@ -334,14 +367,19 @@
          - Change the main title by editing the text inside the <h2> tag (e.g., "Handcrafted in India").
          - Change the description paragraph by editing the text inside the <p> tag.
          - Change the link text by editing the text inside the <a class="discover-link"> tag.
-         - Change the smaller inset image on the right by replacing the link in <img src="..."> under the <!-- Placeholder for store interior --> comment.
-         ========================================================= -->
+         - Change the smaller inset image on the right by replacing the link in <img src="..."> under the <!-- Placeholder for store interior -->
+    comment.
+    ========================================================= -->
     <section class="home-craftsmanship-banner">
       <div class="craftsmanship-bg-overlay"></div>
-      <img class="craftsmanship-bg" src="https://images.unsplash.com/photo-1621607512214-68297480165e?w=2000&auto=format&fit=crop" alt="Handcrafted Details">
+      <img class="craftsmanship-bg"
+        src="https://images.unsplash.com/photo-1621607512214-68297480165e?w=2000&auto=format&fit=crop"
+        alt="Handcrafted Details">
       <div class="craftsmanship-overlay-text">
         <h2 class="section-main-title">Handcrafted in India</h2>
-        <p>Every piece in our collection is meticulously handcrafted by skilled artisans. We blend traditional techniques with contemporary designs to create packaging that perfectly complements your most cherished moments.</p>
+        <p>Every piece in our collection is meticulously handcrafted by skilled artisans. We blend traditional
+          techniques with contemporary designs to create packaging that perfectly complements your most cherished
+          moments.</p>
         <a href="#" class="discover-link">DISCOVER MORE &mdash;</a>
       </div>
       <div class="craftsmanship-inset">
@@ -349,7 +387,8 @@
           <a href="#" class="discover-link">DISCOVER MORE &mdash;</a>
         </div>
         <!-- Placeholder for store interior -->
-        <img src="https://images.unsplash.com/photo-1542841791-1925b02a2bf5?w=400&auto=format&fit=crop" alt="Store Interior">
+        <img src="https://images.unsplash.com/photo-1542841791-1925b02a2bf5?w=400&auto=format&fit=crop"
+          alt="Store Interior">
       </div>
     </section>
 
@@ -364,51 +403,68 @@
          ========================================================= -->
     <section class="home-story-split">
       <div class="story-split-left">
-        <img class="story-split-bg" src="https://images.unsplash.com/photo-1533090368676-1fd25485db88?w=1000&auto=format&fit=crop" alt="Wedding Setup">
+        <img class="story-split-bg"
+          src="https://images.unsplash.com/photo-1533090368676-1fd25485db88?w=1000&auto=format&fit=crop"
+          alt="Wedding Setup">
       </div>
       <div class="story-split-right">
         <h2 class="section-main-title">THE WEDDING EDIT</h2>
         <p class="story-split-subtitle">Elevate your gifting experience</p>
-        
+
         <div class="story-tabs">
           <span class="story-tab active">BRIDAL ESSENTIALS</span>
           <span class="story-tab">CUSTOM HAMPERS</span>
           <span class="story-tab">RING PLATTERS</span>
         </div>
-        
+
         <div class="story-slider-wrapper">
           <div class="story-slider">
-            <shopify-list-context id="story-list" type="product" query="products" first="4" style="display: flex; gap: 4px;">
+            <shopify-list-context id="story-list" type="product" query="products" first="4"
+              style="display: flex; gap: 4px;">
               <template>
-                <div class="leather-family-card pdp-related-card" style="width: 25vw; min-width: 250px; max-width: 320px;" shopify-attr--data-title="product.title" onclick="openProductPage(event)">
-                  
+                <div class="leather-family-card pdp-related-card"
+                  style="width: 25vw; min-width: 250px; max-width: 320px;" shopify-attr--data-title="product.title"
+                  onclick="openProductPage(event)">
+
                   <!-- Wishlist Icon -->
                   <div class="wishlist-icon">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                      <path
+                        d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z">
+                      </path>
+                    </svg>
                   </div>
 
                   <!-- Media -->
                   <div class="card-media-wrapper">
-                    <shopify-media width="400" height="400" query="product.selectedOrFirstAvailableVariant.image"></shopify-media>
+                    <shopify-media width="400" height="400"
+                      query="product.selectedOrFirstAvailableVariant.image"></shopify-media>
                   </div>
-                  
+
                   <!-- Details -->
                   <div class="card-details">
                     <div class="card-info-row">
                       <h3 class="card-title"><shopify-data query="product.title"></shopify-data></h3>
                       <div class="card-price-box">
                         <span class="price-old">&#8377;44,600</span>
-                        <span class="price-new"><shopify-money query="product.selectedOrFirstAvailableVariant.price"></shopify-money></span>
+                        <span class="price-new"><shopify-money
+                            query="product.selectedOrFirstAvailableVariant.price"></shopify-money></span>
                       </div>
                     </div>
-                    
+
                     <!-- Hover Expand Area -->
                     <div class="card-hover-actions">
                       <span class="add-to-bag-text">ADD TO BAG &mdash;</span>
                       <div class="swatches-container">
-                        <div class="swatch"><img src="https://images.unsplash.com/photo-1590874103328-eac38a683ce7?w=50&h=50&fit=crop" alt="swatch"></div>
-                        <div class="swatch"><img src="https://images.unsplash.com/photo-1584916201218-f4242ceb4809?w=50&h=50&fit=crop" alt="swatch"></div>
-                        <div class="swatch"><img src="https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=50&h=50&fit=crop" alt="swatch"></div>
+                        <div class="swatch"><img
+                            src="https://images.unsplash.com/photo-1590874103328-eac38a683ce7?w=50&h=50&fit=crop"
+                            alt="swatch"></div>
+                        <div class="swatch"><img
+                            src="https://images.unsplash.com/photo-1584916201218-f4242ceb4809?w=50&h=50&fit=crop"
+                            alt="swatch"></div>
+                        <div class="swatch"><img
+                            src="https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=50&h=50&fit=crop"
+                            alt="swatch"></div>
                         <span class="swatch-plus">+</span>
                       </div>
                     </div>
@@ -423,7 +479,9 @@
         <!-- Scrollbar/Slider Indicator -->
         <div class="slider-indicator" style="margin-top: 50px; display: flex; justify-content: flex-start;">
           <div style="width: 100%; height: 1px; background: #ddd; position: relative;">
-            <div style="width: 10px; height: 10px; background: #111; border-radius: 50%; position: absolute; top: -4.5px; left: 0%;"></div>
+            <div
+              style="width: 10px; height: 10px; background: #111; border-radius: 50%; position: absolute; top: -4.5px; left: 0%;">
+            </div>
           </div>
         </div>
       </div>
@@ -442,19 +500,20 @@
     <section class="home-journal">
       <div class="journal-header-left">
         <h2 class="section-main-title">Inspiration & Advice</h2>
-        
+
         <div class="story-tabs">
           <span class="story-tab active">WEDDING TRENDS</span>
           <span class="story-tab">GIFTING GUIDES</span>
           <span class="story-tab">OUR CRAFT</span>
         </div>
       </div>
-      
+
       <div class="journal-slider-wrapper">
         <div class="journal-slider">
           <div class="journal-slide-item">
             <div class="journal-img-wrapper">
-              <img src="https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?w=800&auto=format&fit=crop" alt="Wedding Trends">
+              <img src="https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?w=800&auto=format&fit=crop"
+                alt="Wedding Trends">
             </div>
             <div class="journal-slide-details">
               <p class="journal-date">OCTOBER 15, 2024</p>
@@ -463,7 +522,8 @@
           </div>
           <div class="journal-slide-item">
             <div class="journal-img-wrapper">
-              <img src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=800&auto=format&fit=crop" alt="Bridal Preparation">
+              <img src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=800&auto=format&fit=crop"
+                alt="Bridal Preparation">
             </div>
             <div class="journal-slide-details">
               <p class="journal-date">SEPTEMBER 28, 2024</p>
@@ -472,7 +532,8 @@
           </div>
           <div class="journal-slide-item">
             <div class="journal-img-wrapper">
-              <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=800&auto=format&fit=crop" alt="Ring Platter">
+              <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=800&auto=format&fit=crop"
+                alt="Ring Platter">
             </div>
             <div class="journal-slide-details">
               <p class="journal-date">SEPTEMBER 10, 2024</p>
@@ -481,7 +542,8 @@
           </div>
           <div class="journal-slide-item">
             <div class="journal-img-wrapper">
-              <img src="https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?w=800&auto=format&fit=crop" alt="Wedding Planning">
+              <img src="https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?w=800&auto=format&fit=crop"
+                alt="Wedding Planning">
             </div>
             <div class="journal-slide-details">
               <p class="journal-date">AUGUST 22, 2024</p>
@@ -494,7 +556,9 @@
       <!-- Scrollbar/Slider Indicator -->
       <div class="slider-indicator" style="margin-top: 60px; display: flex; justify-content: center;">
         <div style="width: 400px; height: 1px; background: #999; position: relative;">
-          <div style="width: 10px; height: 10px; background: #111; border-radius: 50%; position: absolute; top: -4.5px; left: 0%;"></div>
+          <div
+            style="width: 10px; height: 10px; background: #111; border-radius: 50%; position: absolute; top: -4.5px; left: 0%;">
+          </div>
         </div>
       </div>
     </section>
@@ -505,7 +569,8 @@
          - Change this large landscape image by replacing the link in <img src="...">.
          ========================================================= -->
     <section class="home-pre-footer">
-      <img src="https://images.unsplash.com/photo-1513689125086-6c432170e843?w=2000&auto=format&fit=crop" alt="Mountains and Forests" style="width: 100%; height: 600px; object-fit: cover; display: block;">
+      <img src="https://images.unsplash.com/photo-1513689125086-6c432170e843?w=2000&auto=format&fit=crop"
+        alt="Mountains and Forests" style="width: 100%; height: 600px; object-fit: cover; display: block;">
     </section>
   </div>
 
@@ -515,14 +580,18 @@
   <div id="view-shop" class="page-view">
     <main class="container">
       <div class="shop-header-wrapper" style="margin-top: 40px; margin-bottom: 20px;">
-        <div class="breadcrumb" style="font-size: 0.7rem; text-transform: uppercase; color: var(--text-muted); margin-bottom: 20px; font-weight: 600; letter-spacing: 0.1em;">
+        <div class="breadcrumb"
+          style="font-size: 0.7rem; text-transform: uppercase; color: var(--text-muted); margin-bottom: 20px; font-weight: 600; letter-spacing: 0.1em;">
           HOME / PRODUCTS
         </div>
-        <div id="search-title-wrapper" style="display: none; border-bottom: 1px solid var(--text-main); padding-bottom: 10px; margin-bottom: 40px;">
-          <h1 id="shop-search-title" style="font-family: var(--font-display); font-size: 2.5rem; color: var(--text-main); margin: 0; text-transform: capitalize;"></h1>
+        <div id="search-title-wrapper"
+          style="display: none; border-bottom: 1px solid var(--text-main); padding-bottom: 10px; margin-bottom: 40px;">
+          <h1 id="shop-search-title"
+            style="font-family: var(--font-display); font-size: 2.5rem; color: var(--text-main); margin: 0; text-transform: capitalize;">
+          </h1>
         </div>
       </div>
-      
+
       <div class="section-header" id="shop-default-header">
         <span class="section-title-tag">Our Curated Catalog</span>
         <h2 class="section-main-title">Explore Collection</h2>
@@ -544,15 +613,18 @@
         <!-- Load all products from the store directly so we filter client-side and prevent empty results -->
         <shopify-list-context id="shop-list-context" type="product" query="products" first="28">
           <template>
-            <div class="glam-card" shopify-attr--data-title="product.title" onclick="openProductPage(event)" style="cursor: pointer;">
+            <div class="glam-card" shopify-attr--data-title="product.title" onclick="openProductPage(event)"
+              style="cursor: pointer;">
               <div class="card-media-wrapper">
                 <div class="card-badge">Luxe</div>
-                <shopify-media width="300" height="300" query="product.selectedOrFirstAvailableVariant.image"></shopify-media>
+                <shopify-media width="300" height="300"
+                  query="product.selectedOrFirstAvailableVariant.image"></shopify-media>
                 <div class="card-hover-overlay">View Details</div>
               </div>
               <div class="card-details">
                 <h3 class="card-title"><shopify-data query="product.title"></shopify-data></h3>
-                <div class="card-price"><shopify-money query="product.selectedOrFirstAvailableVariant.price"></shopify-money></div>
+                <div class="card-price"><shopify-money
+                    query="product.selectedOrFirstAvailableVariant.price"></shopify-money></div>
               </div>
             </div>
           </template>
@@ -568,12 +640,14 @@
         <div id="shop-empty-state" class="shop-empty-state" style="display: none;">
           <div class="empty-state-icon">👜</div>
           <h3 class="empty-state-title">No Products Found</h3>
-          <p class="empty-state-text">We couldn't find any products matching your selection. Try browsing another category or clearing your search.</p>
+          <p class="empty-state-text">We couldn't find any products matching your selection. Try browsing another
+            category or clearing your search.</p>
           <button onclick="filterShopProducts('all')" class="empty-state-btn">View All Products</button>
         </div>
 
         <div class="load-more-wrapper" style="text-align: center; margin-top: 40px; margin-bottom: 60px;">
-          <button class="btn-load-more" style="background: transparent; border: 1px solid var(--text-main); color: var(--text-main); padding: 12px 40px; font-family: var(--font-body); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; cursor: pointer; transition: all 0.3s ease;">
+          <button class="btn-load-more"
+            style="background: transparent; border: 1px solid var(--text-main); color: var(--text-main); padding: 12px 40px; font-family: var(--font-body); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; cursor: pointer; transition: all 0.3s ease;">
             LOAD MORE
           </button>
         </div>
@@ -597,31 +671,38 @@
       <shopify-context id="pdp-context" type="product" wait-for-update>
         <template>
           <div class="pdp-layout-new">
-            
+
             <!-- TOP SECTION -->
             <div class="pdp-top-section">
               <div class="pdp-media-grid">
                 <!-- 4 image grid: 1 main image, 3 distinct placeholder lifestyle images -->
-                <div class="pdp-media-item"><shopify-media width="800" height="800" query="product.selectedOrFirstAvailableVariant.image"></shopify-media></div>
-                <div class="pdp-media-item"><img src="https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=800&auto=format&fit=crop" style="width:100%; height:100%; object-fit:cover;" alt="Detail"></div>
-                <div class="pdp-media-item"><img src="https://images.unsplash.com/photo-1590874103328-eac38a683ce7?w=800&auto=format&fit=crop" style="width:100%; height:100%; object-fit:cover;" alt="Detail"></div>
-                <div class="pdp-media-item"><img src="https://images.unsplash.com/photo-1559563458-527698bf5295?w=800&auto=format&fit=crop" style="width:100%; height:100%; object-fit:cover;" alt="Detail"></div>
+                <div class="pdp-media-item"><shopify-media width="800" height="800"
+                    query="product.selectedOrFirstAvailableVariant.image"></shopify-media></div>
+                <div class="pdp-media-item"><img
+                    src="https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=800&auto=format&fit=crop"
+                    style="width:100%; height:100%; object-fit:cover;" alt="Detail"></div>
+                <div class="pdp-media-item"><img
+                    src="https://images.unsplash.com/photo-1590874103328-eac38a683ce7?w=800&auto=format&fit=crop"
+                    style="width:100%; height:100%; object-fit:cover;" alt="Detail"></div>
+                <div class="pdp-media-item"><img
+                    src="https://images.unsplash.com/photo-1559563458-527698bf5295?w=800&auto=format&fit=crop"
+                    style="width:100%; height:100%; object-fit:cover;" alt="Detail"></div>
               </div>
-              
+
               <div class="pdp-info-sticky-wrapper">
                 <div class="pdp-info-sticky">
-                  <div class="pdp-breadcrumb">HOME / PRODUCTS / <span style="text-transform: uppercase;"><shopify-data query="product.title"></shopify-data></span></div>
+                  <div class="pdp-breadcrumb">HOME / PRODUCTS / <span style="text-transform: uppercase;"><shopify-data
+                        query="product.title"></shopify-data></span></div>
                   <h1 class="pdp-title"><shopify-data query="product.title"></shopify-data></h1>
-                  <div class="pdp-price"><shopify-money query="product.selectedOrFirstAvailableVariant.price"></shopify-money></div>
-                  
+                  <div class="pdp-price"><shopify-money
+                      query="product.selectedOrFirstAvailableVariant.price"></shopify-money></div>
+
                   <!-- Removed hardcoded swatches to prevent user confusion -->
 
                   <div class="pdp-actions">
-                    <button 
-                      class="btn-add-to-cart-new"
+                    <button class="btn-add-to-cart-new"
                       onclick="document.getElementById('cart').addLine(event).then(() => { document.getElementById('cart').showModal(); });"
-                      shopify-attr--disabled="!product.selectedOrFirstAvailableVariant.availableForSale"
-                    >
+                      shopify-attr--disabled="!product.selectedOrFirstAvailableVariant.availableForSale">
                       ADD TO BAG
                     </button>
                   </div>
@@ -638,17 +719,22 @@
             <!-- MIDDLE 1: INFO SECTION -->
             <div class="pdp-info-section pdp-container">
               <div class="pdp-quote-box">
-                <h2 class="quote-text">Why you choose us. I do that style and brand that you'll go your own way in life.</h2>
+                <h2 class="quote-text">Why you choose us. I do that style and brand that you'll go your own way in life.
+                </h2>
                 <div class="quote-subtext">
-                  <p>Our goal is to create products that are timeless, functional, and durable. We source the finest materials and partner with ethical factories to bring you the highest quality pieces.</p>
-                  <p>Whether you're commuting to work, traveling the world, or just running errands around town, our accessories are designed to keep up with your busy lifestyle while making a statement.</p>
+                  <p>Our goal is to create products that are timeless, functional, and durable. We source the finest
+                    materials and partner with ethical factories to bring you the highest quality pieces.</p>
+                  <p>Whether you're commuting to work, traveling the world, or just running errands around town, our
+                    accessories are designed to keep up with your busy lifestyle while making a statement.</p>
                 </div>
                 <div class="quote-thumbnails">
-                  <shopify-media width="100" height="100" query="product.selectedOrFirstAvailableVariant.image"></shopify-media>
-                  <img src="https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=100&auto=format&fit=crop" style="width:100px; height:100px; object-fit:cover;" />
+                  <shopify-media width="100" height="100"
+                    query="product.selectedOrFirstAvailableVariant.image"></shopify-media>
+                  <img src="https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=100&auto=format&fit=crop"
+                    style="width:100px; height:100px; object-fit:cover;" />
                 </div>
               </div>
-              
+
               <div class="pdp-accordion-box">
                 <div class="pdp-accordion">
                   <details open>
@@ -660,7 +746,8 @@
                   <details>
                     <summary>Shipping Info</summary>
                     <div class="details-content">
-                      <p>Complimentary signature shipping on all orders over $50. Returns are accepted within 30 days of delivery for fully unused products in their original packaging.</p>
+                      <p>Complimentary signature shipping on all orders over $50. Returns are accepted within 30 days of
+                        delivery for fully unused products in their original packaging.</p>
                     </div>
                   </details>
                   <details>
@@ -727,7 +814,8 @@
                   <p class="wear-this-desc">Pair your selection with our signature accessories to complete the look.</p>
                   <div class="wear-this-products">
                     <div class="wear-this-card">
-                      <img src="https://images.unsplash.com/photo-1590874103328-eac38a683ce7?w=300&auto=format&fit=crop" />
+                      <img
+                        src="https://images.unsplash.com/photo-1590874103328-eac38a683ce7?w=300&auto=format&fit=crop" />
                       <div class="wear-this-card-info">
                         <span>Cardholder Styling</span>
                         <span style="font-size: 0.8em; color: #666;">Inspiration</span>
@@ -758,13 +846,18 @@
               <div class="pdp-related-grid-wrapper">
                 <shopify-list-context type="product" query="products" first="4">
                   <template>
-                    <div class="glam-card pdp-related-card" shopify-attr--data-title="product.title" onclick="openProductPage(event)" style="cursor: pointer;">
+                    <div class="glam-card pdp-related-card" shopify-attr--data-title="product.title"
+                      onclick="openProductPage(event)" style="cursor: pointer;">
                       <div class="card-media-wrapper" style="background: #f4f3ef;">
-                        <shopify-media width="300" height="300" query="product.selectedOrFirstAvailableVariant.image"></shopify-media>
+                        <shopify-media width="300" height="300"
+                          query="product.selectedOrFirstAvailableVariant.image"></shopify-media>
                       </div>
                       <div class="card-details" style="padding-top: 10px; text-align: left;">
-                        <h3 class="card-title" style="margin:0;"><shopify-data query="product.title"></shopify-data></h3>
-                        <div class="card-price" style="margin-top: 4px; color: var(--accent-red); font-weight: 600;"><shopify-money query="product.selectedOrFirstAvailableVariant.price"></shopify-money></div>
+                        <h3 class="card-title" style="margin:0;"><shopify-data query="product.title"></shopify-data>
+                        </h3>
+                        <div class="card-price" style="margin-top: 4px; color: var(--accent-red); font-weight: 600;">
+                          <shopify-money query="product.selectedOrFirstAvailableVariant.price"></shopify-money>
+                        </div>
                       </div>
                     </div>
                   </template>
@@ -775,7 +868,8 @@
           </div>
         </template>
         <div shopify-loading-placeholder style="text-align:center; padding:100px 0;">
-          <p style="font-family: var(--font-display); font-size:1.8rem; font-style:italic; color: var(--text-muted);">Retrieving details...</p>
+          <p style="font-family: var(--font-display); font-size:1.8rem; font-style:italic; color: var(--text-muted);">
+            Retrieving details...</p>
         </div>
       </shopify-context>
     </div>
@@ -792,13 +886,13 @@
       </div>
 
       <div class="profile-grid">
-        
+
         <!-- Left: Customer Profile Meta Card -->
         <div class="profile-card">
           <div class="profile-avatar">ZH</div>
           <h3 class="profile-name">Zeeshan Hanif</h3>
           <p class="profile-email">zeeshanze19@gmail.com</p>
-          
+
           <div class="profile-meta-row">
             <span class="profile-meta-lbl">Membership Tier</span>
             <span class="profile-meta-val tier">VIP Platinum</span>
@@ -813,7 +907,8 @@
           </div>
 
           <div class="btn-profile-actions">
-            <button onclick="alert('Address modifications are synced with secure Shopify customer portals.')">Edit Addresses</button>
+            <button onclick="alert('Address modifications are synced with secure Shopify customer portals.')">Edit
+              Addresses</button>
             <button onclick="alert('Signing out will clear local access tokens.')">Sign Out</button>
           </div>
         </div>
@@ -822,7 +917,7 @@
         <div class="orders-card">
           <h3 class="orders-title">Recent Orders</h3>
           <div class="orders-list">
-            
+
             <div class="order-item">
               <div class="order-info">
                 <h5>Order #2847</h5>
@@ -870,9 +965,14 @@
       <div class="about-grid">
         <div class="about-text-box">
           <h3 class="about-subtitle">Artisanal Roots, Modern Elegance</h3>
-          <p class="about-desc">Founded on the principle that luxury is in the details, Glamshack curates premium gifting products and cosmetics packaging meant to make every occasion memorable. We blend classical elements of heritage design with modern functionality, utilizing rich velvets, metallic closures, and gold-embossed details.</p>
-          <p class="about-desc">Whether celebrating a modern wedding, organizing high-pigment custom cosmetics, or selecting the perfect bespoke ring platter, Glamshack is committed to ethical sourcing, premium design quality, and zero-waste packaging aesthetics.</p>
-          
+          <p class="about-desc">Founded on the principle that luxury is in the details, Glamshack curates premium
+            gifting products and cosmetics packaging meant to make every occasion memorable. We blend classical elements
+            of heritage design with modern functionality, utilizing rich velvets, metallic closures, and gold-embossed
+            details.</p>
+          <p class="about-desc">Whether celebrating a modern wedding, organizing high-pigment custom cosmetics, or
+            selecting the perfect bespoke ring platter, Glamshack is committed to ethical sourcing, premium design
+            quality, and zero-waste packaging aesthetics.</p>
+
           <div class="about-stats">
             <div class="stat-item">
               <span class="stat-num">100%</span>
@@ -890,7 +990,9 @@
         </div>
 
         <div class="about-img-box">
-          <img class="about-img" src="https://images.unsplash.com/photo-1608248597279-f99d160bfcbc?w=800&auto=format&fit=crop" alt="Glamshack Luxury Gifting Design Process">
+          <img class="about-img"
+            src="https://images.unsplash.com/photo-1608248597279-f99d160bfcbc?w=800&auto=format&fit=crop"
+            alt="Glamshack Luxury Gifting Design Process">
         </div>
       </div>
 
@@ -899,17 +1001,20 @@
         <div class="pillar-card">
           <div class="pillar-icon">🌿</div>
           <h4 class="pillar-title">Sustainable Ethos</h4>
-          <p class="pillar-text">We select recycled box boards and acid-free tissue to ensure our packaging is as gentle on the earth as it is premium in the hand.</p>
+          <p class="pillar-text">We select recycled box boards and acid-free tissue to ensure our packaging is as gentle
+            on the earth as it is premium in the hand.</p>
         </div>
         <div class="pillar-card">
           <div class="pillar-icon">🎨</div>
           <h4 class="pillar-title">Handcrafted Details</h4>
-          <p class="pillar-text">From silk safas to Zardosi platters, every item is finished by hand by our community of master craftsmen.</p>
+          <p class="pillar-text">From silk safas to Zardosi platters, every item is finished by hand by our community of
+            master craftsmen.</p>
         </div>
         <div class="pillar-card">
           <div class="pillar-icon">✨</div>
           <h4 class="pillar-title">Sensory Unboxing</h4>
-          <p class="pillar-text">Each Glamshack box is scented with our custom rose-cream signature blend to delight the senses upon opening.</p>
+          <p class="pillar-text">Each Glamshack box is scented with our custom rose-cream signature blend to delight the
+            senses upon opening.</p>
         </div>
       </div>
     </div>
@@ -926,17 +1031,19 @@
       </div>
 
       <div class="blog-grid">
-        
+
         <!-- Article Card 1 -->
         <article class="blog-card" onclick="openArticle('platter')">
           <div class="blog-media">
-            <img src="https://images.unsplash.com/photo-1512436991641-6745cdb1723f?w=600&auto=format&fit=crop" alt="The Art of Gifting platters">
+            <img src="https://images.unsplash.com/photo-1512436991641-6745cdb1723f?w=600&auto=format&fit=crop"
+              alt="The Art of Gifting platters">
             <span class="blog-category">Bespoke Gifting</span>
           </div>
           <div class="blog-details">
             <span class="blog-date">June 08, 2026</span>
             <h3 class="blog-card-title">The Art of Curating the Perfect Engagement Platter</h3>
-            <p class="blog-excerpt">Unveiling the steps to organize, color-coordinate, and present luxury wedding ring platters for a magnificent visual effect.</p>
+            <p class="blog-excerpt">Unveiling the steps to organize, color-coordinate, and present luxury wedding ring
+              platters for a magnificent visual effect.</p>
             <span class="blog-read-btn">Read Article →</span>
           </div>
         </article>
@@ -944,13 +1051,15 @@
         <!-- Article Card 2 -->
         <article class="blog-card" onclick="openArticle('beauty')">
           <div class="blog-media">
-            <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=600&auto=format&fit=crop" alt="Cruelty free cosmetics ingredients">
+            <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=600&auto=format&fit=crop"
+              alt="Cruelty free cosmetics ingredients">
             <span class="blog-category">Clean Beauty</span>
           </div>
           <div class="blog-details">
             <span class="blog-date">May 24, 2026</span>
             <h3 class="blog-card-title">Cruelty-Free Ingredients: Why Luxury is Going Clean</h3>
-            <p class="blog-excerpt">Exploring the paradigm shift in high-end cosmetics toward vegan formulas and sustainable zero-waste refill packing models.</p>
+            <p class="blog-excerpt">Exploring the paradigm shift in high-end cosmetics toward vegan formulas and
+              sustainable zero-waste refill packing models.</p>
             <span class="blog-read-btn">Read Article →</span>
           </div>
         </article>
@@ -958,13 +1067,15 @@
         <!-- Article Card 3 -->
         <article class="blog-card" onclick="openArticle('trends')">
           <div class="blog-media">
-            <img src="https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?w=600&auto=format&fit=crop" alt="Saree box wrapping design ideas">
+            <img src="https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?w=600&auto=format&fit=crop"
+              alt="Saree box wrapping design ideas">
             <span class="blog-category">Wedding Trends</span>
           </div>
           <div class="blog-details">
             <span class="blog-date">April 12, 2026</span>
             <h3 class="blog-card-title">Saree Box Trends for the Modern Trousseau</h3>
-            <p class="blog-excerpt">A styling guide on selecting silk borders, custom embroidery, and pastel themes for luxury saree box packing this wedding season.</p>
+            <p class="blog-excerpt">A styling guide on selecting silk borders, custom embroidery, and pastel themes for
+              luxury saree box packing this wedding season.</p>
             <span class="blog-read-btn">Read Article →</span>
           </div>
         </article>
@@ -990,10 +1101,13 @@
 
   <!-- SHOPPING CART COMPONENT DIALOG WIDGET -->
   <shopify-cart id="cart">
-    <div slot="empty" style="text-align:center; padding: 60px 20px; color: var(--text-muted); display:flex; flex-direction:column; align-items:center; justify-content:center; height:60vh;">
+    <div slot="empty"
+      style="text-align:center; padding: 60px 20px; color: var(--text-muted); display:flex; flex-direction:column; align-items:center; justify-content:center; height:60vh;">
       <div style="font-size:2rem; margin-bottom:15px; color: var(--accent-gold);">👜</div>
-      <p style="font-family: var(--font-display); font-size:1.6rem; font-weight:400; color:#fff; font-style:italic;">Your bag is empty</p>
-      <p style="font-size:0.8rem; margin-top:8px; max-width:240px; line-height:1.5;">Explore our curated lines to add items to your cart.</p>
+      <p style="font-family: var(--font-display); font-size:1.6rem; font-weight:400; color:#fff; font-style:italic;">
+        Your bag is empty</p>
+      <p style="font-size:0.8rem; margin-top:8px; max-width:240px; line-height:1.5;">Explore our curated lines to add
+        items to your cart.</p>
     </div>
     <div slot="checkout-button">CHECKOUT SECURELY</div>
   </shopify-cart>
@@ -1008,22 +1122,26 @@
         <button class="search-nav-link" onclick="handleCategoryNav('all'); closeSearchDrawer();">SALE</button>
         <button class="search-nav-link" onclick="handleCategoryNav('hampers'); closeSearchDrawer();">NEW</button>
         <button class="search-nav-link" onclick="handleCategoryNav('bags'); closeSearchDrawer();">BAGS</button>
-        <button class="search-nav-link" onclick="handleCategoryNav('baskets'); closeSearchDrawer();">ACCESSORIES</button>
-        <button class="search-nav-link" onclick="handleCategoryNav('saree-covers'); closeSearchDrawer();">CASHMERE</button>
+        <button class="search-nav-link"
+          onclick="handleCategoryNav('baskets'); closeSearchDrawer();">ACCESSORIES</button>
+        <button class="search-nav-link"
+          onclick="handleCategoryNav('saree-covers'); closeSearchDrawer();">CASHMERE</button>
         <button class="search-nav-link" onclick="handleCategoryNav('trays'); closeSearchDrawer();">GIFTS</button>
       </nav>
-      
+
       <!-- Search Input -->
       <div class="search-drawer-input-wrapper">
-        <input type="text" id="search-drawer-input" class="search-drawer-input" placeholder="TYPE TO SEARCH" oninput="handleDrawerSearch(this.value)" onkeydown="if(event.key === 'Enter') executeSearch(this.value)">
-        <button id="search-drawer-clear-btn" class="search-drawer-clear-btn" onclick="clearDrawerSearch()" style="display: none;">✕</button>
+        <input type="text" id="search-drawer-input" class="search-drawer-input" placeholder="TYPE TO SEARCH"
+          oninput="handleDrawerSearch(this.value)" onkeydown="if(event.key === 'Enter') executeSearch(this.value)">
+        <button id="search-drawer-clear-btn" class="search-drawer-clear-btn" onclick="clearDrawerSearch()"
+          style="display: none;">✕</button>
       </div>
-      
+
       <!-- Left Panel Bottom Content (e.g. status/results count) -->
       <div id="search-drawer-status" class="search-drawer-status">
         <!-- Rendered dynamically -->
       </div>
-      
+
       <!-- Footer Links -->
       <div class="search-drawer-footer-links">
         <a href="#" onclick="closeSearchDrawer()">CONTACT US</a>
@@ -1034,19 +1152,21 @@
     </div>
     <div class="search-drawer-right">
       <button class="search-drawer-close-btn" onclick="closeSearchDrawer()">✕</button>
-      
+
       <!-- Default view when empty -->
       <div id="search-drawer-default" class="search-drawer-default">
         <div class="featured-stories">
           <p class="featured-title">Featured stories</p>
-          <img src="https://images.unsplash.com/photo-1549497554-469b6db94901?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Leather working" class="featured-image">
+          <img
+            src="https://images.unsplash.com/photo-1549497554-469b6db94901?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+            alt="Leather working" class="featured-image">
           <div class="featured-caption">
             <span class="date">MARCH 24, 2025</span>
             <span class="desc">Facts, not fiction</span>
           </div>
         </div>
       </div>
-      
+
       <!-- Grid view when searching -->
       <div id="search-drawer-results" class="search-drawer-results-grid" style="display: none;">
         <!-- Rendered dynamically by javascript -->
@@ -1066,7 +1186,8 @@
     </div>
     <div class="drawer-content">
       <h2 class="drawer-title">Wishlist</h2>
-      <p class="drawer-subtitle">Your wishlist will be saved for a limited time. <a href="#">Sign in</a> or <a href="#">Create an account</a> to save it and view your items on different devices</p>
+      <p class="drawer-subtitle">Your wishlist will be saved for a limited time. <a href="#">Sign in</a> or <a
+          href="#">Create an account</a> to save it and view your items on different devices</p>
       <div class="wishlist-divider"></div>
       <div id="wishlist-items-container" class="drawer-items">
         <!-- Rendered dynamically -->
@@ -1084,7 +1205,8 @@
     <div class="pairs-header">PAIRS WITH...</div>
     <div class="pairs-content">
       <div class="pairs-card">
-        <img src="https://images.unsplash.com/photo-1590874103328-eac38a683ce7?w=300&auto=format&fit=crop" alt="Orange Woven Handbag" />
+        <img src="https://images.unsplash.com/photo-1590874103328-eac38a683ce7?w=300&auto=format&fit=crop"
+          alt="Orange Woven Handbag" />
         <div class="pairs-info">
           <div class="pairs-title">Orange Woven Handbag</div>
           <div class="pairs-price">₹14,500</div>
@@ -1092,7 +1214,8 @@
         </div>
       </div>
       <div class="pairs-card">
-        <img src="https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=300&auto=format&fit=crop" alt="Quilted Crossbody Bag" />
+        <img src="https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=300&auto=format&fit=crop"
+          alt="Quilted Crossbody Bag" />
         <div class="pairs-info">
           <div class="pairs-title">Quilted Crossbody Bag</div>
           <div class="pairs-price">₹22,900</div>
@@ -1100,7 +1223,8 @@
         </div>
       </div>
       <div class="pairs-card">
-        <img src="https://images.unsplash.com/photo-1584916201218-f4242ceb4809?w=300&auto=format&fit=crop" alt="Premium Wine Box Set" />
+        <img src="https://images.unsplash.com/photo-1584916201218-f4242ceb4809?w=300&auto=format&fit=crop"
+          alt="Premium Wine Box Set" />
         <div class="pairs-info">
           <div class="pairs-title">Premium Wine Box Set</div>
           <div class="pairs-price">₹5,400</div>
@@ -1137,7 +1261,7 @@
           Copyright &copy; 2026 GLAMSHACK - All Rights Reserved
         </div>
       </div>
-      
+
       <!-- Col 2 -->
       <div class="footer-col">
         <h4 class="footer-col-title">Glamshack</h4>
@@ -1165,23 +1289,39 @@
       <!-- Col 4 -->
       <div class="footer-col newsletter-col">
         <h4 class="footer-col-title">Newsletter</h4>
-        <p class="newsletter-desc">Subscribe to our newsletter & enjoy an exclusive 10% off your first full-price order.</p>
+        <p class="newsletter-desc">Subscribe to our newsletter & enjoy an exclusive 10% off your first full-price order.
+        </p>
         <form class="newsletter-form" onsubmit="event.preventDefault(); alert('Subscribed!'); this.reset();">
           <input type="email" placeholder="ENTER YOUR EMAIL HERE*" required class="newsletter-input">
           <button type="submit" class="newsletter-submit-btn">SUBSCRIBE</button>
         </form>
         <div class="footer-socials">
           <a href="#" title="Facebook">
-            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"></path></svg>
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+              <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"></path>
+            </svg>
           </a>
           <a href="#" title="Instagram">
-            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+              <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"></path>
+              <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+            </svg>
           </a>
           <a href="#" title="Pinterest">
-            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.162-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.957 1.406-5.957s-.359-.72-.359-1.781c0-1.663.967-2.911 2.168-2.911 1.024 0 1.518.769 1.518 1.688 0 1.029-.653 2.567-.992 3.992-.285 1.193.6 2.165 1.775 2.165 2.128 0 3.768-2.245 3.768-5.487 0-2.861-2.063-4.869-5.008-4.869-3.41 0-5.409 2.562-5.409 5.199 0 1.033.394 2.143.889 2.741.099.12.112.225.085.345-.09.375-.293 1.199-.334 1.363-.053.225-.172.271-.401.165-1.495-.69-2.433-2.878-2.433-4.646 0-3.776 2.748-7.252 7.951-7.252 4.168 0 7.41 2.967 7.41 6.923 0 4.135-2.607 7.462-6.233 7.462-1.214 0-2.354-.629-2.758-1.379l-.749 2.848c-.269 1.045-1.004 2.352-1.498 3.146 1.123.345 2.306.535 3.55.535 6.607 0 11.985-5.365 11.985-11.987C23.97 5.367 18.624 0 12.017 0z"></path></svg>
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+              <path
+                d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.162-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.957 1.406-5.957s-.359-.72-.359-1.781c0-1.663.967-2.911 2.168-2.911 1.024 0 1.518.769 1.518 1.688 0 1.029-.653 2.567-.992 3.992-.285 1.193.6 2.165 1.775 2.165 2.128 0 3.768-2.245 3.768-5.487 0-2.861-2.063-4.869-5.008-4.869-3.41 0-5.409 2.562-5.409 5.199 0 1.033.394 2.143.889 2.741.099.12.112.225.085.345-.09.375-.293 1.199-.334 1.363-.053.225-.172.271-.401.165-1.495-.69-2.433-2.878-2.433-4.646 0-3.776 2.748-7.252 7.951-7.252 4.168 0 7.41 2.967 7.41 6.923 0 4.135-2.607 7.462-6.233 7.462-1.214 0-2.354-.629-2.758-1.379l-.749 2.848c-.269 1.045-1.004 2.352-1.498 3.146 1.123.345 2.306.535 3.55.535 6.607 0 11.985-5.365 11.985-11.987C23.97 5.367 18.624 0 12.017 0z">
+              </path>
+            </svg>
           </a>
           <a href="#" title="X">
-            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path></svg>
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+              <path
+                d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z">
+              </path>
+            </svg>
           </a>
         </div>
         <div class="footer-copyright right">
@@ -1195,4 +1335,5 @@
   <script src="assets/js/main.js"></script>
 
 </body>
+
 </html>
