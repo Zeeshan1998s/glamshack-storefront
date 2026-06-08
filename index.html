@@ -808,6 +808,62 @@
     </div>
   </div>
 
+  <!-- CUSTOM WISHLIST DRAWER -->
+  <div id="wishlist-overlay" class="drawer-overlay" onclick="closeWishlistDrawer()"></div>
+  <div id="wishlist-drawer" class="custom-drawer right-drawer">
+    <div class="drawer-header-icons">
+      <span>OUR WORLD IN/₹</span>
+      <button class="icon-btn" onclick="navigateTo('view-profile')">👤</button>
+      <button class="icon-btn" onclick="openWishlistDrawer()">♡</button>
+      <button class="icon-btn" onclick="openCartDrawer()">👜</button>
+      <button class="drawer-close-btn" onclick="closeWishlistDrawer()">✕</button>
+    </div>
+    <div class="drawer-content">
+      <h2 class="drawer-title">Wishlist</h2>
+      <p class="drawer-subtitle">Your wishlist will be saved for a limited time. <a href="#">Sign in</a> or <a href="#">Create an account</a> to save it and view your items on different devices</p>
+      <div class="wishlist-divider"></div>
+      <div id="wishlist-items-container" class="drawer-items">
+        <!-- Rendered dynamically -->
+      </div>
+    </div>
+    <div class="drawer-footer-wishlist">
+      <button class="btn-move-all" onclick="moveAllWishlistToBag()">MOVE ALL ITEMS TO BAG</button>
+      <button class="btn-clear-all" onclick="clearWishlist()">CLEAR WISHLIST</button>
+    </div>
+  </div>
+
+  <!-- CUSTOM CART PAIRS WITH SIDEBAR -->
+  <!-- This slides in NEXT TO the shopify-cart dialog -->
+  <div id="cart-pairs-sidebar" class="custom-drawer left-attached-drawer">
+    <div class="pairs-header">PAIRS WITH...</div>
+    <div class="pairs-content">
+      <div class="pairs-card">
+        <img src="https://images.unsplash.com/photo-1590874103328-eac38a683ce7?w=300&auto=format&fit=crop" alt="Pairs With" />
+        <div class="pairs-info">
+          <div class="pairs-title">Mosaic Nano</div>
+          <div class="pairs-price">₹35,700</div>
+          <button class="pairs-add-btn">ADD <span>—</span></button>
+        </div>
+      </div>
+      <div class="pairs-card">
+        <img src="https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=300&auto=format&fit=crop" alt="Pairs With" />
+        <div class="pairs-info">
+          <div class="pairs-title">Mosaic Nano</div>
+          <div class="pairs-price">₹35,700</div>
+          <button class="pairs-add-btn">ADD <span>—</span></button>
+        </div>
+      </div>
+      <div class="pairs-card">
+        <img src="https://images.unsplash.com/photo-1584916201218-f4242ceb4809?w=300&auto=format&fit=crop" alt="Pairs With" />
+        <div class="pairs-info">
+          <div class="pairs-title">Mosaic Nano</div>
+          <div class="pairs-price">₹35,700</div>
+          <button class="pairs-add-btn">ADD <span>—</span></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- FOOTER -->
   <footer>
     <div class="container footer-grid-container">

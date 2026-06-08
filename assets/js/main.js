@@ -106,6 +106,9 @@
 
       // Navigate to dedicated PDP view
       navigateTo('view-product');
+      
+      // Inject Wishlist Button if not present
+      setTimeout(() => injectPDPWishlist(), 100);
     }
 
     // Back navigation resolver
@@ -589,3 +592,133 @@
 
     // Listen for storage updates
     window.addEventListener('storage', updateCartBadge);
+
+    /* =========================================================
+       WISHLIST & CART CUSTOM SIDEBAR LOGIC
+       ========================================================= */
+    let wishlistItems = JSON.parse(localStorage.getItem('glamshack_wishlist')) || [];
+
+    function openWishlistDrawer() {
+      const drawer = document.getElementById('wishlist-drawer');
+      const overlay = document.getElementById('wishlist-overlay');
+      if (drawer) drawer.classList.add('open');
+      if (overlay) overlay.classList.add('open');
+      document.body.style.overflow = 'hidden';
+      renderWishlist();
+    }
+
+    function closeWishlistDrawer() {
+      const drawer = document.getElementById('wishlist-drawer');
+      const overlay = document.getElementById('wishlist-overlay');
+      if (drawer) drawer.classList.remove('open');
+      if (overlay) overlay.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    function toggleWishlist(productObj) {
+      const index = wishlistItems.findIndex(i => i.id === productObj.id || i.title === productObj.title);
+      if (index > -1) {
+        wishlistItems.splice(index, 1);
+      } else {
+        wishlistItems.push(productObj);
+      }
+      localStorage.setItem('glamshack_wishlist', JSON.stringify(wishlistItems));
+      openWishlistDrawer();
+    }
+
+    function removeFromWishlist(id) {
+      wishlistItems = wishlistItems.filter(i => i.id !== id);
+      localStorage.setItem('glamshack_wishlist', JSON.stringify(wishlistItems));
+      renderWishlist();
+    }
+
+    function clearWishlist() {
+      wishlistItems = [];
+      localStorage.setItem('glamshack_wishlist', JSON.stringify(wishlistItems));
+      renderWishlist();
+    }
+
+    function moveAllWishlistToBag() {
+      if (wishlistItems.length === 0) return;
+      const cart = document.getElementById('cart');
+      if (!cart || !cart.addLine) return;
+      
+      alert('Adding wishlist items to cart. (Requires variant IDs mapped to backend API)');
+      
+      clearWishlist();
+      closeWishlistDrawer();
+      openCartDrawer();
+    }
+
+    function renderWishlist() {
+      const container = document.getElementById('wishlist-items-container');
+      if (!container) return;
+      
+      if (wishlistItems.length === 0) {
+        container.innerHTML = '<p style="color: #666; font-size: 0.85rem;">Your wishlist is currently empty.</p>';
+        return;
+      }
+      
+      container.innerHTML = wishlistItems.map(item => `
+        <div class="wishlist-item">
+          <img src="${item.image}" alt="${item.title}" class="wishlist-item-img">
+          <div class="wishlist-item-info">
+            <div class="wishlist-item-top">
+              <div>
+                <div class="wishlist-item-title">${item.title}</div>
+                <div class="wishlist-item-variant">${item.variant || 'Standard'}</div>
+              </div>
+              <button class="wishlist-item-remove" onclick="removeFromWishlist('${item.id}')">🗑</button>
+            </div>
+            <div style="display:flex; justify-content:space-between; align-items:flex-end;">
+              <div class="wishlist-item-price">${item.price}</div>
+              <div class="wishlist-qty-selector">
+                <button class="wishlist-qty-btn">-</button>
+                <span class="wishlist-qty-val">1</span>
+                <button class="wishlist-qty-btn">+</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // CART PAIRS WITH LOGIC
+    function openCartDrawer() {
+      closeWishlistDrawer();
+      const cart = document.getElementById('cart');
+      const pairsSidebar = document.getElementById('cart-pairs-sidebar');
+      if (cart && typeof cart.showModal === 'function') {
+        cart.showModal();
+        if (pairsSidebar) {
+          setTimeout(() => {
+            pairsSidebar.classList.add('open');
+          }, 50);
+        }
+      }
+    }
+
+    // Use MutationObserver on the cart shadowRoot dialog (if accessible) to sync the pairs sidebar close state
+    setInterval(() => {
+      const pairsSidebar = document.getElementById('cart-pairs-sidebar');
+      const cart = document.getElementById('cart');
+      if (pairsSidebar && pairsSidebar.classList.contains('open')) {
+        if (cart && cart.shadowRoot) {
+          const dialog = cart.shadowRoot.querySelector('dialog');
+          if (dialog && !dialog.hasAttribute('open')) {
+            pairsSidebar.classList.remove('open');
+          }
+        }
+      }
+    }, 300);
+
+    // Override existing cart triggers
+    document.addEventListener('DOMContentLoaded', () => {
+      const cartButtons = document.querySelectorAll('.btn-open-cart');
+      cartButtons.forEach(btn => {
+        btn.onclick = (e) => {
+          e.preventDefault();
+          openCartDrawer();
+        };
+      });
+    });

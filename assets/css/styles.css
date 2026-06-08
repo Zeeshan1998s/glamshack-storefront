@@ -4087,3 +4087,311 @@
         grid-template-columns: 1fr;
       }
     }
+
+    /* ---------------------------------------------------------
+       CUSTOM WISHLIST & CART SIDEBARS
+       --------------------------------------------------------- */
+    .drawer-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.4);
+      z-index: 2999;
+      display: none;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    .drawer-overlay.open {
+      display: block;
+      opacity: 1;
+    }
+
+    .custom-drawer {
+      position: fixed;
+      top: 0;
+      height: 100vh;
+      background: #f4f3ef;
+      z-index: 3000;
+      transition: transform 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      box-shadow: -5px 0 25px rgba(0,0,0,0.1);
+    }
+    
+    .right-drawer {
+      right: 0;
+      width: 400px;
+      max-width: 90vw;
+      transform: translateX(100%);
+    }
+    .right-drawer.open {
+      transform: translateX(0);
+    }
+
+    .left-attached-drawer {
+      right: 450px; /* To sit exactly to the left of shopify-cart if cart is 450px */
+      width: 320px;
+      max-width: 80vw;
+      transform: translateX(200%);
+      opacity: 0;
+      background: #e9e7df; /* Slightly darker beige to distinguish from main cart */
+      border-right: 1px solid #dcdacb;
+    }
+    .left-attached-drawer.open {
+      transform: translateX(0);
+      opacity: 1;
+    }
+
+    /* Drawer Header Icons */
+    .drawer-header-icons {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      padding: 24px 32px 0 32px;
+      gap: 16px;
+      font-size: 0.75rem;
+      letter-spacing: 0.05em;
+      color: #333;
+    }
+    .drawer-header-icons span {
+      margin-right: auto;
+    }
+    .icon-btn {
+      background: none;
+      border: none;
+      font-size: 1.1rem;
+      color: #333;
+      cursor: pointer;
+    }
+    .drawer-close-btn {
+      background: none;
+      border: none;
+      font-size: 1.2rem;
+      color: #333;
+      cursor: pointer;
+      margin-left: 10px;
+    }
+
+    /* Wishlist Content */
+    .drawer-content {
+      padding: 24px 32px;
+      flex-grow: 1;
+      overflow-y: auto;
+    }
+    .drawer-title {
+      font-family: var(--font-body);
+      font-size: 1.2rem;
+      font-weight: 400;
+      margin-bottom: 12px;
+      color: #12141d;
+    }
+    .drawer-subtitle {
+      font-size: 0.75rem;
+      color: #666;
+      line-height: 1.4;
+      margin-bottom: 24px;
+    }
+    .drawer-subtitle a {
+      text-decoration: underline;
+      color: #12141d;
+    }
+    .wishlist-divider {
+      height: 1px;
+      background: #dcdacb;
+      margin-bottom: 24px;
+    }
+
+    /* Wishlist Items */
+    .wishlist-item {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+    .wishlist-item-img {
+      width: 100px;
+      height: 100px;
+      object-fit: cover;
+      background: #e2dfd8;
+    }
+    .wishlist-item-info {
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .wishlist-item-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+    .wishlist-item-title {
+      font-size: 0.85rem;
+      color: #12141d;
+      margin-bottom: 4px;
+    }
+    .wishlist-item-variant {
+      font-size: 0.7rem;
+      color: #666;
+      margin-bottom: 12px;
+    }
+    .wishlist-item-price {
+      font-size: 0.8rem;
+      color: #12141d;
+    }
+    .wishlist-item-remove {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 1rem;
+      color: #999;
+    }
+    .wishlist-qty-selector {
+      display: flex;
+      align-items: center;
+      background: #ebe9e0;
+      width: fit-content;
+      border-radius: 4px;
+    }
+    .wishlist-qty-btn {
+      padding: 4px 10px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 1rem;
+      color: #666;
+    }
+    .wishlist-qty-val {
+      font-size: 0.75rem;
+      padding: 0 4px;
+      color: #12141d;
+    }
+
+    /* Wishlist Footer */
+    .drawer-footer-wishlist {
+      padding: 24px 32px;
+      border-top: 1px solid #dcdacb;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .btn-move-all {
+      background: transparent;
+      border: 1px solid #c9c5ba;
+      padding: 14px;
+      width: 100%;
+      font-size: 0.75rem;
+      letter-spacing: 0.05em;
+      color: #12141d;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .btn-move-all:hover {
+      background: #e9e7df;
+    }
+    .btn-clear-all {
+      background: none;
+      border: none;
+      font-size: 0.7rem;
+      color: #666;
+      cursor: pointer;
+      text-decoration: underline;
+      padding: 8px;
+    }
+
+    /* PAIRS WITH... SIDEBAR */
+    .pairs-header {
+      font-size: 0.75rem;
+      color: #666;
+      letter-spacing: 0.05em;
+      padding: 32px 32px 16px 32px;
+    }
+    .pairs-content {
+      padding: 0 32px 32px 32px;
+      overflow-y: auto;
+      flex-grow: 1;
+    }
+    .pairs-card {
+      margin-bottom: 24px;
+    }
+    .pairs-card img {
+      width: 100%;
+      aspect-ratio: 1;
+      object-fit: cover;
+      background: #e2dfd8;
+      margin-bottom: 12px;
+    }
+    .pairs-title {
+      font-size: 0.85rem;
+      color: #12141d;
+      margin-bottom: 4px;
+    }
+    .pairs-price {
+      font-size: 0.8rem;
+      color: var(--accent-red);
+      font-weight: 500;
+      margin-bottom: 8px;
+    }
+    .pairs-add-btn {
+      background: none;
+      border: none;
+      font-size: 0.75rem;
+      color: #12141d;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .pairs-add-btn span {
+      color: #999;
+    }
+
+    /* =========================================
+       SHOPIFY CART ::PART STYLING OVERRIDES
+       ========================================= */
+    /* Note: Depending on SDK version, these parts might vary. 
+       Assuming standard part names for shopify-cart. */
+    shopify-cart::part(dialog) {
+      background-color: #f4f3ef !important;
+      width: 450px !important;
+      max-width: 90vw !important;
+      color: #12141d !important;
+    }
+    
+    shopify-cart::part(header) {
+      border-bottom: 0 !important;
+      padding: 24px 32px 0 32px !important;
+    }
+    
+    shopify-cart::part(title) {
+      font-family: var(--font-body) !important;
+      font-size: 1.2rem !important;
+      font-weight: 400 !important;
+      color: #12141d !important;
+    }
+
+    shopify-cart::part(body) {
+      padding: 24px 32px !important;
+    }
+
+    shopify-cart::part(checkout-button) {
+      background-color: #4b5344 !important; /* Dark Olive Green from Mockup */
+      color: #ffffff !important;
+      border-radius: 0 !important;
+      font-family: var(--font-body) !important;
+      font-size: 0.75rem !important;
+      letter-spacing: 0.05em !important;
+      padding: 18px !important;
+      text-transform: uppercase !important;
+    }
+
+    shopify-cart::part(checkout-button):hover {
+      background-color: #3a4135 !important;
+    }
+    
+    shopify-cart::part(footer) {
+      background-color: #f4f3ef !important;
+      padding: 24px 32px !important;
+      border-top: 1px solid #dcdacb !important;
+    }
