@@ -4389,16 +4389,16 @@
 
     /* LEATHER FAMILY CARD (Section 3 Redesign) */
     .leather-family-card {
-      background: #e9e7e1;
+      background: #efece7; /* Light beige base for the whole card */
       transition: all 0.3s ease;
       overflow: hidden;
       display: flex;
       flex-direction: column;
       cursor: pointer;
+      position: relative;
     }
 
     .leather-family-card:hover {
-      background: #ffffff;
       box-shadow: 0 10px 30px rgba(0,0,0,0.05);
       z-index: 10;
     }
@@ -4409,9 +4409,9 @@
       right: 20px;
       width: 24px;
       height: 24px;
-      color: #999;
+      color: #111;
       opacity: 0;
-      transition: opacity 0.3s ease, color 0.3s ease;
+      transition: opacity 0.3s ease, color 0.3s ease, transform 0.3s ease;
       z-index: 5;
     }
 
@@ -4420,8 +4420,7 @@
     }
 
     .leather-family-card .wishlist-icon:hover {
-      color: #e74c3c;
-      fill: #e74c3c;
+      transform: scale(1.1);
     }
 
     .leather-family-card .card-media-wrapper {
@@ -4432,6 +4431,12 @@
       align-items: center;
       justify-content: center;
       padding: 20px;
+      background: #efece7;
+      transition: background 0.3s ease;
+    }
+    
+    .leather-family-card:hover .card-media-wrapper {
+      background: #ffffff; /* Image background turns white on hover */
     }
     
     .leather-family-card .card-media-wrapper img,
@@ -4448,12 +4453,14 @@
     }
 
     .leather-family-card .card-details {
-      padding: 20px 20px 30px 20px;
-      background: inherit;
+      padding: 15px 20px 25px 20px;
+      background: #efece7; /* Details area stays beige */
       display: flex;
       flex-direction: column;
       margin-top: auto;
       text-align: left;
+      position: relative;
+      z-index: 2;
     }
 
     .leather-family-card .card-info-row {
@@ -4464,26 +4471,26 @@
 
     .leather-family-card .card-title {
       font-family: var(--font-body);
-      font-size: 0.9rem;
-      font-weight: 500;
-      color: #333;
+      font-size: 1rem;
+      font-weight: 400;
+      color: #111;
       margin: 0;
     }
 
     .leather-family-card .card-price-box {
       display: flex;
       gap: 8px;
-      font-size: 0.85rem;
+      font-size: 0.95rem;
       font-weight: 600;
     }
 
     .leather-family-card .price-old {
-      color: #999;
+      color: #888;
       text-decoration: line-through;
     }
 
     .leather-family-card .price-new {
-      color: #c0392b; /* Red price */
+      color: #cc0000; /* Distinct red */
     }
 
     .leather-family-card .card-hover-actions {
@@ -4498,41 +4505,48 @@
     }
 
     .leather-family-card:hover .card-hover-actions {
-      height: 30px;
+      height: 40px;
       opacity: 1;
-      margin-top: 20px;
+      margin-top: 15px;
     }
 
     .leather-family-card .add-to-bag-text {
-      font-size: 0.75rem;
-      font-weight: 600;
-      letter-spacing: 0.05em;
+      font-size: 0.85rem;
+      font-weight: 400;
+      letter-spacing: 0.02em;
       color: #111;
     }
 
     .leather-family-card .swatches-container {
       display: flex;
       align-items: center;
-      gap: 4px;
+      gap: 6px;
+      background: #ffffff;
+      padding: 6px 10px;
+      border-radius: 4px;
     }
 
     .leather-family-card .swatch {
-      width: 28px;
-      height: 20px;
-      background: #ddd;
+      width: 24px;
+      height: 18px;
+      background: #dcd8cf; /* Darker beige to match image */
       overflow: hidden;
-      border: 1px solid #eee;
+      border-radius: 2px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     .leather-family-card .swatch img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
+      width: 80%;
+      height: 80%;
+      object-fit: contain;
     }
 
     .leather-family-card .swatch-plus {
-      font-size: 1rem;
-      color: #666;
-      margin-left: 4px;
+      font-size: 1.1rem;
+      color: #555;
+      margin-left: 2px;
       line-height: 1;
+      font-weight: 300;
     }
