@@ -4350,16 +4350,16 @@
     /* =========================================
        SHOPIFY CART ::PART STYLING OVERRIDES
        ========================================= */
-    /* Note: Depending on SDK version, these parts might vary. 
-       Assuming standard part names for shopify-cart. */
     shopify-cart::part(dialog) {
       background-color: #f4f3ef !important;
       width: 450px !important;
       max-width: 90vw !important;
       color: #12141d !important;
       position: fixed !important;
+      left: auto !important;
       right: 0 !important;
       top: 0 !important;
+      bottom: auto !important;
       height: 100vh !important;
       max-height: 100vh !important;
       margin: 0 !important;
