@@ -1,4 +1,4 @@
-import React from 'react';
+import  { useState } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import './Header.css';
 
@@ -20,11 +20,7 @@ export default function Header({
 }) {
   const navigate = useNavigate();
   const location = useLocation();
-
-  const handleCategoryClick = (e, categoryId) => {
-    e.preventDefault();
-    navigate(`/shop?category=${categoryId}`);
-  };
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const isActive = (path) => location.pathname === path;
 
@@ -36,7 +32,8 @@ export default function Header({
       </div>
 
       <header>
-        <div className="container header-single-row">
+        {/* Desktop Header Row */}
+        <div className="container header-single-row desktop-only-header">
           {/* Left side: Links and Search */}
           <div className="header-left-group">
             <nav className="category-nav">
@@ -51,14 +48,12 @@ export default function Header({
                 </li>
                 {NAV_ITEMS.map((item) => (
                   <li key={item.id}>
-                    <a
-                      href="#"
+                    <Link
+                      to={`/shop?category=${item.id}`}
                       className={`cat-nav-link ${location.search.includes(`category=${item.id}`) ? 'active' : ''}`}
-                      role="button"
-                      onClick={(e) => handleCategoryClick(e, item.id)}
                     >
                       {item.label}
-                    </a>
+                    </Link>
                   </li>
                 ))}
                 <li>
@@ -115,7 +110,99 @@ export default function Header({
             </Link>
           </div>
         </div>
+
+        {/* Mobile Header Row */}
+        <div className="container header-single-row mobile-only-header">
+          {/* Left side: Hamburger */}
+          <button
+            className="header-icon-btn mobile-menu-btn"
+            onClick={() => setIsMobileMenuOpen(true)}
+            title="Open Menu"
+          >
+            ☰
+          </button>
+
+          {/* Center: Logo */}
+          <div className="mobile-logo-wrapper">
+            <Link
+              to="/home"
+              className="logo"
+            >
+              GLAMSHACK
+            </Link>
+          </div>
+
+          {/* Right side: Search, Wishlist, Cart */}
+          <div className="header-right-group">
+            <button
+              className="header-icon-btn search-btn"
+              onClick={onOpenSearch}
+              title="Search Catalog"
+            >
+              🔍
+            </button>
+            <button
+              className="header-icon-btn wishlist-btn"
+              onClick={onOpenWishlist}
+              title="Wishlist"
+            >
+              🤍
+            </button>
+            <button className="btn-open-cart" onClick={onOpenCart}>
+              🛍️
+              {cartCount > 0 && <span className="cart-count-badge">{cartCount}</span>}
+            </button>
+          </div>
+        </div>
       </header>
+
+      {/* Mobile Navigation Drawer */}
+      <div className={`mobile-nav-drawer ${isMobileMenuOpen ? 'open' : ''}`}>
+        <div className="mobile-nav-overlay" onClick={() => setIsMobileMenuOpen(false)}></div>
+        <div className="mobile-nav-content">
+          <div className="mobile-nav-header">
+            <Link to="/home" className="logo" onClick={() => setIsMobileMenuOpen(false)}>
+              GLAMSHACK
+            </Link>
+            <button className="mobile-nav-close-btn" onClick={() => setIsMobileMenuOpen(false)}>✕</button>
+          </div>
+          <div className="mobile-nav-divider"></div>
+          <ul className="mobile-nav-links">
+            <li>
+              <Link to="/home" className="mobile-nav-link" onClick={() => setIsMobileMenuOpen(false)}>
+                HOME
+              </Link>
+            </li>
+            {NAV_ITEMS.map((item) => (
+              <li key={item.id}>
+                <Link
+                  to={`/shop?category=${item.id}`}
+                  className="mobile-nav-link"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  {item.label}
+                </Link>
+              </li>
+            ))}
+            <li>
+              <Link to="/blog" className="mobile-nav-link" onClick={() => setIsMobileMenuOpen(false)}>
+                JOURNAL
+              </Link>
+            </li>
+            <div className="mobile-nav-divider"></div>
+            <li>
+              <Link to="/about" className="mobile-nav-link" onClick={() => setIsMobileMenuOpen(false)}>
+                ABOUT US
+              </Link>
+            </li>
+            <li>
+              <Link to="/profile" className="mobile-nav-link" onClick={() => setIsMobileMenuOpen(false)}>
+                MY PROFILE 👤
+              </Link>
+            </li>
+          </ul>
+        </div>
+      </div>
     </>
   );
 }

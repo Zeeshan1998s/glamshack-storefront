@@ -1,8 +1,10 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
+import { createPortal } from 'react-dom';
 import CartPairsSidebar from './CartPairsSidebar';
 
 export default function Cart() {
   const cartRef = useRef(null);
+  const [portalContainer, setPortalContainer] = useState(null);
 
   useEffect(() => {
     const cart = cartRef.current;
@@ -51,52 +53,52 @@ export default function Cart() {
                opacity: 0;
             }
             .pairs-header {
-              font-size: 0.75rem;
-              color: #666;
-              letter-spacing: 0.05em;
-              padding: 32px 32px 16px 32px;
-              font-family: 'Inter', sans-serif;
+               font-size: 0.75rem;
+               color: #666;
+               letter-spacing: 0.05em;
+               padding: 32px 32px 16px 32px;
+               font-family: 'Inter', sans-serif;
             }
             .pairs-content {
-              padding: 0 32px 32px 32px;
-              overflow-y: auto;
-              flex-grow: 1;
-              font-family: 'Inter', sans-serif;
+               padding: 0 32px 32px 32px;
+               overflow-y: auto;
+               flex-grow: 1;
+               font-family: 'Inter', sans-serif;
             }
             .pairs-card {
-              margin-bottom: 24px;
+               margin-bottom: 24px;
             }
             .pairs-card img {
-              width: 100%;
-              aspect-ratio: 1;
-              object-fit: cover;
-              background: #e2dfd8;
-              margin-bottom: 12px;
+               width: 100%;
+               aspect-ratio: 1;
+               object-fit: cover;
+               background: #e2dfd8;
+               margin-bottom: 12px;
             }
             .pairs-title {
-              font-size: 0.85rem;
-              color: #12141d;
-              margin-bottom: 4px;
+               font-size: 0.85rem;
+               color: #12141d;
+               margin-bottom: 4px;
             }
             .pairs-price {
-              font-size: 0.8rem;
-              color: #cc0000;
-              font-weight: 500;
-              margin-bottom: 8px;
+               font-size: 0.8rem;
+               color: #cc0000;
+               font-weight: 500;
+               margin-bottom: 8px;
             }
             .pairs-add-btn {
-              background: none;
-              border: none;
-              font-size: 0.75rem;
-              color: #12141d;
-              cursor: pointer;
-              display: flex;
-              align-items: center;
-              gap: 4px;
-              padding: 0;
+               background: none;
+               border: none;
+               font-size: 0.75rem;
+               color: #12141d;
+               cursor: pointer;
+               display: flex;
+               align-items: center;
+               gap: 4px;
+               padding: 0;
             }
             .pairs-add-btn span {
-              color: #999;
+               color: #999;
             }
           `;
           cart.shadowRoot.appendChild(style);
@@ -128,24 +130,23 @@ export default function Cart() {
           }
         });
 
-        // Move pairs sidebar element inside the shadowRoot dialog so they slide together
-        if (dialog) {
-          const pairsSidebar = document.getElementById('cart-pairs-sidebar');
-          if (pairsSidebar && pairsSidebar.parentNode !== dialog) {
-            dialog.appendChild(pairsSidebar);
-            pairsSidebar.className = '';
-          }
+        // Set the portal container once the dialog is found in the shadow root
+        if (dialog && !portalContainer) {
+          setPortalContainer(dialog);
         }
       }
     }, 400);
 
     return () => clearInterval(injectCartCSSAndSidebar);
-  }, []);
+  }, [portalContainer]);
 
   return (
     <>
-      {/* Render the Pairs sidebar in DOM; useEffect script will relocate it inside shopify-cart's dialog */}
-      <CartPairsSidebar />
+      {/* Render the Pairs sidebar inside the shadowRoot dialog using a React Portal */}
+      {portalContainer && createPortal(
+        <CartPairsSidebar />,
+        portalContainer
+      )}
 
       {/* Shopify Cart Component widget */}
       <shopify-cart id="cart" ref={cartRef}>

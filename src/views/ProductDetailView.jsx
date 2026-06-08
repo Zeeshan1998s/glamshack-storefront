@@ -1,10 +1,12 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 
 export default function ProductDetailView({
   onToggleWishlist
 }) {
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const productHandle = searchParams.get('handle') || 'luxurious-silver-gift-hamper-5';
 
   const handlePDPClick = (e) => {
     const target = e.target;
@@ -39,19 +41,29 @@ export default function ProductDetailView({
         });
       }
     }
+
+    // Intercept clicks on the add to cart button
+    const addToCartBtn = target.closest('.btn-add-to-cart-new');
+    if (addToCartBtn) {
+      e.preventDefault();
+      const cart = document.getElementById('cart');
+      if (cart && typeof cart.addLine === 'function') {
+        cart.addLine(e.nativeEvent).then(() => {
+          if (typeof cart.showModal === 'function') {
+            cart.showModal();
+          }
+        });
+      }
+    }
   };
 
   const handleProductCardClick = (e) => {
     const card = e.target.closest('.glam-card');
     if (card) {
-      const pdpContext = document.getElementById('pdp-context');
-      if (pdpContext) {
-        const updateFn = pdpContext.update || pdpContext.updateContext;
-        if (typeof updateFn === 'function') {
-          updateFn.call(pdpContext, e.nativeEvent);
-        }
+      const handle = card.getAttribute('data-handle') || card.getAttribute('shopify-attr--data-handle');
+      if (handle) {
+        navigate(`/product?handle=${handle}`);
       }
-      navigate('/product');
     }
   };
 
@@ -66,7 +78,7 @@ export default function ProductDetailView({
         </div>
 
         {/* Dynamic Product Context for Detail Page */}
-        <shopify-context id="pdp-context" type="product" wait-for-update="" onClick={handlePDPClick}>
+        <shopify-context id="pdp-context" type="product" handle={productHandle} onClick={handlePDPClick}>
           <template dangerouslySetInnerHTML={{ __html: `
             <div class="pdp-layout-new">
               <!-- TOP SECTION -->
@@ -95,7 +107,7 @@ export default function ProductDetailView({
                     <div class="pdp-price"><shopify-money query="product.selectedOrFirstAvailableVariant.price"></shopify-money></div>
 
                     <div class="pdp-actions" style="display: flex; flex-direction: column; gap: 10px; width: 100%;">
-                      <button class="btn-add-to-cart-new" onclick="document.getElementById('cart').addLine(event).then(() => { document.getElementById('cart').showModal(); });" shopify-attr--disabled="!product.selectedOrFirstAvailableVariant.availableForSale">
+                      <button class="btn-add-to-cart-new" shopify-attr--disabled="!product.selectedOrFirstAvailableVariant.availableForSale">
                         ADD TO BAG
                       </button>
                       <button class="btn-wishlist-toggle-pdp" style="background: transparent; border: 1px solid var(--text-main); color: var(--text-main); padding: 12px 24px; font-family: var(--font-body); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; cursor: pointer; transition: all 0.3s ease;">
@@ -232,9 +244,9 @@ export default function ProductDetailView({
               <div class="pdp-related-section pdp-container">
                 <h3 class="section-heading-small">YOU MIGHT ALSO LIKE</h3>
                 <div class="pdp-related-grid-wrapper">
-                  <shopify-list-context type="product" query="products" first="4" onclick="e => e.stopPropagation()">
+                  <shopify-list-context type="product" query="products" first="4" onClick={handleProductCardClick}>
                     <template>
-                      <div class="glam-card pdp-related-card" shopify-attr--data-title="product.title" style="cursor: pointer;">
+                      <div class="glam-card pdp-related-card" shopify-attr--data-handle="product.handle" shopify-attr--data-title="product.title" style="cursor: pointer;">
                         <div class="card-media-wrapper" style="background: #f4f3ef;">
                           <shopify-media width="300" height="300" query="product.selectedOrFirstAvailableVariant.image"></shopify-media>
                         </div>

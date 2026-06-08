@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import  { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 export default function SearchDrawer({
@@ -12,8 +12,13 @@ export default function SearchDrawer({
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (isOpen && inputRef.current) {
-      setTimeout(() => inputRef.current.focus(), 150);
+    if (isOpen) {
+      const timer = setTimeout(() => {
+        if (inputRef.current) {
+          inputRef.current.focus();
+        }
+      }, 150);
+      return () => clearTimeout(timer);
     }
   }, [isOpen]);
 

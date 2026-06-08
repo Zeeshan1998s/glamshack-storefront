@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { HashRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import  { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import SearchDrawer from './components/SearchDrawer';
@@ -34,7 +34,7 @@ function AppContent() {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [allProducts, setAllProducts] = useState([]);
 
-  // Update Shopify Cart item count badge
+  // Read current cart count from Shopify component state
   const updateCartBadge = () => {
     const cartEl = document.getElementById('cart');
     if (!cartEl) return;
@@ -48,22 +48,41 @@ function AppContent() {
     setCartCount(count);
   };
 
-  // Sync cart badge based on user click interactions or storage updates
+  // Performant targeted MutationObserver for cart badge sync
   useEffect(() => {
-    const handleGlobalClick = () => {
-      setTimeout(updateCartBadge, 800);
-    };
+    const cartEl = document.getElementById('cart');
+    if (!cartEl) return;
 
-    document.addEventListener('click', handleGlobalClick);
+    // Observe changes inside the shopify-cart element to sync items count
+    const observer = new MutationObserver(() => {
+      updateCartBadge();
+    });
+
+    observer.observe(cartEl, {
+      attributes: true,
+      childList: true,
+      subtree: true
+    });
+
+    // Initial sync
+    setTimeout(updateCartBadge, 1000);
+
+    return () => observer.disconnect();
+  }, []);
+
+  // Sync cart across browser tabs via storage events
+  useEffect(() => {
     window.addEventListener('storage', updateCartBadge);
+    return () => window.removeEventListener('storage', updateCartBadge);
+  }, []);
 
-    // Run initial badge count lookup
-    setTimeout(updateCartBadge, 1500);
-
-    return () => {
-      document.removeEventListener('click', handleGlobalClick);
-      window.removeEventListener('storage', updateCartBadge);
-    };
+  // Handle legacy hash routing migration (e.g. /#/home -> /home, or /home#/home -> /home)
+  useEffect(() => {
+    const hash = window.location.hash;
+    if (hash && hash.startsWith('#/')) {
+      const cleanPath = hash.substring(1);
+      window.history.replaceState(null, '', cleanPath);
+    }
   }, []);
 
   // Periodically scrape catalog items to feed Search Suggestions drawer
@@ -200,7 +219,7 @@ function AppContent() {
         onOpenCart={handleOpenCart}
       />
 
-      {/* Modular Shopify Shopping Cart widget */}
+      {/* Modular Shopify Shopping Cart component */}
       <Cart />
     </>
   );

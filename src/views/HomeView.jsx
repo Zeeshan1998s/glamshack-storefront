@@ -1,7 +1,43 @@
-import React, { useState, useEffect } from 'react';
+import  { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 export default function HomeView() {
+  const [signatureTab, setSignatureTab] = useState('reductions');
+
+  useEffect(() => {
+    const applySignatureFilters = () => {
+      const cards = document.querySelectorAll('#bestsellers-list .leather-family-card');
+      cards.forEach((card) => {
+        const attrTitle = card.getAttribute('data-title') || card.getAttribute('shopify-attr--data-title') || '';
+        const htmlTitle = card.querySelector('.card-title')?.innerText || '';
+        const title = (attrTitle || htmlTitle).toLowerCase();
+
+        let match = false;
+        if (signatureTab === 'reductions') {
+          // Mid Season Reductions: show Hampers and Product_1
+          match = title.includes('hamper') || title.includes('product');
+        } else if (signatureTab === 'bestsellers') {
+          // Bestsellers: show Box and Tray
+          match = title.includes('box') || title.includes('tray');
+        } else if (signatureTab === 'arrivals') {
+          // New Arrivals: show Silver and Crystal
+          match = title.includes('silver') || title.includes('crystal');
+        }
+
+        card.style.display = match ? 'flex' : 'none';
+      });
+    };
+
+    applySignatureFilters();
+
+    const container = document.getElementById('bestsellers-list');
+    if (container) {
+      const observer = new MutationObserver(applySignatureFilters);
+      observer.observe(container, { childList: true, subtree: true });
+      return () => observer.disconnect();
+    }
+  }, [signatureTab]);
+
   const [trousseauFilter, setTrousseauFilter] = useState('all');
   const navigate = useNavigate();
 
@@ -39,14 +75,12 @@ export default function HomeView() {
   const handleProductCardClick = (e) => {
     const card = e.target.closest('.leather-family-card');
     if (card) {
-      const pdpContext = document.getElementById('pdp-context');
-      if (pdpContext) {
-        const updateFn = pdpContext.update || pdpContext.updateContext;
-        if (typeof updateFn === 'function') {
-          updateFn.call(pdpContext, e.nativeEvent);
-        }
+      const handle = card.getAttribute('data-handle') || card.getAttribute('shopify-attr--data-handle');
+      if (handle) {
+        navigate(`/product?handle=${handle}`);
+      } else {
+        navigate('/product');
       }
-      navigate('/product');
     }
   };
 
@@ -122,18 +156,46 @@ export default function HomeView() {
             Signature Collections
           </h2>
           <div className="collection-tabs" style={{ display: 'flex', gap: '30px', fontSize: '0.75rem', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.05em', color: '#888' }}>
-            <span style={{ color: '#111', cursor: 'pointer', borderBottom: '1px solid #111', paddingBottom: '2px' }}>
+            <span
+              onClick={() => setSignatureTab('reductions')}
+              style={{
+                color: signatureTab === 'reductions' ? '#111' : '#888',
+                cursor: 'pointer',
+                borderBottom: signatureTab === 'reductions' ? '1px solid #111' : 'none',
+                paddingBottom: '2px'
+              }}
+            >
               MID SEASON REDUCTIONS
             </span>
-            <span style={{ cursor: 'pointer' }}>BESTSELLERS</span>
-            <span style={{ cursor: 'pointer' }}>NEW ARRIVALS</span>
+            <span
+              onClick={() => setSignatureTab('bestsellers')}
+              style={{
+                color: signatureTab === 'bestsellers' ? '#111' : '#888',
+                cursor: 'pointer',
+                borderBottom: signatureTab === 'bestsellers' ? '1px solid #111' : 'none',
+                paddingBottom: '2px'
+              }}
+            >
+              BESTSELLERS
+            </span>
+            <span
+              onClick={() => setSignatureTab('arrivals')}
+              style={{
+                color: signatureTab === 'arrivals' ? '#111' : '#888',
+                cursor: 'pointer',
+                borderBottom: signatureTab === 'arrivals' ? '1px solid #111' : 'none',
+                paddingBottom: '2px'
+              }}
+            >
+              NEW ARRIVALS
+            </span>
           </div>
         </div>
 
         <div className="bestsellers-grid-wrapper" style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '4px', background: '#fff' }}>
           <shopify-list-context id="bestsellers-list" type="product" query="products" first="4" onClick={handleProductCardClick}>
             <template dangerouslySetInnerHTML={{ __html: `
-              <div class="leather-family-card pdp-related-card" shopify-attr--data-title="product.title">
+              <div class="leather-family-card pdp-related-card" shopify-attr--data-handle="product.handle" shopify-attr--data-title="product.title">
                 <div class="wishlist-icon">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
                     <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
@@ -343,7 +405,7 @@ export default function HomeView() {
             <div className="story-slider">
               <shopify-list-context id="story-list" type="product" query="products" first="4" style={{ display: 'flex', gap: '4px' }} onClick={handleProductCardClick}>
                 <template dangerouslySetInnerHTML={{ __html: `
-                  <div class="leather-family-card pdp-related-card" style="width: 25vw; min-width: 250px; max-width: 320px;" shopify-attr--data-title="product.title">
+                  <div class="leather-family-card pdp-related-card" style="width: 25vw; min-width: 250px; max-width: 320px;" shopify-attr--data-handle="product.handle" shopify-attr--data-title="product.title">
                     <div class="wishlist-icon">
                       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
                         <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>

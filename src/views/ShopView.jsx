@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import  { useEffect } from 'react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
 
 export default function ShopView() {
@@ -85,14 +85,12 @@ export default function ShopView() {
   const handleProductCardClick = (e) => {
     const card = e.target.closest('.glam-card');
     if (card) {
-      const pdpContext = document.getElementById('pdp-context');
-      if (pdpContext) {
-        const updateFn = pdpContext.update || pdpContext.updateContext;
-        if (typeof updateFn === 'function') {
-          updateFn.call(pdpContext, e.nativeEvent);
-        }
+      const handle = card.getAttribute('data-handle') || card.getAttribute('shopify-attr--data-handle');
+      if (handle) {
+        navigate(`/product?handle=${handle}`);
+      } else {
+        navigate('/product');
       }
-      navigate('/product');
     }
   };
 
@@ -201,7 +199,7 @@ export default function ShopView() {
         <div className="product-grid-container">
           <shopify-list-context id="shop-list-context" type="product" query="products" first="28" onClick={handleProductCardClick}>
             <template dangerouslySetInnerHTML={{ __html: `
-              <div class="glam-card" shopify-attr--data-title="product.title" style="cursor: pointer;">
+              <div class="glam-card" shopify-attr--data-handle="product.handle" shopify-attr--data-title="product.title" style="cursor: pointer;">
                 <div class="card-media-wrapper">
                   <div class="card-badge">Luxe</div>
                   <shopify-media width="300" height="300" query="product.selectedOrFirstAvailableVariant.image"></shopify-media>
