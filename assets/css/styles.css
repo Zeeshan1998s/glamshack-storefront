@@ -2,17 +2,19 @@
 
     /* Premium Design System Token Architecture */
     :root {
-      --bg-base: #05060a;
-      --bg-card: rgba(18, 20, 29, 0.45);
-      --bg-header: rgba(5, 6, 10, 0.85);
-      --border-color: rgba(255, 255, 255, 0.05);
+      --bg-base: #eae8e1;
+      --bg-card: #e2dfd8;
+      --bg-header: rgba(234, 232, 225, 0.95);
+      --border-color: #c9c5ba;
       
-      --text-main: #fcfafc;
-      --text-muted: #9499a6;
-      --text-dark: #4b5263;
+      --text-main: #0f172a;
+      --text-muted: #64748b;
+      --text-dark: #334155;
       
       --accent-pink: #d81b60;
-      --accent-gold: #c9a054;
+      --accent-red: #cc0000;
+      --accent-gold: #b8860b;
+      --accent-navy: #0f172a;
       --accent-white: #ffffff;
       
       --font-display: 'Cormorant Garamond', serif;
@@ -2136,30 +2138,7 @@
       max-width: 280px;
     }
 
-    /* ---------------------------------------------------------
-       LIGHT MODE STYLE OVERRIDES (EXACT WIREFRAME DESIGN)
-       --------------------------------------------------------- */
-    :root {
-      --bg-base: #eae8e1;
-      --bg-card: #e2dfd8;
-      --bg-header: rgba(234, 232, 225, 0.95);
-      --border-color: #c9c5ba;
-      
-      --text-main: #0f172a;
-      --text-muted: #64748b;
-      --text-dark: #334155;
-      
-      --accent-pink: #d81b60;
-      --accent-red: #cc0000;
-      --accent-gold: #b8860b;
-      --accent-navy: #0f172a;
-      --accent-white: #ffffff;
-    }
 
-    body {
-      background-color: var(--bg-base);
-      color: var(--text-main);
-    }
 
     /* Announcement Banner */
     .top-banner {
@@ -2878,11 +2857,6 @@
       min-width: 0 !important;
     }
 
-    /* Limit homepage grids to first 8 products (2 rows of 4) */
-    #trousseau-list-context .glam-card:nth-child(n+9),
-    #engagement-list-context .glam-card:nth-child(n+9) {
-      display: none !important;
-    }
 
     /* Loading state grid placeholder alignment */
     .scroll-row-inner {
@@ -2912,11 +2886,6 @@
       .scroll-row-inner {
         grid-template-columns: repeat(2, 1fr) !important;
         gap: 16px !important;
-      }
-      /* Limit mobile grids to 4 products for better page performance & density */
-      #trousseau-list-context .glam-card:nth-child(n+5),
-      #engagement-list-context .glam-card:nth-child(n+5) {
-        display: none !important;
       }
     }
 
@@ -2972,8 +2941,8 @@
     .search-drawer {
       position: fixed !important;
       top: 0 !important;
-      left: -80vw !important;
-      width: 80vw !important;
+      left: -80% !important;
+      width: 80% !important;
       height: 100vh !important;
       background: #eae8e1 !important; /* light beige background */
       z-index: 2001 !important;
@@ -3260,13 +3229,13 @@
     /* TOP SECTION: Grid + Sticky Info */
     .pdp-top-section {
       display: flex;
-      width: 100vw;
+      width: 100%;
       align-items: stretch;
       background-color: #f4f3ef;
     }
 
     .pdp-media-grid {
-      width: 55vw;
+      width: 55%;
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 2px;
@@ -3290,9 +3259,9 @@
     }
 
     .pdp-info-sticky-wrapper {
-      width: 45vw;
-      padding-left: 4vw;
-      padding-right: calc(max(4vw, (100vw - 1240px) / 2));
+      width: 45%;
+      padding-left: 4%;
+      padding-right: 4%;
       background-color: #f4f3ef;
       padding-top: 40px;
     }
@@ -3477,7 +3446,7 @@
     /* STYLING SECTION */
     .pdp-styling-section {
       margin-top: 80px;
-      width: 100vw;
+      width: 100%;
     }
 
     .section-heading {
@@ -3521,14 +3490,14 @@
     /* WEAR THIS SECTION */
     .pdp-wear-this-section {
       display: flex;
-      width: 100vw;
+      width: 100%;
       margin-top: 80px;
       align-items: stretch;
       background: #f4f3ef;
     }
 
     .wear-this-left {
-      width: 55vw;
+      width: 55%;
     }
 
     .wear-this-left img {
@@ -3540,11 +3509,11 @@
     }
 
     .wear-this-right {
-      width: 45vw;
+      width: 45%;
       display: flex;
       align-items: center;
-      padding-left: 4vw;
-      padding-right: calc(max(4vw, (100vw - 1240px) / 2));
+      padding-left: 4%;
+      padding-right: 4%;
     }
 
     .wear-this-right-content {
@@ -3680,7 +3649,7 @@
     /* Section 1: Full Bleed Hero */
     .home-hero-full {
       position: relative;
-      width: 100vw;
+      width: 100%;
       height: 90vh;
       overflow: hidden;
     }
@@ -3830,7 +3799,7 @@
     /* Section 4: Split Feature 50/50 */
     .home-split-feature {
       display: flex;
-      width: 100vw;
+      width: 100%;
     }
 
     .split-feature-item {
@@ -3922,7 +3891,7 @@
     /* Section 6: Craftsmanship Showcase */
     .home-craftsmanship-banner {
       position: relative;
-      width: 100vw;
+      width: 100%;
       height: 80vh;
       background-color: #12141d;
     }
@@ -3968,7 +3937,7 @@
     .home-story-split {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      width: 100vw;
+      width: 100%;
       background-color: #f4f3ef;
     }
 
@@ -4062,7 +4031,7 @@
 
     /* Section 9: Pre-footer */
     .home-pre-footer {
-      width: 100vw;
+      width: 100%;
       display: block;
       font-size: 0;
     }

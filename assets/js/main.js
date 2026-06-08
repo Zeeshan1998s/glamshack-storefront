@@ -43,9 +43,18 @@
         `
       }
     };
+    // Listen for browser back/forward navigation
+    window.addEventListener('popstate', (event) => {
+      if (event.state && event.state.viewId) {
+        navigateTo(event.state.viewId, false);
+      } else {
+        // If no state, go back to home
+        navigateTo('view-home', false);
+      }
+    });
 
     // Navigates between SPA page views
-    function navigateTo(viewId) {
+    function navigateTo(viewId, updateHistory = true) {
       // Hide all page views
       document.querySelectorAll('.page-view').forEach(view => {
         view.classList.remove('active-view');
@@ -56,9 +65,12 @@
       if (targetView) {
         targetView.classList.add('active-view');
         
-        // Track history if it's different from the current page
-        if (navigationHistory[navigationHistory.length - 1] !== viewId) {
-          navigationHistory.push(viewId);
+        // Handle browser history integration
+        if (updateHistory) {
+          const currentUrl = window.location.hash.replace('#', '');
+          if (currentUrl !== viewId) {
+            history.pushState({ viewId: viewId }, "", `#${viewId}`);
+          }
         }
       }
 
@@ -70,6 +82,15 @@
       // Scroll window to top
       window.scrollTo(0, 0);
     }
+
+    // Initialize history state on load
+    window.addEventListener('DOMContentLoaded', () => {
+      if (!history.state) {
+        history.replaceState({ viewId: 'view-home' }, "", "#view-home");
+      } else if (history.state.viewId) {
+        navigateTo(history.state.viewId, false);
+      }
+    });
 
     // Handles clicking a product card to open the PDP full view
     function openProductPage(event) {
@@ -89,10 +110,8 @@
 
     // Back navigation resolver
     function navigateBack() {
-      if (navigationHistory.length > 1) {
-        navigationHistory.pop(); // Remove current view
-        const previousView = navigationHistory[navigationHistory.length - 1];
-        navigateTo(previousView);
+      if (history.length > 1) {
+        history.back();
       } else {
         navigateTo('view-home');
       }
@@ -146,19 +165,19 @@
         if (activeShopFilter === 'all') {
           matchesCategory = true;
         } else if (activeShopFilter === 'hampers') {
-          matchesCategory = title.includes('hamper');
+          matchesCategory = ['hamper', 'trousseau', 'set', 'gift'].some(kw => title.includes(kw));
         } else if (activeShopFilter === 'trays') {
-          matchesCategory = title.includes('tray') || title.includes('platter');
+          matchesCategory = ['tray', 'platter', 'thali', 'shagun', 'ring'].some(kw => title.includes(kw));
         } else if (activeShopFilter === 'saree-covers') {
-          matchesCategory = title.includes('saree') || title.includes('cover') || title.includes('suit');
+          matchesCategory = ['saree', 'cover', 'suit', 'lehenga', 'gown', 'sherwani'].some(kw => title.includes(kw));
         } else if (activeShopFilter === 'bags') {
-          matchesCategory = title.includes('bag') || title.includes('potli') || title.includes('envelope') || title.includes('clutch');
+          matchesCategory = ['bag', 'potli', 'envelope', 'clutch', 'purse'].some(kw => title.includes(kw));
         } else if (activeShopFilter === 'baskets') {
-          matchesCategory = title.includes('basket') || title.includes('trunk') || title.includes('box') || title.includes('baksa');
+          matchesCategory = ['basket', 'trunk', 'box', 'baksa'].some(kw => title.includes(kw));
         } else if (activeShopFilter === 'pouches') {
-          matchesCategory = title.includes('pouch') || title.includes('organizer');
+          matchesCategory = ['pouch', 'organizer', 'kit', 'case'].some(kw => title.includes(kw));
         } else if (activeShopFilter === 'bands') {
-          matchesCategory = title.includes('band') || title.includes('bangle') || title.includes('necklace') || title.includes('set') || title.includes('earring') || title.includes('choker') || title.includes('pendant');
+          matchesCategory = ['band', 'bangle', 'necklace', 'set', 'earring', 'choker', 'pendant', 'jewelry'].some(kw => title.includes(kw));
         }
         
         const matchesSearch = title.includes(headerSearchQuery.toLowerCase());
@@ -330,15 +349,17 @@
       // Find cards inside shop list context, trousseau list, and engagement list
       const cards = document.querySelectorAll('#shop-list-context .glam-card, #trousseau-list-context .glam-card, #engagement-list-context .glam-card');
       const products = [];
-      const seenTitles = new Set();
+      const seenKeys = new Set();
 
       cards.forEach(card => {
         const attrTitle = card.getAttribute('data-title') || card.getAttribute('shopify-attr--data-title') || '';
         const htmlTitle = card.querySelector('.card-title')?.innerText || '';
         const title = (attrTitle || htmlTitle).trim();
+        const productId = card.getAttribute('shopify-attr--data-id') || card.getAttribute('data-id');
+        const dedupeKey = productId || title;
         
-        if (title && !seenTitles.has(title)) {
-          seenTitles.add(title);
+        if (title && !seenKeys.has(dedupeKey)) {
+          seenKeys.add(dedupeKey);
           const price = card.querySelector('.card-price')?.innerText || '';
           products.push({
             title: title,
@@ -392,7 +413,7 @@
         const title = (attrTitle || htmlTitle).toLowerCase();
         
         // Default trousseau criteria: boxes, hampers, covers, bags, pouches, organizers
-        const isTrousseau = title.includes('box') || title.includes('hamper') || title.includes('cover') || title.includes('bag') || title.includes('pouch') || title.includes('trunk') || title.includes('basket') || title.includes('safa') || title.includes('organizer');
+        const isTrousseau = ['box', 'hamper', 'cover', 'bag', 'pouch', 'trunk', 'basket', 'safa', 'organizer', 'trousseau'].some(kw => title.includes(kw));
         
         let match = false;
         if (activeTrousseauFilter === 'all') {
@@ -400,13 +421,13 @@
         } else if (activeTrousseauFilter === 'saree') {
           match = title.includes('saree') && isTrousseau;
         } else if (activeTrousseauFilter === 'suit') {
-          match = (title.includes('suit') || title.includes('velvet')) && isTrousseau;
+          match = (title.includes('suit') || title.includes('velvet') || title.includes('lehenga') || title.includes('gown')) && isTrousseau;
         } else if (activeTrousseauFilter === 'pouch') {
-          match = (title.includes('pouch') || title.includes('bag') || title.includes('organizer')) && isTrousseau;
+          match = ['pouch', 'bag', 'organizer', 'kit'].some(kw => title.includes(kw)) && isTrousseau;
         } else if (activeTrousseauFilter === 'basket') {
-          match = (title.includes('basket') || title.includes('trunk') || title.includes('box') || title.includes('baksa')) && isTrousseau;
+          match = ['basket', 'trunk', 'box', 'baksa'].some(kw => title.includes(kw)) && isTrousseau;
         } else if (activeTrousseauFilter === 'band') {
-          match = (title.includes('band') || title.includes('bangle') || title.includes('jewelry') || title.includes('set')) && isTrousseau;
+          match = ['band', 'bangle', 'jewelry', 'set'].some(kw => title.includes(kw)) && isTrousseau;
         }
         
         card.style.display = match ? 'flex' : 'none';
@@ -420,7 +441,7 @@
         const title = (attrTitle || htmlTitle).toLowerCase();
         
         // Engagement criteria: tray, platter, thali
-        const isEngagement = title.includes('tray') || title.includes('platter') || title.includes('thali');
+        const isEngagement = ['tray', 'platter', 'thali', 'shagun', 'ring', 'engagement'].some(kw => title.includes(kw));
         card.style.display = isEngagement ? 'flex' : 'none';
       });
 
@@ -433,7 +454,7 @@
         const title = (attrTitle || htmlTitle).toLowerCase();
         
         // Match Haldi or Mehendi or floral
-        const isHaldi = title.includes('haldi') || title.includes('mehendi') || title.includes('floral') || title.includes('kundan') || title.includes('yellow') || title.includes('rose gold');
+        const isHaldi = ['haldi', 'mehendi', 'floral', 'kundan', 'yellow', 'rose gold', 'tray', 'platter', 'thali', 'shagun'].some(kw => title.includes(kw));
         
         if (isHaldi && count < 5) {
           card.style.display = 'flex';
@@ -511,6 +532,7 @@
     });
 
     // Observer to automatically trigger filtering on product rows as they render
+    let carouselFilterTimeout;
     const homeObserver = new MutationObserver((mutations) => {
       let shouldFilter = false;
       for (const mutation of mutations) {
@@ -532,7 +554,10 @@
         if (shouldFilter) break;
       }
       if (shouldFilter) {
-        applyCarouselFilters();
+        clearTimeout(carouselFilterTimeout);
+        carouselFilterTimeout = setTimeout(() => {
+          applyCarouselFilters();
+        }, 100);
       }
     });
 

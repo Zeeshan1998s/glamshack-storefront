@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Glamshack offers premium handcrafted wedding trousseau, platters, hampers, and custom luxury packaging. Elevate your gifting experience with our sustainable and beautifully designed accessories.">
   <title>Glamshack — Customized Wedding Trousseau & Platters</title>
   
   <!-- Shopify Storefront Components SDK -->
@@ -53,25 +54,25 @@
     <nav class="category-nav">
       <div class="container">
         <ul class="category-nav-list">
-          <li><button class="cat-nav-link" onclick="navigateTo('view-home')">Home</button></li>
+          <li><a href="#" class="cat-nav-link" role="button" onclick="event.preventDefault(); navigateTo('view-home')">Home</a></li>
           <li><span class="nav-divider">|</span></li>
-          <li><button class="cat-nav-link" onclick="navigateTo('view-about')">Info</button></li>
+          <li><a href="#" class="cat-nav-link" role="button" onclick="event.preventDefault(); navigateTo('view-about')">Info</a></li>
           <li><span class="nav-divider">|</span></li>
-          <li><button class="cat-nav-link" onclick="handleCategoryNav('hampers')">Hampers</button></li>
+          <li><a href="#" class="cat-nav-link" role="button" onclick="event.preventDefault(); handleCategoryNav('hampers')">Hampers</a></li>
           <li><span class="nav-divider">|</span></li>
-          <li><button class="cat-nav-link" onclick="handleCategoryNav('trays')">Trays</button></li>
+          <li><a href="#" class="cat-nav-link" role="button" onclick="event.preventDefault(); handleCategoryNav('trays')">Trays</a></li>
           <li><span class="nav-divider">|</span></li>
-          <li><button class="cat-nav-link" onclick="handleCategoryNav('saree-covers')">Saree Covers</button></li>
+          <li><a href="#" class="cat-nav-link" role="button" onclick="event.preventDefault(); handleCategoryNav('saree-covers')">Saree Covers</a></li>
           <li><span class="nav-divider">|</span></li>
-          <li><button class="cat-nav-link" onclick="handleCategoryNav('bags')">Bags</button></li>
+          <li><a href="#" class="cat-nav-link" role="button" onclick="event.preventDefault(); handleCategoryNav('bags')">Bags</a></li>
           <li><span class="nav-divider">|</span></li>
-          <li><button class="cat-nav-link" onclick="handleCategoryNav('baskets')">Basket / Trunks</button></li>
+          <li><a href="#" class="cat-nav-link" role="button" onclick="event.preventDefault(); handleCategoryNav('baskets')">Basket / Trunks</a></li>
           <li><span class="nav-divider">|</span></li>
-          <li><button class="cat-nav-link" onclick="handleCategoryNav('pouches')">Pouches</button></li>
+          <li><a href="#" class="cat-nav-link" role="button" onclick="event.preventDefault(); handleCategoryNav('pouches')">Pouches</a></li>
           <li><span class="nav-divider">|</span></li>
-          <li><button class="cat-nav-link" onclick="handleCategoryNav('bands')">Bands</button></li>
+          <li><a href="#" class="cat-nav-link" role="button" onclick="event.preventDefault(); handleCategoryNav('bands')">Bands</a></li>
           <li><span class="nav-divider">|</span></li>
-          <li><button class="cat-nav-link" onclick="navigateTo('view-blog')">Journal</button></li>
+          <li><a href="#" class="cat-nav-link" role="button" onclick="event.preventDefault(); navigateTo('view-blog')">Journal</a></li>
         </ul>
       </div>
     </nav>
@@ -85,8 +86,8 @@
     <section class="home-hero-full">
       <img class="home-hero-bg" src="https://images.unsplash.com/photo-1616423641402-f83196fc9df9?w=2000&auto=format&fit=crop" alt="Craftsmanship">
       <div class="home-hero-content">
-        <h1 class="hero-display-title">WE CARE ABOUT OUR CRAFTSMANSHIP</h1>
-        <p class="hero-display-subtitle">Explore our collection of premium handcrafted accessories.</p>
+        <h1 class="hero-display-title">HANDCRAFTED TROUSSEAU & LEATHER ACCESSORIES</h1>
+        <p class="hero-display-subtitle">Explore our collection of premium, handcrafted luxury packaging.</p>
         <button class="btn-hero-shop" onclick="navigateTo('view-shop')">Shop Collection</button>
       </div>
     </section>
@@ -354,11 +355,11 @@
             <!-- TOP SECTION -->
             <div class="pdp-top-section">
               <div class="pdp-media-grid">
-                <!-- 4 image grid using the main image for all placeholders -->
+                <!-- 4 image grid: 1 main image, 3 distinct placeholder lifestyle images -->
                 <div class="pdp-media-item"><shopify-media width="800" height="800" query="product.selectedOrFirstAvailableVariant.image"></shopify-media></div>
-                <div class="pdp-media-item"><shopify-media width="800" height="800" query="product.selectedOrFirstAvailableVariant.image"></shopify-media></div>
-                <div class="pdp-media-item"><shopify-media width="800" height="800" query="product.selectedOrFirstAvailableVariant.image"></shopify-media></div>
-                <div class="pdp-media-item"><shopify-media width="800" height="800" query="product.selectedOrFirstAvailableVariant.image"></shopify-media></div>
+                <div class="pdp-media-item"><img src="https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=800&auto=format&fit=crop" style="width:100%; height:100%; object-fit:cover;" alt="Detail"></div>
+                <div class="pdp-media-item"><img src="https://images.unsplash.com/photo-1590874103328-eac38a683ce7?w=800&auto=format&fit=crop" style="width:100%; height:100%; object-fit:cover;" alt="Detail"></div>
+                <div class="pdp-media-item"><img src="https://images.unsplash.com/photo-1559563458-527698bf5295?w=800&auto=format&fit=crop" style="width:100%; height:100%; object-fit:cover;" alt="Detail"></div>
               </div>
               
               <div class="pdp-info-sticky-wrapper">
@@ -367,19 +368,12 @@
                   <h1 class="pdp-title"><shopify-data query="product.title"></shopify-data></h1>
                   <div class="pdp-price"><shopify-money query="product.selectedOrFirstAvailableVariant.price"></shopify-money></div>
                   
-                  <div class="pdp-color-selector">
-                    <span class="color-label">Color</span>
-                    <div class="color-options">
-                      <span class="color-swatch active" style="background: #a67c52;"></span>
-                      <span class="color-swatch" style="background: #2a2a2a;"></span>
-                      <span class="color-swatch" style="background: #d4b595;"></span>
-                    </div>
-                  </div>
+                  <!-- Removed hardcoded swatches to prevent user confusion -->
 
                   <div class="pdp-actions">
                     <button 
                       class="btn-add-to-cart-new"
-                      onclick="document.getElementById('cart').addLine(event).showModal();"
+                      onclick="document.getElementById('cart').addLine(event).then(() => { document.getElementById('cart').showModal(); });"
                       shopify-attr--disabled="!product.selectedOrFirstAvailableVariant.availableForSale"
                     >
                       ADD TO BAG
@@ -489,15 +483,15 @@
                     <div class="wear-this-card">
                       <img src="https://images.unsplash.com/photo-1590874103328-eac38a683ce7?w=300&auto=format&fit=crop" />
                       <div class="wear-this-card-info">
-                        <span>Cardholder</span>
-                        <span>$45</span>
+                        <span>Cardholder Styling</span>
+                        <span style="font-size: 0.8em; color: #666;">Inspiration</span>
                       </div>
                     </div>
                     <div class="wear-this-card">
                       <img src="https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=300&auto=format&fit=crop" />
                       <div class="wear-this-card-info">
-                        <span>Wallet</span>
-                        <span>$85</span>
+                        <span>Wallet Styling</span>
+                        <span style="font-size: 0.8em; color: #666;">Inspiration</span>
                       </div>
                     </div>
                   </div>
