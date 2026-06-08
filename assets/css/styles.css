@@ -144,19 +144,30 @@
       padding: 0;
     }
 
-    .header-left-nav {
+    .header-left-group {
       display: flex;
       align-items: center;
-      flex: 1;
-      /* take up equal space */
-      justify-content: flex-start;
+      gap: 24px; /* Space between links and search */
     }
 
-    .header-actions-right {
+    .header-right-group {
       display: flex;
       align-items: center;
-      justify-content: flex-end;
-      gap: 16px;
+      gap: 16px; /* Space between utils, icons, and logo */
+    }
+
+    .top-util-link {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      color: var(--text-main);
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: color 0.3s ease;
+    }
+
+    .top-util-link:hover {
+      color: var(--accent-gold);
     }
 
     /* Category Navigation - now horizontal in header-left-nav */
@@ -177,7 +188,7 @@
     }
 
     .cat-nav-link {
-      font-size: 0.75rem;
+      font-size: 12px;
       font-weight: 600;
       letter-spacing: 0.1em;
       text-transform: uppercase;
@@ -218,7 +229,7 @@
       right: -8px;
       background: var(--accent-red);
       color: #fff;
-      font-size: 0.6rem;
+      font-size: 9.6px;
       font-weight: bold;
       width: 16px;
       height: 16px;
@@ -232,7 +243,7 @@
     .logo {
       font-family: var(--font-body) !important;
       font-weight: 700 !important;
-      font-size: 0.6rem !important;
+      font-size: 9.6px !important;
       letter-spacing: 0.4em !important;
       color: var(--text-main) !important;
       text-transform: uppercase !important;
@@ -305,7 +316,7 @@
       font-family: var(--font-body);
       color: var(--accent-gold);
       font-weight: 700;
-      font-size: 0.7rem;
+      font-size: 11.2px;
       text-transform: uppercase;
       letter-spacing: 0.3em;
       margin-bottom: calc(var(--spacing-grid) * 2.5);
@@ -313,7 +324,7 @@
     }
 
     .hero-title {
-      font-size: clamp(3.2rem, 7vw, 5.5rem);
+      font-size: clamp(51.2px, 7vw, 88px);
       line-height: 0.95;
       font-weight: 300;
       margin-bottom: calc(var(--spacing-grid) * 4);
@@ -331,7 +342,7 @@
 
     .hero-desc {
       color: var(--text-muted);
-      font-size: 1.1rem;
+      font-size: 17.6px;
       font-weight: 300;
       line-height: 1.85;
       margin-bottom: calc(var(--spacing-grid) * 6);
@@ -351,7 +362,7 @@
       border: 1px solid var(--accent-gold);
       font-family: var(--font-body);
       font-weight: 600;
-      font-size: 0.75rem;
+      font-size: 12px;
       text-transform: uppercase;
       letter-spacing: 0.2em;
       padding: calc(var(--spacing-grid) * 2.5) calc(var(--spacing-grid) * 5.5);
@@ -440,7 +451,7 @@
       animation: marquee 35s linear infinite;
       font-family: var(--font-body);
       font-weight: 600;
-      font-size: 0.65rem;
+      font-size: 10.4px;
       text-transform: uppercase;
       letter-spacing: 0.25em;
       color: var(--text-muted);
@@ -476,7 +487,7 @@
     .section-title-tag {
       font-family: var(--font-body);
       color: var(--accent-gold);
-      font-size: 0.75rem;
+      font-size: 12px;
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.3em;
@@ -485,7 +496,7 @@
     }
 
     .section-main-title {
-      font-size: 3rem;
+      font-size: 48px;
       font-weight: 300;
       color: #fff;
       letter-spacing: -0.015em;
@@ -505,7 +516,7 @@
       border: 1px solid rgba(255, 255, 255, 0.08);
       color: var(--text-muted);
       font-family: var(--font-body);
-      font-size: 0.75rem;
+      font-size: 12px;
       font-weight: 600;
       text-transform: uppercase;
       letter-spacing: 0.15em;
@@ -595,7 +606,7 @@
       background-color: rgba(5, 6, 10, 0.8);
       color: var(--accent-gold);
       border: 1px solid rgba(201, 160, 84, 0.4);
-      font-size: 0.6rem;
+      font-size: 9.6px;
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.15em;
@@ -613,7 +624,7 @@
       height: 100%;
       background-color: rgba(5, 6, 10, 0.6);
       color: var(--accent-gold);
-      font-size: 0.75rem;
+      font-size: 12px;
       font-weight: 600;
       text-transform: uppercase;
       letter-spacing: 0.2em;
@@ -656,7 +667,7 @@
     }
 
     .card-title {
-      font-size: 1.15rem;
+      font-size: 18.4px;
       font-weight: 400;
       color: var(--text-main);
       min-height: 54px;
@@ -671,7 +682,7 @@
 
     .card-price {
       font-family: var(--font-body);
-      font-size: 0.95rem;
+      font-size: 15.2px;
       font-weight: 600;
       color: var(--accent-gold);
       letter-spacing: 0.02em;
@@ -685,7 +696,7 @@
       color: var(--text-muted);
       font-family: var(--font-body);
       font-weight: 600;
-      font-size: 0.7rem;
+      font-size: 11.2px;
       text-transform: uppercase;
       letter-spacing: 0.15em;
       padding: calc(var(--spacing-grid) * 2);
@@ -712,7 +723,7 @@
       background-color: transparent;
       border: 1px solid rgba(255, 255, 255, 0.08);
       color: var(--text-muted);
-      font-size: 0.7rem;
+      font-size: 11.2px;
       text-transform: uppercase;
       letter-spacing: 0.15em;
       padding: 12px 24px;
@@ -776,7 +787,7 @@
     }
 
     .pdp-vendor {
-      font-size: 0.75rem;
+      font-size: 12px;
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.25em;
@@ -786,7 +797,7 @@
     }
 
     .pdp-title {
-      font-size: clamp(2.2rem, 4vw, 3.2rem);
+      font-size: clamp(35.2px, 4vw, 51.2px);
       font-weight: 300;
       line-height: 1.1;
       color: #fff;
@@ -794,7 +805,7 @@
     }
 
     .pdp-price {
-      font-size: 1.65rem;
+      font-size: 26.4px;
       font-weight: 600;
       color: #fff;
       font-family: var(--font-body);
@@ -812,7 +823,7 @@
 
     #pdp-context shopify-variant-selector::part(label) {
       font-weight: 600;
-      font-size: 0.7rem;
+      font-size: 11.2px;
       text-transform: uppercase;
       letter-spacing: 0.2em;
       color: var(--text-muted);
@@ -825,7 +836,7 @@
       border: 1px solid rgba(255, 255, 255, 0.08);
       border-radius: 30px;
       padding: 10px 22px;
-      font-size: 0.75rem;
+      font-size: 12px;
       font-weight: 600;
       letter-spacing: 0.05em;
       cursor: pointer;
@@ -870,7 +881,7 @@
       border-radius: 6px;
       font-family: var(--font-body);
       font-weight: 600;
-      font-size: 0.8rem;
+      font-size: 12.8px;
       text-transform: uppercase;
       letter-spacing: 0.2em;
     }
@@ -885,7 +896,7 @@
     }
 
     .pdp-description-title {
-      font-size: 0.75rem;
+      font-size: 12px;
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.2em;
@@ -894,7 +905,7 @@
     }
 
     .pdp-description-html {
-      font-size: 0.85rem;
+      font-size: 13.6px;
       color: var(--text-muted);
       line-height: 1.7;
     }
@@ -913,7 +924,7 @@
     .pdp-accordion summary {
       font-family: var(--font-body);
       font-weight: 600;
-      font-size: 0.75rem;
+      font-size: 12px;
       text-transform: uppercase;
       letter-spacing: 0.18em;
       color: var(--text-main);
@@ -931,7 +942,7 @@
 
     .pdp-accordion summary::after {
       content: '+';
-      font-size: 1.25rem;
+      font-size: 20px;
       color: var(--accent-gold);
       font-weight: 300;
       transition: transform 0.3s ease;
@@ -943,7 +954,7 @@
     }
 
     .pdp-accordion .details-content {
-      font-size: 0.8rem;
+      font-size: 12.8px;
       color: var(--text-muted);
       padding-top: 12px;
       line-height: 1.6;
@@ -990,7 +1001,7 @@
       align-items: center;
       justify-content: center;
       font-family: var(--font-display);
-      font-size: 2.2rem;
+      font-size: 35.2px;
       color: #fff;
       font-weight: 500;
       box-shadow: 0 10px 25px rgba(216, 27, 96, 0.25);
@@ -999,14 +1010,14 @@
 
     .profile-name {
       font-family: var(--font-display);
-      font-size: 1.8rem;
+      font-size: 28.8px;
       color: #fff;
       margin-bottom: 6px;
       letter-spacing: 0.015em;
     }
 
     .profile-email {
-      font-size: 0.85rem;
+      font-size: 13.6px;
       color: var(--text-muted);
       margin-bottom: calc(var(--spacing-grid) * 4);
       letter-spacing: 0.05em;
@@ -1017,7 +1028,7 @@
       justify-content: space-between;
       border-top: 1px solid rgba(255, 255, 255, 0.05);
       padding: 14px 0;
-      font-size: 0.85rem;
+      font-size: 13.6px;
     }
 
     .profile-meta-lbl {
@@ -1044,7 +1055,7 @@
     }
 
     .orders-title {
-      font-size: 1.45rem;
+      font-size: 23.2px;
       color: #fff;
       margin-bottom: calc(var(--spacing-grid) * 3);
       border-bottom: 1px solid var(--border-color);
@@ -1065,24 +1076,24 @@
       border: 1px solid var(--border-color);
       padding: 14px 18px;
       border-radius: 8px;
-      font-size: 0.85rem;
+      font-size: 13.6px;
     }
 
     .order-info h5 {
       color: #fff;
-      font-size: 0.9rem;
+      font-size: 14.4px;
       margin-bottom: 2px;
     }
 
     .order-date {
       color: var(--text-muted);
-      font-size: 0.75rem;
+      font-size: 12px;
     }
 
     .order-status {
       padding: 4px 10px;
       border-radius: 4px;
-      font-size: 0.7rem;
+      font-size: 11.2px;
       font-weight: 600;
       text-transform: uppercase;
       letter-spacing: 0.05em;
@@ -1114,7 +1125,7 @@
       flex: 1;
       padding: 12px;
       border-radius: 4px;
-      font-size: 0.75rem;
+      font-size: 12px;
       font-weight: 600;
       text-transform: uppercase;
       letter-spacing: 0.1em;
@@ -1178,7 +1189,7 @@
     .cart-count-badge {
       background-color: var(--accent-pink);
       color: #fff;
-      font-size: 0.7rem;
+      font-size: 11.2px;
       font-weight: 700;
       padding: 2px 6px;
       border-radius: 10px;
@@ -1216,7 +1227,7 @@
     shopify-cart::part(line-heading) {
       font-family: var(--font-display);
       color: #fff;
-      font-size: 1.15rem;
+      font-size: 18.4px;
       font-weight: 400;
     }
 
@@ -1228,7 +1239,7 @@
 
     shopify-cart::part(line-options) {
       color: var(--text-muted);
-      font-size: 0.75rem;
+      font-size: 12px;
       margin-top: 2px;
     }
 
@@ -1236,7 +1247,7 @@
       color: var(--accent-gold);
       font-family: var(--font-body);
       font-weight: 600;
-      font-size: 0.9rem;
+      font-size: 14.4px;
     }
 
     shopify-cart::part(primary-button) {
@@ -1246,7 +1257,7 @@
       border-radius: 4px;
       font-family: var(--font-body);
       font-weight: 600;
-      font-size: 0.8rem;
+      font-size: 12.8px;
       text-transform: uppercase;
       letter-spacing: 0.15em;
       padding: 18px;
@@ -1293,7 +1304,7 @@
     }
 
     .about-subtitle {
-      font-size: 1.8rem;
+      font-size: 28.8px;
       color: #fff;
       margin-bottom: 16px;
       font-family: var(--font-display);
@@ -1301,7 +1312,7 @@
 
     .about-desc {
       color: var(--text-muted);
-      font-size: 0.95rem;
+      font-size: 15.2px;
       line-height: 1.8;
       margin-bottom: 20px;
     }
@@ -1327,14 +1338,14 @@
 
     .stat-num {
       font-family: var(--font-display);
-      font-size: 2.2rem;
+      font-size: 35.2px;
       color: var(--accent-gold);
       font-weight: 500;
       line-height: 1;
     }
 
     .stat-label {
-      font-size: 0.7rem;
+      font-size: 11.2px;
       color: var(--text-muted);
       text-transform: uppercase;
       letter-spacing: 0.1em;
@@ -1377,19 +1388,19 @@
     }
 
     .pillar-icon {
-      font-size: 2.5rem;
+      font-size: 40px;
       margin-bottom: 16px;
     }
 
     .pillar-title {
       font-family: var(--font-display);
-      font-size: 1.35rem;
+      font-size: 21.6px;
       color: #fff;
       margin-bottom: 10px;
     }
 
     .pillar-text {
-      font-size: 0.85rem;
+      font-size: 13.6px;
       color: var(--text-muted);
       line-height: 1.6;
     }
@@ -1455,7 +1466,7 @@
       background-color: rgba(5, 6, 10, 0.85);
       color: var(--accent-gold);
       border: 1px solid rgba(201, 160, 84, 0.4);
-      font-size: 0.6rem;
+      font-size: 9.6px;
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.1em;
@@ -1473,7 +1484,7 @@
     }
 
     .blog-date {
-      font-size: 0.7rem;
+      font-size: 11.2px;
       color: var(--text-muted);
       text-transform: uppercase;
       letter-spacing: 0.1em;
@@ -1481,13 +1492,13 @@
 
     .blog-card-title {
       font-family: var(--font-display);
-      font-size: 1.35rem;
+      font-size: 21.6px;
       color: #fff;
       line-height: 1.3;
     }
 
     .blog-excerpt {
-      font-size: 0.85rem;
+      font-size: 13.6px;
       color: var(--text-muted);
       line-height: 1.6;
       display: -webkit-box;
@@ -1497,7 +1508,7 @@
     }
 
     .blog-read-btn {
-      font-size: 0.75rem;
+      font-size: 12px;
       font-weight: 600;
       color: var(--accent-pink);
       text-transform: uppercase;
@@ -1518,7 +1529,7 @@
     }
 
     .article-meta {
-      font-size: 0.75rem;
+      font-size: 12px;
       color: var(--accent-gold);
       text-transform: uppercase;
       letter-spacing: 0.15em;
@@ -1528,7 +1539,7 @@
     }
 
     .article-title {
-      font-size: clamp(2.4rem, 5vw, 3.6rem);
+      font-size: clamp(38.4px, 5vw, 57.6px);
       font-weight: 300;
       line-height: 1.15;
       color: #fff;
@@ -1536,7 +1547,7 @@
     }
 
     .article-author {
-      font-size: 0.85rem;
+      font-size: 13.6px;
       color: var(--text-muted);
       font-style: italic;
     }
@@ -1557,7 +1568,7 @@
     }
 
     .article-body-content {
-      font-size: 1.05rem;
+      font-size: 16.8px;
       color: rgba(255, 255, 255, 0.85);
       line-height: 1.9;
     }
@@ -1569,7 +1580,7 @@
     .article-body-content .dropcap {
       float: left;
       font-family: var(--font-display);
-      font-size: 4.2rem;
+      font-size: 67.2px;
       line-height: 0.85;
       padding-right: 12px;
       padding-top: 4px;
@@ -1600,7 +1611,7 @@
 
     .footer-col-title {
       font-family: var(--font-display), 'Playfair Display', serif;
-      font-size: 1.6rem;
+      font-size: 25.6px;
       font-weight: 300;
       color: #fff;
       margin-bottom: 24px;
@@ -1617,7 +1628,7 @@
 
     .footer-links a {
       color: #fff;
-      font-size: 0.75rem;
+      font-size: 12px;
       text-decoration: none;
       opacity: 0.9;
       transition: opacity 0.3s ease;
@@ -1629,7 +1640,7 @@
     }
 
     .newsletter-desc {
-      font-size: 0.75rem;
+      font-size: 12px;
       opacity: 0.9;
       margin-bottom: 30px;
       max-width: 90%;
@@ -1647,7 +1658,7 @@
       background: transparent;
       border: none;
       color: #fff;
-      font-size: 0.75rem;
+      font-size: 12px;
       flex: 1;
       outline: none;
       font-family: var(--font-body);
@@ -1663,7 +1674,7 @@
       background: transparent;
       border: none;
       color: #fff;
-      font-size: 0.75rem;
+      font-size: 12px;
       font-family: var(--font-body);
       cursor: pointer;
       text-transform: uppercase;
@@ -1693,7 +1704,7 @@
     }
 
     .footer-copyright {
-      font-size: 0.6rem;
+      font-size: 9.6px;
       opacity: 0.8;
       margin-top: 80px;
     }
@@ -1738,7 +1749,7 @@
     }
 
     .hero-card-subtitle {
-      font-size: 0.75rem;
+      font-size: 12px;
       font-weight: 700;
       letter-spacing: 0.25em;
       color: rgba(255, 255, 255, 0.7);
@@ -1747,7 +1758,7 @@
     }
 
     .hero-card-title {
-      font-size: clamp(2.8rem, 6vw, 4.5rem);
+      font-size: clamp(44.8px, 6vw, 72px);
       line-height: 1.0;
       font-weight: 700;
       color: #fff;
@@ -1763,7 +1774,7 @@
     }
 
     .hero-card-desc {
-      font-size: 1.05rem;
+      font-size: 16.8px;
       font-weight: 300;
       color: rgba(255, 255, 255, 0.85);
       line-height: 1.7;
@@ -1777,7 +1788,7 @@
       border-radius: 30px;
       color: #fff;
       font-weight: 600;
-      font-size: 0.75rem;
+      font-size: 12px;
       text-transform: uppercase;
       letter-spacing: 0.2em;
       padding: 12px 28px;
@@ -1856,7 +1867,7 @@
 
     .carousel-view-all-btn {
       color: var(--accent-gold);
-      font-size: 0.8rem;
+      font-size: 12.8px;
       font-weight: 600;
       text-transform: uppercase;
       letter-spacing: 0.1em;
@@ -1880,7 +1891,7 @@
     }
 
     .submenu-link {
-      font-size: 0.75rem;
+      font-size: 12px;
       font-weight: 500;
       color: var(--text-muted);
       text-transform: uppercase;
@@ -1900,7 +1911,7 @@
 
     .submenu-divider {
       color: rgba(255, 255, 255, 0.08);
-      font-size: 0.75rem;
+      font-size: 12px;
       user-select: none;
     }
 
@@ -1949,7 +1960,7 @@
       color: var(--text-muted);
       margin-bottom: 24px;
       line-height: 1.7;
-      font-size: 0.95rem;
+      font-size: 15.2px;
     }
 
     #haldi-list-context {
@@ -2012,7 +2023,7 @@
     }
 
     .mini-card-title {
-      font-size: 0.8rem;
+      font-size: 12.8px;
       color: #fff;
       font-weight: 500;
       white-space: nowrap;
@@ -2021,7 +2032,7 @@
     }
 
     .mini-card-price {
-      font-size: 0.75rem;
+      font-size: 12px;
       color: var(--accent-gold);
       font-weight: 600;
     }
@@ -2095,7 +2106,7 @@
       left: 20px;
       right: 20px;
       font-family: var(--font-display);
-      font-size: 1.45rem;
+      font-size: 23.2px;
       font-weight: 500;
       color: #fff;
       letter-spacing: 0.02em;
@@ -2133,7 +2144,7 @@
 
     .index-column-title {
       font-family: var(--font-display);
-      font-size: 1.25rem;
+      font-size: 20px;
       font-weight: 600;
       color: #fff;
       border-bottom: 1px solid rgba(255, 255, 255, 0.05);
@@ -2148,7 +2159,7 @@
     }
 
     .index-list a {
-      font-size: 0.85rem;
+      font-size: 13.6px;
       color: var(--text-muted);
       transition: color 0.3s ease;
     }
@@ -2187,7 +2198,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 2.2rem;
+      font-size: 35.2px;
       margin-bottom: 16px;
       background: radial-gradient(circle, rgba(18, 20, 29, 0.4) 0%, rgba(8, 9, 13, 0.6) 100%);
       box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
@@ -2202,13 +2213,13 @@
 
     .value-title {
       font-family: var(--font-display);
-      font-size: 1.35rem;
+      font-size: 21.6px;
       color: #fff;
       margin-bottom: 8px;
     }
 
     .value-text {
-      font-size: 0.85rem;
+      font-size: 13.6px;
       color: var(--text-muted);
       line-height: 1.6;
       max-width: 280px;
@@ -2220,7 +2231,7 @@
     .top-banner {
       background-color: var(--accent-navy);
       color: #ffffff;
-      font-size: 0.65rem;
+      font-size: 10.4px;
       font-weight: 600;
       text-transform: uppercase;
       letter-spacing: 0.2em;
@@ -2820,7 +2831,7 @@
 
     .card-title {
       font-family: var(--font-body) !important;
-      font-size: 0.9rem !important;
+      font-size: 14.4px !important;
       font-weight: 500 !important;
       color: var(--text-main) !important;
       min-height: auto !important;
@@ -2830,7 +2841,7 @@
 
     .card-price {
       font-family: var(--font-body) !important;
-      font-size: 0.85rem !important;
+      font-size: 13.6px !important;
       font-weight: 600 !important;
       color: var(--text-muted) !important;
     }
@@ -2884,7 +2895,7 @@
     .category-block-title {
       position: static !important;
       font-family: var(--font-body) !important;
-      font-size: 0.95rem !important;
+      font-size: 15.2px !important;
       font-weight: 600 !important;
       color: var(--text-main) !important;
       text-align: center !important;
@@ -2907,7 +2918,7 @@
       position: absolute !important;
       left: 0 !important;
       color: var(--accent-red) !important;
-      font-size: 0.9rem !important;
+      font-size: 14.4px !important;
     }
 
     /* Wireframe Grid Layout for Products (replace horizontal scroll) */
@@ -3054,7 +3065,7 @@
     .search-nav-link {
       background: transparent !important;
       border: none !important;
-      font-size: 0.75rem !important;
+      font-size: 12px !important;
       font-weight: 600 !important;
       color: var(--text-muted) !important;
       text-transform: uppercase !important;
@@ -3080,7 +3091,7 @@
       background: transparent !important;
       color: var(--text-main) !important;
       font-family: var(--font-body) !important;
-      font-size: 0.85rem !important;
+      font-size: 13.6px !important;
       text-transform: uppercase !important;
       letter-spacing: 0.15em !important;
       outline: none !important;
@@ -3098,13 +3109,13 @@
       transform: translateY(-50%) !important;
       background: transparent !important;
       border: none !important;
-      font-size: 1rem !important;
+      font-size: 16px !important;
       cursor: pointer !important;
       color: var(--text-main) !important;
     }
 
     .search-drawer-status {
-      font-size: 0.7rem !important;
+      font-size: 11.2px !important;
       font-weight: 600 !important;
       color: var(--text-main) !important;
       text-transform: uppercase !important;
@@ -3120,7 +3131,7 @@
     }
 
     .search-drawer-footer-links a {
-      font-size: 0.7rem !important;
+      font-size: 11.2px !important;
       font-weight: 600 !important;
       color: var(--text-muted) !important;
       text-transform: uppercase !important;
@@ -3147,7 +3158,7 @@
       right: 40px !important;
       background: transparent !important;
       border: none !important;
-      font-size: 1.5rem !important;
+      font-size: 24px !important;
       cursor: pointer !important;
       color: var(--text-main) !important;
       z-index: 10 !important;
@@ -3166,7 +3177,7 @@
     }
 
     .featured-title {
-      font-size: 0.8rem !important;
+      font-size: 12.8px !important;
       text-transform: uppercase !important;
       margin-bottom: 16px !important;
       color: var(--text-main) !important;
@@ -3185,13 +3196,13 @@
     }
 
     .featured-caption .date {
-      font-size: 0.7rem !important;
+      font-size: 11.2px !important;
       text-transform: uppercase !important;
       color: var(--text-muted) !important;
     }
 
     .featured-caption .desc {
-      font-size: 0.85rem !important;
+      font-size: 13.6px !important;
       color: var(--text-main) !important;
     }
 
@@ -3250,7 +3261,7 @@
 
     .search-result-title {
       font-family: var(--font-body) !important;
-      font-size: 0.8rem !important;
+      font-size: 12.8px !important;
       color: var(--text-main) !important;
       margin: 0 !important;
       text-transform: capitalize !important;
@@ -3258,7 +3269,7 @@
 
     .search-result-price {
       font-family: var(--font-body) !important;
-      font-size: 0.8rem !important;
+      font-size: 12.8px !important;
       color: var(--text-main) !important;
     }
 
@@ -3367,7 +3378,7 @@
     }
 
     .pdp-breadcrumb {
-      font-size: 0.7rem;
+      font-size: 11.2px;
       letter-spacing: 0.1em;
       color: var(--text-muted);
       margin-bottom: 24px;
@@ -3375,14 +3386,14 @@
 
     .pdp-title {
       font-family: var(--font-display);
-      font-size: 2.2rem;
+      font-size: 35.2px;
       color: var(--text-main);
       margin-bottom: 12px;
       font-weight: 400;
     }
 
     .pdp-price {
-      font-size: 1.1rem;
+      font-size: 17.6px;
       color: var(--accent-red);
       font-weight: 600;
       margin-bottom: 32px;
@@ -3395,7 +3406,7 @@
     }
 
     .color-label {
-      font-size: 0.8rem;
+      font-size: 12.8px;
       font-weight: 600;
       color: var(--text-main);
       display: block;
@@ -3430,7 +3441,7 @@
       color: #fff;
       border: none;
       padding: 16px;
-      font-size: 0.85rem;
+      font-size: 13.6px;
       letter-spacing: 0.1em;
       text-transform: uppercase;
       font-weight: 600;
@@ -3455,7 +3466,7 @@
       display: flex;
       align-items: center;
       gap: 12px;
-      font-size: 0.8rem;
+      font-size: 12.8px;
       color: var(--text-muted);
     }
 
@@ -3474,7 +3485,7 @@
 
     .quote-text {
       font-family: var(--font-display);
-      font-size: 2.5rem;
+      font-size: 40px;
       line-height: 1.2;
       color: var(--text-main);
       margin-bottom: 24px;
@@ -3482,7 +3493,7 @@
     }
 
     .quote-subtext {
-      font-size: 0.9rem;
+      font-size: 14.4px;
       line-height: 1.6;
       color: var(--text-muted);
       margin-bottom: 32px;
@@ -3505,7 +3516,7 @@
 
     .pdp-accordion summary {
       font-weight: 600;
-      font-size: 0.85rem;
+      font-size: 13.6px;
       color: var(--text-main);
       cursor: pointer;
       list-style: none;
@@ -3520,7 +3531,7 @@
 
     .pdp-accordion summary::after {
       content: '+';
-      font-size: 1.2rem;
+      font-size: 19.2px;
       font-weight: 300;
     }
 
@@ -3530,7 +3541,7 @@
 
     .pdp-accordion .details-content {
       padding-top: 16px;
-      font-size: 0.85rem;
+      font-size: 13.6px;
       line-height: 1.6;
       color: var(--text-muted);
     }
@@ -3542,7 +3553,7 @@
     }
 
     .section-heading {
-      font-size: 0.85rem;
+      font-size: 13.6px;
       letter-spacing: 0.1em;
       text-transform: uppercase;
       font-weight: 600;
@@ -3569,13 +3580,13 @@
     }
 
     .styling-caption h4 {
-      font-size: 0.85rem;
+      font-size: 13.6px;
       margin-bottom: 4px;
       color: var(--text-main);
     }
 
     .styling-caption p {
-      font-size: 0.75rem;
+      font-size: 12px;
       color: var(--text-muted);
     }
 
@@ -3615,14 +3626,14 @@
 
     .section-heading-serif {
       font-family: var(--font-display);
-      font-size: 2.5rem;
+      font-size: 40px;
       font-weight: 400;
       color: var(--text-main);
       margin-bottom: 16px;
     }
 
     .wear-this-desc {
-      font-size: 0.9rem;
+      font-size: 14.4px;
       color: var(--text-muted);
       margin-bottom: 40px;
       line-height: 1.5;
@@ -3652,7 +3663,7 @@
       display: flex;
       flex-direction: column;
       gap: 8px;
-      font-size: 0.85rem;
+      font-size: 13.6px;
       font-weight: 600;
       color: var(--text-main);
     }
@@ -3669,7 +3680,7 @@
     }
 
     .wear-this-list li {
-      font-size: 0.8rem;
+      font-size: 12.8px;
       color: var(--text-muted);
       text-transform: uppercase;
       letter-spacing: 0.05em;
@@ -3696,7 +3707,7 @@
     }
 
     .section-heading-small {
-      font-size: 0.75rem;
+      font-size: 12px;
       letter-spacing: 0.1em;
       text-transform: uppercase;
       color: var(--text-muted);
@@ -3774,7 +3785,7 @@
 
     .hero-display-title {
       color: #fff;
-      font-size: clamp(2.5rem, 5vw, 4.5rem);
+      font-size: clamp(40px, 5vw, 72px);
       line-height: 1.05;
       font-weight: 300;
       margin-bottom: 20px;
@@ -3785,7 +3796,7 @@
     .hero-display-subtitle {
       color: rgba(255, 255, 255, 0.8);
       font-family: var(--font-body);
-      font-size: 1.1rem;
+      font-size: 17.6px;
       margin-bottom: 30px;
     }
 
@@ -3795,7 +3806,7 @@
       border: 1px solid #fff;
       padding: 16px 32px;
       font-family: var(--font-body);
-      font-size: 0.85rem;
+      font-size: 13.6px;
       font-weight: 600;
       text-transform: uppercase;
       letter-spacing: 0.1em;
@@ -3826,7 +3837,7 @@
 
     .quote-text {
       font-family: var(--font-display), "Playfair Display", "Didot", "Bodoni MT", "Times New Roman", serif;
-      font-size: clamp(2rem, 3.2vw, 3.2rem) !important;
+      font-size: clamp(32px, 3.2vw, 51.2px) !important;
       color: #333;
       font-weight: 300;
       line-height: 1.35 !important;
@@ -3941,7 +3952,7 @@
 
     .split-feature-text h3 {
       font-family: var(--font-display), 'Playfair Display', serif;
-      font-size: 2.5rem;
+      font-size: 40px;
       margin-bottom: 15px;
       font-weight: 300;
       letter-spacing: normal;
@@ -3951,7 +3962,7 @@
 
     .split-feature-text p {
       font-family: var(--font-body);
-      font-size: 0.8rem;
+      font-size: 12.8px;
       line-height: 1.5;
       margin-bottom: 25px;
       max-width: 90%;
@@ -3962,7 +3973,7 @@
       display: inline-block;
       color: #fff;
       text-decoration: none;
-      font-size: 0.75rem;
+      font-size: 12px;
       font-weight: 600;
       letter-spacing: 0.05em;
       transition: opacity 0.3s ease;
@@ -3990,7 +4001,7 @@
 
     .categories-header-left .section-main-title {
       font-family: var(--font-display), 'Playfair Display', serif;
-      font-size: 2.8rem;
+      font-size: 44.8px;
       color: #333;
       margin-bottom: 15px;
       font-weight: 300;
@@ -4000,7 +4011,7 @@
       display: inline-block;
       color: #111;
       text-decoration: none;
-      font-size: 0.75rem;
+      font-size: 12px;
       font-weight: 600;
       letter-spacing: 0.05em;
       transition: opacity 0.3s ease;
@@ -4067,7 +4078,7 @@
     .category-product-title {
       font-family: var(--font-body);
       color: #111;
-      font-size: 0.85rem;
+      font-size: 13.6px;
       margin-bottom: 12px;
       font-weight: 400;
     }
@@ -4120,7 +4131,7 @@
 
     .craftsmanship-overlay-text .section-main-title {
       font-family: var(--font-display), 'Playfair Display', serif;
-      font-size: 2.5rem;
+      font-size: 40px;
       margin-bottom: 15px;
       font-weight: 300;
       color: #fff;
@@ -4128,7 +4139,7 @@
 
     .craftsmanship-overlay-text p {
       font-family: var(--font-body);
-      font-size: 0.8rem;
+      font-size: 12.8px;
       line-height: 1.5;
       margin-bottom: 25px;
       max-width: 90%;
@@ -4196,7 +4207,7 @@
     .story-split-right .section-main-title {
       font-family: var(--font-display), 'Playfair Display', serif;
       color: #333;
-      font-size: 2.8rem;
+      font-size: 44.8px;
       font-weight: 300;
       margin-bottom: 15px;
       letter-spacing: normal;
@@ -4205,7 +4216,7 @@
 
     .story-split-subtitle {
       font-family: var(--font-body);
-      font-size: 0.8rem;
+      font-size: 12.8px;
       color: #666;
       margin-bottom: 40px;
     }
@@ -4218,7 +4229,7 @@
 
     .story-tab {
       font-family: var(--font-body);
-      font-size: 0.7rem;
+      font-size: 11.2px;
       color: #999;
       cursor: pointer;
       font-weight: 600;
@@ -4266,7 +4277,7 @@
 
     .journal-header-left .section-main-title {
       font-family: var(--font-display), 'Playfair Display', serif;
-      font-size: 2.8rem;
+      font-size: 44.8px;
       color: #333;
       margin-bottom: 30px;
       font-weight: 300;
@@ -4386,7 +4397,7 @@
       }
 
       .hero-display-title {
-        font-size: 2.5rem;
+        font-size: 40px;
       }
 
       .bestsellers-grid-wrapper shopify-list-context::part(list) {
@@ -4470,7 +4481,7 @@
       align-items: center;
       padding: 24px 32px 0 32px;
       gap: 16px;
-      font-size: 0.75rem;
+      font-size: 12px;
       letter-spacing: 0.05em;
       color: #333;
     }
@@ -4482,7 +4493,7 @@
     .icon-btn {
       background: none;
       border: none;
-      font-size: 1.1rem;
+      font-size: 17.6px;
       color: #333;
       cursor: pointer;
     }
@@ -4490,7 +4501,7 @@
     .drawer-close-btn {
       background: none;
       border: none;
-      font-size: 1.2rem;
+      font-size: 19.2px;
       color: #333;
       cursor: pointer;
       margin-left: 10px;
@@ -4505,14 +4516,14 @@
 
     .drawer-title {
       font-family: var(--font-body);
-      font-size: 1.2rem;
+      font-size: 19.2px;
       font-weight: 400;
       margin-bottom: 12px;
       color: #12141d;
     }
 
     .drawer-subtitle {
-      font-size: 0.75rem;
+      font-size: 12px;
       color: #666;
       line-height: 1.4;
       margin-bottom: 24px;
@@ -4557,19 +4568,19 @@
     }
 
     .wishlist-item-title {
-      font-size: 0.85rem;
+      font-size: 13.6px;
       color: #12141d;
       margin-bottom: 4px;
     }
 
     .wishlist-item-variant {
-      font-size: 0.7rem;
+      font-size: 11.2px;
       color: #666;
       margin-bottom: 12px;
     }
 
     .wishlist-item-price {
-      font-size: 0.8rem;
+      font-size: 12.8px;
       color: #12141d;
     }
 
@@ -4577,7 +4588,7 @@
       background: none;
       border: none;
       cursor: pointer;
-      font-size: 1rem;
+      font-size: 16px;
       color: #999;
     }
 
@@ -4594,12 +4605,12 @@
       background: none;
       border: none;
       cursor: pointer;
-      font-size: 1rem;
+      font-size: 16px;
       color: #666;
     }
 
     .wishlist-qty-val {
-      font-size: 0.75rem;
+      font-size: 12px;
       padding: 0 4px;
       color: #12141d;
     }
@@ -4618,7 +4629,7 @@
       border: 1px solid #c9c5ba;
       padding: 14px;
       width: 100%;
-      font-size: 0.75rem;
+      font-size: 12px;
       letter-spacing: 0.05em;
       color: #12141d;
       cursor: pointer;
@@ -4632,7 +4643,7 @@
     .btn-clear-all {
       background: none;
       border: none;
-      font-size: 0.7rem;
+      font-size: 11.2px;
       color: #666;
       cursor: pointer;
       text-decoration: underline;
@@ -4641,7 +4652,7 @@
 
     /* PAIRS WITH... SIDEBAR */
     .pairs-header {
-      font-size: 0.75rem;
+      font-size: 12px;
       color: #666;
       letter-spacing: 0.05em;
       padding: 32px 32px 16px 32px;
@@ -4666,13 +4677,13 @@
     }
 
     .pairs-title {
-      font-size: 0.85rem;
+      font-size: 13.6px;
       color: #12141d;
       margin-bottom: 4px;
     }
 
     .pairs-price {
-      font-size: 0.8rem;
+      font-size: 12.8px;
       color: var(--accent-red);
       font-weight: 500;
       margin-bottom: 8px;
@@ -4681,7 +4692,7 @@
     .pairs-add-btn {
       background: none;
       border: none;
-      font-size: 0.75rem;
+      font-size: 12px;
       color: #12141d;
       cursor: pointer;
       display: flex;
@@ -4718,7 +4729,7 @@
 
     shopify-cart::part(title) {
       font-family: var(--font-body) !important;
-      font-size: 1.2rem !important;
+      font-size: 19.2px !important;
       font-weight: 400 !important;
       color: #12141d !important;
     }
@@ -4733,7 +4744,7 @@
       color: #ffffff !important;
       border-radius: 0 !important;
       font-family: var(--font-body) !important;
-      font-size: 0.75rem !important;
+      font-size: 12px !important;
       letter-spacing: 0.05em !important;
       padding: 18px !important;
       text-transform: uppercase !important;
@@ -4836,7 +4847,7 @@
 
     .leather-family-card .card-title {
       font-family: var(--font-body);
-      font-size: 1rem;
+      font-size: 16px;
       font-weight: 400;
       color: #111;
       margin: 0;
@@ -4845,7 +4856,7 @@
     .leather-family-card .card-price-box {
       display: flex;
       gap: 8px;
-      font-size: 0.95rem;
+      font-size: 15.2px;
       font-weight: 600;
     }
 
@@ -4877,7 +4888,7 @@
     }
 
     .leather-family-card .add-to-bag-text {
-      font-size: 0.85rem;
+      font-size: 13.6px;
       font-weight: 400;
       letter-spacing: 0.02em;
       color: #111;
@@ -4911,7 +4922,7 @@
     }
 
     .leather-family-card .swatch-plus {
-      font-size: 1.1rem;
+      font-size: 17.6px;
       color: #555;
       margin-left: 2px;
       line-height: 1;

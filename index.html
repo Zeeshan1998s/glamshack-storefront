@@ -33,32 +33,38 @@
        ========================================================= -->
   <header>
     <div class="container header-single-row">
-      <!-- Left side: Navigation Links -->
-      <nav class="category-nav">
-        <ul class="category-nav-list">
-          <li><a href="#" class="cat-nav-link" role="button" onclick="event.preventDefault(); navigateTo('view-home')">HOME</a></li>
-          <li><a href="#" class="cat-nav-link" role="button" onclick="event.preventDefault(); navigateTo('view-about')">INFO</a></li>
-          <li><a href="#" class="cat-nav-link" role="button" onclick="event.preventDefault(); handleCategoryNav('hampers')">HAMPERS</a></li>
-          <li><a href="#" class="cat-nav-link" role="button" onclick="event.preventDefault(); handleCategoryNav('trays')">TRAYS</a></li>
-          <li><a href="#" class="cat-nav-link" role="button" onclick="event.preventDefault(); handleCategoryNav('saree-covers')">SAREE COVERS</a></li>
-          <li><a href="#" class="cat-nav-link" role="button" onclick="event.preventDefault(); handleCategoryNav('bags')">BAGS</a></li>
-          <li><a href="#" class="cat-nav-link" role="button" onclick="event.preventDefault(); handleCategoryNav('baskets')">BASKET / TRUNKS</a></li>
-          <li><a href="#" class="cat-nav-link" role="button" onclick="event.preventDefault(); handleCategoryNav('pouches')">POUCHES</a></li>
-          <li><a href="#" class="cat-nav-link" role="button" onclick="event.preventDefault(); handleCategoryNav('bands')">BANDS</a></li>
-          <li><a href="#" class="cat-nav-link" role="button" onclick="event.preventDefault(); navigateTo('view-blog')">JOURNAL</a></li>
-        </ul>
-      </nav>
-
-      <!-- Right side: Actions & Logo -->
-      <div class="header-actions-right">
-        <button class="header-icon-btn profile-btn" onclick="navigateTo('view-profile')" title="My Profile">
-          👤
-        </button>
+      <!-- Left side: Links and Search -->
+      <div class="header-left-group">
+        <nav class="category-nav">
+          <ul class="category-nav-list">
+            <li><a href="#" class="cat-nav-link" role="button" onclick="event.preventDefault(); navigateTo('view-home')">HOME</a></li>
+            <li><a href="#" class="cat-nav-link" role="button" onclick="event.preventDefault(); handleCategoryNav('hampers')">HAMPERS</a></li>
+            <li><a href="#" class="cat-nav-link" role="button" onclick="event.preventDefault(); handleCategoryNav('trays')">TRAYS</a></li>
+            <li><a href="#" class="cat-nav-link" role="button" onclick="event.preventDefault(); handleCategoryNav('saree-covers')">SAREE COVERS</a></li>
+            <li><a href="#" class="cat-nav-link" role="button" onclick="event.preventDefault(); handleCategoryNav('bags')">BAGS</a></li>
+            <li><a href="#" class="cat-nav-link" role="button" onclick="event.preventDefault(); handleCategoryNav('baskets')">BASKET / TRUNKS</a></li>
+            <li><a href="#" class="cat-nav-link" role="button" onclick="event.preventDefault(); handleCategoryNav('pouches')">POUCHES</a></li>
+            <li><a href="#" class="cat-nav-link" role="button" onclick="event.preventDefault(); handleCategoryNav('bands')">BANDS</a></li>
+            <li><a href="#" class="cat-nav-link" role="button" onclick="event.preventDefault(); navigateTo('view-blog')">JOURNAL</a></li>
+          </ul>
+        </nav>
         <button class="header-icon-btn search-btn" onclick="openSearchDrawer()" title="Search Catalog">
           🔍
         </button>
+      </div>
+
+      <!-- Right side: Actions & Logo -->
+      <div class="header-right-group">
+        <a href="#" class="top-util-link" onclick="event.preventDefault(); navigateTo('view-about')">ABOUT US</a>
+        <span class="currency-label">INR</span>
+        <button class="header-icon-btn profile-btn" onclick="navigateTo('view-profile')" title="My Profile">
+          👤
+        </button>
+        <button class="header-icon-btn wishlist-btn" title="Wishlist">
+          🤍
+        </button>
         <button class="btn-open-cart" onclick="document.getElementById('cart').showModal()">
-          <span>Cart</span>
+          🛍️
           <span class="cart-count-badge"></span>
         </button>
         <a href="#" class="logo" onclick="navigateTo('view-home')">GLAMSHACK</a>
