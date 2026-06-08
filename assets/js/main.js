@@ -702,8 +702,38 @@
     setInterval(() => {
       const pairsSidebar = document.getElementById('cart-pairs-sidebar');
       const cart = document.getElementById('cart');
-      if (pairsSidebar && pairsSidebar.classList.contains('open')) {
-        if (cart && cart.shadowRoot) {
+      if (cart && cart.shadowRoot) {
+        // Inject brute-force CSS if missing (bypasses ::part limitations)
+        if (!cart.shadowRoot.getElementById('glamshack-custom-cart-css')) {
+          const style = document.createElement('style');
+          style.id = 'glamshack-custom-cart-css';
+          style.textContent = `
+            dialog {
+              background-color: #f4f3ef !important;
+              width: 450px !important;
+              max-width: 90vw !important;
+              height: 100vh !important;
+              max-height: 100vh !important;
+              min-height: 100vh !important;
+              margin: 0 !important;
+              padding: 0 !important;
+              position: fixed !important;
+              inset: 0 0 0 auto !important;
+              border-radius: 0 !important;
+              color: #12141d !important;
+            }
+            .checkout-button, button, [part="checkout-button"] {
+              background-color: #4b5344 !important;
+              color: #ffffff !important;
+              border-radius: 0 !important;
+              text-transform: uppercase !important;
+              border: none !important;
+            }
+          `;
+          cart.shadowRoot.appendChild(style);
+        }
+        
+        if (pairsSidebar && pairsSidebar.classList.contains('open')) {
           const dialog = cart.shadowRoot.querySelector('dialog');
           if (dialog && !dialog.hasAttribute('open')) {
             pairsSidebar.classList.remove('open');
