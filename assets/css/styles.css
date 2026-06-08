@@ -3707,36 +3707,30 @@
 
     /* Section 2: Brand Story & Trust Badges */
     .home-brand-story {
-      padding: 100px 0;
+      padding: 120px 0;
       background-color: #f4f3ef;
     }
     
     .home-brand-story .pdp-container {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 60px;
+      grid-template-columns: 1.4fr 1fr;
+      gap: 80px;
       align-items: center;
+      max-width: 1440px; /* Let it stretch a bit more */
     }
 
     .brand-story-left {
-      padding-right: 40px;
+      padding-right: 20px;
     }
 
     .quote-text {
-      font-family: var(--font-display);
-      font-size: clamp(2rem, 3.5vw, 3rem);
-      color: #12141d;
+      font-family: var(--font-display), "Playfair Display", "Didot", "Bodoni MT", "Times New Roman", serif;
+      font-size: clamp(2rem, 3.2vw, 3.2rem) !important;
+      color: #333;
       font-weight: 300;
-      line-height: 1.2;
-      margin-bottom: 30px;
-    }
-
-    .quote-subtext {
-      font-family: var(--font-body);
-      font-size: 1.1rem;
-      color: #555;
-      line-height: 1.6;
+      line-height: 1.35 !important;
       margin-bottom: 50px;
+      letter-spacing: -0.01em;
     }
 
     .trust-badges {
@@ -3745,40 +3739,30 @@
       flex-wrap: wrap;
     }
 
-    .trust-badge {
-      font-family: var(--font-body);
-      font-size: 0.9rem;
-      color: #12141d;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-    }
-
     .brand-story-right {
       position: relative;
       height: 600px;
+      width: 100%;
     }
 
     .brand-story-img-main {
-      width: 80%;
-      height: 90%;
+      width: 85%;
+      height: 85%;
       object-fit: cover;
       position: absolute;
       top: 0;
-      left: 0;
+      right: 40px; /* Shift to the right */
     }
 
     .brand-story-img-small {
-      width: 45%;
-      height: 50%;
+      width: 55%;
+      height: 55%;
       object-fit: cover;
       position: absolute;
       bottom: 0;
-      right: 0;
-      border: 10px solid #f4f3ef;
+      right: 0; /* Overlap on bottom right */
+      border: 12px solid #f4f3ef; /* Thick border matching background */
+      box-shadow: 0 10px 30px rgba(0,0,0,0.05); /* Slight shadow for depth */
     }
 
     /* Section 3: Bestsellers */
