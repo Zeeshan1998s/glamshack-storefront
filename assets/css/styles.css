@@ -3672,3 +3672,449 @@
         grid-template-columns: 1fr 1fr;
       }
     }
+
+    /* =========================================================
+       NEW HOMEPAGE STYLES
+       ========================================================= */
+
+    /* Section 1: Full Bleed Hero */
+    .home-hero-full {
+      position: relative;
+      width: 100vw;
+      height: 90vh;
+      overflow: hidden;
+    }
+
+    .home-hero-bg {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .home-hero-content {
+      position: absolute;
+      bottom: 15%;
+      left: 5%;
+      max-width: 600px;
+      z-index: 10;
+    }
+
+    .hero-display-title {
+      color: #fff;
+      font-size: clamp(2.5rem, 5vw, 4.5rem);
+      line-height: 1.05;
+      font-weight: 300;
+      margin-bottom: 20px;
+      text-transform: uppercase;
+      letter-spacing: -0.02em;
+    }
+
+    .hero-display-subtitle {
+      color: rgba(255, 255, 255, 0.8);
+      font-family: var(--font-body);
+      font-size: 1.1rem;
+      margin-bottom: 30px;
+    }
+
+    .btn-hero-shop {
+      background: transparent;
+      color: #fff;
+      border: 1px solid #fff;
+      padding: 16px 32px;
+      font-family: var(--font-body);
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .btn-hero-shop:hover {
+      background: #fff;
+      color: #000;
+    }
+
+    /* Section 2: Brand Story & Trust Badges */
+    .home-brand-story {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      padding: 100px 4%;
+      background-color: #f4f3ef;
+      align-items: center;
+    }
+
+    .brand-story-left {
+      padding-right: 40px;
+    }
+
+    .quote-text {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 3.5vw, 3rem);
+      color: #12141d;
+      font-weight: 300;
+      line-height: 1.2;
+      margin-bottom: 30px;
+    }
+
+    .quote-subtext {
+      font-family: var(--font-body);
+      font-size: 1.1rem;
+      color: #555;
+      line-height: 1.6;
+      margin-bottom: 50px;
+    }
+
+    .trust-badges {
+      display: flex;
+      gap: 30px;
+      flex-wrap: wrap;
+    }
+
+    .trust-badge {
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      color: #12141d;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .brand-story-right {
+      position: relative;
+      height: 600px;
+    }
+
+    .brand-story-img-main {
+      width: 80%;
+      height: 90%;
+      object-fit: cover;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+
+    .brand-story-img-small {
+      width: 45%;
+      height: 50%;
+      object-fit: cover;
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      border: 10px solid #f4f3ef;
+    }
+
+    /* Section 3: Bestsellers */
+    .home-bestsellers {
+      background-color: #f4f3ef;
+      padding: 40px 4% 100px;
+    }
+
+    .home-bestsellers .section-main-title {
+      color: #12141d;
+      margin-bottom: 10px;
+    }
+
+    .bestsellers-grid-wrapper shopify-list-context::part(list) {
+      display: grid !important;
+      grid-template-columns: repeat(4, 1fr) !important;
+      gap: 24px !important;
+      width: 100% !important;
+    }
+
+    /* Section 4: Split Feature 50/50 */
+    .home-split-feature {
+      display: flex;
+      width: 100vw;
+    }
+
+    .split-feature-item {
+      flex: 1;
+      position: relative;
+      height: 80vh;
+      overflow: hidden;
+    }
+
+    .split-feature-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.6s ease;
+    }
+    
+    .split-feature-item:hover .split-feature-img {
+      transform: scale(1.03);
+    }
+
+    .split-feature-text {
+      position: absolute;
+      bottom: 40px;
+      left: 40px;
+      color: #fff;
+      z-index: 10;
+    }
+
+    .split-feature-text h3 {
+      font-family: var(--font-body);
+      font-size: 1.5rem;
+      margin-bottom: 8px;
+      font-weight: 300;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    .split-feature-text p {
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      opacity: 0.8;
+    }
+
+    /* Section 5: Categories */
+    .home-categories {
+      padding: 100px 4%;
+      background-color: #f4f3ef;
+    }
+    
+    .home-categories .section-main-title {
+      color: #12141d;
+      margin-bottom: 40px;
+    }
+
+    .home-categories-grid {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 20px;
+    }
+
+    .home-category-item {
+      cursor: pointer;
+      text-align: center;
+    }
+
+    .home-category-item img {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      background-color: #e5e4df;
+      margin-bottom: 16px;
+      transition: transform 0.3s ease;
+    }
+
+    .home-category-item:hover img {
+      transform: scale(1.03);
+    }
+
+    .home-category-item h4 {
+      font-family: var(--font-body);
+      color: #12141d;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      font-weight: 600;
+    }
+
+    /* Section 6: Craftsmanship Showcase */
+    .home-craftsmanship-banner {
+      position: relative;
+      width: 100vw;
+      height: 80vh;
+      background-color: #12141d;
+    }
+
+    .craftsmanship-bg {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.5;
+    }
+
+    .craftsmanship-overlay-text {
+      position: absolute;
+      bottom: 80px;
+      left: 5%;
+      max-width: 500px;
+      z-index: 10;
+    }
+
+    .craftsmanship-overlay-text .section-main-title {
+      color: #fff;
+      font-size: 3rem;
+      margin-bottom: 10px;
+    }
+
+    .craftsmanship-inset {
+      position: absolute;
+      bottom: 0;
+      right: 10%;
+      width: 300px;
+      height: 400px;
+      z-index: 10;
+    }
+
+    .craftsmanship-inset img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border: 10px solid #12141d;
+    }
+
+    /* Section 7: Story / Split */
+    .home-story-split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      width: 100vw;
+      background-color: #f4f3ef;
+    }
+
+    .story-split-left {
+      height: 100vh;
+    }
+
+    .story-split-bg {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .story-split-right {
+      padding: 80px 10%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .story-split-right .section-main-title {
+      color: #12141d;
+      font-size: 2.5rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    .wear-this-products {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    .wear-this-products .wear-this-card-info {
+      color: #12141d;
+    }
+
+    /* Section 8: Journal / Blog */
+    .home-journal {
+      padding: 100px 4%;
+      background-color: #f4f3ef;
+    }
+    
+    .home-journal .section-main-title {
+      color: #12141d;
+      margin-bottom: 40px;
+    }
+
+    .journal-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+    }
+
+    .journal-card {
+      cursor: pointer;
+    }
+
+    .journal-card img {
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      object-fit: cover;
+      margin-bottom: 16px;
+      transition: transform 0.3s ease;
+    }
+    
+    .journal-card:hover img {
+      transform: scale(1.02);
+    }
+
+    .journal-content {
+      color: #12141d;
+      font-family: var(--font-body);
+    }
+
+    .journal-date {
+      font-size: 0.75rem;
+      color: #666;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    .journal-content h4 {
+      font-size: 1.1rem;
+      font-weight: 300;
+      margin: 0;
+    }
+
+    /* Section 9: Pre-footer */
+    .home-pre-footer {
+      width: 100vw;
+      display: block;
+      font-size: 0;
+    }
+
+    /* RESPONSIVE UPDATES */
+    @media (max-width: 1024px) {
+      .home-brand-story, .home-story-split {
+        grid-template-columns: 1fr;
+        height: auto;
+      }
+      .brand-story-right {
+        height: 500px;
+        margin-top: 40px;
+      }
+      .home-categories-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+      .journal-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .bestsellers-grid-wrapper shopify-list-context::part(list) {
+        grid-template-columns: repeat(3, 1fr) !important;
+      }
+      .story-split-right {
+        padding: 60px 5%;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .home-split-feature {
+        flex-direction: column;
+      }
+      .split-feature-item {
+        width: 100%;
+        height: 60vh;
+      }
+      .story-split-left {
+        height: 50vh;
+      }
+      .craftsmanship-inset {
+        display: none;
+      }
+      .hero-display-title {
+        font-size: 2.5rem;
+      }
+      .bestsellers-grid-wrapper shopify-list-context::part(list) {
+        grid-template-columns: repeat(2, 1fr) !important;
+      }
+      .home-categories-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .journal-grid {
+        grid-template-columns: 1fr;
+      }
+    }

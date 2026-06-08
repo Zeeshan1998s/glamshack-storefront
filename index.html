@@ -81,287 +81,184 @@
        VIEW 1: HOMEPAGE VIEW (#view-home)
        ========================================================= -->
   <div id="view-home" class="page-view active-view">
-    <!-- HERO SECTION -->
-    <section class="hero">
-      <div class="hero-grid">
-        <div class="hero-left-card">
-          <span class="hero-card-subtitle">FOR THE MODERN BRIDE</span>
-          <h1 class="hero-card-title">HELLO <br><em>Bride</em></h1>
-          <p class="hero-card-desc">Make your special day more elegant with our customized trousseau packing sets and engagement platters.</p>
-          <button onclick="navigateTo('view-shop')" class="hero-card-cta">Shop Collection</button>
-        </div>
-        
-        <div class="hero-img-container">
-          <img class="hero-img" src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=1000&auto=format&fit=crop" alt="Glamshack Luxury Bridal Trousseau">
-        </div>
+    <!-- SECTION 1: FULL BLEED HERO -->
+    <section class="home-hero-full">
+      <img class="home-hero-bg" src="https://images.unsplash.com/photo-1616423641402-f83196fc9df9?w=2000&auto=format&fit=crop" alt="Craftsmanship">
+      <div class="home-hero-content">
+        <h1 class="hero-display-title">WE CARE ABOUT OUR CRAFTSMANSHIP</h1>
+        <p class="hero-display-subtitle">Explore our collection of premium handcrafted accessories.</p>
+        <button class="btn-hero-shop" onclick="navigateTo('view-shop')">Shop Collection</button>
       </div>
     </section>
 
-    <!-- TROUSSEAU PACKING SETS SECTION -->
-    <section class="container" style="padding-top: calc(var(--spacing-grid) * 10);">
-      <div class="carousel-section-header">
-        <div class="carousel-header-top">
-          <h2 class="section-main-title">TROUSSEAU PACKING SETS</h2>
-          <button onclick="handleCategoryNav('saree-covers')" class="carousel-view-all-btn">View All →</button>
-        </div>
-        <div class="carousel-submenu">
-          <button class="submenu-link active-submenu" onclick="filterTrousseauCarousel(this, 'all')">All Trousseau</button>
-          <span class="submenu-divider">|</span>
-          <button class="submenu-link" onclick="filterTrousseauCarousel(this, 'saree')">Saree Covers</button>
-          <span class="submenu-divider">|</span>
-          <button class="submenu-link" onclick="filterTrousseauCarousel(this, 'suit')">Suit Covers</button>
-          <span class="submenu-divider">|</span>
-          <button class="submenu-link" onclick="filterTrousseauCarousel(this, 'pouch')">Makeup Pouches</button>
-          <span class="submenu-divider">|</span>
-          <button class="submenu-link" onclick="filterTrousseauCarousel(this, 'basket')">Baskets</button>
-          <span class="submenu-divider">|</span>
-          <button class="submenu-link" onclick="filterTrousseauCarousel(this, 'band')">Bands</button>
+    <!-- SECTION 2: BRAND STORY & TRUST BADGES -->
+    <section class="home-brand-story pdp-container">
+      <div class="brand-story-left">
+        <h2 class="quote-text">When I design, I design honestly, I design for use...</h2>
+        <p class="quote-subtext">Our goal is to create products that are timeless, functional, and durable. We source the finest materials and partner with ethical factories to bring you the highest quality pieces.</p>
+        <div class="trust-badges">
+          <div class="trust-badge">🌿 100% Eco</div>
+          <div class="trust-badge">♻️ Recycled</div>
+          <div class="trust-badge">🐇 Vegan Options</div>
         </div>
       </div>
-      
-      <div class="scroll-row-container">
-        <shopify-list-context id="trousseau-list-context" type="product" query="products" first="40">
+      <div class="brand-story-right">
+        <img class="brand-story-img-main" src="https://images.unsplash.com/photo-1515347619252-8bf8841e06c5?w=800&auto=format&fit=crop" alt="Lifestyle">
+        <img class="brand-story-img-small" src="https://images.unsplash.com/photo-1628149462104-e3dc122b5e28?w=400&auto=format&fit=crop" alt="Moodboard">
+      </div>
+    </section>
+
+    <!-- SECTION 3: BESTSELLERS -->
+    <section class="home-bestsellers pdp-container">
+      <div class="section-header-left">
+        <h2 class="section-main-title">Our Bestsellers</h2>
+      </div>
+      <div class="bestsellers-grid-wrapper">
+        <shopify-list-context id="bestsellers-list" type="product" query="products" first="4">
           <template>
-              <div class="glam-card" shopify-attr--data-title="product.title" onclick="openProductPage(event)" style="cursor: pointer;">
-                <div class="card-media-wrapper">
-                  <div class="card-badge">Trousseau</div>
-                  <shopify-media width="300" height="300" query="product.selectedOrFirstAvailableVariant.image"></shopify-media>
-                  <div class="card-hover-overlay">View Details</div>
-                </div>
-                <div class="card-details">
-                  <h3 class="card-title"><shopify-data query="product.title"></shopify-data></h3>
-                  <div class="card-price"><shopify-money query="product.selectedOrFirstAvailableVariant.price"></shopify-money></div>
-                </div>
+            <div class="glam-card pdp-related-card" shopify-attr--data-title="product.title" onclick="openProductPage(event)" style="cursor: pointer;">
+              <div class="card-media-wrapper" style="background: #f4f3ef;">
+                <shopify-media width="300" height="300" query="product.selectedOrFirstAvailableVariant.image"></shopify-media>
               </div>
-          </template>
-          <div slot="loading" class="scroll-row-inner">
-            <div class="glam-card loading-pulse" style="height:360px; flex: 0 0 calc(20% - 20px); min-width:230px;"></div>
-            <div class="glam-card loading-pulse" style="height:360px; flex: 0 0 calc(20% - 20px); min-width:230px;"></div>
-            <div class="glam-card loading-pulse" style="height:360px; flex: 0 0 calc(20% - 20px); min-width:230px;"></div>
-            <div class="glam-card loading-pulse" style="height:360px; flex: 0 0 calc(20% - 20px); min-width:230px;"></div>
-            <div class="glam-card loading-pulse" style="height:360px; flex: 0 0 calc(20% - 20px); min-width:230px;"></div>
-          </div>
-        </shopify-list-context>
-      </div>
-    </section>
-
-    <!-- ENGAGEMENT PLATTERS SECTION -->
-    <section class="container" style="padding-top: calc(var(--spacing-grid) * 10);">
-      <div class="carousel-section-header">
-        <div class="carousel-header-top">
-          <h2 class="section-main-title">ENGAGEMENT PLATTERS</h2>
-          <button onclick="handleCategoryNav('trays')" class="carousel-view-all-btn">View All →</button>
-        </div>
-      </div>
-      
-      <div class="scroll-row-container">
-        <shopify-list-context id="engagement-list-context" type="product" query="products" first="40">
-          <template>
-              <div class="glam-card" shopify-attr--data-title="product.title" onclick="openProductPage(event)" style="cursor: pointer;">
-                <div class="card-media-wrapper">
-                  <div class="card-badge">Engagement</div>
-                  <shopify-media width="300" height="300" query="product.selectedOrFirstAvailableVariant.image"></shopify-media>
-                  <div class="card-hover-overlay">View Details</div>
-                </div>
-                <div class="card-details">
-                  <h3 class="card-title"><shopify-data query="product.title"></shopify-data></h3>
-                  <div class="card-price"><shopify-money query="product.selectedOrFirstAvailableVariant.price"></shopify-money></div>
-                </div>
+              <div class="card-details" style="padding-top: 10px; text-align: left;">
+                <h3 class="card-title" style="margin:0;"><shopify-data query="product.title"></shopify-data></h3>
+                <div class="card-price" style="margin-top: 4px; color: var(--accent-red); font-weight: 600;"><shopify-money query="product.selectedOrFirstAvailableVariant.price"></shopify-money></div>
               </div>
-          </template>
-          <div slot="loading" class="scroll-row-inner">
-            <div class="glam-card loading-pulse" style="height:360px; flex: 0 0 calc(20% - 20px); min-width:230px;"></div>
-            <div class="glam-card loading-pulse" style="height:360px; flex: 0 0 calc(20% - 20px); min-width:230px;"></div>
-            <div class="glam-card loading-pulse" style="height:360px; flex: 0 0 calc(20% - 20px); min-width:230px;"></div>
-            <div class="glam-card loading-pulse" style="height:360px; flex: 0 0 calc(20% - 20px); min-width:230px;"></div>
-            <div class="glam-card loading-pulse" style="height:360px; flex: 0 0 calc(20% - 20px); min-width:230px;"></div>
-          </div>
-        </shopify-list-context>
-      </div>
-    </section>
-
-    <!-- HALDI / MEHENDI PLATTERS SECTION -->
-    <section class="container" style="padding-top: calc(var(--spacing-grid) * 12);">
-      <div class="haldi-split-grid">
-        <!-- Left Column: Featured Image -->
-        <div class="haldi-featured-box">
-          <img class="haldi-featured-img" src="https://images.unsplash.com/photo-1604713784414-bbf40f2f3d61?w=800&auto=format&fit=crop" alt="Haldi Mehendi Ceremony Decor">
-        </div>
-        
-        <!-- Right Column: Details & Mini-Grid -->
-        <div class="haldi-details-box">
-          <span class="section-title-tag">Ceremonial Sunshine</span>
-          <h2 class="section-main-title" style="text-align: left; margin-bottom: 16px;">Haldi / Mehendi Platters</h2>
-          <p class="haldi-desc">Celebrate your pre-wedding rituals with our specially curated marigold and mirror-finish platters, custom nameplates, and colorful thalis designed to brighten your ceremony photos.</p>
-          
-          <shopify-list-context id="haldi-list-context" type="product" query="products" first="40">
-            <template>
-              <div class="glam-mini-card" shopify-attr--data-title="product.title" onclick="openProductPage(event)">
-                <div class="mini-card-media">
-                  <shopify-media width="100" height="100" query="product.selectedOrFirstAvailableVariant.image"></shopify-media>
-                </div>
-                <div class="mini-card-info">
-                  <span class="mini-card-title"><shopify-data query="product.title"></shopify-data></span>
-                  <span class="mini-card-price"><shopify-money query="product.selectedOrFirstAvailableVariant.price"></shopify-money></span>
-                </div>
-              </div>
-            </template>
-            <div slot="loading" id="haldi-list-context">
-              <div class="glam-mini-card loading-pulse" style="height:76px;"></div>
-              <div class="glam-mini-card loading-pulse" style="height:76px;"></div>
-              <div class="glam-mini-card loading-pulse" style="height:76px;"></div>
-              <div class="glam-mini-card loading-pulse" style="height:76px;"></div>
-              <div class="glam-mini-card loading-pulse" style="height:76px;"></div>
             </div>
-          </shopify-list-context>
-          
-          <button onclick="handleCategoryNav('trays')" class="hero-cta" style="align-self: flex-start; margin-top: 24px;">Explore More</button>
+          </template>
+        </shopify-list-context>
+      </div>
+    </section>
+
+    <!-- SECTION 4: SPLIT FEATURE 50/50 -->
+    <section class="home-split-feature">
+      <div class="split-feature-item">
+        <img class="split-feature-img" src="https://images.unsplash.com/photo-1505022610485-0249ba5b3675?w=1200&auto=format&fit=crop" alt="Men's Backpack">
+        <div class="split-feature-text">
+          <h3>For the Adventurers</h3>
+          <p>Explore our rugged travel gear.</p>
+        </div>
+      </div>
+      <div class="split-feature-item">
+        <img class="split-feature-img" src="https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=1200&auto=format&fit=crop" alt="Women's Tote">
+        <div class="split-feature-text">
+          <h3>For the Modern Professional</h3>
+          <p>Discover everyday elegance.</p>
         </div>
       </div>
     </section>
 
-    <!-- ALL CATEGORIES SECTION -->
-    <section class="container" style="padding-top: calc(var(--spacing-grid) * 12);">
-      <div class="section-header">
-        <span class="section-title-tag">Bespoke Curation</span>
-        <h2 class="section-main-title">All Categories</h2>
+    <!-- SECTION 5: CATEGORIES -->
+    <section class="home-categories pdp-container">
+      <div class="section-header-left">
+        <h2 class="section-main-title">Shop by Category</h2>
       </div>
-      
-      <div class="categories-grid">
-        <!-- Card 1: Trousseau Sets -->
-        <div class="category-block-card" onclick="handleCategoryNav('hampers')">
-          <img class="category-block-img" src="https://images.unsplash.com/photo-1549465220-1a8b9238cd48?w=500&auto=format&fit=crop" alt="Trousseau Packing Sets">
-          <div class="category-block-overlay"></div>
-          <h3 class="category-block-title">Trousseau Sets</h3>
+      <div class="home-categories-grid">
+        <div class="home-category-item" onclick="handleCategoryNav('totes')">
+          <img src="https://images.unsplash.com/photo-1591561954557-26941169b49e?w=400&auto=format&fit=crop" alt="Totes">
+          <h4>Totes</h4>
         </div>
-        
-        <!-- Card 2: Engagement Platters -->
-        <div class="category-block-card" onclick="handleCategoryNav('trays')">
-          <img class="category-block-img" src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=500&auto=format&fit=crop" alt="Engagement Platters">
-          <div class="category-block-overlay"></div>
-          <h3 class="category-block-title">Engagement Platters</h3>
+        <div class="home-category-item" onclick="handleCategoryNav('backpacks')">
+          <img src="https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=400&auto=format&fit=crop" alt="Backpacks">
+          <h4>Backpacks</h4>
         </div>
-        
-        <!-- Card 3: Saree Covers -->
-        <div class="category-block-card" onclick="handleCategoryNav('saree-covers')">
-          <img class="category-block-img" src="https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?w=500&auto=format&fit=crop" alt="Saree Covers">
-          <div class="category-block-overlay"></div>
-          <h3 class="category-block-title">Saree Covers</h3>
+        <div class="home-category-item" onclick="handleCategoryNav('crossbody')">
+          <img src="https://images.unsplash.com/photo-1598532163257-ae3c6b2524b6?w=400&auto=format&fit=crop" alt="Crossbody">
+          <h4>Crossbody</h4>
         </div>
-        
-        <!-- Card 4: Suit Covers -->
-        <div class="category-block-card" onclick="handleCategoryNav('saree-covers')">
-          <img class="category-block-img" src="https://images.unsplash.com/photo-1608248597279-f99d160bfcbc?w=500&auto=format&fit=crop" alt="Suit Covers">
-          <div class="category-block-overlay"></div>
-          <h3 class="category-block-title">Suit Covers</h3>
+        <div class="home-category-item" onclick="handleCategoryNav('wallets')">
+          <img src="https://images.unsplash.com/photo-1628149462104-e3dc122b5e28?w=400&auto=format&fit=crop" alt="Wallets">
+          <h4>Wallets</h4>
         </div>
-        
-        <!-- Card 5: Baskets / Trunks -->
-        <div class="category-block-card" onclick="handleCategoryNav('baskets')">
-          <img class="category-block-img" src="https://images.unsplash.com/photo-1523293182086-7651a899d37f?w=500&auto=format&fit=crop" alt="Baskets / Trunks">
-          <div class="category-block-overlay"></div>
-          <h3 class="category-block-title">Baskets & Trunks</h3>
+        <div class="home-category-item" onclick="handleCategoryNav('accessories')">
+          <img src="https://images.unsplash.com/photo-1590874103328-eac38a683ce7?w=400&auto=format&fit=crop" alt="Accessories">
+          <h4>Accessories</h4>
         </div>
-        
-        <!-- Card 6: Pouches & Bags -->
-        <div class="category-block-card" onclick="handleCategoryNav('bags')">
-          <img class="category-block-img" src="https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?w=500&auto=format&fit=crop" alt="Pouches & Bags">
-          <div class="category-block-overlay"></div>
-          <h3 class="category-block-title">Pouches & Bags</h3>
-        </div>
-      </div>
-      
-      <div style="text-align: center; margin-top: 32px;">
-        <button onclick="handleCategoryNav('all')" class="hero-cta">View All Products</button>
-      </div>
-    </section>
-
-    <!-- PRODUCT INDEX SECTION -->
-    <section class="container" style="padding-top: calc(var(--spacing-grid) * 12); padding-bottom: calc(var(--spacing-grid) * 6);">
-      <div class="section-header">
-        <span class="section-title-tag">Directory</span>
-        <h2 class="section-main-title">Product Index</h2>
-      </div>
-      
-      <div class="product-index-grid">
-        <!-- Column 1: Trousseau -->
-        <div class="index-column">
-          <h3 class="index-column-title">Trousseau Packing</h3>
-          <ul class="index-list">
-            <li><a href="#" onclick="handleCategoryNav('saree-covers')">Saree Covers</a></li>
-            <li><a href="#" onclick="handleCategoryNav('saree-covers')">Suit Covers</a></li>
-            <li><a href="#" onclick="handleCategoryNav('saree-covers')">Lehenga Covers</a></li>
-            <li><a href="#" onclick="handleCategoryNav('saree-covers')">Gown Covers</a></li>
-            <li><a href="#" onclick="handleCategoryNav('saree-covers')">Sherwani Covers</a></li>
-          </ul>
-        </div>
-        
-        <!-- Column 2: Platters -->
-        <div class="index-column">
-          <h3 class="index-column-title">Ceremonial Platters</h3>
-          <ul class="index-list">
-            <li><a href="#" onclick="handleCategoryNav('trays')">Engagement Platters</a></li>
-            <li><a href="#" onclick="handleCategoryNav('trays')">Ring Trays</a></li>
-            <li><a href="#" onclick="handleCategoryNav('trays')">Coin Trays</a></li>
-            <li><a href="#" onclick="handleCategoryNav('trays')">Shagun Trays</a></li>
-            <li><a href="#" onclick="handleCategoryNav('trays')">Dry Fruit Trays</a></li>
-          </ul>
-        </div>
-        
-        <!-- Column 3: Bags & Pouches -->
-        <div class="index-column">
-          <h3 class="index-column-title">Bags & Pouches</h3>
-          <ul class="index-list">
-            <li><a href="#" onclick="handleCategoryNav('bags')">Potli Bags</a></li>
-            <li><a href="#" onclick="handleCategoryNav('pouches')">Makeup Pouches</a></li>
-            <li><a href="#" onclick="handleCategoryNav('pouches')">Jewelry Pouches</a></li>
-            <li><a href="#" onclick="handleCategoryNav('bags')">Bridal Clutches</a></li>
-            <li><a href="#" onclick="handleCategoryNav('bags')">Gift Envelopes</a></li>
-          </ul>
-        </div>
-        
-        <!-- Column 4: Trunks & Baskets -->
-        <div class="index-column">
-          <h3 class="index-column-title">Trunks & Baskets</h3>
-          <ul class="index-list">
-            <li><a href="#" onclick="handleCategoryNav('baskets')">Velvet Trunks</a></li>
-            <li><a href="#" onclick="handleCategoryNav('baskets')">Brocade Baskets</a></li>
-            <li><a href="#" onclick="handleCategoryNav('baskets')">Dry Fruit Boxes</a></li>
-            <li><a href="#" onclick="handleCategoryNav('bags')">Safa Accessories</a></li>
-            <li><a href="#" onclick="handleCategoryNav('bands')">Decorative Bands</a></li>
-          </ul>
+        <div class="home-category-item" onclick="handleCategoryNav('travel')">
+          <img src="https://images.unsplash.com/photo-1559563458-527698bf5295?w=400&auto=format&fit=crop" alt="Travel">
+          <h4>Travel</h4>
         </div>
       </div>
     </section>
 
-    <!-- WHY GLAMSHACK SECTION -->
-    <section class="marquee-section" style="background-color: rgba(18, 20, 29, 0.2); padding: calc(var(--spacing-grid) * 10) 0; border-top: 1px solid rgba(201, 160, 84, 0.15); border-bottom: 1px solid rgba(201, 160, 84, 0.15);">
-      <div class="container">
-        <div class="section-header">
-          <span class="section-title-tag">The Glamshack Standard</span>
-          <h2 class="section-main-title">Why Glamshack</h2>
-        </div>
-        
-        <div class="values-grid">
-          <div class="value-item">
-            <div class="value-circle-badge">🎨</div>
-            <h3 class="value-title">Premium Handcrafts</h3>
-            <p class="value-text">Every piece is finished by hand with raw silk, Zardosi, and fine velvet by master artisans.</p>
+    <!-- SECTION 6: CRAFTSMANSHIP SHOWCASE -->
+    <section class="home-craftsmanship-banner">
+      <img class="craftsmanship-bg" src="https://images.unsplash.com/photo-1621607512214-68297480165e?w=2000&auto=format&fit=crop" alt="Workshop">
+      <div class="craftsmanship-overlay-text">
+        <h2 class="section-main-title" style="color: #fff;">Handmade in our studio.</h2>
+        <p style="color: #ccc;">Every stitch is perfectly placed.</p>
+      </div>
+      <div class="craftsmanship-inset">
+        <img src="https://images.unsplash.com/photo-1584916201218-f4242ceb4809?w=400&auto=format&fit=crop" alt="Detail">
+      </div>
+    </section>
+
+    <!-- SECTION 7: FEATURED STORY / PRODUCT SPLIT -->
+    <section class="home-story-split">
+      <div class="story-split-left">
+        <img class="story-split-bg" src="https://images.unsplash.com/photo-1515347619252-8bf8841e06c5?w=1000&auto=format&fit=crop" alt="Lifestyle Model">
+      </div>
+      <div class="story-split-right">
+        <h2 class="section-main-title" style="margin-bottom: 40px;">GET TO KNOW</h2>
+        <div class="wear-this-products">
+          <div class="wear-this-card">
+            <img src="https://images.unsplash.com/photo-1590874103328-eac38a683ce7?w=300&auto=format&fit=crop" alt="Product">
+            <div class="wear-this-card-info">
+              <span>Classic Tote</span>
+              <span>$245</span>
+            </div>
           </div>
-          
-          <div class="value-item">
-            <div class="value-circle-badge">📦</div>
-            <h3 class="value-title">Secure Shipping</h3>
-            <p class="value-text">We package and ship each order with extra care to ensure it arrives in pristine condition.</p>
-          </div>
-          
-          <div class="value-item">
-            <div class="value-circle-badge">✨</div>
-            <h3 class="value-title">Bespoke Customization</h3>
-            <p class="value-text">Customize colors, sizes, and monogram nameplates to match your unique wedding theme.</p>
+          <div class="wear-this-card">
+            <img src="https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=300&auto=format&fit=crop" alt="Product">
+            <div class="wear-this-card-info">
+              <span>Leather Wallet</span>
+              <span>$85</span>
+            </div>
           </div>
         </div>
       </div>
+    </section>
+
+    <!-- SECTION 8: JOURNAL / BLOG -->
+    <section class="home-journal pdp-container">
+      <div class="section-header-left">
+        <h2 class="section-main-title">Journal</h2>
+      </div>
+      <div class="journal-grid">
+        <div class="journal-card">
+          <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=600&auto=format&fit=crop" alt="Blog 1">
+          <div class="journal-content">
+            <span class="journal-date">May 12, 2026</span>
+            <h4>The Art of Leather</h4>
+          </div>
+        </div>
+        <div class="journal-card">
+          <img src="https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=600&auto=format&fit=crop" alt="Blog 2">
+          <div class="journal-content">
+            <span class="journal-date">Apr 28, 2026</span>
+            <h4>Travel Essentials</h4>
+          </div>
+        </div>
+        <div class="journal-card">
+          <img src="https://images.unsplash.com/photo-1628149462104-e3dc122b5e28?w=600&auto=format&fit=crop" alt="Blog 3">
+          <div class="journal-content">
+            <span class="journal-date">Apr 15, 2026</span>
+            <h4>Sustainable Sourcing</h4>
+          </div>
+        </div>
+        <div class="journal-card">
+          <img src="https://images.unsplash.com/photo-1584916201218-f4242ceb4809?w=600&auto=format&fit=crop" alt="Blog 4">
+          <div class="journal-content">
+            <span class="journal-date">Mar 30, 2026</span>
+            <h4>Behind the Scenes</h4>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 9: PRE-FOOTER LANDSCAPE -->
+    <section class="home-pre-footer">
+      <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=2000&auto=format&fit=crop" alt="Mountains" style="width: 100%; height: 400px; object-fit: cover; display: block;">
     </section>
   </div>
 
