@@ -131,23 +131,62 @@
 
     <!-- SECTION 3: BESTSELLERS -->
     <section class="home-bestsellers" style="padding: 100px 4%; width: 100%; box-sizing: border-box;">
-      <div class="section-header-left">
-        <h2 class="section-main-title">Our Bestsellers</h2>
+      <div class="section-header-left" style="margin-bottom: 40px;">
+        <h2 class="section-main-title" style="font-family: var(--font-display), 'Playfair Display', serif; font-size: 2.8rem; color: #333; margin-bottom: 15px; font-weight: 300;">Leather Family</h2>
+        <div class="collection-tabs" style="display: flex; gap: 30px; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: #888;">
+          <span style="color: #111; cursor: pointer; border-bottom: 1px solid #111; padding-bottom: 2px;">MID SEASON REDUCTIONS</span>
+          <span style="cursor: pointer;">BESTSELLERS</span>
+          <span style="cursor: pointer;">NEW ARRIVALS</span>
+        </div>
       </div>
-      <div class="bestsellers-grid-wrapper">
+      
+      <div class="bestsellers-grid-wrapper" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px; background: #fff;">
         <shopify-list-context id="bestsellers-list" type="product" query="products" first="4">
           <template>
-            <div class="glam-card pdp-related-card" shopify-attr--data-title="product.title" onclick="openProductPage(event)" style="cursor: pointer;">
-              <div class="card-media-wrapper" style="background: #f4f3ef;">
-                <shopify-media width="300" height="300" query="product.selectedOrFirstAvailableVariant.image"></shopify-media>
+            <div class="leather-family-card pdp-related-card" shopify-attr--data-title="product.title" onclick="openProductPage(event)">
+              
+              <!-- Wishlist Icon -->
+              <div class="wishlist-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
               </div>
-              <div class="card-details" style="padding-top: 10px; text-align: left;">
-                <h3 class="card-title" style="margin:0;"><shopify-data query="product.title"></shopify-data></h3>
-                <div class="card-price" style="margin-top: 4px; color: var(--accent-red); font-weight: 600;"><shopify-money query="product.selectedOrFirstAvailableVariant.price"></shopify-money></div>
+
+              <!-- Media -->
+              <div class="card-media-wrapper">
+                <shopify-media width="400" height="400" query="product.selectedOrFirstAvailableVariant.image"></shopify-media>
               </div>
+              
+              <!-- Details -->
+              <div class="card-details">
+                <div class="card-info-row">
+                  <h3 class="card-title"><shopify-data query="product.title"></shopify-data></h3>
+                  <div class="card-price-box">
+                    <span class="price-old">₹44,600</span>
+                    <span class="price-new"><shopify-money query="product.selectedOrFirstAvailableVariant.price"></shopify-money></span>
+                  </div>
+                </div>
+                
+                <!-- Hover Expand Area -->
+                <div class="card-hover-actions">
+                  <span class="add-to-bag-text">ADD TO BAG &mdash;</span>
+                  <div class="swatches-container">
+                    <div class="swatch"><img src="https://images.unsplash.com/photo-1590874103328-eac38a683ce7?w=50&h=50&fit=crop" alt="swatch"></div>
+                    <div class="swatch"><img src="https://images.unsplash.com/photo-1584916201218-f4242ceb4809?w=50&h=50&fit=crop" alt="swatch"></div>
+                    <div class="swatch"><img src="https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=50&h=50&fit=crop" alt="swatch"></div>
+                    <span class="swatch-plus">+</span>
+                  </div>
+                </div>
+              </div>
+
             </div>
           </template>
         </shopify-list-context>
+      </div>
+
+      <!-- Scrollbar/Slider Indicator -->
+      <div class="slider-indicator" style="margin-top: 60px; display: flex; justify-content: center;">
+        <div style="width: 400px; height: 1px; background: #ddd; position: relative;">
+          <div style="width: 10px; height: 10px; background: #111; border-radius: 50%; position: absolute; top: -4.5px; left: 30%;"></div>
+        </div>
       </div>
     </section>
 

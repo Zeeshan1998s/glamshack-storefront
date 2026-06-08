@@ -4386,3 +4386,153 @@
       padding: 24px 32px !important;
       border-top: 1px solid #dcdacb !important;
     }
+
+    /* LEATHER FAMILY CARD (Section 3 Redesign) */
+    .leather-family-card {
+      background: #e9e7e1;
+      transition: all 0.3s ease;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      cursor: pointer;
+    }
+
+    .leather-family-card:hover {
+      background: #ffffff;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+      z-index: 10;
+    }
+
+    .leather-family-card .wishlist-icon {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      width: 24px;
+      height: 24px;
+      color: #999;
+      opacity: 0;
+      transition: opacity 0.3s ease, color 0.3s ease;
+      z-index: 5;
+    }
+
+    .leather-family-card:hover .wishlist-icon {
+      opacity: 1;
+    }
+
+    .leather-family-card .wishlist-icon:hover {
+      color: #e74c3c;
+      fill: #e74c3c;
+    }
+
+    .leather-family-card .card-media-wrapper {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    
+    .leather-family-card .card-media-wrapper img,
+    .leather-family-card .card-media-wrapper shopify-media {
+      max-width: 80%;
+      max-height: 80%;
+      object-fit: contain;
+      transition: transform 0.4s ease;
+    }
+
+    .leather-family-card:hover .card-media-wrapper img,
+    .leather-family-card:hover .card-media-wrapper shopify-media {
+      transform: scale(1.05);
+    }
+
+    .leather-family-card .card-details {
+      padding: 20px 20px 30px 20px;
+      background: inherit;
+      display: flex;
+      flex-direction: column;
+      margin-top: auto;
+      text-align: left;
+    }
+
+    .leather-family-card .card-info-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .leather-family-card .card-title {
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: #333;
+      margin: 0;
+    }
+
+    .leather-family-card .card-price-box {
+      display: flex;
+      gap: 8px;
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+
+    .leather-family-card .price-old {
+      color: #999;
+      text-decoration: line-through;
+    }
+
+    .leather-family-card .price-new {
+      color: #c0392b; /* Red price */
+    }
+
+    .leather-family-card .card-hover-actions {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 0px;
+      height: 0;
+      opacity: 0;
+      overflow: hidden;
+      transition: height 0.3s ease, opacity 0.3s ease, margin-top 0.3s ease;
+    }
+
+    .leather-family-card:hover .card-hover-actions {
+      height: 30px;
+      opacity: 1;
+      margin-top: 20px;
+    }
+
+    .leather-family-card .add-to-bag-text {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      color: #111;
+    }
+
+    .leather-family-card .swatches-container {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .leather-family-card .swatch {
+      width: 28px;
+      height: 20px;
+      background: #ddd;
+      overflow: hidden;
+      border: 1px solid #eee;
+    }
+
+    .leather-family-card .swatch img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .leather-family-card .swatch-plus {
+      font-size: 1rem;
+      color: #666;
+      margin-left: 4px;
+      line-height: 1;
+    }
