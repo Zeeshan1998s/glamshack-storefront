@@ -3236,3 +3236,392 @@
         right: 20px !important;
       }
     }
+
+    /* =========================================================
+       NEW PDP LAYOUT (Mockup Redesign)
+       ========================================================= */
+    .pdp-layout-new {
+      display: flex;
+      flex-direction: column;
+      gap: 60px;
+      padding-top: 20px;
+      padding-bottom: 80px;
+    }
+
+    /* TOP SECTION: Grid + Sticky Info */
+    .pdp-top-section {
+      display: flex;
+      gap: 60px;
+      align-items: flex-start;
+    }
+
+    .pdp-media-grid {
+      flex: 1;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4px; /* small gap like the mockup */
+    }
+
+    .pdp-media-item {
+      background: #f4f3ef; /* Light beige from mockup */
+      aspect-ratio: 1 / 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .pdp-media-item shopify-media,
+    .pdp-media-item img {
+      width: 80%;
+      height: 80%;
+      object-fit: contain;
+    }
+
+    .pdp-info-sticky {
+      width: 400px;
+      position: sticky;
+      top: 120px; /* Offset for header */
+      display: flex;
+      flex-direction: column;
+    }
+
+    .pdp-breadcrumb {
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      color: var(--text-muted);
+      margin-bottom: 24px;
+    }
+
+    .pdp-title {
+      font-family: var(--font-display);
+      font-size: 2.2rem;
+      color: var(--text-main);
+      margin-bottom: 12px;
+      font-weight: 400;
+    }
+
+    .pdp-price {
+      font-size: 1.1rem;
+      color: var(--accent-red);
+      font-weight: 600;
+      margin-bottom: 32px;
+    }
+
+    .pdp-color-selector {
+      margin-bottom: 32px;
+      border-top: 1px solid var(--border-color);
+      padding-top: 24px;
+    }
+
+    .color-label {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--text-main);
+      display: block;
+      margin-bottom: 12px;
+    }
+
+    .color-options {
+      display: flex;
+      gap: 12px;
+    }
+
+    .color-swatch {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      cursor: pointer;
+      border: 2px solid transparent;
+      box-shadow: 0 0 0 1px var(--border-color);
+    }
+    
+    .color-swatch.active {
+      box-shadow: 0 0 0 1px #fff, 0 0 0 3px var(--text-main);
+    }
+
+    .pdp-actions {
+      margin-bottom: 40px;
+    }
+
+    .btn-add-to-cart-new {
+      width: 100%;
+      background: var(--text-main); /* Dark dark green/black */
+      color: #fff;
+      border: none;
+      padding: 16px;
+      font-size: 0.85rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .btn-add-to-cart-new:hover {
+      background: #2a2a2a;
+    }
+
+    .pdp-features-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .pdp-features-list li {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    /* INFO SECTION */
+    .pdp-info-section {
+      display: flex;
+      gap: 60px;
+      margin-top: 40px;
+      border-top: 1px solid var(--border-color);
+      padding-top: 60px;
+    }
+
+    .pdp-quote-box {
+      flex: 1;
+    }
+
+    .quote-text {
+      font-family: var(--font-display);
+      font-size: 2.5rem;
+      line-height: 1.2;
+      color: var(--text-main);
+      margin-bottom: 24px;
+      font-weight: 400;
+    }
+
+    .quote-subtext {
+      font-size: 0.9rem;
+      line-height: 1.6;
+      color: var(--text-muted);
+      margin-bottom: 32px;
+      max-width: 80%;
+    }
+
+    .quote-thumbnails {
+      display: flex;
+      gap: 16px;
+    }
+
+    .pdp-accordion-box {
+      width: 400px;
+    }
+
+    .pdp-accordion details {
+      border-bottom: 1px solid var(--border-color);
+      padding: 16px 0;
+    }
+
+    .pdp-accordion summary {
+      font-weight: 600;
+      font-size: 0.85rem;
+      color: var(--text-main);
+      cursor: pointer;
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .pdp-accordion summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .pdp-accordion summary::after {
+      content: '+';
+      font-size: 1.2rem;
+      font-weight: 300;
+    }
+
+    .pdp-accordion details[open] summary::after {
+      content: '−';
+    }
+
+    .pdp-accordion .details-content {
+      padding-top: 16px;
+      font-size: 0.85rem;
+      line-height: 1.6;
+      color: var(--text-muted);
+    }
+
+    /* STYLING SECTION */
+    .pdp-styling-section {
+      margin-top: 60px;
+    }
+
+    .section-heading {
+      font-size: 0.85rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-weight: 600;
+      color: var(--text-main);
+      margin-bottom: 32px;
+    }
+
+    .styling-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2px;
+    }
+
+    .styling-item img {
+      width: 100%;
+      aspect-ratio: 3/4;
+      object-fit: cover;
+      display: block;
+    }
+
+    .styling-caption {
+      padding: 16px 0;
+    }
+
+    .styling-caption h4 {
+      font-size: 0.85rem;
+      margin-bottom: 4px;
+      color: var(--text-main);
+    }
+
+    .styling-caption p {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    /* WEAR THIS SECTION */
+    .pdp-wear-this-section {
+      display: flex;
+      gap: 60px;
+      margin-top: 60px;
+      align-items: center;
+    }
+
+    .wear-this-left {
+      flex: 1.5;
+    }
+
+    .wear-this-left img {
+      width: 100%;
+      height: 100%;
+      min-height: 600px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .wear-this-right {
+      flex: 1;
+      padding: 40px;
+      background: #f8f8f8;
+    }
+
+    .section-heading-serif {
+      font-family: var(--font-display);
+      font-size: 2.5rem;
+      font-weight: 400;
+      color: var(--text-main);
+      margin-bottom: 16px;
+    }
+
+    .wear-this-desc {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-bottom: 40px;
+      line-height: 1.5;
+    }
+
+    .wear-this-products {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      margin-bottom: 40px;
+    }
+
+    .wear-this-card {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+    }
+
+    .wear-this-card img {
+      width: 100px;
+      height: 100px;
+      object-fit: cover;
+      background: #eae8e1;
+    }
+
+    .wear-this-card-info {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text-main);
+    }
+
+    .wear-this-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      border-top: 1px solid #ddd;
+      padding-top: 24px;
+    }
+
+    .wear-this-list li {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    /* RELATED SECTION */
+    .pdp-related-section {
+      margin-top: 80px;
+      border-top: 1px solid var(--border-color);
+      padding-top: 60px;
+    }
+
+    .section-heading-small {
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 32px;
+    }
+
+    .pdp-related-grid-wrapper shopify-list-context {
+      display: grid !important;
+      grid-template-columns: repeat(4, 1fr) !important;
+      gap: 24px !important;
+      width: 100% !important;
+    }
+
+    .pdp-related-card {
+      width: 100% !important;
+      flex: none !important;
+    }
+
+    @media (max-width: 900px) {
+      .pdp-top-section, .pdp-info-section, .pdp-wear-this-section {
+        flex-direction: column;
+        gap: 40px;
+      }
+      .pdp-info-sticky, .pdp-accordion-box, .wear-this-right {
+        width: 100%;
+        position: static;
+      }
+      .pdp-media-grid, .styling-grid, .pdp-related-grid-wrapper shopify-list-context {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
