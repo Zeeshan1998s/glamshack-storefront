@@ -4046,11 +4046,14 @@
       display: grid;
       grid-template-columns: 1fr 1fr;
       width: 100%;
-      background-color: #f4f3ef;
+      background-color: #fff;
+      padding: 80px 4%;
+      gap: 60px;
     }
 
     .story-split-left {
-      height: 100vh;
+      height: 90vh; /* Tall lifestyle image */
+      overflow: hidden;
     }
 
     .story-split-bg {
@@ -4061,27 +4064,115 @@
     }
 
     .story-split-right {
-      padding: 80px 10%;
       display: flex;
       flex-direction: column;
       justify-content: center;
+      padding-top: 40px;
+      overflow: hidden;
     }
 
     .story-split-right .section-main-title {
-      color: #12141d;
-      font-size: 2.5rem;
+      font-family: var(--font-display), 'Playfair Display', serif;
+      color: #333;
+      font-size: 2.8rem;
+      font-weight: 300;
+      margin-bottom: 15px;
+      letter-spacing: normal;
       text-transform: uppercase;
-      letter-spacing: 0.1em;
     }
 
-    .wear-this-products {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
+    .story-split-subtitle {
+      font-family: var(--font-body);
+      font-size: 0.8rem;
+      color: #666;
+      margin-bottom: 40px;
+    }
+
+    .story-tabs {
+      display: flex;
       gap: 24px;
+      margin-bottom: 40px;
     }
 
-    .wear-this-products .wear-this-card-info {
-      color: #12141d;
+    .story-tab {
+      font-family: var(--font-body);
+      font-size: 0.7rem;
+      color: #999;
+      cursor: pointer;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      transition: color 0.3s ease;
+      text-transform: uppercase;
+    }
+    
+    .story-tab.active, .story-tab:hover {
+      color: #333;
+    }
+
+    .story-slider-wrapper {
+      width: 100%;
+      overflow-x: auto;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+    
+    .story-slider-wrapper::-webkit-scrollbar {
+      display: none;
+    }
+
+    .story-slider {
+      display: flex;
+      gap: 4px;
+      width: max-content;
+    }
+
+    .story-product-card {
+      width: 25vw;
+      min-width: 250px;
+      max-width: 320px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .story-product-image {
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      background-color: #efece7;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 15px;
+    }
+
+    .story-product-image img {
+      width: 90%;
+      height: 90%;
+      object-fit: contain;
+      mix-blend-mode: multiply;
+    }
+
+    .story-product-info {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      font-family: var(--font-body);
+      font-size: 0.8rem;
+      color: #333;
+    }
+
+    .story-price-box {
+      display: flex;
+      gap: 8px;
+    }
+
+    .story-price-box .price-old {
+      text-decoration: line-through;
+      color: #999;
+    }
+
+    .story-price-box .price-new {
+      color: #d11e1e;
+      font-weight: 600;
     }
 
     /* Section 8: Journal / Blog */
