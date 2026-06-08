@@ -1,5 +1,25 @@
     @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
 
+    /* =========================================================
+       HOW TO EDIT COLORS & FONTS
+       
+       This section controls the "Global Variables". Think of these as master settings.
+       If you change a color here, it will automatically update everywhere on the website!
+       
+       HOW TO CHANGE COLORS:
+       - Look for words starting with "--bg-" (backgrounds) or "--text-" (text colors).
+       - After the colon (:), you will see a Hex Color Code (e.g., #eae8e1).
+       - You can replace this code with any hex color from Google Color Picker.
+       - Example: To change the main background from off-white to black, change
+         "--bg-base: #eae8e1;" to "--bg-base: #000000;"
+         
+       HOW TO CHANGE FONTS:
+       - The website uses "Cormorant Garamond" for Titles (--font-display).
+       - It uses "Plus Jakarta Sans" for regular text (--font-body).
+       - If you want a different font, change the names inside the single quotes 
+         below, AND update the Google Fonts @import link right above this box.
+       ========================================================= */
+
     /* Premium Design System Token Architecture */
     :root {
       --bg-base: #eae8e1;
