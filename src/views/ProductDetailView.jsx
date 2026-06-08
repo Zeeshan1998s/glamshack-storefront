@@ -271,7 +271,7 @@ export default function ProductDetailView({
                 <div class="pdp-related-grid-wrapper">
                   <shopify-list-context type="product" query="products" first="4">
                     <template>
-                      <div class="glam-card pdp-related-card" shopify-attr--data-handle="product.handle" shopify-attr--data-title="product.title" style="cursor: pointer;">
+                      <div class="glam-card pdp-specific-related-card" shopify-attr--data-handle="product.handle" shopify-attr--data-title="product.title" style="cursor: pointer;">
                         <div class="card-media-wrapper" style="background: #f4f3ef;">
                           <shopify-media width="300" height="300" query="product.selectedOrFirstAvailableVariant.image"></shopify-media>
                         </div>
