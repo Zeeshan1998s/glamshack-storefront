@@ -349,8 +349,8 @@
 
     // Scrapes DOM for loaded products to dynamically search
     function getAllProducts() {
-      // Find cards inside shop list context, trousseau list, and engagement list
-      const cards = document.querySelectorAll('#shop-list-context .glam-card, #trousseau-list-context .glam-card, #engagement-list-context .glam-card');
+      // Find cards inside shop list context, trousseau list, engagement list, and PDP related section
+      const cards = document.querySelectorAll('.glam-card');
       const products = [];
       const seenKeys = new Set();
 
@@ -870,24 +870,33 @@
           cart.shadowRoot.appendChild(style);
         }
         
-        // Dynamically find and style the checkout button by text content or slot to bypass all class/part restrictions
-        const allBtns = cart.shadowRoot.querySelectorAll('button, a');
-        allBtns.forEach(btn => {
+        // Bulletproof dynamic checkout button styling
+        const styleCheckoutBtn = (el) => {
+           if (el) {
+             el.style.backgroundColor = '#4b5344';
+             el.style.color = '#ffffff';
+             el.style.borderRadius = '0';
+             el.style.border = 'none';
+             el.style.outline = 'none';
+             el.style.boxShadow = 'none';
+           }
+        };
+        
+        // 1. Try by part attribute
+        styleCheckoutBtn(cart.shadowRoot.querySelector('[part="checkout-button"]'));
+        
+        // 2. Try by slot parent
+        const slot = cart.shadowRoot.querySelector('slot[name="checkout-button"]');
+        if (slot && slot.parentElement) {
+            styleCheckoutBtn(slot.parentElement);
+        }
+        
+        // 3. Fallback to iterating any interactive element
+        const allInteractive = cart.shadowRoot.querySelectorAll('button, a, [role="button"]');
+        allInteractive.forEach(btn => {
           const txt = btn.textContent.toUpperCase();
-          const html = btn.outerHTML.toUpperCase();
-          const hasSlot = btn.querySelector('slot[name="checkout-button"]');
-          const isCheckout = hasSlot || 
-                             txt.includes('CHECKOUT') || 
-                             txt.includes('ORDER') || 
-                             html.includes('CHECKOUT');
-                             
-          if (isCheckout) {
-            btn.style.backgroundColor = '#4b5344';
-            btn.style.color = '#ffffff';
-            btn.style.borderRadius = '0';
-            btn.style.border = 'none';
-            btn.style.outline = 'none';
-            btn.style.boxShadow = 'none';
+          if (txt.includes('CHECKOUT SECURELY') || txt.includes('COMPLETE ORDER')) {
+            styleCheckoutBtn(btn);
           }
         });
         
