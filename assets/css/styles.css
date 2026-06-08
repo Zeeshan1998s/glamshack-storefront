@@ -3707,11 +3707,14 @@
 
     /* Section 2: Brand Story & Trust Badges */
     .home-brand-story {
+      padding: 100px 0;
+      background-color: #f4f3ef;
+    }
+    
+    .home-brand-story .pdp-container {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 60px;
-      padding: 100px 4%;
-      background-color: #f4f3ef;
       align-items: center;
     }
 
@@ -4356,13 +4359,12 @@
       max-width: 90vw !important;
       color: #12141d !important;
       position: fixed !important;
-      left: auto !important;
-      right: 0 !important;
-      top: 0 !important;
-      bottom: auto !important;
+      inset: 0 0 0 auto !important;
       height: 100vh !important;
+      min-height: 100vh !important;
       max-height: 100vh !important;
       margin: 0 !important;
+      transform: none !important;
       border-radius: 0 !important;
     }
     
