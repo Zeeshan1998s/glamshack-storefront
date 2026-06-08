@@ -1,4 +1,5 @@
 import { useNavigate, useSearchParams } from 'react-router-dom';
+import './ProductDetailView.css';
 
 export default function ProductDetailView({
   onToggleWishlist
@@ -47,21 +48,40 @@ export default function ProductDetailView({
       e.preventDefault();
       const cart = document.getElementById('cart');
       if (cart && typeof cart.addLine === 'function') {
-        cart.addLine(e.nativeEvent).then(() => {
-          if (typeof cart.showModal === 'function') {
+        try {
+          const res = cart.addLine(e.nativeEvent);
+          if (res && typeof res.then === 'function') {
+            res.then(() => {
+              if (typeof cart.showModal === 'function') {
+                cart.showModal();
+              }
+            }).catch(() => {
+              if (typeof cart.showModal === 'function') {
+                cart.showModal();
+              }
+            });
+          } else {
+            if (typeof cart.showModal === 'function') {
+              cart.showModal();
+            }
+          }
+        } catch (err) {
+          console.error('Error adding item to cart:', err);
+          if (cart && typeof cart.showModal === 'function') {
             cart.showModal();
           }
-        });
+        }
       }
     }
-  };
 
-  const handleProductCardClick = (e) => {
-    const card = e.target.closest('.glam-card');
+    // Intercept clicks on related product cards
+    const card = target.closest('.glam-card');
     if (card) {
       const handle = card.getAttribute('data-handle') || card.getAttribute('shopify-attr--data-handle');
       if (handle) {
+        e.preventDefault();
         navigate(`/product?handle=${handle}`);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
       }
     }
   };
@@ -77,7 +97,13 @@ export default function ProductDetailView({
         </div>
 
         {/* Dynamic Product Context for Detail Page */}
-        <shopify-context id="pdp-context" type="product" handle={productHandle} onClick={handlePDPClick}>
+        <shopify-context
+          key={productHandle}
+          id="pdp-context"
+          type="product"
+          handle={productHandle}
+          onClick={handlePDPClick}
+        >
           <template dangerouslySetInnerHTML={{ __html: `
             <div class="pdp-layout-new">
               <!-- TOP SECTION -->
@@ -240,10 +266,10 @@ export default function ProductDetailView({
               </div>
 
               <!-- BOTTOM: YOU MIGHT ALSO LIKE -->
-              <div class="pdp-related-section pdp-container">
+              <div class="pdp-related-section container">
                 <h3 class="section-heading-small">YOU MIGHT ALSO LIKE</h3>
                 <div class="pdp-related-grid-wrapper">
-                  <shopify-list-context type="product" query="products" first="4" onClick={handleProductCardClick}>
+                  <shopify-list-context type="product" query="products" first="4">
                     <template>
                       <div class="glam-card pdp-related-card" shopify-attr--data-handle="product.handle" shopify-attr--data-title="product.title" style="cursor: pointer;">
                         <div class="card-media-wrapper" style="background: #f4f3ef;">
