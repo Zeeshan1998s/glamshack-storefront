@@ -3240,30 +3240,41 @@
     /* =========================================================
        NEW PDP LAYOUT (Mockup Redesign)
        ========================================================= */
+    #view-product {
+      background-color: #f4f3ef;
+    }
+
+    .pdp-container {
+      width: 100%;
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 0 calc(var(--spacing-grid) * 4);
+    }
+
     .pdp-layout-new {
       display: flex;
       flex-direction: column;
-      gap: 60px;
-      padding-top: 20px;
       padding-bottom: 80px;
     }
 
     /* TOP SECTION: Grid + Sticky Info */
     .pdp-top-section {
       display: flex;
-      gap: 60px;
-      align-items: flex-start;
+      width: 100vw;
+      align-items: stretch;
+      background-color: #f4f3ef;
     }
 
     .pdp-media-grid {
-      flex: 1;
+      width: 55vw;
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 4px; /* small gap like the mockup */
+      gap: 2px;
+      background-color: #fff; /* white gaps between images */
     }
 
     .pdp-media-item {
-      background: #f4f3ef; /* Light beige from mockup */
+      background: #f4f3ef;
       aspect-ratio: 1 / 1;
       display: flex;
       align-items: center;
@@ -3278,12 +3289,20 @@
       object-fit: contain;
     }
 
+    .pdp-info-sticky-wrapper {
+      width: 45vw;
+      padding-left: 4vw;
+      padding-right: calc(max(4vw, (100vw - 1240px) / 2));
+      background-color: #f4f3ef;
+      padding-top: 40px;
+    }
+
     .pdp-info-sticky {
-      width: 400px;
       position: sticky;
-      top: 120px; /* Offset for header */
+      top: 120px;
       display: flex;
       flex-direction: column;
+      max-width: 400px;
     }
 
     .pdp-breadcrumb {
@@ -3346,7 +3365,7 @@
 
     .btn-add-to-cart-new {
       width: 100%;
-      background: var(--text-main); /* Dark dark green/black */
+      background: var(--text-main);
       color: #fff;
       border: none;
       padding: 16px;
@@ -3383,9 +3402,9 @@
     .pdp-info-section {
       display: flex;
       gap: 60px;
-      margin-top: 40px;
-      border-top: 1px solid var(--border-color);
+      margin-top: 60px;
       padding-top: 60px;
+      border-top: 1px solid var(--border-color);
     }
 
     .pdp-quote-box {
@@ -3457,7 +3476,8 @@
 
     /* STYLING SECTION */
     .pdp-styling-section {
-      margin-top: 60px;
+      margin-top: 80px;
+      width: 100vw;
     }
 
     .section-heading {
@@ -3483,7 +3503,8 @@
     }
 
     .styling-caption {
-      padding: 16px 0;
+      padding: 16px;
+      background: #f4f3ef;
     }
 
     .styling-caption h4 {
@@ -3500,13 +3521,14 @@
     /* WEAR THIS SECTION */
     .pdp-wear-this-section {
       display: flex;
-      gap: 60px;
-      margin-top: 60px;
-      align-items: center;
+      width: 100vw;
+      margin-top: 80px;
+      align-items: stretch;
+      background: #f4f3ef;
     }
 
     .wear-this-left {
-      flex: 1.5;
+      width: 55vw;
     }
 
     .wear-this-left img {
@@ -3518,9 +3540,16 @@
     }
 
     .wear-this-right {
-      flex: 1;
-      padding: 40px;
-      background: #f8f8f8;
+      width: 45vw;
+      display: flex;
+      align-items: center;
+      padding-left: 4vw;
+      padding-right: calc(max(4vw, (100vw - 1240px) / 2));
+    }
+
+    .wear-this-right-content {
+      max-width: 400px;
+      width: 100%;
     }
 
     .section-heading-serif {
@@ -3615,11 +3644,16 @@
     @media (max-width: 900px) {
       .pdp-top-section, .pdp-info-section, .pdp-wear-this-section {
         flex-direction: column;
-        gap: 40px;
       }
-      .pdp-info-sticky, .pdp-accordion-box, .wear-this-right {
+      .pdp-media-grid, .pdp-info-sticky-wrapper, .wear-this-left, .wear-this-right {
         width: 100%;
+        padding-left: 5vw;
+        padding-right: 5vw;
+      }
+      .pdp-info-sticky {
         position: static;
+        width: 100%;
+        max-width: 100%;
       }
       .pdp-media-grid, .styling-grid, .pdp-related-grid-wrapper shopify-list-context {
         grid-template-columns: 1fr 1fr;

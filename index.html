@@ -455,49 +455,51 @@
           <div class="pdp-layout-new">
             
             <!-- TOP SECTION -->
-            <div class="pdp-top-section container">
+            <div class="pdp-top-section">
               <div class="pdp-media-grid">
                 <!-- 4 image grid using the main image for all placeholders -->
-                <div class="pdp-media-item"><shopify-media width="500" height="500" query="product.selectedOrFirstAvailableVariant.image"></shopify-media></div>
-                <div class="pdp-media-item"><shopify-media width="500" height="500" query="product.selectedOrFirstAvailableVariant.image"></shopify-media></div>
-                <div class="pdp-media-item"><shopify-media width="500" height="500" query="product.selectedOrFirstAvailableVariant.image"></shopify-media></div>
-                <div class="pdp-media-item"><shopify-media width="500" height="500" query="product.selectedOrFirstAvailableVariant.image"></shopify-media></div>
+                <div class="pdp-media-item"><shopify-media width="800" height="800" query="product.selectedOrFirstAvailableVariant.image"></shopify-media></div>
+                <div class="pdp-media-item"><shopify-media width="800" height="800" query="product.selectedOrFirstAvailableVariant.image"></shopify-media></div>
+                <div class="pdp-media-item"><shopify-media width="800" height="800" query="product.selectedOrFirstAvailableVariant.image"></shopify-media></div>
+                <div class="pdp-media-item"><shopify-media width="800" height="800" query="product.selectedOrFirstAvailableVariant.image"></shopify-media></div>
               </div>
               
-              <div class="pdp-info-sticky">
-                <div class="pdp-breadcrumb">HOME / PRODUCTS / <span style="text-transform: uppercase;"><shopify-data query="product.title"></shopify-data></span></div>
-                <h1 class="pdp-title"><shopify-data query="product.title"></shopify-data></h1>
-                <div class="pdp-price"><shopify-money query="product.selectedOrFirstAvailableVariant.price"></shopify-money></div>
-                
-                <div class="pdp-color-selector">
-                  <span class="color-label">Color</span>
-                  <div class="color-options">
-                    <span class="color-swatch active" style="background: #a67c52;"></span>
-                    <span class="color-swatch" style="background: #2a2a2a;"></span>
-                    <span class="color-swatch" style="background: #d4b595;"></span>
+              <div class="pdp-info-sticky-wrapper">
+                <div class="pdp-info-sticky">
+                  <div class="pdp-breadcrumb">HOME / PRODUCTS / <span style="text-transform: uppercase;"><shopify-data query="product.title"></shopify-data></span></div>
+                  <h1 class="pdp-title"><shopify-data query="product.title"></shopify-data></h1>
+                  <div class="pdp-price"><shopify-money query="product.selectedOrFirstAvailableVariant.price"></shopify-money></div>
+                  
+                  <div class="pdp-color-selector">
+                    <span class="color-label">Color</span>
+                    <div class="color-options">
+                      <span class="color-swatch active" style="background: #a67c52;"></span>
+                      <span class="color-swatch" style="background: #2a2a2a;"></span>
+                      <span class="color-swatch" style="background: #d4b595;"></span>
+                    </div>
                   </div>
-                </div>
 
-                <div class="pdp-actions">
-                  <button 
-                    class="btn-add-to-cart-new"
-                    onclick="document.getElementById('cart').addLine(event).showModal();"
-                    shopify-attr--disabled="!product.selectedOrFirstAvailableVariant.availableForSale"
-                  >
-                    ADD TO BAG
-                  </button>
-                </div>
+                  <div class="pdp-actions">
+                    <button 
+                      class="btn-add-to-cart-new"
+                      onclick="document.getElementById('cart').addLine(event).showModal();"
+                      shopify-attr--disabled="!product.selectedOrFirstAvailableVariant.availableForSale"
+                    >
+                      ADD TO BAG
+                    </button>
+                  </div>
 
-                <ul class="pdp-features-list">
-                  <li><span class="icon">⚲</span> Complimentary shipping and returns</li>
-                  <li><span class="icon">☼</span> Handcrafted using premium materials</li>
-                  <li><span class="icon">↻</span> 1-year global warranty included</li>
-                </ul>
+                  <ul class="pdp-features-list">
+                    <li><span class="icon">⚲</span> Complimentary shipping and returns</li>
+                    <li><span class="icon">☼</span> Handcrafted using premium materials</li>
+                    <li><span class="icon">↻</span> 1-year global warranty included</li>
+                  </ul>
+                </div>
               </div>
             </div>
 
             <!-- MIDDLE 1: INFO SECTION -->
-            <div class="pdp-info-section container">
+            <div class="pdp-info-section pdp-container">
               <div class="pdp-quote-box">
                 <h2 class="quote-text">Why you choose us. I do that style and brand that you'll go your own way in life.</h2>
                 <div class="quote-subtext">
@@ -542,7 +544,9 @@
 
             <!-- MIDDLE 2: STYLING -->
             <div class="pdp-styling-section">
-              <h3 class="section-heading">STYLING</h3>
+              <div class="pdp-container">
+                <h3 class="section-heading">STYLING</h3>
+              </div>
               <div class="styling-grid">
                 <div class="styling-item">
                   <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=600&auto=format&fit=crop" />
@@ -581,35 +585,37 @@
                 <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=1200&auto=format&fit=crop" />
               </div>
               <div class="wear-this-right">
-                <h3 class="section-heading-serif">What's That?</h3>
-                <p class="wear-this-desc">Pair your selection with our signature accessories to complete the look.</p>
-                <div class="wear-this-products">
-                  <div class="wear-this-card">
-                    <img src="https://images.unsplash.com/photo-1590874103328-eac38a683ce7?w=300&auto=format&fit=crop" />
-                    <div class="wear-this-card-info">
-                      <span>Cardholder</span>
-                      <span>$45</span>
+                <div class="wear-this-right-content">
+                  <h3 class="section-heading-serif">What's That?</h3>
+                  <p class="wear-this-desc">Pair your selection with our signature accessories to complete the look.</p>
+                  <div class="wear-this-products">
+                    <div class="wear-this-card">
+                      <img src="https://images.unsplash.com/photo-1590874103328-eac38a683ce7?w=300&auto=format&fit=crop" />
+                      <div class="wear-this-card-info">
+                        <span>Cardholder</span>
+                        <span>$45</span>
+                      </div>
+                    </div>
+                    <div class="wear-this-card">
+                      <img src="https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=300&auto=format&fit=crop" />
+                      <div class="wear-this-card-info">
+                        <span>Wallet</span>
+                        <span>$85</span>
+                      </div>
                     </div>
                   </div>
-                  <div class="wear-this-card">
-                    <img src="https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=300&auto=format&fit=crop" />
-                    <div class="wear-this-card-info">
-                      <span>Wallet</span>
-                      <span>$85</span>
-                    </div>
-                  </div>
+                  <ul class="wear-this-list">
+                    <li>01 / Hand stitched details</li>
+                    <li>02 / Premium brass hardware</li>
+                    <li>03 / Water resistant lining</li>
+                    <li>04 / Built for longevity</li>
+                  </ul>
                 </div>
-                <ul class="wear-this-list">
-                  <li>01 / Hand stitched details</li>
-                  <li>02 / Premium brass hardware</li>
-                  <li>03 / Water resistant lining</li>
-                  <li>04 / Built for longevity</li>
-                </ul>
               </div>
             </div>
 
             <!-- BOTTOM: YOU MIGHT ALSO LIKE -->
-            <div class="pdp-related-section container">
+            <div class="pdp-related-section pdp-container">
               <h3 class="section-heading-small">YOU MIGHT ALSO LIKE</h3>
               <!-- Reuse the static product list for now to simulate related products -->
               <div class="pdp-related-grid-wrapper">
