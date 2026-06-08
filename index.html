@@ -204,7 +204,8 @@
       cursor: pointer;
     }
 
-    .cat-nav-link:hover {
+    .cat-nav-link:hover,
+    .cat-nav-link.active {
       color: #fff;
     }
 
@@ -2208,7 +2209,8 @@
       color: var(--text-muted) !important;
     }
 
-    .cat-nav-link:hover {
+    .cat-nav-link:hover,
+    .cat-nav-link.active {
       color: var(--text-main) !important;
     }
 
@@ -2422,18 +2424,35 @@
       background-color: #f1f5f9 !important;
       color: var(--text-main) !important;
       border: 1px solid #cbd5e1 !important;
+      border-radius: 30px !important;
+      padding: 10px 22px !important;
     }
 
     #pdp-context shopify-variant-selector::part(radio-selected) {
       background-color: var(--accent-red) !important;
       color: #ffffff !important;
       border-color: var(--accent-red) !important;
-      box-shadow: 0 5px 15px rgba(204, 0, 0, 0.25) !important;
+      box-shadow: 0 5px 15px rgba(204, 0, 0, 0.15) !important;
     }
 
     #pdp-context shopify-variant-selector::part(color-swatch-selected) {
       border-color: var(--text-main) !important;
       box-shadow: 0 0 0 2px #ffffff, 0 0 15px var(--accent-red) !important;
+    }
+
+    .pdp-title {
+      color: var(--text-main) !important;
+    }
+
+    .pdp-price {
+      color: var(--text-main) !important;
+      border-bottom: 1px solid var(--border-color) !important;
+    }
+
+    .pdp-media-box {
+      background: #f8fafc !important;
+      border: 1px solid var(--border-color) !important;
+      box-shadow: 0 20px 40px rgba(15, 23, 42, 0.03) !important;
     }
 
     .pdp-description-title {
@@ -2456,18 +2475,44 @@
       color: var(--text-main) !important;
     }
 
+    .pdp-accordion summary::after {
+      color: var(--text-main) !important;
+    }
+
     .pdp-accordion .details-content {
       color: var(--text-muted) !important;
     }
 
+    .btn-add-to-cart {
+      background-color: var(--accent-red) !important;
+      color: #ffffff !important;
+      border: none !important;
+      border-radius: 30px !important;
+      padding: 14px 28px !important;
+      font-weight: 600 !important;
+      transition: all 0.3s ease !important;
+    }
+
+    .btn-add-to-cart:hover {
+      background-color: var(--accent-navy) !important;
+      color: #ffffff !important;
+      box-shadow: 0 10px 20px rgba(15, 23, 42, 0.08) !important;
+    }
+
     .btn-buy-now {
-      border: 1px solid var(--text-main) !important;
+      border: 1.5px solid var(--text-main) !important;
       color: var(--text-main) !important;
+      background-color: transparent !important;
+      border-radius: 30px !important;
+      padding: 14px 28px !important;
+      font-weight: 600 !important;
+      transition: all 0.3s ease !important;
     }
 
     .btn-buy-now:hover {
       background-color: var(--text-main) !important;
       color: #ffffff !important;
+      box-shadow: 0 10px 20px rgba(15, 23, 42, 0.08) !important;
     }
 
     /* Cart Widget Dialog Overrides */
@@ -2476,6 +2521,14 @@
       border-left: 1px solid var(--border-color) !important;
       color: var(--text-main) !important;
       box-shadow: -15px 0 50px rgba(15, 23, 42, 0.08) !important;
+    }
+
+    shopify-cart::part(heading) {
+      color: var(--text-main) !important;
+    }
+
+    shopify-cart::part(close-button) {
+      color: var(--text-main) !important;
     }
 
     shopify-cart::part(line-heading) {
@@ -3526,6 +3579,14 @@
             <div class="glam-card loading-pulse" style="height:380px;"></div>
           </div>
         </shopify-list-context>
+
+        <!-- Dynamic Empty State Placeholder -->
+        <div id="shop-empty-state" class="shop-empty-state" style="display: none;">
+          <div class="empty-state-icon">👜</div>
+          <h3 class="empty-state-title">No Products Found</h3>
+          <p class="empty-state-text">We couldn't find any products matching your selection. Try browsing another category or clearing your search.</p>
+          <button onclick="filterShopProducts('all')" class="empty-state-btn">View All Products</button>
+        </div>
       </div>
     </main>
   </div>
@@ -4046,13 +4107,25 @@
         activeTab.classList.add('active-tab');
       }
 
+      // Toggle active states on main navigation links
+      document.querySelectorAll('.cat-nav-link').forEach(link => {
+        if (link.getAttribute('onclick') === `handleCategoryNav('${category}')`) {
+          link.classList.add('active');
+        } else {
+          link.classList.remove('active');
+        }
+      });
+
       applyProductFilter();
     }
 
     // Apply the active filter and search query to currently rendered cards
     function applyProductFilter() {
       const cards = document.querySelectorAll('#view-shop .glam-card');
+      const emptyState = document.getElementById('shop-empty-state');
       if (cards.length === 0) return;
+
+      let matchCount = 0;
 
       cards.forEach(card => {
         const attrTitle = card.getAttribute('data-title') || card.getAttribute('shopify-attr--data-title') || '';
@@ -4082,10 +4155,19 @@
         
         if (matchesCategory && matchesSearch) {
           card.style.display = 'flex';
+          matchCount++;
         } else {
           card.style.display = 'none';
         }
       });
+
+      if (emptyState) {
+        if (matchCount === 0) {
+          emptyState.style.display = 'flex';
+        } else {
+          emptyState.style.display = 'none';
+        }
+      }
     }
 
     // Custom Search Drawer Sidebar Operations
