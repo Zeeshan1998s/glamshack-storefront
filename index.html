@@ -441,13 +441,11 @@
        VIEW 3: DEDICATED FULL PRODUCT DETAILS VIEW (#view-product)
        ========================================================= -->
   <div id="view-product" class="page-view">
-    <div class="pdp-wrapper">
+    <div class="container pdp-wrapper">
       <!-- Back to shop navigation button -->
-      <div class="container" style="padding-top: 20px;">
-        <button class="btn-back" onclick="navigateBack()">
-          ← Back to Catalog
-        </button>
-      </div>
+      <button class="btn-back" onclick="navigateBack()">
+        ← Back to Catalog
+      </button>
 
       <!-- Dynamic Product Context for Detail Page -->
       <shopify-context id="pdp-context" type="product" wait-for-update>
@@ -455,7 +453,7 @@
           <div class="pdp-layout-new">
             
             <!-- TOP SECTION -->
-            <div class="pdp-top-section container">
+            <div class="pdp-top-section">
               <div class="pdp-media-grid">
                 <!-- 4 image grid using the main image for all placeholders -->
                 <div class="pdp-media-item"><shopify-media width="500" height="500" query="product.selectedOrFirstAvailableVariant.image"></shopify-media></div>
@@ -497,7 +495,7 @@
             </div>
 
             <!-- MIDDLE 1: INFO SECTION -->
-            <div class="pdp-info-section container">
+            <div class="pdp-info-section">
               <div class="pdp-quote-box">
                 <h2 class="quote-text">Why you choose us. I do that style and brand that you'll go your own way in life.</h2>
                 <div class="quote-subtext">
@@ -609,7 +607,7 @@
             </div>
 
             <!-- BOTTOM: YOU MIGHT ALSO LIKE -->
-            <div class="pdp-related-section container">
+            <div class="pdp-related-section">
               <h3 class="section-heading-small">YOU MIGHT ALSO LIKE</h3>
               <!-- Reuse the static product list for now to simulate related products -->
               <div class="pdp-related-grid-wrapper">
