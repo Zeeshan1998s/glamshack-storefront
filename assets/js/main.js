@@ -770,12 +770,13 @@
       }
     }
 
-    // Use MutationObserver on the cart shadowRoot dialog (if accessible) to sync the pairs sidebar close state
+    // Use MutationObserver on the cart shadowRoot dialog to inject CSS and move sidebar
     setInterval(() => {
-      const pairsSidebar = document.getElementById('cart-pairs-sidebar');
       const cart = document.getElementById('cart');
       if (cart && cart.shadowRoot) {
-        // Inject brute-force CSS if missing for the dialog structure itself
+        const dialog = cart.shadowRoot.querySelector('dialog');
+        
+        // Inject brute-force CSS if missing
         if (!cart.shadowRoot.getElementById('glamshack-custom-cart-css')) {
           const style = document.createElement('style');
           style.id = 'glamshack-custom-cart-css';
@@ -793,6 +794,77 @@
               inset: 0 0 0 auto !important;
               border-radius: 0 !important;
               color: #12141d !important;
+              overflow: visible !important; /* Allow the attached sidebar to be visible outside bounds */
+            }
+            
+            /* Styles for the injected Pairs With sidebar */
+            #cart-pairs-sidebar {
+               position: absolute !important;
+               left: -400px !important;
+               top: 0 !important;
+               width: 400px !important;
+               height: 100vh !important;
+               background-color: #e0ded9 !important;
+               display: flex !important;
+               flex-direction: column !important;
+               border-right: 1px solid #dcdacb !important;
+               box-sizing: border-box !important;
+               z-index: -1 !important;
+               transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1) !important;
+            }
+            /* When the cart is closed, slide the sidebar out of view */
+            dialog:not([open]) #cart-pairs-sidebar {
+               transform: translateX(400px);
+               opacity: 0;
+            }
+            
+            .pairs-header {
+              font-size: 0.75rem;
+              color: #666;
+              letter-spacing: 0.05em;
+              padding: 32px 32px 16px 32px;
+              font-family: 'Inter', sans-serif;
+            }
+            .pairs-content {
+              padding: 0 32px 32px 32px;
+              overflow-y: auto;
+              flex-grow: 1;
+              font-family: 'Inter', sans-serif;
+            }
+            .pairs-card {
+              margin-bottom: 24px;
+            }
+            .pairs-card img {
+              width: 100%;
+              aspect-ratio: 1;
+              object-fit: cover;
+              background: #e2dfd8;
+              margin-bottom: 12px;
+            }
+            .pairs-title {
+              font-size: 0.85rem;
+              color: #12141d;
+              margin-bottom: 4px;
+            }
+            .pairs-price {
+              font-size: 0.8rem;
+              color: #cc0000;
+              font-weight: 500;
+              margin-bottom: 8px;
+            }
+            .pairs-add-btn {
+              background: none;
+              border: none;
+              font-size: 0.75rem;
+              color: #12141d;
+              cursor: pointer;
+              display: flex;
+              align-items: center;
+              gap: 4px;
+              padding: 0;
+            }
+            .pairs-add-btn span {
+              color: #999;
             }
           `;
           cart.shadowRoot.appendChild(style);
@@ -819,11 +891,15 @@
           }
         });
         
-        if (pairsSidebar && pairsSidebar.classList.contains('open')) {
-          const dialog = cart.shadowRoot.querySelector('dialog');
-          if (dialog && !dialog.hasAttribute('open')) {
-            pairsSidebar.classList.remove('open');
-          }
+        // MOVE THE PAIRS SIDEBAR INTO THE CART DIALOG!
+        // This solves the backdrop overlay issue, combining them into one true component
+        if (dialog) {
+           const pairsSidebar = document.getElementById('cart-pairs-sidebar');
+           if (pairsSidebar && pairsSidebar.parentNode !== dialog) {
+               dialog.appendChild(pairsSidebar);
+               // Clean up old classes so our injected shadow DOM css takes over purely
+               pairsSidebar.className = '';
+           }
         }
       }
     }, 300);
