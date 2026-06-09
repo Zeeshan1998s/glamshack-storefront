@@ -153,7 +153,7 @@ export default function Header({
                   {getInitials()}
                 </button>
               ) : (
-                <button className="header-icon-btn profile-btn" onClick={() => navigate('/login')} title="Log In / Register" aria-label="Open login">
+                <button className="header-icon-btn wishlist-btn" onClick={() => navigate('/login')} title="Log In / Register" aria-label="Open login">
                   <PersonIcon />
                 </button>
               )}
