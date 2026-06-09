@@ -8,9 +8,32 @@ export default function ShopView() {
   const activeShopFilter = searchParams.get('category') || 'all';
   const searchQuery = searchParams.get('q') || '';
 
+  const getCollectionHandle = () => {
+    if (activeShopFilter === 'bands') return 'bands';
+    if (activeShopFilter === 'trays') return 'suede-trays';
+    if (activeShopFilter === 'saree-covers') return 'saree-boxes';
+    if (activeShopFilter === 'baskets') return 'saree-boxes';
+    // Fallback collection to force a request and return products
+    return 'frontpage';
+  };
+
   useEffect(() => {
+    let intervalId;
+    let observer;
+    let shadowObserver;
+
     const applyProductFilter = () => {
-      const cards = document.querySelectorAll('#view-shop .glam-card');
+      const shopList = document.getElementById('shop-list-context');
+      if (!shopList) return;
+
+      const cards = [];
+      // 1. Grab from light DOM
+      cards.push(...shopList.querySelectorAll('.glam-card'));
+      // 2. Grab from shadow DOM
+      if (shopList.shadowRoot) {
+        cards.push(...shopList.shadowRoot.querySelectorAll('.glam-card'));
+      }
+
       const emptyState = document.getElementById('shop-empty-state');
       if (cards.length === 0) return;
 
@@ -56,14 +79,30 @@ export default function ShopView() {
       }
     };
 
+    // Run initial filter check
     applyProductFilter();
 
-    const container = document.querySelector('#view-shop .product-grid-container');
-    if (container) {
-      const observer = new MutationObserver(applyProductFilter);
-      observer.observe(container, { childList: true, subtree: true });
-      return () => observer.disconnect();
+    // Polling fallback to capture async rendering
+    intervalId = setInterval(applyProductFilter, 800);
+
+    const shopList = document.getElementById('shop-list-context');
+    if (shopList) {
+      // Observe light DOM mutations inside shop-list-context
+      observer = new MutationObserver(applyProductFilter);
+      observer.observe(shopList, { childList: true, subtree: true });
+
+      // Observe shadow DOM mutations if shadowRoot is available
+      if (shopList.shadowRoot) {
+        shadowObserver = new MutationObserver(applyProductFilter);
+        shadowObserver.observe(shopList.shadowRoot, { childList: true, subtree: true });
+      }
     }
+
+    return () => {
+      clearInterval(intervalId);
+      if (observer) observer.disconnect();
+      if (shadowObserver) shadowObserver.disconnect();
+    };
   }, [activeShopFilter, searchQuery]);
 
   const handleFilterChange = (category) => {
@@ -197,27 +236,41 @@ export default function ShopView() {
         </div>
 
         <div className="product-grid-container">
-          <shopify-list-context id="shop-list-context" type="product" query="products" first="28" onClick={handleProductCardClick}>
+          <shopify-context
+            key={activeShopFilter + '-' + searchQuery}
+            type={activeShopFilter === 'all' ? 'shop' : 'collection'}
+            handle={activeShopFilter === 'all' ? undefined : getCollectionHandle()}
+            onClick={handleProductCardClick}
+          >
             <template dangerouslySetInnerHTML={{ __html: `
-              <div class="glam-card" shopify-attr--data-handle="product.handle" shopify-attr--data-title="product.title" style="cursor: pointer;">
-                <div class="card-media-wrapper">
-                  <div class="card-badge">Luxe</div>
-                  <shopify-media width="300" height="300" query="product.selectedOrFirstAvailableVariant.image"></shopify-media>
-                  <div class="card-hover-overlay">View Details</div>
+              <shopify-list-context
+                id="shop-list-context"
+                type="product"
+                query="products"
+                first="28"
+              >
+                <template>
+                  <div class="glam-card" shopify-attr--data-handle="product.handle" shopify-attr--data-title="product.title" style="cursor: pointer;">
+                    <div class="card-media-wrapper">
+                      <div class="card-badge">Luxe</div>
+                      <shopify-media width="300" height="300" query="product.selectedOrFirstAvailableVariant.image"></shopify-media>
+                      <div class="card-hover-overlay">View Details</div>
+                    </div>
+                    <div class="card-details">
+                      <h3 class="card-title"><shopify-data query="product.title"></shopify-data></h3>
+                      <div class="card-price"><shopify-money query="product.selectedOrFirstAvailableVariant.price"></shopify-money></div>
+                    </div>
+                  </div>
+                </template>
+                <div shopify-loading-placeholder="" class="product-grid">
+                  <div class="glam-card loading-pulse" style="height: 380px;"></div>
+                  <div class="glam-card loading-pulse" style="height: 380px;"></div>
+                  <div class="glam-card loading-pulse" style="height: 380px;"></div>
+                  <div class="glam-card loading-pulse" style="height: 380px;"></div>
                 </div>
-                <div class="card-details">
-                  <h3 class="card-title"><shopify-data query="product.title"></shopify-data></h3>
-                  <div class="card-price"><shopify-money query="product.selectedOrFirstAvailableVariant.price"></shopify-money></div>
-                </div>
-              </div>
+              </shopify-list-context>
             `}} />
-            <div shopify-loading-placeholder="" className="product-grid">
-              <div className="glam-card loading-pulse" style={{ height: '380px' }}></div>
-              <div className="glam-card loading-pulse" style={{ height: '380px' }}></div>
-              <div className="glam-card loading-pulse" style={{ height: '380px' }}></div>
-              <div className="glam-card loading-pulse" style={{ height: '380px' }}></div>
-            </div>
-          </shopify-list-context>
+          </shopify-context>
 
           {/* Dynamic Empty State Placeholder */}
           <div id="shop-empty-state" className="shop-empty-state" style={{ display: 'none' }}>

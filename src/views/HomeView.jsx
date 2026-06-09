@@ -90,7 +90,8 @@ export default function HomeView() {
       <section className="home-hero-full">
         <img
           className="home-hero-bg"
-          src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=2000&auto=format&fit=crop"
+          src="src/assets/cover.jpg"
+          // src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=2000&auto=format&fit=crop"
           alt="Wedding Preparation"
         />
         <div className="home-hero-content">
