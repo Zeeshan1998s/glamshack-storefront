@@ -3733,12 +3733,7 @@ shopify-list-context::part(list) {
   scrollbar-width: inherit !important;
 }
 
-/* RELATED SECTION */
-.pdp-related-section {
-  margin-top: 80px;
-  border-top: 1px solid var(--border-color);
-  padding-top: 60px;
-}
+
 
 .section-heading-small {
   font-size: 12px;
@@ -4836,7 +4831,7 @@ shopify-cart::part(footer) {
 }
 
 .leather-family-card:hover {
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  /* box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05); */
   z-index: 10;
 }
 

@@ -1,4 +1,4 @@
-import  { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 export default function HomeView() {
@@ -208,7 +208,7 @@ export default function HomeView() {
           </shopify-list-context>
         </div>
 
-        
+
       </section>
 
       {/* SECTION 4: SPLIT FEATURE 50/50 */}
@@ -321,7 +321,7 @@ export default function HomeView() {
         </div>
 
         <div className="slider-indicator" style={{ marginTop: '60px', display: 'flex', justifyContent: 'center' }}>
-         
+
         </div>
       </section>
 
@@ -415,7 +415,7 @@ export default function HomeView() {
           </div>
 
           <div className="slider-indicator" style={{ marginTop: '50px', display: 'flex', justifyContent: 'flex-start' }}>
-            
+
           </div>
         </div>
       </section>
@@ -473,7 +473,7 @@ export default function HomeView() {
         </div>
 
         <div className="slider-indicator" style={{ marginTop: '60px', display: 'flex', justifyContent: 'center' }}>
-          
+
         </div>
       </section>
 

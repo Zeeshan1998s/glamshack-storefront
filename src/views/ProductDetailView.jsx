@@ -267,19 +267,36 @@ export default function ProductDetailView({
               </div>
 
               <!-- BOTTOM: YOU MIGHT ALSO LIKE -->
-              <div class="pdp-related-section container">
-                <h3 class="section-heading-small">YOU MIGHT ALSO LIKE</h3>
-                <div class="pdp-related-grid-wrapper">
+              <div class="pdp-related-section" style="max-width: 100%; padding: 100px 4%; width: 100%; box-sizing: border-box;  padding-top: 0;">
+                <h2 class="section-main-title" style="font-family: var(--font-display), 'Playfair Display', serif; font-size: 36px; color: #3F4234E5; margin-bottom: 40px; font-weight: 500;">YOU MIGHT ALSO LIKE</h2>
+                <div class="pdp-related-grid-wrapper" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px; max-width: 100%;">
                   <shopify-list-context type="product" query="products" first="4">
                     <template>
-                      <div class="glam-card pdp-specific-related-card" shopify-attr--data-handle="product.handle" shopify-attr--data-title="product.title" style="cursor: pointer;">
-                        <div class="card-media-wrapper" style="background: #f4f3ef;">
-                          <shopify-media width="300" height="300" query="product.selectedOrFirstAvailableVariant.image"></shopify-media>
+                      <div class="leather-family-card pdp-related-card" shopify-attr--data-handle="product.handle" shopify-attr--data-title="product.title" style="cursor: pointer;">
+                        <div class="wishlist-icon">
+                          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                          </svg>
                         </div>
-                        <div class="card-details" style="padding-top: 10px; text-align: left;">
-                          <h3 class="card-title" style="margin:0;"><shopify-data query="product.title"></shopify-data></h3>
-                          <div class="card-price" style="margin-top: 4px; color: var(--accent-red); font-weight: 600;">
-                            <shopify-money query="product.selectedOrFirstAvailableVariant.price"></shopify-money>
+                        <div class="card-media-wrapper">
+                          <shopify-media width="400" height="400" query="product.selectedOrFirstAvailableVariant.image"></shopify-media>
+                        </div>
+                        <div class="card-details">
+                          <div class="card-info-row">
+                            <h3 class="card-title"><shopify-data query="product.title"></shopify-data></h3>
+                            <div class="card-price-box">
+                              <span class="price-old">₹44,600</span>
+                              <span class="price-new"><shopify-money query="product.selectedOrFirstAvailableVariant.price"></shopify-money></span>
+                            </div>
+                          </div>
+                          <div class="card-hover-actions">
+                            <span class="add-to-bag-text">ADD TO BAG &mdash;</span>
+                            <div class="swatches-container">
+                              <div class="swatch"><img src="https://images.unsplash.com/photo-1590874103328-eac38a683ce7?w=50&h=50&fit=crop" alt="swatch" /></div>
+                              <div class="swatch"><img src="https://images.unsplash.com/photo-1584916201218-f4242ceb4809?w=50&h=50&fit=crop" alt="swatch" /></div>
+                              <div class="swatch"><img src="https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=50&h=50&fit=crop" alt="swatch" /></div>
+                              <span class="swatch-plus">+</span>
+                            </div>
                           </div>
                         </div>
                       </div>
@@ -289,6 +306,8 @@ export default function ProductDetailView({
               </div>
             </div>
           `}} />
+
+
           <div shopify-loading-placeholder="" style={{ textAlign: 'center', padding: '100px 0' }}>
             <p style={{ fontFamily: 'var(--font-display)', fontSize: '1.8rem', fontStyle: 'italic', color: 'var(--text-muted)' }}>
               Retrieving details...
@@ -296,6 +315,37 @@ export default function ProductDetailView({
           </div>
         </shopify-context>
       </div>
+
+      <section className="home-craftsmanship-banner">
+        <div className="craftsmanship-bg-overlay"></div>
+        <img
+          className="craftsmanship-bg"
+          src="https://images.unsplash.com/photo-1621607512214-68297480165e?w=2000&auto=format&fit=crop"
+          alt="Handcrafted Details"
+        />
+        <div className="craftsmanship-overlay-text">
+          <h2 className="section-main-handcrafted">Handcrafted in India</h2>
+          <p className="craftsmanship-description">
+            Every piece in our collection is meticulously handcrafted by skilled artisans. We blend traditional
+            techniques with contemporary designs to create packaging that perfectly complements your most cherished
+            moments.
+          </p>
+          <a href="#" className="discover-link split-feature-link" onClick={(e) => { e.preventDefault(); navigate('/about'); }}>
+            DISCOVER MORE &mdash;
+          </a>
+        </div>
+        {/* <div className="craftsmanship-inset">
+          <div className="inset-header">
+            <a href="#" className="discover-link" onClick={(e) => { e.preventDefault(); navigate('/about'); }}>
+              DISCOVER MORE &mdash;
+            </a>
+          </div>
+          <img
+            src="https://images.unsplash.com/photo-1542841791-1925b02a2bf5?w=400&auto=format&fit=crop"
+            alt="Store Interior"
+          />
+        </div> */}
+      </section>
     </div>
   );
 }
