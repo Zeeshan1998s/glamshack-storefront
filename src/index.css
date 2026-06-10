@@ -724,7 +724,7 @@ header {
 
 .btn-back {
   background-color: transparent;
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  /* border: 1px solid rgba(255, 255, 255, 0.08); */
   color: var(--text-muted);
   font-size: 11.2px;
   text-transform: uppercase;
@@ -738,12 +738,12 @@ header {
   transition: all 0.3s ease;
 }
 
-.btn-back:hover {
+/* .btn-back:hover {
   color: #fff;
   border-color: #fff;
   background-color: rgba(255, 255, 255, 0.02);
   transform: translateX(-4px);
-}
+} */
 
 .pdp-layout {
   display: grid;
@@ -2474,15 +2474,15 @@ header {
 }
 
 .btn-back {
-  border: 1px solid var(--border-color) !important;
+  /* border: 1px solid var(--border-color) !important; */
   color: var(--text-muted) !important;
 }
 
-.btn-back:hover {
+/* .btn-back:hover {
   color: var(--text-main) !important;
   border-color: var(--text-main) !important;
   background-color: #f1f5f9 !important;
-}
+} */
 
 #pdp-context shopify-variant-selector::part(radio) {
   background-color: #f1f5f9 !important;

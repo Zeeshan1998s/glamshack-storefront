@@ -90,10 +90,10 @@ export default function ProductDetailView({
     <div id="view-product" className="page-view active-view">
       <div className="pdp-wrapper">
         {/* Back to shop navigation button */}
-        <div className="container" style={{ paddingTop: '20px' }}>
-          <button className="btn-back" onClick={() => navigate('/shop')}>
+        <div className="container btn-back" style={{ paddingTop: '20px' }}>
+          {/* <button className="btn-back" onClick={() => navigate('/shop')}>
             ← Back to Catalog
-          </button>
+          </button> */}
         </div>
 
         {/* Dynamic Product Context for Detail Page */}
