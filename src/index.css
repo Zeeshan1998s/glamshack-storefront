@@ -49,11 +49,9 @@ body::before {
   right: -10%;
   width: 60vw;
   height: 60vw;
-  background: radial-gradient(
-    circle,
-    rgba(224, 64, 122, 0.07) 0%,
-    transparent 70%
-  );
+  background: radial-gradient(circle,
+      rgba(224, 64, 122, 0.07) 0%,
+      transparent 70%);
   z-index: -1;
   pointer-events: none;
 }
@@ -65,11 +63,9 @@ body::after {
   left: -10%;
   width: 50vw;
   height: 50vw;
-  background: radial-gradient(
-    circle,
-    rgba(201, 160, 84, 0.04) 0%,
-    transparent 75%
-  );
+  background: radial-gradient(circle,
+      rgba(201, 160, 84, 0.04) 0%,
+      transparent 75%);
   z-index: -1;
   pointer-events: none;
 }
@@ -497,7 +493,7 @@ header {
   color: white !important;
 }
 
-.section-wedding-title{
+.section-wedding-title {
   font-size: 36px;
   font-weight: 500;
   letter-spacing: -2.8px;
@@ -575,11 +571,9 @@ header {
 
 /* Product Card Styling */
 .glam-card {
-  background: linear-gradient(
-    135deg,
-    rgba(18, 20, 29, 0.5) 0%,
-    rgba(8, 9, 13, 0.8) 100%
-  );
+  background: linear-gradient(135deg,
+      rgba(18, 20, 29, 0.5) 0%,
+      rgba(8, 9, 13, 0.8) 100%);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border: 1px solid rgba(255, 255, 255, 0.04);
@@ -730,6 +724,7 @@ header {
 /* ---------------------------------------------------------        DEDICATED FULL PRODUCT PAGE VIEW (PDP)        --------------------------------------------------------- */
 .pdp-wrapper {
   padding: calc(var(--spacing-grid) * 8) 0;
+  background-color: #EFECE7;
 }
 
 .btn-back {
@@ -994,11 +989,9 @@ header {
 }
 
 .profile-card {
-  background: linear-gradient(
-    135deg,
-    rgba(18, 20, 29, 0.5) 0%,
-    rgba(8, 9, 13, 0.8) 100%
-  );
+  background: linear-gradient(135deg,
+      rgba(18, 20, 29, 0.5) 0%,
+      rgba(8, 9, 13, 0.8) 100%);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border: 1px solid rgba(255, 255, 255, 0.04);
@@ -1156,6 +1149,7 @@ header {
 
 /* Skeleton Loading Pulse */
 @keyframes pulse {
+
   0%,
   100% {
     opacity: 0.6;
@@ -1396,11 +1390,9 @@ shopify-cart::part(secondary-button):hover {
 }
 
 .pillar-card {
-  background: linear-gradient(
-    135deg,
-    rgba(18, 20, 29, 0.4) 0%,
-    rgba(8, 9, 13, 0.6) 100%
-  );
+  background: linear-gradient(135deg,
+      rgba(18, 20, 29, 0.4) 0%,
+      rgba(8, 9, 13, 0.6) 100%);
   border: 1px solid rgba(255, 255, 255, 0.03);
   padding: 32px;
   border-radius: 16px;
@@ -1445,11 +1437,9 @@ shopify-cart::part(secondary-button):hover {
 }
 
 .blog-card {
-  background: linear-gradient(
-    135deg,
-    rgba(18, 20, 29, 0.4) 0%,
-    rgba(8, 9, 13, 0.6) 100%
-  );
+  background: linear-gradient(135deg,
+      rgba(18, 20, 29, 0.4) 0%,
+      rgba(8, 9, 13, 0.6) 100%);
   border: 1px solid rgba(255, 255, 255, 0.03);
   border-radius: 16px;
   overflow: hidden;
@@ -1849,6 +1839,7 @@ shopify-cart::part(secondary-button):hover {
 }
 
 @media (max-width: 1024px) {
+
   #trousseau-list-context .glam-card,
   #engagement-list-context .glam-card {
     flex: 0 0 calc(33.333% - 16px);
@@ -1856,6 +1847,7 @@ shopify-cart::part(secondary-button):hover {
 }
 
 @media (max-width: 768px) {
+
   #trousseau-list-context .glam-card,
   #engagement-list-context .glam-card {
     flex: 0 0 calc(50% - 12px);
@@ -1863,6 +1855,7 @@ shopify-cart::part(secondary-button):hover {
 }
 
 @media (max-width: 480px) {
+
   #trousseau-list-context .glam-card,
   #engagement-list-context .glam-card {
     flex: 0 0 85%;
@@ -2113,20 +2106,16 @@ shopify-cart::part(secondary-button):hover {
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(
-    to top,
-    rgba(5, 6, 10, 0.85) 0%,
-    rgba(5, 6, 10, 0.25) 100%
-  );
+  background: linear-gradient(to top,
+      rgba(5, 6, 10, 0.85) 0%,
+      rgba(5, 6, 10, 0.25) 100%);
   transition: background 0.3s ease;
 }
 
 .category-block-card:hover .category-block-overlay {
-  background: linear-gradient(
-    to top,
-    rgba(5, 6, 10, 0.95) 0%,
-    rgba(5, 6, 10, 0.35) 100%
-  );
+  background: linear-gradient(to top,
+      rgba(5, 6, 10, 0.95) 0%,
+      rgba(5, 6, 10, 0.35) 100%);
 }
 
 .category-block-title {
@@ -2229,11 +2218,9 @@ shopify-cart::part(secondary-button):hover {
   justify-content: center;
   font-size: 35.2px;
   margin-bottom: 16px;
-  background: radial-gradient(
-    circle,
-    rgba(18, 20, 29, 0.4) 0%,
-    rgba(8, 9, 13, 0.6) 100%
-  );
+  background: radial-gradient(circle,
+      rgba(18, 20, 29, 0.4) 0%,
+      rgba(8, 9, 13, 0.6) 100%);
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
   transition: all 0.3s ease;
 }
@@ -2312,9 +2299,9 @@ header {
 }
 
 /* Titles */
-    .section-main-title {
-      color: var(--text-main) !important;
-    }
+.section-main-title {
+  color: var(--text-main) !important;
+}
 
 .carousel-view-all-btn {
   color: var(--accent-navy) !important;
@@ -2416,19 +2403,15 @@ header {
 }
 
 .category-block-overlay {
-  background: linear-gradient(
-    to top,
-    rgba(15, 23, 42, 0.85) 0%,
-    rgba(15, 23, 42, 0.1) 100%
-  ) !important;
+  background: linear-gradient(to top,
+      rgba(15, 23, 42, 0.85) 0%,
+      rgba(15, 23, 42, 0.1) 100%) !important;
 }
 
 .category-block-card:hover .category-block-overlay {
-  background: linear-gradient(
-    to top,
-    rgba(15, 23, 42, 0.95) 0%,
-    rgba(15, 23, 42, 0.2) 100%
-  ) !important;
+  background: linear-gradient(to top,
+      rgba(15, 23, 42, 0.95) 0%,
+      rgba(15, 23, 42, 0.2) 100%) !important;
 }
 
 /* Index Columns Header Bars */
@@ -2491,7 +2474,7 @@ header {
 
 /* PDP Full View */
 .pdp-title {
-  color: var(--text-main) !important;
+  color: #3F4234E5 !important;
 }
 
 .pdp-price {
@@ -2538,9 +2521,7 @@ header {
     0 0 15px var(--accent-red) !important;
 }
 
-.pdp-title {
-  color: var(--text-main) !important;
-}
+
 
 .pdp-price {
   color: var(--text-main) !important;
@@ -3003,6 +2984,7 @@ shopify-cart::part(secondary-button):hover {
 }
 
 @media (max-width: 1024px) {
+
   #trousseau-list-context,
   #engagement-list-context,
   .scroll-row-inner {
@@ -3011,6 +2993,7 @@ shopify-cart::part(secondary-button):hover {
 }
 
 @media (max-width: 768px) {
+
   #trousseau-list-context,
   #engagement-list-context,
   .scroll-row-inner {
@@ -3350,20 +3333,23 @@ shopify-cart::part(secondary-button):hover {
 
 /* =========================================================        NEW PDP LAYOUT (Mockup Redesign)        ========================================================= */
 #view-product {
-  background-color: #f4f3ef;
+  background-color: #EFECE7;
 }
 
 .pdp-container {
   width: 100%;
-  max-width: 1240px;
+  /* max-width: 90vw; */
+
   margin: 0 auto;
-  padding: 0 calc(var(--spacing-grid) * 4);
+  padding: 0 calc(var(--spacing-grid) * 40);
+  /* padding-top: 0; */
 }
 
 .pdp-layout-new {
   display: flex;
   flex-direction: column;
   padding-bottom: 80px;
+  background: #EFECE7;
 }
 
 /* TOP SECTION: Grid + Sticky Info */
@@ -3403,7 +3389,7 @@ shopify-cart::part(secondary-button):hover {
   width: 45%;
   padding-left: 4%;
   padding-right: 4%;
-  background-color: #f4f3ef;
+  background-color: #EFECE7;
   padding-top: 40px;
 }
 
@@ -3418,8 +3404,14 @@ shopify-cart::part(secondary-button):hover {
 .pdp-breadcrumb {
   font-size: 11.2px;
   letter-spacing: 0.1em;
-  color: var(--text-muted);
+  color: #231F20;
   margin-bottom: 24px;
+}
+
+.pdp-title-breadcrumb {
+  font-size: 11.2px;
+  letter-spacing: 0.1em;
+  color: #999990;
 }
 
 .pdp-title {
@@ -3477,7 +3469,7 @@ shopify-cart::part(secondary-button):hover {
 
 .btn-add-to-cart-new {
   width: 100%;
-  background: var(--text-main);
+  background: #3F4234;
   color: #fff;
   border: none;
   padding: 16px;
@@ -3507,7 +3499,7 @@ shopify-cart::part(secondary-button):hover {
   align-items: center;
   gap: 12px;
   font-size: 12.8px;
-  color: var(--text-muted);
+  color: #404335;
 }
 
 /* INFO SECTION */
@@ -3516,26 +3508,17 @@ shopify-cart::part(secondary-button):hover {
   gap: 60px;
   margin-top: 60px;
   padding-top: 60px;
-  border-top: 1px solid var(--border-color);
 }
 
 .pdp-quote-box {
   flex: 1;
 }
 
-.quote-text {
-  font-family: var(--font-display);
-  font-size: 40px;
-  line-height: 1.2;
-  color: var(--text-main);
-  margin-bottom: 24px;
-  font-weight: 400;
-}
 
 .quote-subtext {
   font-size: 14.4px;
   line-height: 1.6;
-  color: var(--text-muted);
+  color: #353530;
   margin-bottom: 32px;
   max-width: 80%;
 }
@@ -3576,7 +3559,7 @@ shopify-cart::part(secondary-button):hover {
 }
 
 .pdp-accordion details[open] summary::after {
-  content: "ΓêÆ";
+  content: "+";
 }
 
 .pdp-accordion .details-content {
@@ -3592,6 +3575,16 @@ shopify-cart::part(secondary-button):hover {
   width: 100%;
 }
 
+.section-heading-features {
+  font-size: 36px;
+  font-family: "Begum", var(--font-display), "Playfair Display", serif;
+
+  letter-spacing: -1px;
+  font-weight: 500;
+  color: #3F4234E5;
+  margin-bottom: 32px;
+}
+
 .section-heading {
   font-size: 13.6px;
   letter-spacing: 0.1em;
@@ -3605,6 +3598,7 @@ shopify-cart::part(secondary-button):hover {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 2px;
+  padding-left: 20px;
 }
 
 .styling-item img {
@@ -3767,6 +3761,7 @@ shopify-list-context::part(list) {
 }
 
 @media (max-width: 900px) {
+
   .pdp-top-section,
   .pdp-info-section,
   .pdp-wear-this-section {
@@ -3877,11 +3872,11 @@ shopify-list-context::part(list) {
     var(--font-display), "Playfair Display", "Didot", "Bodoni MT",
     "Times New Roman", serif;
   font-size: clamp(32px, 3.2vw, 51.2px) !important;
-  color: #333;
+  color: #3F4234E5;
   font-weight: 300;
   line-height: 1.35 !important;
   margin-bottom: 50px;
-  letter-spacing: -0.01em;
+  letter-spacing: -1.44px;
 }
 
 .trust-badges {
@@ -3971,11 +3966,9 @@ shopify-list-context::part(list) {
   left: 0;
   width: 100%;
   height: 60%;
-  background: linear-gradient(
-    to top,
-    rgba(0, 0, 0, 0.8) 0%,
-    rgba(0, 0, 0, 0) 100%
-  );
+  background: linear-gradient(to top,
+      rgba(0, 0, 0, 0.8) 0%,
+      rgba(0, 0, 0, 0) 100%);
   z-index: 2;
   pointer-events: none;
 }
@@ -4170,11 +4163,9 @@ shopify-list-context::part(list) {
   left: 0;
   width: 100%;
   height: 60%;
-  background: linear-gradient(
-    to top,
-    rgba(0, 0, 0, 0.85) 0%,
-    rgba(0, 0, 0, 0) 100%
-  );
+  background: linear-gradient(to top,
+      rgba(0, 0, 0, 0.85) 0%,
+      rgba(0, 0, 0, 0) 100%);
   z-index: 2;
   pointer-events: none;
 }
@@ -4414,6 +4405,7 @@ shopify-list-context::part(list) {
 
 /* RESPONSIVE UPDATES */
 @media (max-width: 1024px) {
+
   .home-brand-story,
   .home-story-split {
     grid-template-columns: 1fr;

@@ -9,6 +9,7 @@ import AuthDrawer from './components/AuthDrawer';
 
 import HomeView from './views/HomeView';
 import ShopView from './views/ShopView';
+import CollectionsView from './views/CollectionsView';
 import ProductDetailView from './views/ProductDetailView';
 import ProfileView from './views/ProfileView';
 import AboutView from './views/AboutView';
@@ -305,6 +306,7 @@ function AppContent() {
         <Route path="/" element={<Navigate to="/home" replace />} />
         <Route path="/home" element={<HomeView />} />
         <Route path="/shop" element={<ShopView />} />
+        <Route path="/collections" element={<CollectionsView />} />
         <Route path="/product" element={<ProductDetailView onToggleWishlist={handleToggleWishlist} />} />
         <Route path="/profile" element={
           <ProfileView 

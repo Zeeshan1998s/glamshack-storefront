@@ -10,7 +10,7 @@ export default function ProductDetailView({
 
   const handlePDPClick = (e) => {
     const target = e.target;
-    
+
     // Intercept clicks on the wishlist button
     const wishlistBtn = target.closest('.btn-wishlist-toggle-pdp');
     if (wishlistBtn) {
@@ -20,7 +20,7 @@ export default function ProductDetailView({
 
       const titleEl = pdpWrapper.querySelector('.pdp-title');
       const priceEl = pdpWrapper.querySelector('.pdp-price');
-      
+
       let imgUrl = '';
       const firstMediaItem = pdpWrapper.querySelector('.pdp-media-item');
       if (firstMediaItem) {
@@ -104,7 +104,8 @@ export default function ProductDetailView({
           handle={productHandle}
           onClick={handlePDPClick}
         >
-          <template dangerouslySetInnerHTML={{ __html: `
+          <template dangerouslySetInnerHTML={{
+            __html: `
             <div class="pdp-layout-new">
               <!-- TOP SECTION -->
               <div class="pdp-top-section">
@@ -126,7 +127,7 @@ export default function ProductDetailView({
                 <div class="pdp-info-sticky-wrapper">
                   <div class="pdp-info-sticky">
                     <div class="pdp-breadcrumb">
-                      HOME / PRODUCTS / <span style="text-transform: uppercase;"><shopify-data query="product.title"></shopify-data></span>
+                      HOME / PRODUCTS / <span class="pdp-title-breadcrumb" style="text-transform: uppercase;"><shopify-data query="product.title"></shopify-data></span>
                     </div>
                     <h1 class="pdp-title"><shopify-data query="product.title"></shopify-data></h1>
                     <div class="pdp-price"><shopify-money query="product.selectedOrFirstAvailableVariant.price"></shopify-money></div>
@@ -196,7 +197,7 @@ export default function ProductDetailView({
               <!-- MIDDLE 2: STYLING -->
               <div class="pdp-styling-section">
                 <div class="pdp-container">
-                  <h3 class="section-heading">STYLING</h3>
+                  <h3 class="section-heading-features">Features</h3>
                 </div>
                 <div class="styling-grid">
                   <div class="styling-item">
