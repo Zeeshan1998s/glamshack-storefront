@@ -69,6 +69,7 @@ export default function Header({
   onOpenSearch,
   onOpenWishlist,
   onOpenCart,
+  onOpenAuth,
   isLoggedIn,
   customer,
   onLogout,
@@ -153,7 +154,7 @@ export default function Header({
                   {getInitials()}
                 </button>
               ) : (
-                <button className="header-icon-btn wishlist-btn" onClick={() => navigate('/login')} title="Log In / Register" aria-label="Open login">
+                <button className="header-icon-btn profile-btn" onClick={onOpenAuth} title="Log In / Register" aria-label="Open login">
                   <PersonIcon />
                 </button>
               )}
@@ -171,8 +172,8 @@ export default function Header({
                   </>
                 ) : (
                   <>
-                    <Link to="/login" className="dropdown-item">Log In</Link>
-                    <Link to="/register" className="dropdown-item">Create Account</Link>
+                    <a href="#" onClick={(e) => { e.preventDefault(); onOpenAuth(); }} className="dropdown-item">Log In</a>
+                    <a href="#" onClick={(e) => { e.preventDefault(); onOpenAuth(); }} className="dropdown-item">Create Account</a>
                     <div className="dropdown-divider"></div>
                     <button onClick={handleHeaderDemoSignIn} className="dropdown-item dropdown-btn demo-btn">
                       Bypass / Demo Sign In
@@ -254,14 +255,14 @@ export default function Header({
             {!isLoggedIn ? (
               <>
                 <li>
-                  <Link to="/login" className="mobile-nav-link" onClick={() => setIsMobileMenuOpen(false)}>
+                  <a href="#" className="mobile-nav-link" onClick={(e) => { e.preventDefault(); onOpenAuth(); setIsMobileMenuOpen(false); }}>
                     LOG IN
-                  </Link>
+                  </a>
                 </li>
                 <li>
-                  <Link to="/register" className="mobile-nav-link" onClick={() => setIsMobileMenuOpen(false)}>
+                  <a href="#" className="mobile-nav-link" onClick={(e) => { e.preventDefault(); onOpenAuth(); setIsMobileMenuOpen(false); }}>
                     CREATE ACCOUNT
-                  </Link>
+                  </a>
                 </li>
               </>
             ) : (

@@ -1,0 +1,224 @@
+/* AuthDrawer Light Theme matching Figma Right Sidebar */
+
+.auth-drawer {
+  width: 499px !important;
+  background-color: #efece7 !important;
+  display: flex;
+  flex-direction: column;
+  color: #000;
+}
+
+@media (max-width: 768px) {
+  .auth-drawer {
+    width: 100% !important;
+  }
+}
+
+.auth-drawer-header {
+  padding: 90px 32px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  position: relative;
+}
+
+.drawer-close-btn-auth {
+  position: absolute;
+  top: 30px;
+  right: 32px;
+  background: none;
+  border: none;
+  font-size: 24px;
+  color: #000;
+  cursor: pointer;
+}
+
+.auth-drawer-title {
+  font-family: var(--font-display, "Centra No2", sans-serif);
+  font-size: 18px;
+  font-weight: 800;
+  color: #000;
+  margin: 0;
+  line-height: 20px;
+}
+
+.auth-drawer-subtitle {
+  font-family: var(--font-body, "Centra No2", sans-serif);
+  font-size: 12px;
+  color: #8c8d83;
+  line-height: 18px;
+  margin: 0;
+}
+
+.auth-drawer-content {
+  padding: 0 32px 44px;
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.auth-drawer-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 16px;
+}
+
+/* Input Styles matching Figma */
+.auth-input-group {
+  width: 100%;
+}
+
+.auth-input-field {
+  width: 100%;
+  height: 56px;
+  background-color: transparent;
+  border: 1px solid #cacaca;
+  color: #171a0f;
+  font-family: var(--font-body, "Centra No2", sans-serif);
+  font-size: 14px;
+  padding: 12px 20px;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.auth-input-field::placeholder {
+  color: #cacaca;
+}
+
+.auth-input-field:focus {
+  border-color: #2c3318;
+}
+
+.auth-input-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+/* Error Banner */
+.auth-error-banner {
+  background-color: rgba(204, 0, 0, 0.1);
+  border: 1px solid #ff4d4d;
+  color: #ff4d4d;
+  padding: 12px;
+  font-size: 12px;
+  text-align: center;
+  margin-top: 16px;
+}
+
+/* Buttons */
+.btn-auth-drawer-submit {
+  width: 100%;
+  height: 48px;
+  background-color: #2c3318;
+  color: #ffffff;
+  border: 1px solid #2c3318;
+  font-family: var(--font-body, "Centra No2", sans-serif);
+  font-weight: 500;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 1.3px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  margin-top: 8px;
+}
+
+.btn-auth-drawer-submit:hover {
+  background-color: #1a1e0e;
+}
+
+.btn-auth-drawer-submit:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+/* OR Divider */
+.auth-divider-text {
+  font-family: "Inter", sans-serif;
+  font-size: 12px;
+  color: #3f4234;
+  text-align: center;
+  letter-spacing: 0.36px;
+  margin: 16px 0;
+}
+
+/* Social Buttons */
+.auth-social-group {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+}
+
+.auth-social-btn {
+  width: 36px;
+  height: 36px;
+  background-color: #ffffff;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.auth-social-btn:hover {
+  transform: scale(1.05);
+}
+
+.auth-social-btn svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* Toggle Link */
+.auth-drawer-toggle {
+  text-align: center;
+  font-family: var(--font-body, "Centra No2", sans-serif);
+  font-size: 13px;
+  color: #404335;
+  margin-top: 24px;
+}
+
+.auth-drawer-toggle span {
+  color: #2c3318;
+  cursor: pointer;
+  text-decoration: underline;
+  margin-left: 6px;
+  font-weight: 500;
+}
+
+/* Bottom Info Area */
+.auth-drawer-footer {
+  padding: 44px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: auto;
+}
+
+.auth-footer-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-family: var(--font-body, "Centra No2", sans-serif);
+  font-size: 14px;
+  color: #404335;
+  letter-spacing: 0.14px;
+}
+
+.auth-footer-item svg {
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+  fill: none;
+  stroke: #404335;
+  stroke-width: 1.5;
+}

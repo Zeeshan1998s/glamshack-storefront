@@ -5,6 +5,7 @@ import Footer from './components/Footer';
 import SearchDrawer from './components/SearchDrawer';
 import WishlistDrawer from './components/WishlistDrawer';
 import Cart from './components/Cart';
+import AuthDrawer from './components/AuthDrawer';
 
 import HomeView from './views/HomeView';
 import ShopView from './views/ShopView';
@@ -49,6 +50,7 @@ function AppContent() {
   });
   const [isWishlistOpen, setIsWishlistOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [isAuthOpen, setIsAuthOpen] = useState(false);
   const [allProducts, setAllProducts] = useState([]);
 
   const fetchCustomerData = async (token) => {
@@ -291,6 +293,7 @@ function AppContent() {
         onOpenSearch={() => setIsSearchOpen(true)}
         onOpenWishlist={() => setIsWishlistOpen(true)}
         onOpenCart={handleOpenCart}
+        onOpenAuth={() => setIsAuthOpen(true)}
         isLoggedIn={isLoggedIn}
         customer={customer}
         onLogout={handleLogout}
@@ -305,37 +308,14 @@ function AppContent() {
         <Route path="/product" element={<ProductDetailView onToggleWishlist={handleToggleWishlist} />} />
         <Route path="/profile" element={
           <ProfileView 
-            mode="profile" 
             customer={customer}
             isLoggedIn={isLoggedIn}
             onLogout={handleLogout}
-            onLoginSuccess={handleLoginSuccess}
-            onDemoLogin={handleDemoLogin}
             authLoading={authLoading}
           />
         } />
-        <Route path="/login" element={
-          <ProfileView 
-            mode="login" 
-            customer={customer}
-            isLoggedIn={isLoggedIn}
-            onLogout={handleLogout}
-            onLoginSuccess={handleLoginSuccess}
-            onDemoLogin={handleDemoLogin}
-            authLoading={authLoading}
-          />
-        } />
-        <Route path="/register" element={
-          <ProfileView 
-            mode="register" 
-            customer={customer}
-            isLoggedIn={isLoggedIn}
-            onLogout={handleLogout}
-            onLoginSuccess={handleLoginSuccess}
-            onDemoLogin={handleDemoLogin}
-            authLoading={authLoading}
-          />
-        } />
+        <Route path="/login" element={<Navigate to="/" replace />} />
+        <Route path="/register" element={<Navigate to="/" replace />} />
         <Route path="/about" element={<AboutView />} />
         <Route path="/blog" element={<BlogView />} />
         <Route path="/blog/:articleKey" element={<ArticleDetailView />} />
@@ -359,6 +339,14 @@ function AppContent() {
         onClearWishlist={handleClearWishlist}
         onMoveAllToBag={handleMoveAllWishlistToBag}
         onOpenCart={handleOpenCart}
+      />
+
+      <AuthDrawer
+        isOpen={isAuthOpen}
+        onClose={() => setIsAuthOpen(false)}
+        isLoggedIn={isLoggedIn}
+        onLoginSuccess={handleLoginSuccess}
+        onDemoLogin={handleDemoLogin}
       />
 
       {/* Modular Shopify Shopping Cart component */}
