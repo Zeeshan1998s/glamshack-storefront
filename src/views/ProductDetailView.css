@@ -1,0 +1,131 @@
+/* Product Detail Page (PDP) Related Products Styling */
+
+.pdp-related-section {
+  margin-top: 80px;
+  padding-top: 60px;
+  border-top: 1px solid rgba(18, 20, 29, 0.08);
+  box-sizing: border-box;
+}
+
+.section-heading-small {
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.25em;
+  color: var(--accent-gold);
+  margin-bottom: 32px;
+  text-align: center;
+}
+
+.pdp-related-grid-wrapper {
+  display: grid !important;
+  grid-template-columns: repeat(4, 1fr) !important;
+  gap: 24px !important;
+  max-width: 1000px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.pdp-related-grid-wrapper shopify-list-context {
+  display: contents !important;
+}
+
+@media (max-width: 991px) {
+  .pdp-related-grid-wrapper {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 20px !important;
+    max-width: 700px;
+  }
+}
+
+@media (max-width: 576px) {
+  .pdp-related-grid-wrapper {
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+    max-width: 100%;
+    padding: 0 16px;
+  }
+}
+
+.pdp-specific-related-card {
+  background: var(--bg-card, #e2dfd8) !important;
+  border: 1px solid var(--border-color, #c9c5ba) !important;
+  border-radius: 8px !important;
+  padding: 12px !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02) !important;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  height: 100% !important;
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+.pdp-specific-related-card:hover {
+  transform: translateY(-4px) !important;
+  border-color: var(--accent-gold) !important;
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.06) !important;
+}
+
+.pdp-specific-related-card .card-media-wrapper {
+  background: #ffffff !important;
+  border-radius: 6px !important;
+  height: 180px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  overflow: hidden !important;
+  margin-bottom: 12px !important;
+  padding: 8px !important;
+  border: 1px solid rgba(18, 20, 29, 0.03) !important;
+  box-sizing: border-box !important;
+}
+
+.pdp-specific-related-card .card-media-wrapper shopify-media {
+  width: 100% !important;
+  height: 100% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.pdp-specific-related-card .card-media-wrapper img {
+  width: auto !important;
+  height: auto !important;
+  max-width: 100% !important;
+  max-height: 100% !important;
+  object-fit: contain !important;
+  transition: transform 0.6s ease !important;
+}
+
+.pdp-specific-related-card:hover .card-media-wrapper img {
+  transform: scale(1.04) !important;
+}
+
+.pdp-specific-related-card .card-details {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 4px !important;
+  text-align: left !important;
+}
+
+.pdp-specific-related-card .card-title {
+  font-family: var(--font-body) !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  color: var(--text-main) !important;
+  margin: 0 !important;
+  min-height: auto !important;
+  line-height: 1.4 !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+}
+
+.pdp-specific-related-card .card-price {
+  font-family: var(--font-body) !important;
+  font-size: 12px !important;
+  font-weight: 700 !important;
+  color: var(--accent-gold) !important;
+}

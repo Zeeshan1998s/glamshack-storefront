@@ -1,0 +1,234 @@
+/* Premium Profile & Login Styles */
+
+.profile-container-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 400px;
+  color: var(--text-muted);
+}
+
+.profile-loading-spinner {
+  font-size: 2rem;
+  animation: spin 1s linear infinite;
+  margin-bottom: 16px;
+}
+
+@keyframes spin {
+  100% { transform: rotate(360deg); }
+}
+
+/* Auth forms */
+.auth-wrapper {
+  max-width: 450px;
+  margin: 60px auto;
+  padding: 0 16px;
+}
+
+.auth-card {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.01) 100%);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 40px;
+  border-radius: 16px;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  box-sizing: border-box;
+}
+
+.auth-header {
+  text-align: center;
+}
+
+.auth-subtitle-tag {
+  font-family: var(--font-body);
+  color: var(--accent-gold);
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  margin-bottom: 8px;
+  display: block;
+}
+
+.auth-main-title {
+  font-family: var(--font-display);
+  font-size: 2.2rem;
+  color: #fff;
+  font-weight: 300;
+  letter-spacing: -0.01em;
+}
+
+.auth-error-banner {
+  background-color: rgba(204, 0, 0, 0.1);
+  border: 1px solid var(--accent-red);
+  color: #ff4d4d;
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 0.8rem;
+  text-align: center;
+  line-height: 1.4;
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.auth-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.auth-label {
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  color: var(--text-muted);
+  text-transform: uppercase;
+}
+
+.auth-input {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  padding: 14px 16px;
+  color: #fff;
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  outline: none;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.auth-input:focus {
+  border-color: var(--accent-gold);
+  background: rgba(255, 255, 255, 0.05);
+  box-shadow: 0 0 15px rgba(201, 160, 84, 0.15);
+}
+
+.btn-auth-submit {
+  width: 100%;
+  background-color: var(--accent-gold);
+  color: #000;
+  border: none;
+  border-radius: 6px;
+  padding: 16px;
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 8px 20px rgba(201, 160, 84, 0.2);
+}
+
+.btn-auth-submit:hover {
+  background-color: #fff;
+  box-shadow: 0 10px 25px rgba(255, 255, 255, 0.15);
+}
+
+.btn-auth-submit:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.auth-divider-container {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+}
+
+.auth-divider-line {
+  flex: 1;
+  height: 1px;
+  background-color: rgba(255, 255, 255, 0.08);
+}
+
+.auth-divider-text {
+  padding: 0 16px;
+  text-transform: uppercase;
+}
+
+.btn-auth-demo {
+  width: 100%;
+  background-color: transparent;
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 6px;
+  padding: 14px;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-auth-demo:hover {
+  border-color: #fff;
+  background-color: rgba(255, 255, 255, 0.02);
+}
+
+.auth-tip {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+  text-align: center;
+  margin-top: 10px;
+}
+
+.auth-tip strong {
+  color: var(--accent-gold);
+}
+
+/* Dashboard status tags overrides */
+.order-status.status-shipped {
+  background-color: rgba(56, 189, 248, 0.1);
+  color: #38bdf8;
+}
+
+.order-status.status-completed,
+.order-status.status-fulfilled {
+  background-color: rgba(16, 185, 129, 0.1);
+  color: #10b981;
+}
+
+.order-status.status-unfulfilled,
+.order-status.status-pending {
+  background-color: rgba(245, 158, 11, 0.1);
+  color: #f59e0b;
+}
+
+.auth-toggle-link {
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: color 0.3s ease;
+}
+
+.auth-toggle-link span {
+  color: var(--accent-gold);
+  font-weight: 600;
+  text-decoration: underline;
+  margin-left: 4px;
+}
+
+.auth-toggle-link:hover span {
+  color: #fff;
+}
