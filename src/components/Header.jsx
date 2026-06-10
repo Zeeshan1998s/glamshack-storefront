@@ -23,7 +23,7 @@ const MOBILE_NAV_ITEMS = [
 
 function SearchIcon() {
   return (
-    <svg viewBox="0 0 20 13" aria-hidden="true"  className="header-icon-svg header-icon-fill search-icon-custom">
+    <svg viewBox="0 0 20 13" aria-hidden="true" className="header-icon-svg header-icon-fill search-icon-custom">
       <path d="M0 12.5865V10.9615H10.0328V12.5865H0ZM0 7.473V5.848H4.8865V7.473H0ZM0 2.4095V0.7845H4.8865V2.4095H0ZM18.4673 12.625L14.5038 8.61925C14.1089 8.88975 13.6831 9.10317 13.2262 9.2595C12.7694 9.416 12.3017 9.49425 11.823 9.49425C10.5207 9.49425 9.4105 9.03525 8.4925 8.11725C7.5745 7.19942 7.1155 6.07758 7.1155 4.75175C7.1155 3.42592 7.57525 2.3025 8.49475 1.3815C9.41442 0.4605 10.5266 0 11.8313 0C13.1361 0 14.2413 0.459 15.147 1.377C16.0528 2.29483 16.5058 3.41917 16.5058 4.75C16.5058 5.24483 16.4359 5.72083 16.2962 6.178C16.1564 6.635 15.9448 7.07117 15.6615 7.4865L19.6 11.4672L18.4673 12.625ZM11.823 7.86925C12.6723 7.86925 13.3943 7.56667 13.989 6.9615C14.5835 6.35617 14.8807 5.618 14.8807 4.747C14.8807 3.876 14.5835 3.13792 13.989 2.53275C13.3943 1.92758 12.6723 1.625 11.823 1.625C10.9737 1.625 10.2476 1.92883 9.64475 2.5365C9.04192 3.14417 8.7405 3.88517 8.7405 4.7595C8.7405 5.616 9.04017 6.34842 9.6395 6.95675C10.2388 7.56508 10.9667 7.86925 11.823 7.86925Z" />
     </svg>
   );
@@ -69,6 +69,7 @@ export default function Header({
   onOpenSearch,
   onOpenWishlist,
   onOpenCart,
+  onOpenAuth,
   isLoggedIn,
   customer,
   onLogout,
@@ -153,7 +154,7 @@ export default function Header({
                   {getInitials()}
                 </button>
               ) : (
-                <button className="header-icon-btn profile-btn" onClick={() => navigate('/login')} title="Log In / Register" aria-label="Open login">
+                <button className="header-icon-btn profile-btn" onClick={onOpenAuth} title="Log In / Register" aria-label="Open login">
                   <PersonIcon />
                 </button>
               )}
@@ -171,8 +172,8 @@ export default function Header({
                   </>
                 ) : (
                   <>
-                    <Link to="/login" className="dropdown-item">Log In</Link>
-                    <Link to="/register" className="dropdown-item">Create Account</Link>
+                    <a href="#" onClick={(e) => { e.preventDefault(); onOpenAuth(); }} className="dropdown-item">Log In</a>
+                    <a href="#" onClick={(e) => { e.preventDefault(); onOpenAuth(); }} className="dropdown-item">Create Account</a>
                     <div className="dropdown-divider"></div>
                     <button onClick={handleHeaderDemoSignIn} className="dropdown-item dropdown-btn demo-btn">
                       Bypass / Demo Sign In
@@ -254,14 +255,14 @@ export default function Header({
             {!isLoggedIn ? (
               <>
                 <li>
-                  <Link to="/login" className="mobile-nav-link" onClick={() => setIsMobileMenuOpen(false)}>
+                  <a href="#" className="mobile-nav-link" onClick={(e) => { e.preventDefault(); onOpenAuth(); setIsMobileMenuOpen(false); }}>
                     LOG IN
-                  </Link>
+                  </a>
                 </li>
                 <li>
-                  <Link to="/register" className="mobile-nav-link" onClick={() => setIsMobileMenuOpen(false)}>
+                  <a href="#" className="mobile-nav-link" onClick={(e) => { e.preventDefault(); onOpenAuth(); setIsMobileMenuOpen(false); }}>
                     CREATE ACCOUNT
-                  </Link>
+                  </a>
                 </li>
               </>
             ) : (
