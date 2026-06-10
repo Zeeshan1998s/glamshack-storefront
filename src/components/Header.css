@@ -16,7 +16,7 @@ header {
   box-sizing: border-box;
   min-height: 74px;
   padding: 19px 32px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  /* border-bottom: 1px solid rgba(255, 255, 255, 0.2); */
 }
 
 .header-left-group,
@@ -205,7 +205,7 @@ header .header-single-row .top-util-link:link {
 
 .header-avatar-btn {
   background: transparent;
-  border: 1px solid rgba(255, 255, 255, 0.75);
+  border: 1px solid rgb(255, 255, 255);
   color: #ffffff;
   font-family: var(--font-body);
   font-size: 10px;
