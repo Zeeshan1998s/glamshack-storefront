@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-export default function ProductGrid() {
+export default function ProductGrid({ activeCategory, gridView, visibleCount = 28 }) {
   const navigate = useNavigate();
 
   const handleProductCardClick = (e) => {
@@ -16,15 +16,28 @@ export default function ProductGrid() {
     }
   };
 
+  const getCollectionHandle = () => {
+    if (activeCategory === 'bands') return 'bands';
+    if (activeCategory === 'trays') return 'suede-trays';
+    if (activeCategory === 'saree-covers') return 'saree-boxes';
+    if (activeCategory === 'baskets') return 'saree-boxes';
+    return 'frontpage';
+  };
+
   return (
-    <div className="collection-product-grid">
-      <shopify-context type="collection" handle="frontpage" onClick={handleProductCardClick}>
+    <div className={`collection-product-grid ${gridView === 'gallery' ? 'gallery-view' : ''}`}>
+      <shopify-context 
+        key={activeCategory}
+        type={activeCategory === 'all' ? 'shop' : 'collection'} 
+        handle={activeCategory === 'all' ? undefined : getCollectionHandle()} 
+        onClick={handleProductCardClick}
+      >
         <template dangerouslySetInnerHTML={{ __html: `
           <shopify-list-context
             id="collection-list-context"
             type="product"
             query="products"
-            first="12"
+            first="${visibleCount}"
           >
             <template>
               <div class="leather-family-card collection-card" shopify-attr--data-handle="product.handle" shopify-attr--data-title="product.title">

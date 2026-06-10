@@ -200,8 +200,8 @@
   border: none !important;
   box-shadow: none !important;
   margin-bottom: 20px;
-  display: flex !important;
-  flex-direction: column !important;
+  display: flex;
+  flex-direction: column;
   gap: 10px !important;
 }
 
@@ -277,4 +277,52 @@
   position: relative;
   z-index: 2;
   margin-top: -15px;
+}
+
+/* Gallery View Enhancements */
+.gallery-view #collection-list-context {
+  grid-template-columns: repeat(6, 1fr) !important;
+  gap: 12px !important;
+}
+
+.gallery-view .leather-family-card.collection-card {
+  gap: 6px !important;
+  margin-bottom: 12px !important;
+}
+
+.gallery-view .card-title {
+  font-size: 11px !important;
+}
+
+.gallery-view .price-new,
+.gallery-view .price-old {
+  font-size: 11px !important;
+}
+
+.gallery-view .wishlist-icon svg {
+  width: 14px;
+  height: 14px;
+}
+
+.gallery-view .add-to-bag-text {
+  font-size: 9px !important;
+}
+
+@media (max-width: 1200px) {
+  .gallery-view #collection-list-context {
+    grid-template-columns: repeat(5, 1fr) !important;
+  }
+}
+
+@media (max-width: 1024px) {
+  .gallery-view #collection-list-context {
+    grid-template-columns: repeat(4, 1fr) !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .gallery-view #collection-list-context {
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 8px !important;
+  }
 }

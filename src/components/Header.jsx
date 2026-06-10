@@ -3,22 +3,22 @@ import { Link, useNavigate, useLocation } from 'react-router-dom';
 import './Header.css';
 
 const DESKTOP_NAV_ITEMS = [
-  { id: 'hampers', label: 'HAMPERS', to: '/shop?filter=hampers' },
-  { id: 'trays', label: 'TRAYS', to: '/shop?filter=trays' },
-  { id: 'saree-covers', label: 'SAREE COVERS', to: '/shop?category=saree-covers' },
-  { id: 'bags', label: 'BAGS', to: '/shop?filter=bags' },
-  { id: 'baskets', label: 'BASKETS', to: '/shop?filter=baskets' },
-  { id: 'pouches', label: 'POUCHES', to: '/shop?filter=pouches' }
+  { id: 'hampers', label: 'HAMPERS', to: '/collections?category=hampers' },
+  { id: 'trays', label: 'TRAYS', to: '/collections?category=trays' },
+  { id: 'saree-covers', label: 'SAREE COVERS', to: '/collections?category=saree-covers' },
+  { id: 'bags', label: 'BAGS', to: '/collections?category=bags' },
+  { id: 'baskets', label: 'BASKETS', to: '/collections?category=baskets' },
+  { id: 'pouches', label: 'POUCHES', to: '/collections?category=pouches' }
 ];
 
 const MOBILE_NAV_ITEMS = [
-  { id: 'hampers', label: 'HAMPERS', to: '/shop?category=hampers' },
-  { id: 'trays', label: 'TRAYS', to: '/shop?category=trays' },
-  { id: 'saree-covers', label: 'SAREE COVERS', to: '/shop?category=saree-covers' },
-  { id: 'bags', label: 'BAGS', to: '/shop?category=bags' },
-  { id: 'baskets', label: 'BASKET / TRUNKS', to: '/shop?category=baskets' },
-  { id: 'pouches', label: 'POUCHES', to: '/shop?category=pouches' },
-  { id: 'bands', label: 'BANDS', to: '/shop?category=bands' }
+  { id: 'hampers', label: 'HAMPERS', to: '/collections?category=hampers' },
+  { id: 'trays', label: 'TRAYS', to: '/collections?category=trays' },
+  { id: 'saree-covers', label: 'SAREE COVERS', to: '/collections?category=saree-covers' },
+  { id: 'bags', label: 'BAGS', to: '/collections?category=bags' },
+  { id: 'baskets', label: 'BASKET / TRUNKS', to: '/collections?category=baskets' },
+  { id: 'pouches', label: 'POUCHES', to: '/collections?category=pouches' },
+  { id: 'bands', label: 'BANDS', to: '/collections?category=bands' }
 ];
 
 function SearchIcon() {
