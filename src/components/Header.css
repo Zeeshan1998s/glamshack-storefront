@@ -68,6 +68,43 @@ header .header-single-row .top-util-link:link {
   opacity: 1 !important;
 }
 
+header.header-alt .header-single-row .cat-nav-link,
+header.header-alt .header-single-row .cat-nav-link:visited,
+header.header-alt .header-single-row .cat-nav-link:link,
+header.header-alt .header-single-row .top-util-link,
+header.header-alt .header-single-row .top-util-link:visited,
+header.header-alt .header-single-row .top-util-link:link {
+  color: #999990 !important;
+}
+
+header.header-alt .logo-wordmark {
+  color: #000000 !important;
+}
+
+header.header-alt .currency-label,
+header.header-alt .header-icon-btn,
+header.header-alt .btn-open-cart,
+header.header-alt .search-btn,
+header.header-alt .wishlist-btn,
+header.header-alt .mobile-menu-btn {
+  color: #999990 !important;
+}
+
+header.header-alt .search-btn .search-icon-custom {
+  fill: #999990 !important;
+  color: #999990 !important;
+}
+
+header.header-alt .header-avatar-btn {
+  color: #999990 !important;
+  border-color: #999990 !important;
+}
+
+header.header-alt .cart-count-badge {
+  background: #999990 !important;
+  color: #ffffff !important;
+}
+
 .cat-nav-link,
 .top-util-link {
   transition: opacity 0.2s ease;

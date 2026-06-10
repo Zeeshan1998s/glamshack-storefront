@@ -256,12 +256,7 @@ header {
   transition: all 0.3s ease;
 }
 
-.btn-open-cart:hover {
-  background-color: var(--accent-gold);
-  color: #000;
-  border-color: var(--accent-gold);
-  box-shadow: 0 8px 20px rgba(201, 160, 84, 0.2);
-}
+
 
 /* Routing Page View Manager */
 .page-view {
@@ -2287,16 +2282,6 @@ header {
   color: var(--text-main) !important;
 }
 
-.btn-open-cart {
-  color: var(--text-main) !important;
-  border: 1px solid rgba(15, 23, 42, 0.15) !important;
-}
-
-.btn-open-cart:hover {
-  background-color: var(--accent-navy) !important;
-  color: #ffffff !important;
-  border-color: var(--accent-navy) !important;
-}
 
 /* Titles */
 .section-main-title {
