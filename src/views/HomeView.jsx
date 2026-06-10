@@ -208,11 +208,7 @@ export default function HomeView() {
           </shopify-list-context>
         </div>
 
-        <div className="slider-indicator" style={{ marginTop: '60px', display: 'flex', justifyContent: 'center' }}>
-          <div style={{ width: '400px', height: '1px', background: '#ddd', position: 'relative' }}>
-            <div style={{ width: '10px', height: '10px', background: '#111', borderRadius: '50%', position: 'absolute', top: '-4.5px', left: '30%' }}></div>
-          </div>
-        </div>
+        
       </section>
 
       {/* SECTION 4: SPLIT FEATURE 50/50 */}
@@ -325,9 +321,7 @@ export default function HomeView() {
         </div>
 
         <div className="slider-indicator" style={{ marginTop: '60px', display: 'flex', justifyContent: 'center' }}>
-          <div style={{ width: '400px', height: '1px', background: '#999', position: 'relative' }}>
-            <div style={{ width: '10px', height: '10px', background: '#111', borderRadius: '50%', position: 'absolute', top: '-4.5px', left: '0%' }}></div>
-          </div>
+         
         </div>
       </section>
 
@@ -340,17 +334,17 @@ export default function HomeView() {
           alt="Handcrafted Details"
         />
         <div className="craftsmanship-overlay-text">
-          <h2 className="section-main-title">Handcrafted in India</h2>
-          <p>
+          <h2 className="section-main-handcrafted">Handcrafted in India</h2>
+          <p className="craftsmanship-description">
             Every piece in our collection is meticulously handcrafted by skilled artisans. We blend traditional
             techniques with contemporary designs to create packaging that perfectly complements your most cherished
             moments.
           </p>
-          <a href="#" className="discover-link" onClick={(e) => { e.preventDefault(); navigate('/about'); }}>
+          <a href="#" className="discover-link split-feature-link" onClick={(e) => { e.preventDefault(); navigate('/about'); }}>
             DISCOVER MORE &mdash;
           </a>
         </div>
-        <div className="craftsmanship-inset">
+        {/* <div className="craftsmanship-inset">
           <div className="inset-header">
             <a href="#" className="discover-link" onClick={(e) => { e.preventDefault(); navigate('/about'); }}>
               DISCOVER MORE &mdash;
@@ -360,7 +354,7 @@ export default function HomeView() {
             src="https://images.unsplash.com/photo-1542841791-1925b02a2bf5?w=400&auto=format&fit=crop"
             alt="Store Interior"
           />
-        </div>
+        </div> */}
       </section>
 
       {/* SECTION 7: FEATURED STORY / PRODUCT SPLIT */}
@@ -373,7 +367,7 @@ export default function HomeView() {
           />
         </div>
         <div className="story-split-right">
-          <h2 className="section-main-title">THE WEDDING EDIT</h2>
+          <h2 className="section-wedding-title">THE WEDDING EDIT</h2>
           <p className="story-split-subtitle">Elevate your gifting experience</p>
 
           <div className="story-tabs">
@@ -421,9 +415,7 @@ export default function HomeView() {
           </div>
 
           <div className="slider-indicator" style={{ marginTop: '50px', display: 'flex', justifyContent: 'flex-start' }}>
-            <div style={{ width: '100%', height: '1px', background: '#ddd', position: 'relative' }}>
-              <div style={{ width: '10px', height: '10px', background: '#111', borderRadius: '50%', position: 'absolute', top: '-4.5px', left: '0%' }}></div>
-            </div>
+            
           </div>
         </div>
       </section>
@@ -481,9 +473,7 @@ export default function HomeView() {
         </div>
 
         <div className="slider-indicator" style={{ marginTop: '60px', display: 'flex', justifyContent: 'center' }}>
-          <div style={{ width: '400px', height: '1px', background: '#999', position: 'relative' }}>
-            <div style={{ width: '10px', height: '10px', background: '#111', borderRadius: '50%', position: 'absolute', top: '-4.5px', left: '0%' }}></div>
-          </div>
+          
         </div>
       </section>
 
