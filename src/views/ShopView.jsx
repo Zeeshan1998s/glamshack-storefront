@@ -1,12 +1,42 @@
-import  { useEffect } from 'react';
+import  { useEffect, useState, useRef } from 'react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
+import './ShopView.css';
 
 export default function ShopView() {
   const [searchParams, setSearchParams] = useSearchParams();
   const navigate = useNavigate();
+  const [productCount, setProductCount] = useState(0);
 
+  // Core search / category state
   const activeShopFilter = searchParams.get('category') || 'all';
   const searchQuery = searchParams.get('q') || '';
+  
+  const [localQuery, setLocalQuery] = useState(searchQuery);
+
+  useEffect(() => {
+    setLocalQuery(searchQuery);
+  }, [searchQuery]);
+
+  // New functional filters state
+  const [isDiscountActive, setIsDiscountActive] = useState(false);
+  const [selectedColor, setSelectedColor] = useState('');
+  const [selectedStyle, setSelectedStyle] = useState('');
+  
+  // UI state for dropdowns
+  const [activeDropdown, setActiveDropdown] = useState(null); // 'color' | 'style' | null
+  
+  const dropdownRef = useRef(null);
+
+  // Close dropdowns when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
+        setActiveDropdown(null);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
 
   const getCollectionHandle = () => {
     if (activeShopFilter === 'bands') return 'bands';
@@ -27,24 +57,30 @@ export default function ShopView() {
       if (!shopList) return;
 
       const cards = [];
-      // 1. Grab from light DOM
-      cards.push(...shopList.querySelectorAll('.glam-card'));
-      // 2. Grab from shadow DOM
+      // Grab from light DOM
+      cards.push(...shopList.querySelectorAll('.leather-family-card'));
+      // Grab from shadow DOM
       if (shopList.shadowRoot) {
-        cards.push(...shopList.shadowRoot.querySelectorAll('.glam-card'));
+        cards.push(...shopList.shadowRoot.querySelectorAll('.leather-family-card'));
       }
 
       const emptyState = document.getElementById('shop-empty-state');
-      if (cards.length === 0) return;
+      if (cards.length === 0) {
+        setProductCount(0);
+        return;
+      }
 
       let matchCount = 0;
       const trimmedSearch = searchQuery.toLowerCase();
+      const colorFilter = selectedColor.toLowerCase();
+      const styleFilter = selectedStyle.toLowerCase();
 
       cards.forEach((card) => {
         const attrTitle = card.getAttribute('data-title') || card.getAttribute('shopify-attr--data-title') || '';
         const htmlTitle = card.querySelector('.card-title')?.innerText || '';
         const title = (attrTitle || htmlTitle).toLowerCase();
 
+        // 1. Check Legacy Category Match
         let matchesCategory = false;
         if (activeShopFilter === 'all') {
           matchesCategory = true;
@@ -64,15 +100,50 @@ export default function ShopView() {
           matchesCategory = ['band', 'bangle', 'necklace', 'set', 'earring', 'choker', 'pendant', 'jewelry'].some((kw) => title.includes(kw));
         }
 
+        // 2. Check Search Query Match
         const matchesSearch = title.includes(trimmedSearch);
 
-        if (matchesCategory && matchesSearch) {
+        // 3. Check Discount Filter
+        let matchesDiscount = true;
+        if (isDiscountActive) {
+          // Attempt to extract prices. Shopify component often renders price formats like Rs. 500.00
+          const priceText = card.querySelector('.price-new')?.innerText || '';
+          const compareText = card.querySelector('.price-old')?.innerText || '';
+          
+          const extractNum = (str) => {
+             const matches = str.replace(/,/g, '').match(/[\d.]+/);
+             return matches ? parseFloat(matches[0]) : 0;
+          };
+          
+          const currentPrice = extractNum(priceText);
+          const comparePrice = extractNum(compareText);
+          
+          if (comparePrice <= currentPrice || currentPrice === 0) {
+            matchesDiscount = false;
+          }
+        }
+
+        // 4. Check Color Filter
+        let matchesColor = true;
+        if (colorFilter) {
+          matchesColor = title.includes(colorFilter);
+        }
+
+        // 5. Check Style Filter
+        let matchesStyle = true;
+        if (styleFilter) {
+          matchesStyle = title.includes(styleFilter);
+        }
+
+        if (matchesCategory && matchesSearch && matchesDiscount && matchesColor && matchesStyle) {
           card.style.display = 'flex';
           matchCount++;
         } else {
           card.style.display = 'none';
         }
       });
+
+      setProductCount(matchCount);
 
       if (emptyState) {
         emptyState.style.display = matchCount === 0 ? 'flex' : 'none';
@@ -103,7 +174,7 @@ export default function ShopView() {
       if (observer) observer.disconnect();
       if (shadowObserver) shadowObserver.disconnect();
     };
-  }, [activeShopFilter, searchQuery]);
+  }, [activeShopFilter, searchQuery, isDiscountActive, selectedColor, selectedStyle]);
 
   const handleFilterChange = (category) => {
     setSearchParams((prev) => {
@@ -121,8 +192,22 @@ export default function ShopView() {
     });
   };
 
+  const handleLocalSearchSubmit = (e) => {
+    if (e.key === 'Enter') {
+      setSearchParams((prev) => {
+        const params = new URLSearchParams(prev);
+        if (localQuery.trim()) {
+          params.set('q', localQuery.trim());
+        } else {
+          params.delete('q');
+        }
+        return params;
+      });
+    }
+  };
+
   const handleProductCardClick = (e) => {
-    const card = e.target.closest('.glam-card');
+    const card = e.target.closest('.leather-family-card');
     if (card) {
       const handle = card.getAttribute('data-handle') || card.getAttribute('shopify-attr--data-handle');
       if (handle) {
@@ -133,108 +218,163 @@ export default function ShopView() {
     }
   };
 
+  const colors = ['Black', 'Brown', 'Beige', 'Red', 'Blue', 'White'];
+  const styles = ['Tote', 'Sling', 'Potli', 'Clutch', 'Backpack'];
+
   return (
     <div id="view-shop" className="page-view active-view">
-      <main className="container">
-        <div className="shop-header-wrapper" style={{ marginTop: '40px', marginBottom: '20px' }}>
-          {/* <div
-            className="breadcrumb"
-            style={{
-              fontSize: '0.7rem',
-              textTransform: 'uppercase',
-              color: 'var(--text-muted)',
-              marginBottom: '20px',
-              fontWeight: 600,
-              letterSpacing: '0.1em'
-            }}
-          >
-            HOME / PRODUCTS
-          </div> */}
-          {searchQuery && (
-            <div
-              id="search-title-wrapper"
-              style={{
-                display: 'block',
-                borderBottom: '1px solid var(--text-main)',
-                paddingBottom: '10px',
-                marginBottom: '40px'
-              }}
-            >
-              <h1
-                id="shop-search-title"
-                style={{
-                  fontFamily: 'var(--font-display)',
-                  fontSize: '2.5rem',
-                  color: 'var(--text-main)',
-                  margin: 0,
-                  textTransform: 'capitalize'
-                }}
-              >
-                Search: {searchQuery}
-              </h1>
+      {searchQuery ? (
+        <>
+          {/* New Figma Redesign for Search Main Page */}
+          <div className="search-banner">
+            <div className="search-breadcrumbs">
+              <span className="home">HOME</span> / <span>{productCount} PRODUCTS</span>
             </div>
-          )}
-        </div>
+            <div className="search-header-flex">
+              <span className="search-you-searched-for">You searched for</span>
+              <div className="search-query-container">
+                <input 
+                  type="text"
+                  className="search-query-text search-query-input"
+                  value={localQuery}
+                  onChange={(e) => setLocalQuery(e.target.value)}
+                  onKeyDown={handleLocalSearchSubmit}
+                  placeholder="Type to search..."
+                />
+              </div>
+            </div>
+          </div>
+          
+          <div className="search-filters-bar" ref={dropdownRef}>
+            <span className="filter-label">Filters :</span>
+            
+            <button 
+              className={`filter-option ${isDiscountActive ? 'active' : ''}`}
+              onClick={() => setIsDiscountActive(!isDiscountActive)}
+            >
+              Discounts
+            </button>
 
-        {!searchQuery && (
+            <div className="filter-wrapper">
+              <button 
+                className={`filter-option ${selectedColor || activeDropdown === 'color' ? 'active' : ''}`}
+                onClick={() => setActiveDropdown(activeDropdown === 'color' ? null : 'color')}
+              >
+                {selectedColor ? `Color: ${selectedColor}` : 'Color'}
+              </button>
+              {activeDropdown === 'color' && (
+                <div className="filter-dropdown">
+                  <button 
+                    className={`filter-dropdown-item ${selectedColor === '' ? 'selected' : ''}`}
+                    onClick={() => { setSelectedColor(''); setActiveDropdown(null); }}
+                  >
+                    All Colors
+                  </button>
+                  {colors.map(color => (
+                    <button 
+                      key={color}
+                      className={`filter-dropdown-item ${selectedColor === color ? 'selected' : ''}`}
+                      onClick={() => { setSelectedColor(color); setActiveDropdown(null); }}
+                    >
+                      {color}
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            <div className="filter-wrapper">
+              <button 
+                className={`filter-option ${selectedStyle || activeDropdown === 'style' ? 'active' : ''}`}
+                onClick={() => setActiveDropdown(activeDropdown === 'style' ? null : 'style')}
+              >
+                {selectedStyle ? `Style: ${selectedStyle}` : 'Style'}
+              </button>
+              {activeDropdown === 'style' && (
+                <div className="filter-dropdown">
+                  <button 
+                    className={`filter-dropdown-item ${selectedStyle === '' ? 'selected' : ''}`}
+                    onClick={() => { setSelectedStyle(''); setActiveDropdown(null); }}
+                  >
+                    All Styles
+                  </button>
+                  {styles.map(style => (
+                    <button 
+                      key={style}
+                      className={`filter-dropdown-item ${selectedStyle === style ? 'selected' : ''}`}
+                      onClick={() => { setSelectedStyle(style); setActiveDropdown(null); }}
+                    >
+                      {style}
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
+          </div>
+        </>
+      ) : (
+        /* Legacy Default Catalog View */
+        <main className="container" style={{ paddingTop: '100px' }}>
           <div className="section-header" id="shop-default-header">
             <span className="section-title-tag">Our Curated Catalog</span>
             <h2 className="section-main-title">Explore Collection</h2>
           </div>
-        )}
 
-        {/* Dynamic filter tabs */}
-        <div className="collection-tabs">
-          <button
-            className={`btn-tab ${activeShopFilter === 'all' ? 'active-tab' : ''}`}
-            onClick={() => handleFilterChange('all')}
-          >
-            All Products
-          </button>
-          <button
-            className={`btn-tab ${activeShopFilter === 'hampers' ? 'active-tab' : ''}`}
-            onClick={() => handleFilterChange('hampers')}
-          >
-            Hampers
-          </button>
-          <button
-            className={`btn-tab ${activeShopFilter === 'trays' ? 'active-tab' : ''}`}
-            onClick={() => handleFilterChange('trays')}
-          >
-            Platters & Trays
-          </button>
-          <button
-            className={`btn-tab ${activeShopFilter === 'saree-covers' ? 'active-tab' : ''}`}
-            onClick={() => handleFilterChange('saree-covers')}
-          >
-            Saree Covers
-          </button>
-          <button
-            className={`btn-tab ${activeShopFilter === 'bags' ? 'active-tab' : ''}`}
-            onClick={() => handleFilterChange('bags')}
-          >
-            Bags & Potlis
-          </button>
-          <button
-            className={`btn-tab ${activeShopFilter === 'baskets' ? 'active-tab' : ''}`}
-            onClick={() => handleFilterChange('baskets')}
-          >
-            Baskets & Trunks
-          </button>
-          <button
-            className={`btn-tab ${activeShopFilter === 'pouches' ? 'active-tab' : ''}`}
-            onClick={() => handleFilterChange('pouches')}
-          >
-            Pouches
-          </button>
-          <button
-            className={`btn-tab ${activeShopFilter === 'bands' ? 'active-tab' : ''}`}
-            onClick={() => handleFilterChange('bands')}
-          >
-            Bands & Jewelry
-          </button>
-        </div>
+          <div className="collection-tabs">
+            <button
+              className={`btn-tab ${activeShopFilter === 'all' ? 'active-tab' : ''}`}
+              onClick={() => handleFilterChange('all')}
+            >
+              All Products
+            </button>
+            <button
+              className={`btn-tab ${activeShopFilter === 'hampers' ? 'active-tab' : ''}`}
+              onClick={() => handleFilterChange('hampers')}
+            >
+              Hampers
+            </button>
+            <button
+              className={`btn-tab ${activeShopFilter === 'trays' ? 'active-tab' : ''}`}
+              onClick={() => handleFilterChange('trays')}
+            >
+              Platters & Trays
+            </button>
+            <button
+              className={`btn-tab ${activeShopFilter === 'saree-covers' ? 'active-tab' : ''}`}
+              onClick={() => handleFilterChange('saree-covers')}
+            >
+              Saree Covers
+            </button>
+            <button
+              className={`btn-tab ${activeShopFilter === 'bags' ? 'active-tab' : ''}`}
+              onClick={() => handleFilterChange('bags')}
+            >
+              Bags & Potlis
+            </button>
+            <button
+              className={`btn-tab ${activeShopFilter === 'baskets' ? 'active-tab' : ''}`}
+              onClick={() => handleFilterChange('baskets')}
+            >
+              Baskets & Trunks
+            </button>
+            <button
+              className={`btn-tab ${activeShopFilter === 'pouches' ? 'active-tab' : ''}`}
+              onClick={() => handleFilterChange('pouches')}
+            >
+              Pouches
+            </button>
+            <button
+              className={`btn-tab ${activeShopFilter === 'bands' ? 'active-tab' : ''}`}
+              onClick={() => handleFilterChange('bands')}
+            >
+              Bands & Jewelry
+            </button>
+          </div>
+        </main>
+      )}
 
+      {/* Shared Product Grid Container */}
+      <div className={searchQuery ? 'shop-view-grid-container' : 'container'}>
         <div className="product-grid-container">
           <shopify-context
             key={activeShopFilter + '-' + searchQuery}
@@ -250,23 +390,40 @@ export default function ShopView() {
                 first="28"
               >
                 <template>
-                  <div class="glam-card" shopify-attr--data-handle="product.handle" shopify-attr--data-title="product.title" style="cursor: pointer;">
+                  <div class="leather-family-card pdp-related-card" shopify-attr--data-handle="product.handle" shopify-attr--data-title="product.title">
+                    <div class="wishlist-icon">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                      </svg>
+                    </div>
                     <div class="card-media-wrapper">
-                      <div class="card-badge">Luxe</div>
-                      <shopify-media width="300" height="300" query="product.selectedOrFirstAvailableVariant.image"></shopify-media>
-                      <div class="card-hover-overlay">View Details</div>
+                      <shopify-media width="400" height="400" query="product.selectedOrFirstAvailableVariant.image"></shopify-media>
                     </div>
                     <div class="card-details">
-                      <h3 class="card-title"><shopify-data query="product.title"></shopify-data></h3>
-                      <div class="card-price"><shopify-money query="product.selectedOrFirstAvailableVariant.price"></shopify-money></div>
+                      <div class="card-info-row">
+                        <h3 class="card-title"><shopify-data query="product.title"></shopify-data></h3>
+                        <div class="card-price-box">
+                          <span class="price-old"><shopify-money query="product.selectedOrFirstAvailableVariant.compareAtPrice"></shopify-money></span>
+                          <span class="price-new"><shopify-money query="product.selectedOrFirstAvailableVariant.price"></shopify-money></span>
+                        </div>
+                      </div>
+                      <div class="card-hover-actions">
+                        <span class="add-to-bag-text">ADD TO BAG &mdash;</span>
+                        <div class="swatches-container">
+                          <div class="swatch"><img src="https://images.unsplash.com/photo-1590874103328-eac38a683ce7?w=50&h=50&fit=crop" alt="swatch"></div>
+                          <div class="swatch"><img src="https://images.unsplash.com/photo-1584916201218-f4242ceb4809?w=50&h=50&fit=crop" alt="swatch"></div>
+                          <div class="swatch"><img src="https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=50&h=50&fit=crop" alt="swatch"></div>
+                          <span class="swatch-plus">+</span>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </template>
                 <div shopify-loading-placeholder="" class="product-grid">
-                  <div class="glam-card loading-pulse" style="height: 380px;"></div>
-                  <div class="glam-card loading-pulse" style="height: 380px;"></div>
-                  <div class="glam-card loading-pulse" style="height: 380px;"></div>
-                  <div class="glam-card loading-pulse" style="height: 380px;"></div>
+                  <div class="leather-family-card loading-pulse" style="height: 380px;"></div>
+                  <div class="leather-family-card loading-pulse" style="height: 380px;"></div>
+                  <div class="leather-family-card loading-pulse" style="height: 380px;"></div>
+                  <div class="leather-family-card loading-pulse" style="height: 380px;"></div>
                 </div>
               </shopify-list-context>
             `}} />
@@ -290,27 +447,30 @@ export default function ShopView() {
             </button>
           </div>
 
-          <div className="load-more-wrapper" style={{ textAlign: 'center', marginTop: '40px', marginBottom: '60px' }}>
-            <button
-              className="btn-load-more"
-              style={{
-                background: 'transparent',
-                border: '1px solid var(--text-main)',
-                color: 'var(--text-main)',
-                padding: '12px 40px',
-                fontFamily: 'var(--font-body)',
-                fontSize: '0.75rem',
-                textTransform: 'uppercase',
-                letterSpacing: '0.1em',
-                cursor: 'pointer',
-                transition: 'all 0.3s ease'
-              }}
-            >
-              LOAD MORE
-            </button>
+          <div style={{ textAlign: 'center', marginTop: '40px', marginBottom: '60px' }}>
+            {searchQuery ? (
+              <button className="load-more-btn">LOAD MORE</button>
+            ) : (
+              <button
+                style={{
+                  background: 'transparent',
+                  border: '1px solid var(--text-main)',
+                  color: 'var(--text-main)',
+                  padding: '12px 40px',
+                  fontFamily: 'var(--font-body)',
+                  fontSize: '0.75rem',
+                  textTransform: 'uppercase',
+                  letterSpacing: '0.1em',
+                  cursor: 'pointer',
+                  transition: 'all 0.3s ease'
+                }}
+              >
+                LOAD MORE
+              </button>
+            )}
           </div>
         </div>
-      </main>
+      </div>
     </div>
   );
 }
