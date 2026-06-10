@@ -99,52 +99,31 @@ export default function HomeView() {
           <p className="hero-display-subtitle">
             Explore our handcrafted collection of ring platters, hampers, and bridal essentials.
           </p>
-          <button className="btn-hero-shop" onClick={() => navigate('/shop')}>
-            Shop Collection
-          </button>
+
         </div>
       </section>
 
       {/* SECTION 2: BRAND STORY & TRUST BADGES */}
       <section className="home-brand-story">
         <div className="brand-story-left">
-          <h2 style={{ fontSize: 'clamp(1.8rem, 2.5vw, 2.5rem)', marginBottom: '50px', lineHeight: 1.3 }}>
-            “We believe that every celebration deserves to be presented beautifully. Our bespoke trousseau trunks, elegant
+          <h2 style={{ fontSize: 'clamp(1.8rem, 2.5vw, 2.5rem)', marginBottom: '50px', lineHeight: 1.3, color: "#3F4234E5", fontWeight: 300, }}>
+            &nbsp; &nbsp; &ldquo;We believe that every celebration deserves to be presented beautifully. Our bespoke trousseau trunks, elegant
             ring platters, and luxury gifting accessories are meticulously handcrafted to make your special moments truly
-            unforgettable.”
+            unforgettable.&rdquo;
           </h2>
-          <div className="trust-badges" style={{ alignItems: 'center', gap: '30px', marginTop: '20px' }}>
-            <div style={{ fontSize: '0.7rem', fontWeight: 'bold', lineHeight: 1.2, textAlign: 'left', maxWidth: '80px', color: '#111' }}>
-              <div style={{ fontSize: '1.2rem', marginBottom: '4px' }}>📈</div>
-              SCIENCE<br />BASED<br />TARGETS
-            </div>
-            <div style={{ fontSize: '0.75rem', fontWeight: 'bold', lineHeight: 1.2, color: '#111', display: 'flex', alignItems: 'center', gap: '6px' }}>
-              <div style={{ background: '#27ae60', color: 'white', borderRadius: '50%', width: '24px', height: '24px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.7rem' }}>
-                🌿
-              </div>
-              <div>future Net Zero<br />STANDARD</div>
-            </div>
-            <div style={{ fontSize: '2rem', color: '#111' }}>🐼</div>
-            <div style={{ fontSize: '0.75rem', fontWeight: 'bold', lineHeight: 1.2, color: '#111', display: 'flex', alignItems: 'center', gap: '6px' }}>
-              <div style={{ fontSize: '1.5rem' }}>🌐</div>
-              <div>United Nations<br />Global Compact</div>
-            </div>
-            <div style={{ border: '2px solid #c9a753', borderRadius: '50%', width: '55px', height: '55px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', fontSize: '0.5rem', fontWeight: 'bold', color: '#111', lineHeight: 1.1 }}>
-              <span style={{ color: '#c9a753' }}>GOLD</span>
-              <span>2023</span>
-              <span>ecovadis</span>
-            </div>
-          </div>
+
         </div>
         <div className="brand-story-right">
           <img
             className="brand-story-img-main"
-            src="https://images.unsplash.com/photo-1543163521-1bf539c55dd2?w=800&auto=format&fit=crop"
+            src="/src/assets/lifestyle-shoot.png"
+            // src="https://images.unsplash.com/photo-1543163521-1bf539c55dd2?w=800&auto=format&fit=crop"
             alt="Lifestyle Shoot"
           />
           <img
             className="brand-story-img-small"
-            src="https://images.unsplash.com/photo-1586075010923-2dd4570fb338?w=400&auto=format&fit=crop"
+            src="/src/assets/design-moodboard.png"
+            // src="https://images.unsplash.com/photo-1586075010923-2dd4570fb338?w=400&auto=format&fit=crop"
             alt="Design Moodboard"
           />
         </div>
@@ -153,7 +132,7 @@ export default function HomeView() {
       {/* SECTION 3: BESTSELLERS */}
       <section className="home-bestsellers" style={{ padding: '100px 4%', width: '100%', boxSizing: 'border-box' }}>
         <div className="section-header-left" style={{ marginBottom: '40px' }}>
-          <h2 className="section-main-title" style={{ fontFamily: "var(--font-display), 'Playfair Display', serif", fontSize: '2.8rem', color: '#333', marginBottom: '15px', fontWeight: 300 }}>
+          <h2 className="section-main-title" style={{ fontFamily: "var(--font-display), 'Playfair Display', serif", fontSize: '36px', color: '#3F4234E5', marginBottom: '18px', fontWeight: 500 }}>
             Signature Collections
           </h2>
           <div className="collection-tabs" style={{ display: 'flex', gap: '30px', fontSize: '0.75rem', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.05em', color: '#888' }}>
@@ -193,9 +172,10 @@ export default function HomeView() {
           </div>
         </div>
 
-        <div className="bestsellers-grid-wrapper" style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '4px', background: '#fff' }}>
+        <div className="bestsellers-grid-wrapper" style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '4px', }}>
           <shopify-list-context id="bestsellers-list" type="product" query="products" first="4" onClick={handleProductCardClick}>
-            <template dangerouslySetInnerHTML={{ __html: `
+            <template dangerouslySetInnerHTML={{
+              __html: `
               <div class="leather-family-card pdp-related-card" shopify-attr--data-handle="product.handle" shopify-attr--data-title="product.title">
                 <div class="wishlist-icon">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
@@ -228,11 +208,7 @@ export default function HomeView() {
           </shopify-list-context>
         </div>
 
-        <div className="slider-indicator" style={{ marginTop: '60px', display: 'flex', justifyContent: 'center' }}>
-          <div style={{ width: '400px', height: '1px', background: '#ddd', position: 'relative' }}>
-            <div style={{ width: '10px', height: '10px', background: '#111', borderRadius: '50%', position: 'absolute', top: '-4.5px', left: '30%' }}></div>
-          </div>
-        </div>
+        
       </section>
 
       {/* SECTION 4: SPLIT FEATURE 50/50 */}
@@ -250,8 +226,8 @@ export default function HomeView() {
               Curate the perfect gifting experience with our premium, fully customizable hampers. Designed with exquisite
               details to reflect the joy and elegance of your most cherished celebrations.
             </p>
-            <a href="#" className="discover-link" onClick={(e) => e.preventDefault()}>
-              DISCOVER MORE &mdash;
+            <a href="#" className="discover-link split-feature-link" onClick={(e) => e.preventDefault()}>
+              DISCOVER MORE
             </a>
           </div>
         </div>
@@ -268,8 +244,8 @@ export default function HomeView() {
               Preserve your most precious memories in our handcrafted trousseau trunks. Blending timeless traditions with
               contemporary luxury for the modern bride.
             </p>
-            <a href="#" className="discover-link" onClick={(e) => e.preventDefault()}>
-              DISCOVER MORE &mdash;
+            <a href="#" className="discover-link split-feature-link" onClick={(e) => e.preventDefault()}>
+              DISCOVER MORE
             </a>
           </div>
         </div>
@@ -345,9 +321,7 @@ export default function HomeView() {
         </div>
 
         <div className="slider-indicator" style={{ marginTop: '60px', display: 'flex', justifyContent: 'center' }}>
-          <div style={{ width: '400px', height: '1px', background: '#999', position: 'relative' }}>
-            <div style={{ width: '10px', height: '10px', background: '#111', borderRadius: '50%', position: 'absolute', top: '-4.5px', left: '0%' }}></div>
-          </div>
+         
         </div>
       </section>
 
@@ -360,17 +334,17 @@ export default function HomeView() {
           alt="Handcrafted Details"
         />
         <div className="craftsmanship-overlay-text">
-          <h2 className="section-main-title">Handcrafted in India</h2>
-          <p>
+          <h2 className="section-main-handcrafted">Handcrafted in India</h2>
+          <p className="craftsmanship-description">
             Every piece in our collection is meticulously handcrafted by skilled artisans. We blend traditional
             techniques with contemporary designs to create packaging that perfectly complements your most cherished
             moments.
           </p>
-          <a href="#" className="discover-link" onClick={(e) => { e.preventDefault(); navigate('/about'); }}>
+          <a href="#" className="discover-link split-feature-link" onClick={(e) => { e.preventDefault(); navigate('/about'); }}>
             DISCOVER MORE &mdash;
           </a>
         </div>
-        <div className="craftsmanship-inset">
+        {/* <div className="craftsmanship-inset">
           <div className="inset-header">
             <a href="#" className="discover-link" onClick={(e) => { e.preventDefault(); navigate('/about'); }}>
               DISCOVER MORE &mdash;
@@ -380,7 +354,7 @@ export default function HomeView() {
             src="https://images.unsplash.com/photo-1542841791-1925b02a2bf5?w=400&auto=format&fit=crop"
             alt="Store Interior"
           />
-        </div>
+        </div> */}
       </section>
 
       {/* SECTION 7: FEATURED STORY / PRODUCT SPLIT */}
@@ -393,7 +367,7 @@ export default function HomeView() {
           />
         </div>
         <div className="story-split-right">
-          <h2 className="section-main-title">THE WEDDING EDIT</h2>
+          <h2 className="section-wedding-title">THE WEDDING EDIT</h2>
           <p className="story-split-subtitle">Elevate your gifting experience</p>
 
           <div className="story-tabs">
@@ -405,7 +379,8 @@ export default function HomeView() {
           <div className="story-slider-wrapper">
             <div className="story-slider">
               <shopify-list-context id="story-list" type="product" query="products" first="4" style={{ display: 'flex', gap: '4px' }} onClick={handleProductCardClick}>
-                <template dangerouslySetInnerHTML={{ __html: `
+                <template dangerouslySetInnerHTML={{
+                  __html: `
                   <div class="leather-family-card pdp-related-card" style="width: 25vw; min-width: 250px; max-width: 320px;" shopify-attr--data-handle="product.handle" shopify-attr--data-title="product.title">
                     <div class="wishlist-icon">
                       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
@@ -440,9 +415,7 @@ export default function HomeView() {
           </div>
 
           <div className="slider-indicator" style={{ marginTop: '50px', display: 'flex', justifyContent: 'flex-start' }}>
-            <div style={{ width: '100%', height: '1px', background: '#ddd', position: 'relative' }}>
-              <div style={{ width: '10px', height: '10px', background: '#111', borderRadius: '50%', position: 'absolute', top: '-4.5px', left: '0%' }}></div>
-            </div>
+            
           </div>
         </div>
       </section>
@@ -500,9 +473,7 @@ export default function HomeView() {
         </div>
 
         <div className="slider-indicator" style={{ marginTop: '60px', display: 'flex', justifyContent: 'center' }}>
-          <div style={{ width: '400px', height: '1px', background: '#999', position: 'relative' }}>
-            <div style={{ width: '10px', height: '10px', background: '#111', borderRadius: '50%', position: 'absolute', top: '-4.5px', left: '0%' }}></div>
-          </div>
+          
         </div>
       </section>
 
