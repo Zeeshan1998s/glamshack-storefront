@@ -1,5 +1,8 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import coverImg from '../assets/cover.jpg';
+import lifestyleImg from '../assets/lifestyle-shoot.png';
+import moodboardImg from '../assets/design-moodboard.png';
 
 export default function HomeView() {
   const [signatureTab, setSignatureTab] = useState('reductions');
@@ -90,7 +93,7 @@ export default function HomeView() {
       <section className="home-hero-full">
         <img
           className="home-hero-bg"
-          src="src/assets/cover.jpg"
+          src={coverImg}
           // src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=2000&auto=format&fit=crop"
           alt="Wedding Preparation"
         />
@@ -116,13 +119,13 @@ export default function HomeView() {
         <div className="brand-story-right">
           <img
             className="brand-story-img-main"
-            src="/src/assets/lifestyle-shoot.png"
+            src={lifestyleImg}
             // src="https://images.unsplash.com/photo-1543163521-1bf539c55dd2?w=800&auto=format&fit=crop"
             alt="Lifestyle Shoot"
           />
           <img
             className="brand-story-img-small"
-            src="/src/assets/design-moodboard.png"
+            src={moodboardImg}
             // src="https://images.unsplash.com/photo-1586075010923-2dd4570fb338?w=400&auto=format&fit=crop"
             alt="Design Moodboard"
           />
