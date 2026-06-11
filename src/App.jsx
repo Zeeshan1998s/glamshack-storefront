@@ -72,11 +72,27 @@ function AppContent() {
               email
               phone
               defaultAddress {
+                id
                 formatted
                 city
                 country
               }
-              orders(first: 5) {
+              addresses(first: 10) {
+                edges {
+                  node {
+                    id
+                    address1
+                    address2
+                    city
+                    province
+                    country
+                    zip
+                    phone
+                    formatted
+                  }
+                }
+              }
+              orders(first: 20) {
                 edges {
                   node {
                     orderNumber
@@ -103,9 +119,17 @@ function AppContent() {
     return res.data.customer;
   };
 
-  
-
-  const handleLogout = () => {
+  const refreshCustomer = async () => {
+    const token = localStorage.getItem('glamshack_customer_token');
+    if (token) {
+      try {
+        const data = await fetchCustomerData(token);
+        setCustomer(data);
+      } catch (err) {
+        console.error('Failed to refresh customer:', err);
+      }
+    }
+  };  const handleLogout = () => {
     localStorage.removeItem('glamshack_customer_token');
     localStorage.removeItem('glamshack_demo_user');
     setCustomer(null);
@@ -316,6 +340,11 @@ function AppContent() {
             isLoggedIn={isLoggedIn}
             onLogout={handleLogout}
             authLoading={authLoading}
+            wishlist={wishlist}
+            onRemoveWishlistItem={handleRemoveWishlistItem}
+            onClearWishlist={handleClearWishlist}
+            onMoveAllToBag={handleMoveAllWishlistToBag}
+            refreshCustomer={refreshCustomer}
           />
         } />
         <Route path="/login" element={<Navigate to="/" replace />} />
