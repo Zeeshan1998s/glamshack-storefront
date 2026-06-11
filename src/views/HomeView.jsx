@@ -481,13 +481,13 @@ export default function HomeView() {
       </section>
 
       {/* SECTION 9: PRE-FOOTER LANDSCAPE */}
-      <section className="home-pre-footer">
+      {/* <section className="home-pre-footer">
         <img
           src="https://images.unsplash.com/photo-1513689125086-6c432170e843?w=2000&auto=format&fit=crop"
           alt="Mountains and Forests"
           style={{ width: '100%', height: '600px', objectFit: 'cover', display: 'block' }}
         />
-      </section>
+      </section> */}
     </div>
   );
 }

@@ -80,8 +80,8 @@ export default function CollectionsView() {
           const priceText = card.querySelector('.price-new')?.innerText || '';
           const compareText = card.querySelector('.price-old')?.innerText || '';
           const extractNum = (str) => {
-             const matches = str.replace(/,/g, '').match(/[\d.]+/);
-             return matches ? parseFloat(matches[0]) : 0;
+            const matches = str.replace(/,/g, '').match(/[\d.]+/);
+            return matches ? parseFloat(matches[0]) : 0;
           };
           const currentPrice = extractNum(priceText);
           const comparePrice = extractNum(compareText);
@@ -133,12 +133,12 @@ export default function CollectionsView() {
 
   return (
     <div id="view-collections" className="page-view active-view" style={{ backgroundColor: '#f6f5f3' }}>
-      
+
       {/* Header with Title and Subcategories */}
       <CollectionHeader />
 
       {/* Filter and Sort Bar */}
-      <CollectionFilterBar 
+      <CollectionFilterBar
         isDiscountActive={isDiscountActive} setIsDiscountActive={setIsDiscountActive}
         selectedColor={selectedColor} setSelectedColor={setSelectedColor}
         selectedStyle={selectedStyle} setSelectedStyle={setSelectedStyle}
@@ -154,14 +154,7 @@ export default function CollectionsView() {
         <button className="collection-load-more-btn" onClick={handleLoadMore}>LOAD MORE ({productCount} items)</button>
       </div>
 
-      {/* Pre-footer Landscape Image */}
-      <section className="home-pre-footer">
-        <img
-          src="https://images.unsplash.com/photo-1513689125086-6c432170e843?w=2000&auto=format&fit=crop"
-          alt="Mountains and Forests"
-          style={{ width: '100%', height: '600px', objectFit: 'cover', display: 'block' }}
-        />
-      </section>
+
     </div>
   );
 }
