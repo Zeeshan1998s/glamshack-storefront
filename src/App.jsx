@@ -15,6 +15,8 @@ import ProfileView from './views/ProfileView';
 import AboutView from './views/AboutView';
 import BlogView from './views/BlogView';
 import ArticleDetailView from './views/ArticleDetailView';
+import DisclaimerView from './views/DisclaimerView';
+import PrivacyView from './views/PrivacyView';
 
 import './index.css';
 
@@ -319,6 +321,8 @@ function AppContent() {
         <Route path="/login" element={<Navigate to="/" replace />} />
         <Route path="/register" element={<Navigate to="/" replace />} />
         <Route path="/about" element={<AboutView />} />
+        <Route path="/disclaimer" element={<DisclaimerView />} />
+        <Route path="/privacy" element={<PrivacyView />} />
         <Route path="/blog" element={<BlogView />} />
         <Route path="/blog/:articleKey" element={<ArticleDetailView />} />
       </Routes>

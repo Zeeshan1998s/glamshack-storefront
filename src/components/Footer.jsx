@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 
 export default function Footer() {
   const handleNewsletterSubmit = (e) => {
@@ -27,17 +28,12 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Col 2 */}
         <div className="footer-col">
           <h4 className="footer-col-title">Glamshack</h4>
           <ul className="footer-links">
-            <li><a href="#">Contact Us</a></li>
-            <li><a href="#">One to one appointment</a></li>
-            <li><a href="#">Order Tracking</a></li>
-            <li><a href="#">Delivery</a></li>
-            <li><a href="#">Returns</a></li>
-            <li><a href="#">FAQ</a></li>
-            <li><a href="#">Product Care</a></li>
+            <li><Link to="/about">About Us</Link></li>
+            <li><Link to="/privacy">Privacy Policy</Link></li>
+            <li><Link to="/disclaimer">Disclaimer</Link></li>
           </ul>
         </div>
 
