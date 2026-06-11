@@ -1,4 +1,4 @@
-import  { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import Header from './components/Header';
 import Footer from './components/Footer';
@@ -129,7 +129,7 @@ function AppContent() {
         console.error('Failed to refresh customer:', err);
       }
     }
-  };  const handleLogout = () => {
+  }; const handleLogout = () => {
     localStorage.removeItem('glamshack_customer_token');
     localStorage.removeItem('glamshack_demo_user');
     setCustomer(null);
@@ -166,7 +166,7 @@ function AppContent() {
 
   useEffect(() => {
     const token = localStorage.getItem('glamshack_customer_token');
-    
+
     if (token) {
       fetchCustomerData(token)
         .then((data) => {
@@ -335,7 +335,7 @@ function AppContent() {
         <Route path="/collections" element={<CollectionsView />} />
         <Route path="/product" element={<ProductDetailView onToggleWishlist={handleToggleWishlist} />} />
         <Route path="/profile" element={
-          <ProfileView 
+          <ProfileView
             customer={customer}
             isLoggedIn={isLoggedIn}
             onLogout={handleLogout}

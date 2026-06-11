@@ -1598,18 +1598,33 @@ shopify-cart::part(secondary-button):hover {
 
 /* Footer area */
 .site-footer {
-  background-color: #333b24;
-  /* Dark olive green */
-  color: #fff;
-  padding: 80px 4% 40px;
+  background-size: cover;
+  /* background-position: ; */
+  background-repeat: no-repeat;
+  padding: 400px 32px 32px 32px;
   font-family: var(--font-body);
   width: 100%;
 }
 
+.footer-content-box {
+  background-color: #2C3318;
+  padding: 64px 32px 32px 32px;
+  color: #fff;
+  width: 100%;
+  max-width: 1856px;
+  margin: 0 auto;
+}
+
 .footer-grid {
-  display: grid;
-  grid-template-columns: 1.5fr 1fr 1fr 2.5fr;
+  display: flex;
+  justify-content: space-between;
   gap: 40px;
+  margin-bottom: 29px;
+}
+
+.footer-col-group {
+  display: flex;
+  gap: 120px;
 }
 
 .footer-col {
@@ -1619,11 +1634,12 @@ shopify-cart::part(secondary-button):hover {
 }
 
 .footer-col-title {
-  font-family: var(--font-display), "Playfair Display", serif;
-  font-size: 25.6px;
-  font-weight: 300;
+  font-family: "Begum", var(--font-display), "Playfair Display", serif;
+  font-size: 28px;
+  font-weight: 500;
+  letter-spacing: -0.08em;
   color: #fff;
-  margin-bottom: 24px;
+  margin-bottom: 12px;
 }
 
 .footer-links {
@@ -1637,7 +1653,9 @@ shopify-cart::part(secondary-button):hover {
 
 .footer-links a {
   color: #fff;
+  font-family: var(--font-body);
   font-size: 12px;
+  font-weight: 400;
   text-decoration: none;
   opacity: 0.9;
   transition: opacity 0.3s ease;
@@ -1648,18 +1666,24 @@ shopify-cart::part(secondary-button):hover {
   text-decoration: underline;
 }
 
+.newsletter-col {
+  max-width: 400px;
+}
+
 .newsletter-desc {
+  font-family: var(--font-body);
   font-size: 12px;
   opacity: 0.9;
-  margin-bottom: 30px;
-  max-width: 90%;
+  margin-bottom: 12px;
+  max-width: 100%;
 }
 
 .newsletter-form {
   display: flex;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+  justify-content: space-between;
+  border-bottom: 1px solid #fff;
   padding-bottom: 10px;
-  margin-bottom: 30px;
+  margin-bottom: 12px;
   align-items: center;
 }
 
@@ -1668,15 +1692,16 @@ shopify-cart::part(secondary-button):hover {
   border: none;
   color: #fff;
   font-size: 12px;
+  font-weight: 300;
+  letter-spacing: 0.01em;
   flex: 1;
   outline: none;
   font-family: var(--font-body);
 }
 
 .newsletter-input::placeholder {
-  color: rgba(255, 255, 255, 0.6);
+  color: rgba(255, 255, 255, 0.8);
   text-transform: uppercase;
-  letter-spacing: 0.05em;
 }
 
 .newsletter-submit-btn {
@@ -1684,6 +1709,7 @@ shopify-cart::part(secondary-button):hover {
   border: none;
   color: #fff;
   font-size: 12px;
+  font-weight: 300;
   font-family: var(--font-body);
   cursor: pointer;
   text-transform: uppercase;
@@ -1696,7 +1722,7 @@ shopify-cart::part(secondary-button):hover {
 
 .footer-socials {
   display: flex;
-  gap: 20px;
+  gap: 16px;
 }
 
 .footer-socials a {
@@ -1712,10 +1738,19 @@ shopify-cart::part(secondary-button):hover {
   opacity: 1;
 }
 
+.footer-copyright-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 0px;
+}
+
 .footer-copyright {
-  font-size: 9.6px;
+  font-size: 12px;
+  font-family: var(--font-body);
+  font-weight: 400;
   opacity: 0.8;
-  margin-top: 80px;
+  margin-top: 0;
 }
 
 .footer-copyright.right {
@@ -1725,22 +1760,29 @@ shopify-cart::part(secondary-button):hover {
 /* Responsive adjustments */
 @media (max-width: 1024px) {
   .footer-grid {
-    grid-template-columns: 1fr 1fr;
+    flex-wrap: wrap;
     gap: 60px;
   }
 
-  .footer-copyright {
-    margin-top: 40px;
-  }
-
-  .footer-copyright.right {
-    text-align: left;
+  .footer-col-group {
+    gap: 60px;
   }
 }
 
 @media (max-width: 768px) {
-  .footer-grid {
-    grid-template-columns: 1fr;
+  .footer-col-group {
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  .footer-copyright-row {
+    flex-direction: column;
+    gap: 16px;
+    align-items: flex-start;
+  }
+
+  .footer-copyright.right {
+    text-align: left;
   }
 }
 
