@@ -1611,7 +1611,7 @@ shopify-cart::part(secondary-button):hover {
   padding: 64px 32px 32px 32px;
   color: #fff;
   width: 100%;
-  max-width: 1856px;
+  /* max-width: calc(100%); */
   margin: 0 auto;
 }
 
