@@ -1,4 +1,4 @@
-import  { useEffect, useState, useRef } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
 import './ShopView.css';
 
@@ -10,7 +10,7 @@ export default function ShopView() {
   // Core search / category state
   const activeShopFilter = searchParams.get('category') || 'all';
   const searchQuery = searchParams.get('q') || '';
-  
+
   const [localQuery, setLocalQuery] = useState(searchQuery);
 
   useEffect(() => {
@@ -21,10 +21,10 @@ export default function ShopView() {
   const [isDiscountActive, setIsDiscountActive] = useState(false);
   const [selectedColor, setSelectedColor] = useState('');
   const [selectedStyle, setSelectedStyle] = useState('');
-  
+
   // UI state for dropdowns
   const [activeDropdown, setActiveDropdown] = useState(null); // 'color' | 'style' | null
-  
+
   const dropdownRef = useRef(null);
 
   // Close dropdowns when clicking outside
@@ -109,15 +109,15 @@ export default function ShopView() {
           // Attempt to extract prices. Shopify component often renders price formats like Rs. 500.00
           const priceText = card.querySelector('.price-new')?.innerText || '';
           const compareText = card.querySelector('.price-old')?.innerText || '';
-          
+
           const extractNum = (str) => {
-             const matches = str.replace(/,/g, '').match(/[\d.]+/);
-             return matches ? parseFloat(matches[0]) : 0;
+            const matches = str.replace(/,/g, '').match(/[\d.]+/);
+            return matches ? parseFloat(matches[0]) : 0;
           };
-          
+
           const currentPrice = extractNum(priceText);
           const comparePrice = extractNum(compareText);
-          
+
           if (comparePrice <= currentPrice || currentPrice === 0) {
             matchesDiscount = false;
           }
@@ -233,7 +233,7 @@ export default function ShopView() {
             <div className="search-header-flex">
               <span className="search-you-searched-for">You searched for</span>
               <div className="search-query-container">
-                <input 
+                <input
                   type="text"
                   className="search-query-text search-query-input"
                   value={localQuery}
@@ -244,11 +244,11 @@ export default function ShopView() {
               </div>
             </div>
           </div>
-          
+
           <div className="search-filters-bar" ref={dropdownRef}>
             <span className="filter-label">Filters :</span>
-            
-            <button 
+
+            <button
               className={`filter-option ${isDiscountActive ? 'active' : ''}`}
               onClick={() => setIsDiscountActive(!isDiscountActive)}
             >
@@ -256,7 +256,7 @@ export default function ShopView() {
             </button>
 
             <div className="filter-wrapper">
-              <button 
+              <button
                 className={`filter-option ${selectedColor || activeDropdown === 'color' ? 'active' : ''}`}
                 onClick={() => setActiveDropdown(activeDropdown === 'color' ? null : 'color')}
               >
@@ -264,14 +264,14 @@ export default function ShopView() {
               </button>
               {activeDropdown === 'color' && (
                 <div className="filter-dropdown">
-                  <button 
+                  <button
                     className={`filter-dropdown-item ${selectedColor === '' ? 'selected' : ''}`}
                     onClick={() => { setSelectedColor(''); setActiveDropdown(null); }}
                   >
                     All Colors
                   </button>
                   {colors.map(color => (
-                    <button 
+                    <button
                       key={color}
                       className={`filter-dropdown-item ${selectedColor === color ? 'selected' : ''}`}
                       onClick={() => { setSelectedColor(color); setActiveDropdown(null); }}
@@ -284,7 +284,7 @@ export default function ShopView() {
             </div>
 
             <div className="filter-wrapper">
-              <button 
+              <button
                 className={`filter-option ${selectedStyle || activeDropdown === 'style' ? 'active' : ''}`}
                 onClick={() => setActiveDropdown(activeDropdown === 'style' ? null : 'style')}
               >
@@ -292,14 +292,14 @@ export default function ShopView() {
               </button>
               {activeDropdown === 'style' && (
                 <div className="filter-dropdown">
-                  <button 
+                  <button
                     className={`filter-dropdown-item ${selectedStyle === '' ? 'selected' : ''}`}
                     onClick={() => { setSelectedStyle(''); setActiveDropdown(null); }}
                   >
                     All Styles
                   </button>
                   {styles.map(style => (
-                    <button 
+                    <button
                       key={style}
                       className={`filter-dropdown-item ${selectedStyle === style ? 'selected' : ''}`}
                       onClick={() => { setSelectedStyle(style); setActiveDropdown(null); }}
@@ -382,7 +382,8 @@ export default function ShopView() {
             handle={activeShopFilter === 'all' ? undefined : getCollectionHandle()}
             onClick={handleProductCardClick}
           >
-            <template dangerouslySetInnerHTML={{ __html: `
+            <template dangerouslySetInnerHTML={{
+              __html: `
               <shopify-list-context
                 id="shop-list-context"
                 type="product"

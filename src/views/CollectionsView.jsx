@@ -151,7 +151,7 @@ export default function CollectionsView() {
 
       {/* Load More Button */}
       <div className="collection-load-more-container">
-        <button className="collection-load-more-btn" onClick={handleLoadMore}>LOAD MORE ({productCount} items)</button>
+        <button className="collection-load-more-btn" > ({productCount} items)</button>
       </div>
 
 
