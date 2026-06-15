@@ -78,23 +78,23 @@ export default function SearchDrawer({
         <div className="search-drawer-left">
           {/* Navigation Links */}
           <nav className="search-drawer-nav">
-            <button className="search-nav-link" onClick={() => handleCategoryClick('all')}>
-              SALE
+            <button className="search-nav-link" onClick={() => handleCategoryClick('brocade-boxes')}>
+              BROCADE BOXES
             </button>
-            <button className="search-nav-link" onClick={() => handleCategoryClick('hampers')}>
-              NEW
+            <button className="search-nav-link" onClick={() => handleCategoryClick('dry-fruit-trays')}>
+              DRY FRUIT TRAYS
             </button>
-            <button className="search-nav-link" onClick={() => handleCategoryClick('bags')}>
-              BAGS
+            <button className="search-nav-link" onClick={() => handleCategoryClick('engagement-platters')}>
+              ENGAGEMENT PLATTERS
             </button>
-            <button className="search-nav-link" onClick={() => handleCategoryClick('baskets')}>
-              ACCESSORIES
+            <button className="search-nav-link" onClick={() => handleCategoryClick('fruit-baskets')}>
+              FRUIT BASKETS
             </button>
-            <button className="search-nav-link" onClick={() => handleCategoryClick('saree-covers')}>
-              CASHMERE
+            <button className="search-nav-link" onClick={() => handleCategoryClick('mehendi-platters')}>
+              MEHENDI PLATTERS
             </button>
-            <button className="search-nav-link" onClick={() => handleCategoryClick('trays')}>
-              GIFTS
+            <button className="search-nav-link" onClick={() => handleCategoryClick('trunks')}>
+              TRUNKS
             </button>
           </nav>
 

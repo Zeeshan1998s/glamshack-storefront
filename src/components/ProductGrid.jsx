@@ -17,19 +17,15 @@ export default function ProductGrid({ activeCategory, gridView, visibleCount = 2
   };
 
   const getCollectionHandle = () => {
-    if (activeCategory === 'bands') return 'bands';
-    if (activeCategory === 'trays') return 'suede-trays';
-    if (activeCategory === 'saree-covers') return 'saree-boxes';
-    if (activeCategory === 'baskets') return 'saree-boxes';
-    return 'frontpage';
+    // Return undefined so it always fetches from the shop instead of collections
+    return undefined;
   };
 
   return (
     <div className={`collection-product-grid ${gridView === 'gallery' ? 'gallery-view' : ''}`}>
       <shopify-context 
         key={activeCategory}
-        type={activeCategory === 'all' ? 'shop' : 'collection'} 
-        handle={activeCategory === 'all' ? undefined : getCollectionHandle()} 
+        type="shop" 
         onClick={handleProductCardClick}
       >
         <template dangerouslySetInnerHTML={{ __html: `
@@ -40,7 +36,7 @@ export default function ProductGrid({ activeCategory, gridView, visibleCount = 2
             first="${visibleCount}"
           >
             <template>
-              <div class="leather-family-card collection-card" shopify-attr--data-handle="product.handle" shopify-attr--data-title="product.title">
+              <div class="leather-family-card collection-card" shopify-attr--data-handle="product.handle" shopify-attr--data-title="product.title" shopify-attr--data-type="product.productType">
                 <div class="wishlist-icon">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
                     <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>

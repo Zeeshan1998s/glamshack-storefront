@@ -216,17 +216,17 @@ export default function HomeView() {
 
       {/* SECTION 4: SPLIT FEATURE 50/50 */}
       <section className="home-split-feature" style={{ gap: '4px', padding: '4px 0', background: '#fff' }}>
-        <div className="split-feature-item" onClick={() => navigate('/shop?category=hampers')} style={{ cursor: 'pointer' }}>
+        <div className="split-feature-item" onClick={() => navigate('/shop?category=engagement-platters')} style={{ cursor: 'pointer' }}>
           <img
             className="split-feature-img"
             src="https://images.unsplash.com/photo-1520854221256-17451cc331bf?w=1200&auto=format&fit=crop"
-            alt="Luxury Hampers"
+            alt="Engagement Platters"
           />
           <div className="split-feature-overlay"></div>
           <div className="split-feature-text">
-            <h3>Luxury Hampers</h3>
+            <h3>Engagement Platters</h3>
             <p>
-              Curate the perfect gifting experience with our premium, fully customizable hampers. Designed with exquisite
+              Curate the perfect gifting experience with our premium, fully customizable platters. Designed with exquisite
               details to reflect the joy and elegance of your most cherished celebrations.
             </p>
             <a href="#" className="discover-link split-feature-link" onClick={(e) => e.preventDefault()}>
@@ -234,15 +234,15 @@ export default function HomeView() {
             </a>
           </div>
         </div>
-        <div className="split-feature-item" onClick={() => navigate('/shop?category=baskets')} style={{ cursor: 'pointer' }}>
+        <div className="split-feature-item" onClick={() => navigate('/shop?category=trunks')} style={{ cursor: 'pointer' }}>
           <img
             className="split-feature-img"
             src="https://images.unsplash.com/photo-1606800052052-a08af7148866?w=1200&auto=format&fit=crop"
-            alt="Bridal Trousseau"
+            alt="Bridal Trunks"
           />
           <div className="split-feature-overlay"></div>
           <div className="split-feature-text">
-            <h3>Bridal Trousseau</h3>
+            <h3>Bridal Trunks</h3>
             <p>
               Preserve your most precious memories in our handcrafted trousseau trunks. Blending timeless traditions with
               contemporary luxury for the modern bride.
@@ -272,52 +272,52 @@ export default function HomeView() {
 
         <div className="categories-slider-wrapper">
           <div className="categories-slider">
-            <div className="category-slide-item" onClick={() => navigate('/shop?category=hampers')} style={{ cursor: 'pointer' }}>
+            <div className="category-slide-item" onClick={() => navigate('/shop?category=brocade-boxes')} style={{ cursor: 'pointer' }}>
               <div className="category-img-wrapper">
-                <img src="https://images.unsplash.com/photo-1591561954557-26941169b49e?w=800&auto=format&fit=crop" alt="Luxury Hampers" />
+                <img src="https://images.unsplash.com/photo-1591561954557-26941169b49e?w=800&auto=format&fit=crop" alt="Brocade Boxes" />
               </div>
               <div className="category-slide-details">
-                <p className="category-product-title">Hampers</p>
+                <p className="category-product-title">Brocade Boxes</p>
               </div>
             </div>
-            <div className="category-slide-item" onClick={() => navigate('/shop?category=trays')} style={{ cursor: 'pointer' }}>
+            <div className="category-slide-item" onClick={() => navigate('/shop?category=suede-trays')} style={{ cursor: 'pointer' }}>
               <div className="category-img-wrapper">
-                <img src="https://images.unsplash.com/photo-1584916201218-f4242ceb4809?w=800&auto=format&fit=crop" alt="Designer Platters" />
+                <img src="https://images.unsplash.com/photo-1584916201218-f4242ceb4809?w=800&auto=format&fit=crop" alt="Suede Trays" />
               </div>
               <div className="category-slide-details">
-                <p className="category-product-title">Platters & Trays</p>
+                <p className="category-product-title">Suede Trays</p>
               </div>
             </div>
-            <div className="category-slide-item" onClick={() => navigate('/shop?category=saree-covers')} style={{ cursor: 'pointer' }}>
+            <div className="category-slide-item" onClick={() => navigate('/shop?category=haldi-platter')} style={{ cursor: 'pointer' }}>
               <div className="category-img-wrapper">
-                <img src="https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=800&auto=format&fit=crop" alt="Saree Covers" />
+                <img src="https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=800&auto=format&fit=crop" alt="Haldi Platter" />
               </div>
               <div className="category-slide-details">
-                <p className="category-product-title">Saree Covers</p>
+                <p className="category-product-title">Haldi Platter</p>
               </div>
             </div>
-            <div className="category-slide-item" onClick={() => navigate('/shop?category=baskets')} style={{ cursor: 'pointer' }}>
+            <div className="category-slide-item" onClick={() => navigate('/shop?category=fruit-baskets')} style={{ cursor: 'pointer' }}>
               <div className="category-img-wrapper">
-                <img src="https://images.unsplash.com/photo-1628149462104-e3dc122b5e28?w=800&auto=format&fit=crop" alt="Bridal Trunks" />
+                <img src="https://images.unsplash.com/photo-1628149462104-e3dc122b5e28?w=800&auto=format&fit=crop" alt="Fruit Baskets" />
               </div>
               <div className="category-slide-details">
-                <p className="category-product-title">Bridal Trunks</p>
+                <p className="category-product-title">Fruit Baskets</p>
               </div>
             </div>
-            <div className="category-slide-item" onClick={() => navigate('/shop?category=bags')} style={{ cursor: 'pointer' }}>
+            <div className="category-slide-item" onClick={() => navigate('/shop?category=luggage-bands')} style={{ cursor: 'pointer' }}>
               <div className="category-img-wrapper">
-                <img src="https://images.unsplash.com/photo-1559563458-527698bf5295?w=800&auto=format&fit=crop" alt="Potlis" />
+                <img src="https://images.unsplash.com/photo-1559563458-527698bf5295?w=800&auto=format&fit=crop" alt="Luggage Bands" />
               </div>
               <div className="category-slide-details">
-                <p className="category-product-title">Embroidered Potlis</p>
+                <p className="category-product-title">Luggage Bands</p>
               </div>
             </div>
-            <div className="category-slide-item" onClick={() => navigate('/shop?category=bands')} style={{ cursor: 'pointer' }}>
+            <div className="category-slide-item" onClick={() => navigate('/shop?category=nikahnama')} style={{ cursor: 'pointer' }}>
               <div className="category-img-wrapper">
-                <img src="https://images.unsplash.com/photo-1590874103328-eac38a683ce7?w=800&auto=format&fit=crop" alt="Jewelry Boxes" />
+                <img src="https://images.unsplash.com/photo-1590874103328-eac38a683ce7?w=800&auto=format&fit=crop" alt="Nikahnama" />
               </div>
               <div className="category-slide-details">
-                <p className="category-product-title">Jewelry Boxes</p>
+                <p className="category-product-title">Nikahnama</p>
               </div>
             </div>
           </div>

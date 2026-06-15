@@ -39,12 +39,7 @@ export default function ShopView() {
   }, []);
 
   const getCollectionHandle = () => {
-    if (activeShopFilter === 'bands') return 'bands';
-    if (activeShopFilter === 'trays') return 'suede-trays';
-    if (activeShopFilter === 'saree-covers') return 'saree-boxes';
-    if (activeShopFilter === 'baskets') return 'saree-boxes';
-    // Fallback collection to force a request and return products
-    return 'frontpage';
+    return undefined;
   };
 
   useEffect(() => {
@@ -80,24 +75,16 @@ export default function ShopView() {
         const htmlTitle = card.querySelector('.card-title')?.innerText || '';
         const title = (attrTitle || htmlTitle).toLowerCase();
 
-        // 1. Check Legacy Category Match
+        const attrType = card.getAttribute('data-type') || card.getAttribute('shopify-attr--data-type') || '';
+        const productType = attrType.toLowerCase();
+
+        // 1. Check Category Match
         let matchesCategory = false;
         if (activeShopFilter === 'all') {
           matchesCategory = true;
-        } else if (activeShopFilter === 'hampers') {
-          matchesCategory = ['hamper', 'trousseau', 'set', 'gift'].some((kw) => title.includes(kw));
-        } else if (activeShopFilter === 'trays') {
-          matchesCategory = ['tray', 'platter', 'thali', 'shagun', 'ring'].some((kw) => title.includes(kw));
-        } else if (activeShopFilter === 'saree-covers') {
-          matchesCategory = ['saree', 'cover', 'suit', 'lehenga', 'gown', 'sherwani'].some((kw) => title.includes(kw));
-        } else if (activeShopFilter === 'bags') {
-          matchesCategory = ['bag', 'potli', 'envelope', 'clutch', 'purse'].some((kw) => title.includes(kw));
-        } else if (activeShopFilter === 'baskets') {
-          matchesCategory = ['basket', 'trunk', 'box', 'baksa'].some((kw) => title.includes(kw));
-        } else if (activeShopFilter === 'pouches') {
-          matchesCategory = ['pouch', 'organizer', 'kit', 'case'].some((kw) => title.includes(kw));
-        } else if (activeShopFilter === 'bands') {
-          matchesCategory = ['band', 'bangle', 'necklace', 'set', 'earring', 'choker', 'pendant', 'jewelry'].some((kw) => title.includes(kw));
+        } else {
+          const typeHandle = productType.replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+          matchesCategory = (typeHandle === activeShopFilter);
         }
 
         // 2. Check Search Query Match
@@ -328,46 +315,76 @@ export default function ShopView() {
               All Products
             </button>
             <button
-              className={`btn-tab ${activeShopFilter === 'hampers' ? 'active-tab' : ''}`}
-              onClick={() => handleFilterChange('hampers')}
+              className={`btn-tab ${activeShopFilter === 'brocade-boxes' ? 'active-tab' : ''}`}
+              onClick={() => handleFilterChange('brocade-boxes')}
             >
-              Hampers
+              Brocade Boxes
             </button>
             <button
-              className={`btn-tab ${activeShopFilter === 'trays' ? 'active-tab' : ''}`}
-              onClick={() => handleFilterChange('trays')}
+              className={`btn-tab ${activeShopFilter === 'dry-fruit-trays' ? 'active-tab' : ''}`}
+              onClick={() => handleFilterChange('dry-fruit-trays')}
             >
-              Platters & Trays
+              Dry Fruit Trays
             </button>
             <button
-              className={`btn-tab ${activeShopFilter === 'saree-covers' ? 'active-tab' : ''}`}
-              onClick={() => handleFilterChange('saree-covers')}
+              className={`btn-tab ${activeShopFilter === 'engagement-platters' ? 'active-tab' : ''}`}
+              onClick={() => handleFilterChange('engagement-platters')}
             >
-              Saree Covers
+              Engagement Platters
             </button>
             <button
-              className={`btn-tab ${activeShopFilter === 'bags' ? 'active-tab' : ''}`}
-              onClick={() => handleFilterChange('bags')}
+              className={`btn-tab ${activeShopFilter === 'flat-trays' ? 'active-tab' : ''}`}
+              onClick={() => handleFilterChange('flat-trays')}
             >
-              Bags & Potlis
+              Flat Trays
             </button>
             <button
-              className={`btn-tab ${activeShopFilter === 'baskets' ? 'active-tab' : ''}`}
-              onClick={() => handleFilterChange('baskets')}
+              className={`btn-tab ${activeShopFilter === 'fruit-baskets' ? 'active-tab' : ''}`}
+              onClick={() => handleFilterChange('fruit-baskets')}
             >
-              Baskets & Trunks
+              Fruit Baskets
             </button>
             <button
-              className={`btn-tab ${activeShopFilter === 'pouches' ? 'active-tab' : ''}`}
-              onClick={() => handleFilterChange('pouches')}
+              className={`btn-tab ${activeShopFilter === 'haldi-platter' ? 'active-tab' : ''}`}
+              onClick={() => handleFilterChange('haldi-platter')}
             >
-              Pouches
+              Haldi Platter
             </button>
             <button
-              className={`btn-tab ${activeShopFilter === 'bands' ? 'active-tab' : ''}`}
-              onClick={() => handleFilterChange('bands')}
+              className={`btn-tab ${activeShopFilter === 'luggage-bands' ? 'active-tab' : ''}`}
+              onClick={() => handleFilterChange('luggage-bands')}
             >
-              Bands & Jewelry
+              Luggage Bands
+            </button>
+            <button
+              className={`btn-tab ${activeShopFilter === 'mehendi-platters' ? 'active-tab' : ''}`}
+              onClick={() => handleFilterChange('mehendi-platters')}
+            >
+              Mehendi Platters
+            </button>
+            <button
+              className={`btn-tab ${activeShopFilter === 'nikahnama' ? 'active-tab' : ''}`}
+              onClick={() => handleFilterChange('nikahnama')}
+            >
+              Nikahnama
+            </button>
+            <button
+              className={`btn-tab ${activeShopFilter === 'saree-bands' ? 'active-tab' : ''}`}
+              onClick={() => handleFilterChange('saree-bands')}
+            >
+              Saree Bands
+            </button>
+            <button
+              className={`btn-tab ${activeShopFilter === 'suede-trays' ? 'active-tab' : ''}`}
+              onClick={() => handleFilterChange('suede-trays')}
+            >
+              Suede Trays
+            </button>
+            <button
+              className={`btn-tab ${activeShopFilter === 'trunks' ? 'active-tab' : ''}`}
+              onClick={() => handleFilterChange('trunks')}
+            >
+              Trunks
             </button>
           </div>
         </main>

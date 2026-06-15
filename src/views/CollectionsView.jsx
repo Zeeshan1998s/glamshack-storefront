@@ -53,24 +53,18 @@ export default function CollectionsView() {
         const htmlTitle = card.querySelector('.card-title')?.innerText || '';
         const title = (attrTitle || htmlTitle).toLowerCase();
 
+        const attrType = card.getAttribute('data-type') || card.getAttribute('shopify-attr--data-type') || '';
+        const productType = attrType.toLowerCase();
+
         // Category Filter
         let matchesCategory = false;
         if (activeShopFilter === 'all') {
           matchesCategory = true;
-        } else if (activeShopFilter === 'hampers') {
-          matchesCategory = ['hamper', 'trousseau', 'set', 'gift'].some((kw) => title.includes(kw));
-        } else if (activeShopFilter === 'trays') {
-          matchesCategory = ['tray', 'platter', 'thali', 'shagun', 'ring'].some((kw) => title.includes(kw));
-        } else if (activeShopFilter === 'saree-covers') {
-          matchesCategory = ['saree', 'cover', 'suit', 'lehenga', 'gown', 'sherwani'].some((kw) => title.includes(kw));
-        } else if (activeShopFilter === 'bags') {
-          matchesCategory = ['bag', 'potli', 'envelope', 'clutch', 'purse'].some((kw) => title.includes(kw));
-        } else if (activeShopFilter === 'baskets') {
-          matchesCategory = ['basket', 'trunk', 'box', 'baksa'].some((kw) => title.includes(kw));
-        } else if (activeShopFilter === 'pouches') {
-          matchesCategory = ['pouch', 'organizer', 'kit', 'case'].some((kw) => title.includes(kw));
-        } else if (activeShopFilter === 'bands') {
-          matchesCategory = ['band', 'bangle', 'necklace', 'set', 'earring', 'choker', 'pendant', 'jewelry'].some((kw) => title.includes(kw));
+        } else {
+          // Check if the formatted product type matches the active filter handle
+          // e.g. "Brocade boxes" -> "brocade-boxes"
+          const typeHandle = productType.replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+          matchesCategory = (typeHandle === activeShopFilter);
         }
 
         const matchesSearch = title.includes(trimmedSearch);

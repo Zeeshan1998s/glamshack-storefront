@@ -3,22 +3,33 @@ import { Link, useNavigate, useLocation } from 'react-router-dom';
 import './Header.css';
 
 const DESKTOP_NAV_ITEMS = [
-  { id: 'hampers', label: 'HAMPERS', to: '/collections?category=hampers' },
-  { id: 'trays', label: 'TRAYS', to: '/collections?category=trays' },
-  { id: 'saree-covers', label: 'SAREE COVERS', to: '/collections?category=saree-covers' },
-  { id: 'bags', label: 'BAGS', to: '/collections?category=bags' },
-  { id: 'baskets', label: 'BASKETS', to: '/collections?category=baskets' },
-  { id: 'pouches', label: 'POUCHES', to: '/collections?category=pouches' }
+  { id: 'brocade-boxes', label: 'BROCADE BOXES', to: '/collections?category=brocade-boxes' },
+  { id: 'dry-fruit-trays', label: 'DRY FRUIT TRAYS', to: '/collections?category=dry-fruit-trays' },
+  { id: 'engagement-platters', label: 'ENGAGEMENT PLATTERS', to: '/collections?category=engagement-platters' },
+  { id: 'flat-trays', label: 'FLAT TRAYS', to: '/collections?category=flat-trays' },
+  { id: 'fruit-baskets', label: 'FRUIT BASKETS', to: '/collections?category=fruit-baskets' },
+  { id: 'haldi-platter', label: 'HALDI PLATTER', to: '/collections?category=haldi-platter' },
+  { id: 'luggage-bands', label: 'LUGGAGE BANDS', to: '/collections?category=luggage-bands' },
+  { id: 'mehendi-platters', label: 'MEHENDI PLATTERS', to: '/collections?category=mehendi-platters' },
+  { id: 'nikahnama', label: 'NIKAHNAMA', to: '/collections?category=nikahnama' },
+  { id: 'saree-bands', label: 'SAREE BANDS', to: '/collections?category=saree-bands' },
+  { id: 'suede-trays', label: 'SUEDE TRAYS', to: '/collections?category=suede-trays' },
+  { id: 'trunks', label: 'TRUNKS', to: '/collections?category=trunks' }
 ];
 
 const MOBILE_NAV_ITEMS = [
-  { id: 'hampers', label: 'HAMPERS', to: '/collections?category=hampers' },
-  { id: 'trays', label: 'TRAYS', to: '/collections?category=trays' },
-  { id: 'saree-covers', label: 'SAREE COVERS', to: '/collections?category=saree-covers' },
-  { id: 'bags', label: 'BAGS', to: '/collections?category=bags' },
-  { id: 'baskets', label: 'BASKET / TRUNKS', to: '/collections?category=baskets' },
-  { id: 'pouches', label: 'POUCHES', to: '/collections?category=pouches' },
-  { id: 'bands', label: 'BANDS', to: '/collections?category=bands' }
+  { id: 'brocade-boxes', label: 'BROCADE BOXES', to: '/collections?category=brocade-boxes' },
+  { id: 'dry-fruit-trays', label: 'DRY FRUIT TRAYS', to: '/collections?category=dry-fruit-trays' },
+  { id: 'engagement-platters', label: 'ENGAGEMENT PLATTERS', to: '/collections?category=engagement-platters' },
+  { id: 'flat-trays', label: 'FLAT TRAYS', to: '/collections?category=flat-trays' },
+  { id: 'fruit-baskets', label: 'FRUIT BASKETS', to: '/collections?category=fruit-baskets' },
+  { id: 'haldi-platter', label: 'HALDI PLATTER', to: '/collections?category=haldi-platter' },
+  { id: 'luggage-bands', label: 'LUGGAGE BANDS', to: '/collections?category=luggage-bands' },
+  { id: 'mehendi-platters', label: 'MEHENDI PLATTERS', to: '/collections?category=mehendi-platters' },
+  { id: 'nikahnama', label: 'NIKAHNAMA', to: '/collections?category=nikahnama' },
+  { id: 'saree-bands', label: 'SAREE BANDS', to: '/collections?category=saree-bands' },
+  { id: 'suede-trays', label: 'SUEDE TRAYS', to: '/collections?category=suede-trays' },
+  { id: 'trunks', label: 'TRUNKS', to: '/collections?category=trunks' }
 ];
 
 function SearchIcon() {
