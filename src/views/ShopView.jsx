@@ -395,8 +395,7 @@ export default function ShopView() {
         <div className="product-grid-container">
           <shopify-context
             key={activeShopFilter + '-' + searchQuery}
-            type={activeShopFilter === 'all' ? 'shop' : 'collection'}
-            handle={activeShopFilter === 'all' ? undefined : getCollectionHandle()}
+            type="shop"
             onClick={handleProductCardClick}
           >
             <template dangerouslySetInnerHTML={{ __html: `
