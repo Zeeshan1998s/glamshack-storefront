@@ -137,13 +137,20 @@ export default function Header({
           <div className="header-left-group">
             <nav className="category-nav" aria-label="Primary">
               <ul className="category-nav-list compact">
-                {DESKTOP_NAV_ITEMS.map((item) => (
-                  <li key={item.id}>
-                    <Link to={item.to} className="cat-nav-link">
-                      {item.label}
-                    </Link>
-                  </li>
-                ))}
+                <li className="profile-menu-container">
+                  <Link to="/shop" className="cat-nav-link">
+                    SHOP BY CATEGORY
+                  </Link>
+                  <div className="profile-dropdown-menu" style={{ top: '100%', left: 0, right: 'auto' }}>
+                    <Link to="/shop" className="dropdown-item">All Products</Link>
+                    <div className="dropdown-divider"></div>
+                    {DESKTOP_NAV_ITEMS.map((item) => (
+                      <Link key={item.id} to={item.to} className="dropdown-item">
+                        {item.label}
+                      </Link>
+                    ))}
+                  </div>
+                </li>
               </ul>
             </nav>
             <button className="header-icon-btn search-btn" onClick={onOpenSearch} title="Search Catalog" aria-label="Search catalog">
