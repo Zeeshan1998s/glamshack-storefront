@@ -16,7 +16,14 @@ export default function CollectionsView() {
   const [selectedColor, setSelectedColor] = useState('');
   const [selectedStyle, setSelectedStyle] = useState('');
   const [activeDropdown, setActiveDropdown] = useState(null);
-  const [gridView, setGridView] = useState('default');
+  const [gridView, setGridView] = useState(() => {
+    return localStorage.getItem('glamshack_gridView') || 'default';
+  });
+
+  useEffect(() => {
+    localStorage.setItem('glamshack_gridView', gridView);
+  }, [gridView]);
+
   const [visibleCount, setVisibleCount] = useState(28);
 
   const handleLoadMore = () => {
