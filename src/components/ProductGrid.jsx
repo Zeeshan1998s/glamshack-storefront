@@ -8,8 +8,13 @@ export default function ProductGrid({ activeCategory, gridView, visibleCount = 2
     const card = e.target.closest('.leather-family-card');
     if (card) {
       const handle = card.getAttribute('data-handle') || card.getAttribute('shopify-attr--data-handle');
+      const swatch = e.target.closest('.swatch');
+      let variantId = '';
+      if (swatch) {
+        variantId = swatch.getAttribute('data-variant-id') || swatch.getAttribute('shopify-attr--data-variant-id');
+      }
       if (handle) {
-        navigate(`/product?handle=${handle}`);
+        navigate(`/product?handle=${handle}${variantId ? `&variant=${variantId}` : ''}`);
       } else {
         navigate('/product');
       }
@@ -60,9 +65,13 @@ export default function ProductGrid({ activeCategory, gridView, visibleCount = 2
                   <div class="card-hover-actions">
                     <span class="add-to-bag-text">ADD TO BAG &mdash;</span>
                     <div class="swatches-container">
-                      <div class="swatch"><img src="https://images.unsplash.com/photo-1590874103328-eac38a683ce7?w=50&h=50&fit=crop" alt="swatch"></div>
-                      <div class="swatch"><img src="https://images.unsplash.com/photo-1584916201218-f4242ceb4809?w=50&h=50&fit=crop" alt="swatch"></div>
-                      <div class="swatch"><img src="https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=50&h=50&fit=crop" alt="swatch"></div>
+                      <shopify-list-context type="variant" query="product.variants" first="3">
+                        <template>
+                          <div class="swatch" shopify-attr--data-variant-id="variant.id">
+                            <shopify-media width="50" height="50" query="variant.image"></shopify-media>
+                          </div>
+                        </template>
+                      </shopify-list-context>
                       <span class="swatch-plus">+</span>
                     </div>
                   </div>
