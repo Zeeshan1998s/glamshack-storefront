@@ -8,8 +8,20 @@ export default function ProductDetailView({
   const [searchParams] = useSearchParams();
   const productHandle = searchParams.get('handle') || 'luxurious-silver-gift-hamper-5';
 
+  const variantId = searchParams.get('variant');
+
   const handlePDPClick = (e) => {
     const target = e.target;
+
+    // Intercept clicks on media item
+    const mediaItem = target.closest('.pdp-media-item');
+    if (mediaItem) {
+      const vid = mediaItem.getAttribute('data-variant-id') || mediaItem.getAttribute('shopify-attr--data-variant-id');
+      if (vid) {
+        navigate(`/product?handle=${productHandle}&variant=${vid}`, { replace: true });
+        return;
+      }
+    }
 
     // Intercept clicks on the wishlist button
     const wishlistBtn = target.closest('.btn-wishlist-toggle-pdp');
@@ -75,12 +87,17 @@ export default function ProductDetailView({
     }
 
     // Intercept clicks on related product cards
-    const card = target.closest('.glam-card');
+    const card = target.closest('.glam-card') || target.closest('.pdp-related-card');
     if (card) {
       const handle = card.getAttribute('data-handle') || card.getAttribute('shopify-attr--data-handle');
+      const swatch = target.closest('.swatch');
+      let vid = '';
+      if (swatch) {
+        vid = swatch.getAttribute('data-variant-id') || swatch.getAttribute('shopify-attr--data-variant-id');
+      }
       if (handle) {
         e.preventDefault();
-        navigate(`/product?handle=${handle}`);
+        navigate(`/product?handle=${handle}${vid ? `&variant=${vid}` : ''}`);
         window.scrollTo({ top: 0, behavior: 'smooth' });
       }
     }
@@ -98,10 +115,11 @@ export default function ProductDetailView({
 
         {/* Dynamic Product Context for Detail Page */}
         <shopify-context
-          key={productHandle}
+          key={`${productHandle}-${variantId || ''}`}
           id="pdp-context"
           type="product"
           handle={productHandle}
+          variant={variantId || undefined}
           onClick={handlePDPClick}
         >
           <template dangerouslySetInnerHTML={{
@@ -110,18 +128,13 @@ export default function ProductDetailView({
               <!-- TOP SECTION -->
               <div class="pdp-top-section">
                 <div class="pdp-media-grid">
-                  <div class="pdp-media-item">
-                    <shopify-media width="800" height="800" query="product.selectedOrFirstAvailableVariant.image"></shopify-media>
-                  </div>
-                  <div class="pdp-media-item">
-                    <img src="https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=800&amp;auto=format&amp;fit=crop" style="width:100%; height:100%; object-fit:cover;" alt="Detail" />
-                  </div>
-                  <div class="pdp-media-item">
-                    <img src="https://images.unsplash.com/photo-1590874103328-eac38a683ce7?w=800&amp;auto=format&amp;fit=crop" style="width:100%; height:100%; object-fit:cover;" alt="Detail" />
-                  </div>
-                  <div class="pdp-media-item">
-                    <img src="https://images.unsplash.com/photo-1559563458-527698bf5295?w=800&amp;auto=format&amp;fit=crop" style="width:100%; height:100%; object-fit:cover;" alt="Detail" />
-                  </div>
+                  <shopify-list-context type="variant" query="product.variants" first="20" style="display: contents;">
+                    <template>
+                      <div class="pdp-media-item" shopify-attr--data-variant-id="variant.id" style="cursor: pointer;">
+                        <shopify-media width="800" height="800" query="variant.image"></shopify-media>
+                      </div>
+                    </template>
+                  </shopify-list-context>
                 </div>
 
                 <div class="pdp-info-sticky-wrapper">
@@ -292,9 +305,13 @@ export default function ProductDetailView({
                           <div class="card-hover-actions">
                             <span class="add-to-bag-text">ADD TO BAG &mdash;</span>
                             <div class="swatches-container">
-                              <div class="swatch"><img src="https://images.unsplash.com/photo-1590874103328-eac38a683ce7?w=50&h=50&fit=crop" alt="swatch" /></div>
-                              <div class="swatch"><img src="https://images.unsplash.com/photo-1584916201218-f4242ceb4809?w=50&h=50&fit=crop" alt="swatch" /></div>
-                              <div class="swatch"><img src="https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=50&h=50&fit=crop" alt="swatch" /></div>
+                              <shopify-list-context type="variant" query="product.variants" first="3">
+                                <template>
+                                  <div class="swatch" shopify-attr--data-variant-id="variant.id">
+                                    <shopify-media width="50" height="50" query="variant.image"></shopify-media>
+                                  </div>
+                                </template>
+                              </shopify-list-context>
                               <span class="swatch-plus">+</span>
                             </div>
                           </div>
