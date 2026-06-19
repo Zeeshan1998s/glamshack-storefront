@@ -3389,20 +3389,23 @@ shopify-cart::part(secondary-button):hover {
 
 .pdp-media-grid {
   width: 55%;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 2px;
-  background-color: #fff;
-  /* white gaps between images */
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-self: start;
 }
 
 .pdp-media-item {
+  flex: 0 0 50%;
+  max-width: 50%;
   background: #f4f3ef;
   aspect-ratio: 1 / 1;
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
+  border: 1px solid #fff;
+  box-sizing: border-box;
 }
 
 .pdp-media-item shopify-media,
