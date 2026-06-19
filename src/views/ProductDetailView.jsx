@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import './ProductDetailView.css';
 
@@ -12,22 +12,141 @@ export default function ProductDetailView({
   const variantIdParam = searchParams.get('variant');
   const fullVariantId = variantIdParam ? (variantIdParam.startsWith('gid://') ? variantIdParam : `gid://shopify/ProductVariant/${variantIdParam}`) : null;
 
+  const [modalImage, setModalImage] = useState(null);
+
   useEffect(() => {
     window.scrollTo(0, 0);
+  }, [productHandle]);
+
+  // Observer to manage the custom image grid limit, counter, and active state
+  useEffect(() => {
+    const pdpContext = document.getElementById('pdp-context');
+    if (!pdpContext) return;
+
+    let expandedGrid = false;
+
+    const syncCustomGrid = () => {
+      const activeIdEl = pdpContext.querySelector('.pdp-current-variant-id');
+      if (!activeIdEl) return;
+      let activeId = activeIdEl.innerText.trim();
+
+      // Fallback to URL if shopify-data hasn't resolved yet
+      if (!activeId || activeId.includes('shopify-data')) {
+         const params = new URLSearchParams(window.location.search);
+         const vId = params.get('variant');
+         if (vId) activeId = vId.includes('gid://') ? vId : `gid://shopify/ProductVariant/${vId}`;
+      }
+
+      const customGrid = pdpContext.querySelector('.custom-variant-grid');
+      if (!customGrid) return;
+
+      const items = Array.from(customGrid.querySelectorAll('.custom-variant-item'));
+      if (items.length === 0) return;
+
+      const LIMIT = 5;
+
+      items.forEach((item, index) => {
+        // Sync active styling by ID
+        const id = item.getAttribute('data-variant-id');
+        if (id && activeId && id === activeId) {
+          item.style.borderColor = 'var(--text-main, #12141d)';
+          item.style.borderWidth = '2px';
+        } else {
+          item.style.borderColor = 'var(--border-color, #eaeaea)';
+          item.style.borderWidth = '1px';
+        }
+
+        // Handle Counter and Limit
+        let overlay = item.querySelector('.counter-overlay');
+        if (index >= LIMIT && !expandedGrid) {
+          item.style.display = 'none';
+        } else {
+          item.style.display = 'block';
+        }
+
+        if (index === LIMIT - 1 && items.length > LIMIT && !expandedGrid) {
+          if (!overlay) {
+            overlay = document.createElement('div');
+            overlay.className = 'counter-overlay';
+            overlay.style.cssText = 'position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: bold; cursor: pointer;';
+            overlay.innerText = `+${items.length - LIMIT + 1}`;
+            
+            overlay.onclick = (e) => {
+              e.stopPropagation();
+              e.preventDefault();
+              expandedGrid = true;
+              syncCustomGrid();
+            };
+            item.appendChild(overlay);
+          }
+        } else if (overlay) {
+          overlay.remove();
+        }
+      });
+    };
+
+    const observer = new MutationObserver(() => syncCustomGrid());
+    observer.observe(pdpContext, { childList: true, subtree: true, characterData: true });
+    
+    return () => observer.disconnect();
   }, [productHandle]);
 
   const handlePDPClick = (e) => {
     const target = e.target;
 
-    // Intercept clicks on media item
-    const mediaItem = target.closest('.pdp-media-item');
-    if (mediaItem) {
-      const vid = mediaItem.getAttribute('data-variant-id') || mediaItem.getAttribute('shopify-attr--data-variant-id');
-      if (vid) {
-        const numericVid = vid.includes('ProductVariant/') ? vid.split('ProductVariant/').pop() : vid;
-        navigate(`/product?handle=${productHandle}&variant=${numericVid}`, { replace: true });
-        return;
+    // Intercept clicks on custom image variants to proxy click native Shopify radio inputs
+    const customVariantItem = target.closest('.custom-variant-item');
+    if (customVariantItem) {
+      e.preventDefault();
+      const variantTitle = customVariantItem.getAttribute('data-variant-title') || customVariantItem.getAttribute('shopify-attr--data-variant-title');
+      if (variantTitle) {
+        const variantSelector = document.querySelector('shopify-variant-selector');
+        if (variantSelector && variantSelector.shadowRoot) {
+          const options = variantTitle.split(' / ').map(s => s.trim());
+          const inputs = variantSelector.shadowRoot.querySelectorAll('input[type="radio"], option');
+          
+          options.forEach(opt => {
+            const input = Array.from(inputs).find(i => i.value === opt);
+            if (input) {
+              if (input.tagName === 'INPUT') {
+                input.click();
+              } else if (input.tagName === 'OPTION') {
+                const select = input.closest('select');
+                if (select) {
+                  select.value = opt;
+                  select.dispatchEvent(new Event('change', { bubbles: true }));
+                }
+              }
+            }
+          });
+        }
       }
+      return;
+    }
+
+    // Intercept clicks on media items to open full-screen modal
+    const clickableImageContainer = target.closest('.pdp-media-item') || target.closest('.custom-variant-item');
+    if (clickableImageContainer) {
+      e.preventDefault();
+      const img = clickableImageContainer.querySelector('img');
+      if (img && img.src) {
+        // Robustly remove Shopify's thumbnail sizing parameters to get the master high-res image
+        let highResUrl = img.src;
+        try {
+          const urlObj = new URL(img.src);
+          urlObj.searchParams.delete('width');
+          urlObj.searchParams.delete('height');
+          urlObj.searchParams.delete('crop');
+          // Strip size suffixes like _60x60, _100x, _x100, _60x60_crop_center before the extension
+          urlObj.pathname = urlObj.pathname.replace(/_(?:[0-9]+x[0-9]*|[0-9]*x[0-9]+)(?:_[a-z_]+)?(?=\.[a-zA-Z0-9]+$)/i, '');
+          highResUrl = urlObj.toString();
+        } catch (e) {
+          // Fallback regex
+          highResUrl = img.src.replace(/_(?:[0-9]+x[0-9]*|[0-9]*x[0-9]+)(?:_[a-z_]+)?(?=\.[a-zA-Z0-9]+$)/i, '');
+        }
+        setModalImage(highResUrl);
+      }
+      return;
     }
 
     // Intercept clicks on the add to cart button
@@ -153,10 +272,25 @@ export default function ProductDetailView({
                     <div class="pdp-actions" style="display: flex; flex-direction: column; gap: 10px; width: 100%;">
                       <!-- VARIANT SELECTOR -->
                       <div class="pdp-variant-selector" style="margin-bottom: 24px; border-top: 1px solid var(--border-color, #c9c5ba); padding-top: 24px;">
-                        <span class="color-label" style="display: block; font-size: 11.2px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-main, #12141d); margin-bottom: 16px;">
-                          Select Variant: <span style="color: var(--text-muted, #767676);"><shopify-data query="product.selectedOrFirstAvailableVariant.title"></shopify-data></span>
+                        <span class="color-label" style="display: flex; align-items: center; gap: 10px; font-size: 11.2px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-main, #12141d); margin-bottom: 16px;">
+                          Select Variant: <span class="pdp-visible-variant-title" style="color: var(--text-muted, #767676);"><shopify-data query="product.selectedOrFirstAvailableVariant.title"></shopify-data></span>
                         </span>
-                        <shopify-variant-selector></shopify-variant-selector>
+                        
+                        <!-- CUSTOM IMAGE-BASED VARIANT GRID -->
+                        <div class="custom-variant-grid" style="display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 24px;">
+                          <shopify-list-context type="variant" query="product.variants" first="20" style="display: contents;">
+                            <template>
+                              <div class="custom-variant-item" shopify-attr--data-variant-title="variant.title" shopify-attr--data-variant-id="variant.id" style="width: 70px; height: 70px; border: 1px solid var(--border-color, #eaeaea); border-radius: 4px; cursor: pointer; overflow: hidden; position: relative; padding: 2px; box-sizing: border-box; transition: border-color 0.2s;">
+                                <shopify-media query="variant.image" width="70" height="70" style="width: 100%; height: 100%; object-fit: cover; display: block; border-radius: 2px;"></shopify-media>
+                              </div>
+                            </template>
+                          </shopify-list-context>
+                        </div>
+
+                        <!-- HIDDEN NATIVE VARIANT SELECTOR -->
+                        <div style="display: none;">
+                          <shopify-variant-selector></shopify-variant-selector>
+                        </div>
                       </div>
 
                       <span class="pdp-current-variant-id" style="display: none;"><shopify-data query="product.selectedOrFirstAvailableVariant.id"></shopify-data></span>
@@ -342,11 +476,42 @@ export default function ProductDetailView({
               DISCOVER MORE &mdash;
             </a>
           </div>
-          <img
-            src="https://images.unsplash.com/photo-1542841791-1925b02a2bf5?w=400&auto=format&fit=crop"
-            alt="Store Interior"
-          />
-        </div> */}
+        {/* FULL SCREEN IMAGE MODAL */}
+        {modalImage && (
+          <div 
+            className="pdp-image-modal" 
+            style={{
+              position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh',
+              backgroundColor: 'rgba(0,0,0,0.85)', backdropFilter: 'blur(5px)', zIndex: 9999,
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+              cursor: 'zoom-out', opacity: 1, transition: 'opacity 0.3s ease'
+            }}
+            onClick={() => setModalImage(null)}
+          >
+            <button 
+              style={{
+                position: 'absolute', top: '30px', right: '40px', background: 'transparent',
+                border: 'none', color: '#fff', fontSize: '40px', cursor: 'pointer', zIndex: 10000,
+                transition: 'transform 0.2s'
+              }}
+              onMouseEnter={(e) => e.target.style.transform = 'scale(1.2)'}
+              onMouseLeave={(e) => e.target.style.transform = 'scale(1)'}
+              onClick={(e) => { e.stopPropagation(); setModalImage(null); }}
+            >
+              &times;
+            </button>
+            <img 
+              src={modalImage} 
+              alt="Full view" 
+              style={{
+                maxWidth: '90%', maxHeight: '90%', objectFit: 'contain',
+                boxShadow: '0 20px 50px rgba(0,0,0,0.5)', borderRadius: '8px',
+                transform: 'scale(1)', transition: 'transform 0.3s ease'
+              }} 
+              onClick={(e) => e.stopPropagation()}
+            />
+          </div>
+        )}
       </section>
     </div>
   );
