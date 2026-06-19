@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import './ProductDetailView.css';
 
@@ -9,6 +10,10 @@ export default function ProductDetailView({
   const productHandle = searchParams.get('handle') || 'luxurious-silver-gift-hamper-5';
 
   const variantId = searchParams.get('variant');
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [productHandle, variantId]);
 
   const handlePDPClick = (e) => {
     const target = e.target;
