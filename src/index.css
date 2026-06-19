@@ -3384,35 +3384,37 @@ shopify-cart::part(secondary-button):hover {
   display: flex;
   width: 100%;
   align-items: stretch;
-  background-color: #f4f3ef;
+  background-color: transparent;
 }
 
 .pdp-media-grid {
   width: 55%;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
   align-self: start;
 }
 
 .pdp-media-item {
-  flex: 0 0 50%;
-  max-width: 50%;
-  background: #f4f3ef;
-  aspect-ratio: 1 / 1;
+  background: transparent;
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  border: 1px solid #fff;
-  box-sizing: border-box;
+}
+
+/* Smart layout: If total number of images is odd, the first image becomes a full-width hero */
+.pdp-media-item:first-of-type:last-of-type,
+.pdp-media-item:first-of-type:nth-last-of-type(odd) {
+  grid-column: span 2;
 }
 
 .pdp-media-item shopify-media,
 .pdp-media-item img {
-  width: 80%;
-  height: 80%;
+  width: 100%;
+  height: auto;
   object-fit: contain;
+  display: block;
 }
 
 .pdp-info-sticky-wrapper {
@@ -3720,7 +3722,7 @@ shopify-cart::part(secondary-button):hover {
   width: 100px;
   height: 100px;
   object-fit: cover;
-  background: #eae8e1;
+  /* background: #eae8e1; */
 }
 
 .wear-this-card-info {
