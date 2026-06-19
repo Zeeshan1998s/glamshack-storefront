@@ -9,11 +9,12 @@ export default function ProductDetailView({
   const [searchParams] = useSearchParams();
   const productHandle = searchParams.get('handle') || 'luxurious-silver-gift-hamper-5';
 
-  const variantId = searchParams.get('variant');
+  const variantIdParam = searchParams.get('variant');
+  const fullVariantId = variantIdParam ? (variantIdParam.startsWith('gid://') ? variantIdParam : `gid://shopify/ProductVariant/${variantIdParam}`) : null;
 
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, [productHandle, variantId]);
+  }, [productHandle]);
 
   const handlePDPClick = (e) => {
     const target = e.target;
@@ -23,9 +24,34 @@ export default function ProductDetailView({
     if (mediaItem) {
       const vid = mediaItem.getAttribute('data-variant-id') || mediaItem.getAttribute('shopify-attr--data-variant-id');
       if (vid) {
-        navigate(`/product?handle=${productHandle}&variant=${vid}`, { replace: true });
+        const numericVid = vid.includes('ProductVariant/') ? vid.split('ProductVariant/').pop() : vid;
+        navigate(`/product?handle=${productHandle}&variant=${numericVid}`, { replace: true });
         return;
       }
+    }
+
+    // Intercept clicks on the add to cart button
+    const addToCartBtn = target.closest('.btn-add-to-cart-new');
+    if (addToCartBtn) {
+      e.preventDefault();
+      const cart = document.getElementById('cart');
+      if (cart && typeof cart.addLine === 'function') {
+        try {
+          const res = cart.addLine(e.nativeEvent);
+          if (res && typeof res.then === 'function') {
+            res.then(() => {
+              if (typeof cart.showModal === 'function') cart.showModal();
+            }).catch(() => {
+              if (typeof cart.showModal === 'function') cart.showModal();
+            });
+          } else {
+            if (typeof cart.showModal === 'function') cart.showModal();
+          }
+        } catch (err) {
+          console.error('Cart add error:', err);
+        }
+      }
+      return;
     }
 
     // Intercept clicks on the wishlist button
@@ -47,49 +73,23 @@ export default function ProductDetailView({
 
       const title = titleEl ? titleEl.innerText.trim() : '';
       const price = priceEl ? priceEl.innerText.trim() : '';
+      const variantTitleEl = pdpWrapper.querySelector('.pdp-current-variant-title');
+      const variantIdEl = pdpWrapper.querySelector('.pdp-current-variant-id');
+      const variantName = variantTitleEl ? variantTitleEl.innerText.trim() : 'Standard';
+      const vId = variantIdEl ? variantIdEl.innerText.trim() : title;
 
       if (title) {
         onToggleWishlist({
-          id: title,
+          id: vId || title,
           title,
           price,
           image: imgUrl,
-          variant: 'Standard'
+          variant: variantName
         });
       }
     }
 
-    // Intercept clicks on the add to cart button
-    const addToCartBtn = target.closest('.btn-add-to-cart-new');
-    if (addToCartBtn) {
-      e.preventDefault();
-      const cart = document.getElementById('cart');
-      if (cart && typeof cart.addLine === 'function') {
-        try {
-          const res = cart.addLine(e.nativeEvent);
-          if (res && typeof res.then === 'function') {
-            res.then(() => {
-              if (typeof cart.showModal === 'function') {
-                cart.showModal();
-              }
-            }).catch(() => {
-              if (typeof cart.showModal === 'function') {
-                cart.showModal();
-              }
-            });
-          } else {
-            if (typeof cart.showModal === 'function') {
-              cart.showModal();
-            }
-          }
-        } catch (err) {
-          console.error('Error adding item to cart:', err);
-          if (cart && typeof cart.showModal === 'function') {
-            cart.showModal();
-          }
-        }
-      }
-    }
+    // Let Shopify native logic handle Add to Cart!
 
     // Intercept clicks on related product cards
     const card = target.closest('.glam-card') || target.closest('.pdp-related-card');
@@ -120,11 +120,11 @@ export default function ProductDetailView({
 
         {/* Dynamic Product Context for Detail Page */}
         <shopify-context
-          key={`${productHandle}-${variantId || ''}`}
+          key={productHandle}
           id="pdp-context"
           type="product"
           handle={productHandle}
-          variant={variantId || undefined}
+          variant={fullVariantId || undefined}
           onClick={handlePDPClick}
         >
           <template dangerouslySetInnerHTML={{
@@ -151,6 +151,17 @@ export default function ProductDetailView({
                     <div class="pdp-price"><shopify-money query="product.selectedOrFirstAvailableVariant.price"></shopify-money></div>
 
                     <div class="pdp-actions" style="display: flex; flex-direction: column; gap: 10px; width: 100%;">
+                      <!-- VARIANT SELECTOR -->
+                      <div class="pdp-variant-selector" style="margin-bottom: 24px; border-top: 1px solid var(--border-color, #c9c5ba); padding-top: 24px;">
+                        <span class="color-label" style="display: block; font-size: 11.2px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-main, #12141d); margin-bottom: 16px;">
+                          Select Variant: <span style="color: var(--text-muted, #767676);"><shopify-data query="product.selectedOrFirstAvailableVariant.title"></shopify-data></span>
+                        </span>
+                        <shopify-variant-selector></shopify-variant-selector>
+                      </div>
+
+                      <span class="pdp-current-variant-id" style="display: none;"><shopify-data query="product.selectedOrFirstAvailableVariant.id"></shopify-data></span>
+                      <span class="pdp-current-variant-title" style="display: none;"><shopify-data query="product.selectedOrFirstAvailableVariant.title"></shopify-data></span>
+
                       <button class="btn-add-to-cart-new" shopify-attr--disabled="!product.selectedOrFirstAvailableVariant.availableForSale">
                         ADD TO BAG
                       </button>
@@ -177,8 +188,11 @@ export default function ProductDetailView({
                     <p>Whether you're commuting to work, traveling the world, or just running errands around town, our accessories are designed to keep up with your busy lifestyle while making a statement.</p>
                   </div>
                   <div class="quote-thumbnails">
-                    <shopify-media width="100" height="100" query="product.selectedOrFirstAvailableVariant.image"></shopify-media>
-                    <img src="https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=100&amp;auto=format&amp;fit=crop" style="width:100px; height:100px; object-fit:cover;" alt="Detail Thumbnail" />
+                    <shopify-list-context type="image" query="product.images" first="3" style="display: contents;">
+                      <template>
+                        <shopify-media width="100" height="100" query="image"></shopify-media>
+                      </template>
+                    </shopify-list-context>
                   </div>
                 </div>
 
