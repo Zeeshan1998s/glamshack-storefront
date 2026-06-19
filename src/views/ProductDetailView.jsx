@@ -213,41 +213,7 @@ export default function ProductDetailView({
               </div>
 
               <!-- MIDDLE 2: STYLING -->
-              <div class="pdp-styling-section">
-                <div class="pdp-container">
-                  <h3 class="section-heading-features">Features</h3>
-                </div>
-                <div class="styling-grid">
-                  <div class="styling-item">
-                    <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=600&amp;auto=format&amp;fit=crop" alt="Styling 1" />
-                    <div class="styling-caption">
-                      <h4>Look 1</h4>
-                      <p>Casual everyday aesthetic.</p>
-                    </div>
-                  </div>
-                  <div class="styling-item">
-                    <img src="https://images.unsplash.com/photo-1515347619252-8bf8841e06c5?w=600&amp;auto=format&amp;fit=crop" alt="Styling 2" />
-                    <div class="styling-caption">
-                      <h4>Look 2</h4>
-                      <p>Weekend brunch ready.</p>
-                    </div>
-                  </div>
-                  <div class="styling-item">
-                    <img src="https://images.unsplash.com/photo-1559563458-527698bf5295?w=600&amp;auto=format&amp;fit=crop" alt="Styling 3" />
-                    <div class="styling-caption">
-                      <h4>Look 3</h4>
-                      <p>Travel and airport style.</p>
-                    </div>
-                  </div>
-                  <div class="styling-item">
-                    <img src="https://images.unsplash.com/photo-1584916201218-f4242ceb4809?w=600&amp;auto=format&amp;fit=crop" alt="Styling 4" />
-                    <div class="styling-caption">
-                      <h4>Look 4</h4>
-                      <p>Evening and formal outings.</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              
 
               <!-- MIDDLE 3: WEAR THIS -->
               <div class="pdp-wear-this-section">
