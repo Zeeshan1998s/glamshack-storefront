@@ -148,7 +148,6 @@ export default function Header({
             <Link to="/about" className={`top-util-link ${isActive('/about') ? 'active' : ''}`}>
               ABOUT US
             </Link>
-            <span className="currency-label">IN/INR</span>
             <div className="profile-menu-container">
               {isLoggedIn && customer ? (
                 <button className="header-avatar-btn" onClick={() => navigate('/profile')} title="My Profile" aria-label="My profile">
