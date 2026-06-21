@@ -63,10 +63,16 @@ export default function SearchDrawer({
 
   const handleSuggestionClick = (product) => {
     onClose();
+    let handle = null;
     if (product.originalCard) {
-      product.originalCard.click();
+      handle = product.originalCard.getAttribute('data-handle') || product.originalCard.getAttribute('shopify-attr--data-handle');
     }
-    navigate('/product');
+    
+    if (handle) {
+      navigate(`/product?handle=${handle}`);
+    } else {
+      navigate('/product');
+    }
   };
 
   if (!isOpen) return null;
