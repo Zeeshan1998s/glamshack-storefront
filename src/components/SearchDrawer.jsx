@@ -1,4 +1,4 @@
-import  { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 export default function SearchDrawer({
@@ -52,7 +52,7 @@ export default function SearchDrawer({
   };
 
   const handleCategoryClick = (categoryId) => {
-    navigate(`/shop?category=${categoryId}`);
+    navigate(`/collections?category=${categoryId}`);
     onClose();
   };
 
@@ -67,7 +67,7 @@ export default function SearchDrawer({
     if (product.originalCard) {
       handle = product.originalCard.getAttribute('data-handle') || product.originalCard.getAttribute('shopify-attr--data-handle');
     }
-    
+
     if (handle) {
       navigate(`/product?handle=${handle}`);
     } else {
@@ -84,23 +84,21 @@ export default function SearchDrawer({
         <div className="search-drawer-left">
           {/* Navigation Links */}
           <nav className="search-drawer-nav">
-            <button className="search-nav-link" onClick={() => handleCategoryClick('all')}>
-              SALE
-            </button>
             <button className="search-nav-link" onClick={() => handleCategoryClick('hampers')}>
-              NEW
+              HAMPERS
             </button>
+            <button className="search-nav-link" onClick={() => handleCategoryClick('trays')}>
+              TRAYS
+            </button>
+
             <button className="search-nav-link" onClick={() => handleCategoryClick('bags')}>
               BAGS
             </button>
             <button className="search-nav-link" onClick={() => handleCategoryClick('baskets')}>
-              ACCESSORIES
+              BASKETS
             </button>
-            <button className="search-nav-link" onClick={() => handleCategoryClick('saree-covers')}>
-              CASHMERE
-            </button>
-            <button className="search-nav-link" onClick={() => handleCategoryClick('trays')}>
-              GIFTS
+            <button className="search-nav-link" onClick={() => handleCategoryClick('pouches')}>
+              POUCHES
             </button>
           </nav>
 
