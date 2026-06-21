@@ -31,13 +31,14 @@ export default function ProductGrid({ activeCategory, gridView, visibleCount = 2
 
   return (
     <div className={`collection-product-grid ${gridView === 'gallery' ? 'gallery-view' : ''}`}>
-      <shopify-context 
+      <shopify-context
         key={activeCategory}
-        type={activeCategory === 'all' ? 'shop' : 'collection'} 
-        handle={activeCategory === 'all' ? undefined : getCollectionHandle()} 
+        type={activeCategory === 'all' ? 'shop' : 'collection'}
+        handle={activeCategory === 'all' ? undefined : getCollectionHandle()}
         onClick={handleProductCardClick}
       >
-        <template dangerouslySetInnerHTML={{ __html: `
+        <template dangerouslySetInnerHTML={{
+          __html: `
           <shopify-list-context
             id="collection-list-context"
             type="product"

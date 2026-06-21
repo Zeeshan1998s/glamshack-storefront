@@ -18,12 +18,12 @@ export default function ProductDetailView({
     window.scrollTo(0, 0);
   }, [productHandle]);
 
-  // Observer to manage the custom image grid limit, counter, and active state
   useEffect(() => {
     const pdpContext = document.getElementById('pdp-context');
     if (!pdpContext) return;
 
     let expandedGrid = false;
+    let initialSelectionDone = false;
 
     const syncCustomGrid = () => {
       const activeIdEl = pdpContext.querySelector('.pdp-current-variant-id');
@@ -42,6 +42,17 @@ export default function ProductDetailView({
 
       const items = Array.from(customGrid.querySelectorAll('.custom-variant-item'));
       if (items.length === 0) return;
+
+      // Auto-select initial variant from URL if needed
+      if (!initialSelectionDone && fullVariantId && !activeId.includes('shopify-data')) {
+        if (activeId !== fullVariantId) {
+          const targetItem = items.find(item => item.getAttribute('data-variant-id') === fullVariantId);
+          if (targetItem) {
+            targetItem.click();
+          }
+        }
+        initialSelectionDone = true;
+      }
 
       const LIMIT = 5;
 
@@ -89,7 +100,7 @@ export default function ProductDetailView({
     observer.observe(pdpContext, { childList: true, subtree: true, characterData: true });
 
     return () => observer.disconnect();
-  }, [productHandle]);
+  }, [productHandle, fullVariantId]);
 
   const handlePDPClick = (e) => {
     const target = e.target;
