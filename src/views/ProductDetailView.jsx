@@ -32,9 +32,9 @@ export default function ProductDetailView({
 
       // Fallback to URL if shopify-data hasn't resolved yet
       if (!activeId || activeId.includes('shopify-data')) {
-         const params = new URLSearchParams(window.location.search);
-         const vId = params.get('variant');
-         if (vId) activeId = vId.includes('gid://') ? vId : `gid://shopify/ProductVariant/${vId}`;
+        const params = new URLSearchParams(window.location.search);
+        const vId = params.get('variant');
+        if (vId) activeId = vId.includes('gid://') ? vId : `gid://shopify/ProductVariant/${vId}`;
       }
 
       const customGrid = pdpContext.querySelector('.custom-variant-grid');
@@ -70,7 +70,7 @@ export default function ProductDetailView({
             overlay.className = 'counter-overlay';
             overlay.style.cssText = 'position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: bold; cursor: pointer;';
             overlay.innerText = `+${items.length - LIMIT + 1}`;
-            
+
             overlay.onclick = (e) => {
               e.stopPropagation();
               e.preventDefault();
@@ -87,7 +87,7 @@ export default function ProductDetailView({
 
     const observer = new MutationObserver(() => syncCustomGrid());
     observer.observe(pdpContext, { childList: true, subtree: true, characterData: true });
-    
+
     return () => observer.disconnect();
   }, [productHandle]);
 
@@ -104,7 +104,7 @@ export default function ProductDetailView({
         if (variantSelector && variantSelector.shadowRoot) {
           const options = variantTitle.split(' / ').map(s => s.trim());
           const inputs = variantSelector.shadowRoot.querySelectorAll('input[type="radio"], option');
-          
+
           options.forEach(opt => {
             const input = Array.from(inputs).find(i => i.value === opt);
             if (input) {
@@ -271,7 +271,7 @@ export default function ProductDetailView({
 
                     <div class="pdp-actions" style="display: flex; flex-direction: column; gap: 10px; width: 100%;">
                       <!-- VARIANT SELECTOR -->
-                      <div class="pdp-variant-selector" style="margin-bottom: 24px; border-top: 1px solid var(--border-color, #c9c5ba); padding-top: 24px;">
+                      <div class="pdp-variant-selector" style="margin-bottom: 24px; padding-bottom: 24px;">
                         <span class="color-label" style="display: flex; align-items: center; gap: 10px; font-size: 11.2px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-main, #12141d); margin-bottom: 16px;">
                           Select Variant: <span class="pdp-visible-variant-title" style="color: var(--text-muted, #767676);"><shopify-data query="product.selectedOrFirstAvailableVariant.title"></shopify-data></span>
                         </span>
@@ -444,7 +444,7 @@ export default function ProductDetailView({
           `}} />
 
 
-          <div shopify-loading-placeholder="" style={{ textAlign: 'center', padding: '100px 0' }}>
+          <div shopify-loading-placeholder="" style={{ textAlign: 'center', padding: '100px 0', minHeight: '80vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
             <p style={{ fontFamily: 'var(--font-display)', fontSize: '1.8rem', fontStyle: 'italic', color: 'var(--text-muted)' }}>
               Retrieving details...
             </p>
@@ -478,8 +478,8 @@ export default function ProductDetailView({
           </div>
         {/* FULL SCREEN IMAGE MODAL */}
         {modalImage && (
-          <div 
-            className="pdp-image-modal" 
+          <div
+            className="pdp-image-modal"
             style={{
               position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh',
               backgroundColor: 'rgba(0,0,0,0.85)', backdropFilter: 'blur(5px)', zIndex: 9999,
@@ -488,7 +488,7 @@ export default function ProductDetailView({
             }}
             onClick={() => setModalImage(null)}
           >
-            <button 
+            <button
               style={{
                 position: 'absolute', top: '30px', right: '40px', background: 'transparent',
                 border: 'none', color: '#fff', fontSize: '40px', cursor: 'pointer', zIndex: 10000,
@@ -500,14 +500,14 @@ export default function ProductDetailView({
             >
               &times;
             </button>
-            <img 
-              src={modalImage} 
-              alt="Full view" 
+            <img
+              src={modalImage}
+              alt="Full view"
               style={{
                 maxWidth: '90%', maxHeight: '90%', objectFit: 'contain',
                 boxShadow: '0 20px 50px rgba(0,0,0,0.5)', borderRadius: '8px',
                 transform: 'scale(1)', transition: 'transform 0.3s ease'
-              }} 
+              }}
               onClick={(e) => e.stopPropagation()}
             />
           </div>
