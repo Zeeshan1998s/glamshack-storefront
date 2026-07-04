@@ -60,25 +60,9 @@ export default function CollectionsView() {
         const htmlTitle = card.querySelector('.card-title')?.innerText || '';
         const title = (attrTitle || htmlTitle).toLowerCase();
 
-        // Category Filter
-        let matchesCategory = false;
-        if (activeShopFilter === 'all') {
-          matchesCategory = true;
-        } else if (activeShopFilter === 'hampers') {
-          matchesCategory = ['hamper', 'trousseau', 'set', 'gift'].some((kw) => title.includes(kw));
-        } else if (activeShopFilter === 'trays') {
-          matchesCategory = ['tray', 'platter', 'thali', 'shagun', 'ring'].some((kw) => title.includes(kw));
-        } else if (activeShopFilter === 'saree-covers') {
-          matchesCategory = ['saree', 'cover', 'suit', 'lehenga', 'gown', 'sherwani'].some((kw) => title.includes(kw));
-        } else if (activeShopFilter === 'bags') {
-          matchesCategory = ['bag', 'potli', 'envelope', 'clutch', 'purse'].some((kw) => title.includes(kw));
-        } else if (activeShopFilter === 'baskets') {
-          matchesCategory = ['basket', 'trunk', 'box', 'baksa'].some((kw) => title.includes(kw));
-        } else if (activeShopFilter === 'pouches') {
-          matchesCategory = ['pouch', 'organizer', 'kit', 'case'].some((kw) => title.includes(kw));
-        } else if (activeShopFilter === 'bands') {
-          matchesCategory = ['band', 'bangle', 'necklace', 'set', 'earring', 'choker', 'pendant', 'jewelry'].some((kw) => title.includes(kw));
-        }
+        // Category Filter - Since we query by collection directly from Shopify,
+        // we display all products returned by that collection.
+        const matchesCategory = true;
 
         const matchesSearch = title.includes(trimmedSearch);
 
@@ -139,7 +123,7 @@ export default function CollectionsView() {
   }, [activeShopFilter, searchQuery, isDiscountActive, selectedColor, selectedStyle]);
 
   return (
-    <div id="view-collections" className="page-view active-view" style={{ backgroundColor: '#f6f5f3' }}>
+    <div id="view-collections" className="page-view active-view" style={{ backgroundColor: '#EFECE7' }}>
 
       {/* Header with Title and Subcategories */}
       <CollectionHeader />

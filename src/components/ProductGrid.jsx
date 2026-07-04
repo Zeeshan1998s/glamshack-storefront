@@ -22,11 +22,12 @@ export default function ProductGrid({ activeCategory, gridView, visibleCount = 2
   };
 
   const getCollectionHandle = () => {
+    if (activeCategory === 'all') return 'frontpage';
     if (activeCategory === 'bands') return 'bands';
     if (activeCategory === 'trays') return 'suede-trays';
     if (activeCategory === 'saree-covers') return 'saree-boxes';
     if (activeCategory === 'baskets') return 'saree-boxes';
-    return 'frontpage';
+    return activeCategory;
   };
 
   return (
@@ -42,7 +43,7 @@ export default function ProductGrid({ activeCategory, gridView, visibleCount = 2
           <shopify-list-context
             id="collection-list-context"
             type="product"
-            query="products"
+            query="${activeCategory === 'all' ? 'products' : 'collection.products'}"
             first="${visibleCount}"
           >
             <template>

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import coverImg from '../assets/cover.jpg';
+import coverImg from '../assets/bg2.png';
 import lifestyleImg from '../assets/lifestyle-shoot.png';
 import moodboardImg from '../assets/design-moodboard.png';
 

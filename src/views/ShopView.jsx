@@ -39,12 +39,12 @@ export default function ShopView() {
   }, []);
 
   const getCollectionHandle = () => {
+    if (activeShopFilter === 'all') return 'frontpage';
     if (activeShopFilter === 'bands') return 'bands';
     if (activeShopFilter === 'trays') return 'suede-trays';
     if (activeShopFilter === 'saree-covers') return 'saree-boxes';
     if (activeShopFilter === 'baskets') return 'saree-boxes';
-    // Fallback collection to force a request and return products
-    return 'frontpage';
+    return activeShopFilter;
   };
 
   useEffect(() => {
@@ -80,25 +80,9 @@ export default function ShopView() {
         const htmlTitle = card.querySelector('.card-title')?.innerText || '';
         const title = (attrTitle || htmlTitle).toLowerCase();
 
-        // 1. Check Legacy Category Match
-        let matchesCategory = false;
-        if (activeShopFilter === 'all') {
-          matchesCategory = true;
-        } else if (activeShopFilter === 'hampers') {
-          matchesCategory = ['hamper', 'trousseau', 'set', 'gift'].some((kw) => title.includes(kw));
-        } else if (activeShopFilter === 'trays') {
-          matchesCategory = ['tray', 'platter', 'thali', 'shagun', 'ring'].some((kw) => title.includes(kw));
-        } else if (activeShopFilter === 'saree-covers') {
-          matchesCategory = ['saree', 'cover', 'suit', 'lehenga', 'gown', 'sherwani'].some((kw) => title.includes(kw));
-        } else if (activeShopFilter === 'bags') {
-          matchesCategory = ['bag', 'potli', 'envelope', 'clutch', 'purse'].some((kw) => title.includes(kw));
-        } else if (activeShopFilter === 'baskets') {
-          matchesCategory = ['basket', 'trunk', 'box', 'baksa'].some((kw) => title.includes(kw));
-        } else if (activeShopFilter === 'pouches') {
-          matchesCategory = ['pouch', 'organizer', 'kit', 'case'].some((kw) => title.includes(kw));
-        } else if (activeShopFilter === 'bands') {
-          matchesCategory = ['band', 'bangle', 'necklace', 'set', 'earring', 'choker', 'pendant', 'jewelry'].some((kw) => title.includes(kw));
-        }
+        // 1. Category Filter - Since we query by collection directly from Shopify,
+        // we display all products returned by that collection.
+        const matchesCategory = true;
 
         // 2. Check Search Query Match
         const matchesSearch = title.includes(trimmedSearch);
@@ -392,7 +376,7 @@ export default function ShopView() {
               <shopify-list-context
                 id="shop-list-context"
                 type="product"
-                query="products"
+                query="${activeShopFilter === 'all' ? 'products' : 'collection.products'}"
                 first="28"
               >
                 <template>

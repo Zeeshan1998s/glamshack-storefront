@@ -2,24 +2,28 @@ import { useState } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import './Header.css';
 
-const DESKTOP_NAV_ITEMS = [
-  { id: 'hampers', label: 'HAMPERS', to: '/collections?category=hampers' },
+const ALL_CATEGORIES = [
+  { id: 'brocade-boxes', label: 'Brocade Boxes', to: '/collections?category=brocade-boxes' },
   { id: 'trays', label: 'TRAYS', to: '/collections?category=trays' },
-  { id: 'saree-covers', label: 'SAREE COVERS', to: '/collections?category=saree-covers' },
-  { id: 'bags', label: 'BAGS', to: '/collections?category=bags' },
-  { id: 'baskets', label: 'BASKETS', to: '/collections?category=baskets' },
-  { id: 'pouches', label: 'POUCHES', to: '/collections?category=pouches' }
+  { id: 'sweet-boxes', label: 'Sweet boxes', to: '/collections?category=sweet-boxes' },
+  { id: 'nikahnama', label: 'Nikahnama', to: '/collections?category=nikahnama' },
+  { id: 'engagement-platters', label: 'Engagement Platters', to: '/collections?category=engagement-platters' },
+  { id: 'fruit-hamper-baskets', label: 'Fruit/ Hamper baskets', to: '/collections?category=fruit-hamper-baskets' },
+  { id: 'haldi-platter', label: 'Haldi Platter', to: '/collections?category=haldi-platter' },
+  { id: 'haldi-mehendi', label: 'Haldi/Mehendi', to: '/collections?category=haldi-mehendi' },
+  { id: 'luggage-bands', label: 'Luggage bands', to: '/collections?category=luggage-bands' },
+  { id: 'mehendi-platters', label: 'Mehendi Platters', to: '/collections?category=mehendi-platters' },
+  { id: 'saree-bands', label: 'Saree Bands', to: '/collections?category=saree-bands' },
+  { id: 'dry-fruit-trays', label: 'Dry Fruit Trays', to: '/collections?category=dry-fruit-trays' },
+  { id: 'trousseau-sets', label: 'Trousseau sets', to: '/collections?category=trousseau-sets' },
+  { id: 'trunks-saas-ka-baksa', label: 'Trunks/ Saas Ka Baksa', to: '/collections?category=trunks-saas-ka-baksa' }
 ];
 
-const MOBILE_NAV_ITEMS = [
-  { id: 'hampers', label: 'HAMPERS', to: '/collections?category=hampers' },
-  { id: 'trays', label: 'TRAYS', to: '/collections?category=trays' },
-  { id: 'saree-covers', label: 'SAREE COVERS', to: '/collections?category=saree-covers' },
-  { id: 'bags', label: 'BAGS', to: '/collections?category=bags' },
-  { id: 'baskets', label: 'BASKET / TRUNKS', to: '/collections?category=baskets' },
-  { id: 'pouches', label: 'POUCHES', to: '/collections?category=pouches' },
-  { id: 'bands', label: 'BANDS', to: '/collections?category=bands' }
-];
+const VISIBLE_CATEGORIES_COUNT = 5;
+const VISIBLE_CATEGORIES = ALL_CATEGORIES.slice(0, VISIBLE_CATEGORIES_COUNT);
+const MORE_CATEGORIES = ALL_CATEGORIES.slice(VISIBLE_CATEGORIES_COUNT);
+
+const MOBILE_NAV_ITEMS = ALL_CATEGORIES;
 
 function SearchIcon() {
   return (
@@ -126,13 +130,25 @@ export default function Header({
           <div className="header-left-group">
             <nav className="category-nav" aria-label="Primary">
               <ul className="category-nav-list compact">
-                {DESKTOP_NAV_ITEMS.map((item) => (
+                {VISIBLE_CATEGORIES.map((item) => (
                   <li key={item.id}>
                     <Link to={item.to} className="cat-nav-link">
                       {item.label}
                     </Link>
                   </li>
                 ))}
+                {MORE_CATEGORIES.length > 0 && (
+                  <li className="more-menu-container">
+                    <button className="cat-nav-link more-btn">MORE ▾</button>
+                    <div className="more-dropdown-menu">
+                      {MORE_CATEGORIES.map((item) => (
+                        <Link key={item.id} to={item.to} className="dropdown-item">
+                          {item.label}
+                        </Link>
+                      ))}
+                    </div>
+                  </li>
+                )}
               </ul>
             </nav>
             <button className="header-icon-btn search-btn" onClick={onOpenSearch} title="Search Catalog" aria-label="Search catalog">

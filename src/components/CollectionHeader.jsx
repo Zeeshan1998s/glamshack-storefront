@@ -1,15 +1,35 @@
-import React from 'react';
 import { useSearchParams } from 'react-router-dom';
+import BrocadeBox from '../assets/categories/brocade.png';
+// import Tray from '../assets/TRAYS.jpg';
+// import SweetBox from '../assets/Sweet boxes.jpg';
+import EngagementPlatters from '../assets/categories/eng-platter.png';
+import FruitBaskets from "../assets/categories/Fruit-baskets.png"
+// import HaldiPlatter from '../assets/Haldi Platter.jpg';
+// import LuggageBands from '../assets/Luggage bands.jpg';
+// import MehendiPlatters from '../assets/Mehendi Platters.jpg';
+// import SareeBands from '../assets/Saree bands.jpg';
+// import DryFruitTrays from '../assets/Dry Fruit Trays.jpg';
+// import TrousseauSets from '../assets/Trousseau sets.jpg';
+// import TrunksSaasKaBaksa from '../assets/TrunksSaasKaBaksa.jpg';
+// import Nikahnama from '../assets/Nikahnama.jpg';
+// import HaldiMehendi from '../assets/HaldiMehendi.jpg';
 
 const CATEGORIES = [
   { id: 'all', label: 'All Products', img: 'https://images.unsplash.com/photo-1590874103328-eac38a683ce7?w=50&h=50&fit=crop' },
-  { id: 'hampers', label: 'Hampers', img: 'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=50&h=50&fit=crop' },
-  { id: 'trays', label: 'Platters & Trays', img: 'https://images.unsplash.com/photo-1559563458-527698bf5295?w=50&h=50&fit=crop' },
-  { id: 'saree-covers', label: 'Saree Covers', img: 'https://images.unsplash.com/photo-1584916201218-f4242ceb4809?w=50&h=50&fit=crop' },
-  { id: 'bags', label: 'Bags & Potlis', img: 'https://images.unsplash.com/photo-1590874103328-eac38a683ce7?w=50&h=50&fit=crop' },
-  { id: 'baskets', label: 'Baskets & Trunks', img: 'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=50&h=50&fit=crop' },
-  { id: 'pouches', label: 'Pouches', img: 'https://images.unsplash.com/photo-1559563458-527698bf5295?w=50&h=50&fit=crop' },
-  { id: 'bands', label: 'Bands & Jewelry', img: 'https://images.unsplash.com/photo-1584916201218-f4242ceb4809?w=50&h=50&fit=crop' },
+  { id: 'brocade-boxes', label: 'Brocade Boxes', img: BrocadeBox },
+  { id: 'trays', label: 'Trays', img: 'https://images.unsplash.com/photo-1559563458-527698bf5295?w=50&h=50&fit=crop' },
+  { id: 'sweet-boxes', label: 'Sweet Boxes', img: 'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=50&h=50&fit=crop' },
+  { id: 'nikahnama', label: 'Nikahnama', img: 'https://images.unsplash.com/photo-1590874103328-eac38a683ce7?w=50&h=50&fit=crop' },
+  { id: 'engagement-platters', label: 'Engagement Platters', img: EngagementPlatters },
+  { id: 'fruit-hamper-baskets', label: 'Fruit/ Hamper baskets', img: FruitBaskets },
+  { id: 'haldi-platter', label: 'Haldi Platter', img: 'https://images.unsplash.com/photo-1559563458-527698bf5295?w=50&h=50&fit=crop' },
+  { id: 'haldi-mehendi', label: 'Haldi/Mehendi', img: 'https://images.unsplash.com/photo-1584916201218-f4242ceb4809?w=50&h=50&fit=crop' },
+  { id: 'luggage-bands', label: 'Luggage bands', img: 'https://images.unsplash.com/photo-1590874103328-eac38a683ce7?w=50&h=50&fit=crop' },
+  { id: 'mehendi-platters', label: 'Mehendi Platters', img: 'https://images.unsplash.com/photo-1559563458-527698bf5295?w=50&h=50&fit=crop' },
+  { id: 'saree-bands', label: 'Saree Bands', img: 'https://images.unsplash.com/photo-1584916201218-f4242ceb4809?w=50&h=50&fit=crop' },
+  { id: 'dry-fruit-trays', label: 'Dry Fruit Trays', img: 'https://images.unsplash.com/photo-1559563458-527698bf5295?w=50&h=50&fit=crop' },
+  { id: 'trousseau-sets', label: 'Trousseau sets', img: 'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=50&h=50&fit=crop' },
+  { id: 'trunks-saas-ka-baksa', label: 'Trunks/ Saas Ka Baksa', img: 'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=50&h=50&fit=crop' },
 ];
 
 export default function CollectionHeader() {
@@ -28,9 +48,9 @@ export default function CollectionHeader() {
 
   return (
     <div className="collection-header-container">
-      <div className="collection-breadcrumbs">
+      {/* <div className="collection-breadcrumbs">
         HOME / ALL CATEGORIES / {activeCategoryData.label.toUpperCase()}
-      </div>
+      </div> */}
       <div className="collection-header-content">
         <h1 className="collection-title">{activeCategoryData.label}</h1>
         <p className="collection-subtitle">
@@ -39,14 +59,14 @@ export default function CollectionHeader() {
       </div>
       <div className="collection-subcategories">
         {CATEGORIES.map((cat) => (
-          <div 
-            key={cat.id} 
+          <div
+            key={cat.id}
             className={`subcategory-item ${activeCategory === cat.id ? 'active' : ''}`}
             onClick={() => handleFilterChange(cat.id)}
-            style={{ cursor: 'pointer', opacity: activeCategory === cat.id ? 1 : 0.6 }}
+            style={{ cursor: 'pointer', opacity: activeCategory === cat.id ? 1 : 0.4 }}
           >
             <img src={cat.img} alt={cat.label} className="subcategory-img" />
-            <span className="subcategory-label">{cat.label}</span>
+            <span className="subcategory-label" style={{ fontWeight: activeCategory === cat.id ? '600' : 'normal' }}>{cat.label}</span>
           </div>
         ))}
       </div>
