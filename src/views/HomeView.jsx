@@ -191,7 +191,7 @@ export default function HomeView() {
                   </svg>
                 </div>
                 <div class="card-media-wrapper">
-                  <shopify-media width="400" height="400" query="product.selectedOrFirstAvailableVariant.image"></shopify-media>
+                  <shopify-media width="800" height="800" query="product.selectedOrFirstAvailableVariant.image"></shopify-media>
                 </div>
                 <div class="card-details">
                   <div class="card-info-row">
@@ -400,7 +400,7 @@ export default function HomeView() {
                       </svg>
                     </div>
                     <div class="card-media-wrapper">
-                      <shopify-media width="400" height="400" query="product.selectedOrFirstAvailableVariant.image"></shopify-media>
+                      <shopify-media width="800" height="800" query="product.selectedOrFirstAvailableVariant.image"></shopify-media>
                     </div>
                     <div class="card-details">
                       <div class="card-info-row">
