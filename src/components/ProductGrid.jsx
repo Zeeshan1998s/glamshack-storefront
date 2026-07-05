@@ -31,7 +31,7 @@ export default function ProductGrid({ activeCategory, gridView, visibleCount = 2
   };
 
   return (
-    <div className={`collection-product-grid ${gridView === 'gallery' ? 'gallery-view' : ''}`}>
+    <div className={`collection-product-grid ${gridView === 'gallery' ? 'gallery-view' : ''}`} style={{ minHeight: '70vh' }}>
       <shopify-context
         key={activeCategory}
         type={activeCategory === 'all' ? 'shop' : 'collection'}
@@ -80,11 +80,8 @@ export default function ProductGrid({ activeCategory, gridView, visibleCount = 2
                 </div>
               </div>
             </template>
-            <div shopify-loading-placeholder="" class="product-grid">
-              <div class="leather-family-card loading-pulse" style="height: 380px;"></div>
-              <div class="leather-family-card loading-pulse" style="height: 380px;"></div>
-              <div class="leather-family-card loading-pulse" style="height: 380px;"></div>
-              <div class="leather-family-card loading-pulse" style="height: 380px;"></div>
+            <div shopify-loading-placeholder="" class="product-grid" style="width: 100%;">
+              ${Array(8).fill('<div class="leather-family-card loading-pulse" style="height: 380px;"></div>').join('')}
             </div>
           </shopify-list-context>
         `}} />

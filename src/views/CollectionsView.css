@@ -300,25 +300,15 @@
 
 .gallery-view .leather-family-card.collection-card {
   gap: 6px !important;
-  margin-bottom: 12px !important;
+  margin-bottom: 0px !important;
 }
 
-.gallery-view .card-title {
-  font-size: 11px !important;
+.gallery-view .wishlist-icon {
+  display: none !important;
 }
 
-.gallery-view .price-new,
-.gallery-view .price-old {
-  font-size: 11px !important;
-}
-
-.gallery-view .wishlist-icon svg {
-  width: 14px;
-  height: 14px;
-}
-
-.gallery-view .add-to-bag-text {
-  font-size: 9px !important;
+.gallery-view .card-details {
+  display: none !important;
 }
 
 @media (max-width: 1200px) {

@@ -364,7 +364,7 @@ export default function ShopView() {
 
       {/* Shared Product Grid Container */}
       <div className={searchQuery ? 'shop-view-grid-container' : 'container'}>
-        <div className="product-grid-container">
+        <div className="product-grid-container" style={{ minHeight: '70vh' }}>
           <shopify-context
             key={activeShopFilter + '-' + searchQuery}
             type={activeShopFilter === 'all' ? 'shop' : 'collection'}
@@ -413,11 +413,8 @@ export default function ShopView() {
                     </div>
                   </div>
                 </template>
-                <div shopify-loading-placeholder="" class="product-grid">
-                  <div class="leather-family-card loading-pulse" style="height: 380px;"></div>
-                  <div class="leather-family-card loading-pulse" style="height: 380px;"></div>
-                  <div class="leather-family-card loading-pulse" style="height: 380px;"></div>
-                  <div class="leather-family-card loading-pulse" style="height: 380px;"></div>
+                <div shopify-loading-placeholder="" class="product-grid" style="width: 100%;">
+                  ${Array(8).fill('<div class="leather-family-card loading-pulse" style="height: 380px;"></div>').join('')}
                 </div>
               </shopify-list-context>
             `}} />
