@@ -7,6 +7,30 @@ export default function ProductGrid({ activeCategory, gridView, visibleCount = 2
   const handleProductCardClick = (e) => {
     const card = e.target.closest('.leather-family-card');
     if (card) {
+      const addToBagBtn = e.target.closest('.add-to-bag-text');
+      if (addToBagBtn) {
+        e.preventDefault();
+        e.stopPropagation();
+        const cartEl = document.getElementById('cart');
+        if (cartEl && typeof cartEl.addLine === 'function') {
+          try {
+            const res = cartEl.addLine(e.nativeEvent);
+            if (res && typeof res.then === 'function') {
+              res.then(() => {
+                if (typeof cartEl.showModal === 'function') cartEl.showModal();
+              }).catch(() => {
+                if (typeof cartEl.showModal === 'function') cartEl.showModal();
+              });
+            } else {
+              if (typeof cartEl.showModal === 'function') cartEl.showModal();
+            }
+          } catch (err) {
+            console.error('Cart add error:', err);
+          }
+        }
+        return;
+      }
+
       const handle = card.getAttribute('data-handle') || card.getAttribute('shopify-attr--data-handle');
       const swatch = e.target.closest('.swatch');
       let variantId = '';
