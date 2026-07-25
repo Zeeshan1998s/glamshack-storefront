@@ -5,7 +5,7 @@ import CollectionFilterBar from '../components/CollectionFilterBar';
 import ProductGrid from '../components/ProductGrid';
 import './CollectionsView.css';
 
-export default function CollectionsView() {
+export default function CollectionsView({ onToggleWishlist }) {
   const [searchParams] = useSearchParams();
   const [productCount, setProductCount] = useState(0);
 
@@ -138,7 +138,12 @@ export default function CollectionsView() {
       />
 
       {/* Grid of Products */}
-      <ProductGrid activeCategory={activeShopFilter} gridView={gridView} visibleCount={visibleCount} />
+      <ProductGrid
+        activeCategory={activeShopFilter}
+        gridView={gridView}
+        visibleCount={visibleCount}
+        onToggleWishlist={onToggleWishlist}
+      />
 
       {/* Load More Button */}
       <div className="collection-load-more-container">

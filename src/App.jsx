@@ -332,7 +332,7 @@ function AppContent() {
         <Route path="/" element={<Navigate to="/home" replace />} />
         <Route path="/home" element={<HomeView />} />
         <Route path="/shop" element={<ShopView />} />
-        <Route path="/collections" element={<CollectionsView />} />
+        <Route path="/collections" element={<CollectionsView onToggleWishlist={handleToggleWishlist} />} />
         <Route path="/product" element={<ProductDetailView onToggleWishlist={handleToggleWishlist} />} />
         <Route path="/profile" element={
           <ProfileView

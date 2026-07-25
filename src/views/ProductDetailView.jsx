@@ -272,7 +272,7 @@ export default function ProductDetailView({
                     <shopify-list-context type="image" query="product.images" first="8" style="display: contents;">
                       <template>
                         <div class="pdp-gallery-thumb" style="cursor: pointer; border: 1px solid var(--border-color, #eaeaea); border-radius: 4px; overflow: hidden; background: transparent; width: 110px; height: 110px; flex: 0 0 110px;">
-                          <shopify-media width="800" height="800" query="image" style="width: 100%; height: 100%; object-fit: cover; display: block;"></shopify-media>
+                          <shopify-media width="800" height="600" query="image" style="width: 100%; height: 100%; object-fit: cover; display: block;"></shopify-media>
                         </div>
                       </template>
                     </shopify-list-context>

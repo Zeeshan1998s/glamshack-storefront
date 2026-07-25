@@ -1,12 +1,43 @@
-import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-export default function ProductGrid({ activeCategory, gridView, visibleCount = 28 }) {
+export default function ProductGrid({ activeCategory, gridView, visibleCount = 28, onToggleWishlist }) {
   const navigate = useNavigate();
 
   const handleProductCardClick = (e) => {
     const card = e.target.closest('.leather-family-card');
     if (card) {
+      const wishlistBtn = e.target.closest('.wishlist-icon');
+      if (wishlistBtn) {
+        e.preventDefault();
+        e.stopPropagation();
+
+        if (typeof onToggleWishlist === 'function') {
+          const titleEl = card.querySelector('.card-title');
+          const priceEl = card.querySelector('.price-new');
+          const mediaImg = card.querySelector('.card-media-wrapper img');
+          const variantSwatch = card.querySelector('.swatch');
+
+          const title = titleEl ? titleEl.innerText.trim() : '';
+          const price = priceEl ? priceEl.innerText.trim() : '';
+          const image = mediaImg ? mediaImg.src : '';
+          const variantId =
+            (variantSwatch && (variantSwatch.getAttribute('data-variant-id') || variantSwatch.getAttribute('shopify-attr--data-variant-id'))) ||
+            '';
+          const handle = card.getAttribute('data-handle') || card.getAttribute('shopify-attr--data-handle') || '';
+
+          if (title) {
+            onToggleWishlist({
+              id: variantId || handle || title,
+              title,
+              price,
+              image,
+              variant: 'Standard'
+            });
+          }
+        }
+        return;
+      }
+
       const addToBagBtn = e.target.closest('.add-to-bag-text');
       if (addToBagBtn) {
         e.preventDefault();
