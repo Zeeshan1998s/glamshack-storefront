@@ -3389,9 +3389,9 @@ shopify-cart::part(secondary-button):hover {
 
 .pdp-media-grid {
   width: 55%;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
   align-self: start;
 }
 
@@ -3401,6 +3401,30 @@ shopify-cart::part(secondary-button):hover {
   align-items: center;
   justify-content: center;
   overflow: hidden;
+}
+
+.pdp-media-main {
+  width: 100%;
+}
+
+.pdp-inline-gallery {
+  width: 100%;
+  margin: 0 auto;
+  display: flex ;
+  justify-content: center;
+  flex-wrap: nowrap;
+  /* overflow-x: auto; */
+  align-items: center;
+  gap: 10px;
+  scrollbar-width: thin;
+}
+
+.pdp-gallery-thumb {
+  background: transparent;
+  width: 110px;
+  height: 110px;
+  min-width: 110px;
+  flex: 0 0 110px;
 }
 
 /* Smart layout: If total number of images is odd, the first image becomes a full-width hero */
@@ -3415,6 +3439,33 @@ shopify-cart::part(secondary-button):hover {
   height: auto;
   object-fit: contain;
   display: block;
+}
+
+.pdp-media-main shopify-media,
+.pdp-media-main img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  display: block;
+}
+
+.pdp-gallery-thumb shopify-media,
+.pdp-gallery-thumb img {
+  width: 100% !important;
+  height: 100% !important;
+  min-width: 100% !important;
+  min-height: 100% !important;
+  object-fit: cover !important;
+  display: block;
+}
+
+.pdp-gallery-thumb shopify-media::part(image),
+.pdp-gallery-thumb shopify-media::part(img),
+.pdp-media-main shopify-media::part(image),
+.pdp-media-main shopify-media::part(img) {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
 }
 
 .pdp-info-sticky-wrapper {
@@ -3814,6 +3865,17 @@ shopify-list-context::part(list) {
   .styling-grid,
   .pdp-related-grid-wrapper shopify-list-context {
     grid-template-columns: 1fr 1fr;
+  }
+
+  .pdp-inline-gallery {
+    gap: 8px !important;
+  }
+
+  .pdp-gallery-thumb {
+    width: 88px;
+    height: 88px;
+    min-width: 88px;
+    flex-basis: 88px;
   }
 }
 

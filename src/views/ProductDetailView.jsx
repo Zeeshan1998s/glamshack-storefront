@@ -135,26 +135,27 @@ export default function ProductDetailView({
       return;
     }
 
-    // Intercept clicks on media items to open full-screen modal
-    const clickableImageContainer = target.closest('.pdp-media-item') || target.closest('.custom-variant-item');
+    // Intercept clicks on gallery images to open full-screen modal
+    const clickableImageContainer = target.closest('.pdp-media-item') || target.closest('.pdp-gallery-thumb') || target.closest('.custom-variant-item');
     if (clickableImageContainer) {
       e.preventDefault();
       const img = clickableImageContainer.querySelector('img');
       if (img && img.src) {
         // Robustly remove Shopify's thumbnail sizing parameters to get the master high-res image
-        let highResUrl = img.src;
-        try {
-          const urlObj = new URL(img.src);
-          urlObj.searchParams.delete('width');
-          urlObj.searchParams.delete('height');
-          urlObj.searchParams.delete('crop');
-          // Strip size suffixes like _60x60, _100x, _x100, _60x60_crop_center before the extension
-          urlObj.pathname = urlObj.pathname.replace(/_(?:[0-9]+x[0-9]*|[0-9]*x[0-9]+)(?:_[a-z_]+)?(?=\.[a-zA-Z0-9]+$)/i, '');
-          highResUrl = urlObj.toString();
-        } catch (e) {
-          // Fallback regex
-          highResUrl = img.src.replace(/_(?:[0-9]+x[0-9]*|[0-9]*x[0-9]+)(?:_[a-z_]+)?(?=\.[a-zA-Z0-9]+$)/i, '');
-        }
+        const highResUrl = (() => {
+          try {
+            const urlObj = new URL(img.src);
+            urlObj.searchParams.delete('width');
+            urlObj.searchParams.delete('height');
+            urlObj.searchParams.delete('crop');
+            // Strip size suffixes like _60x60, _100x, _x100, _60x60_crop_center before the extension
+            urlObj.pathname = urlObj.pathname.replace(/_(?:[0-9]+x[0-9]*|[0-9]*x[0-9]+)(?:_[a-z_]+)?(?=\.[a-zA-Z0-9]+$)/i, '');
+            return urlObj.toString();
+          } catch {
+            // Fallback regex
+            return img.src.replace(/_(?:[0-9]+x[0-9]*|[0-9]*x[0-9]+)(?:_[a-z_]+)?(?=\.[a-zA-Z0-9]+$)/i, '');
+          }
+        })();
         setModalImage(highResUrl);
       }
       return;
@@ -262,14 +263,20 @@ export default function ProductDetailView({
             <div class="pdp-layout-new">
               <!-- TOP SECTION -->
               <div class="pdp-top-section">
-                <div class="pdp-media-grid">
-                  <shopify-list-context type="variant" query="product.variants" first="20" style="display: contents;">
-                    <template>
-                      <div class="pdp-media-item" shopify-attr--data-variant-id="variant.id" style="cursor: pointer;">
-                        <shopify-media width="800" height="800" query="variant.image"></shopify-media>
-                      </div>
-                    </template>
-                  </shopify-list-context>
+                <div class="pdp-media-grid" style="display: flex; flex-direction: column; gap: 14px;">
+                  <div class="pdp-media-item pdp-media-main" style="cursor: pointer;">
+                    <shopify-media width="800" height="800" query="product.selectedOrFirstAvailableVariant.image"></shopify-media>
+                  </div>
+
+                  <div class="pdp-inline-gallery" style="display: flex; gap: 10px; overflow-x: auto; padding-bottom: 2px;">
+                    <shopify-list-context type="image" query="product.images" first="8" style="display: contents;">
+                      <template>
+                        <div class="pdp-gallery-thumb" style="cursor: pointer; border: 1px solid var(--border-color, #eaeaea); border-radius: 4px; overflow: hidden; background: transparent; width: 110px; height: 110px; flex: 0 0 110px;">
+                          <shopify-media width="800" height="800" query="image" style="width: 100%; height: 100%; object-fit: cover; display: block;"></shopify-media>
+                        </div>
+                      </template>
+                    </shopify-list-context>
+                  </div>
                 </div>
 
                 <div class="pdp-info-sticky-wrapper">
@@ -332,13 +339,7 @@ export default function ProductDetailView({
                     <p>Our goal is to create products that are timeless, functional, and durable. We source the finest materials and partner with ethical factories to bring you the highest quality pieces.</p>
                     <p>Whether you're commuting to work, traveling the world, or just running errands around town, our accessories are designed to keep up with your busy lifestyle while making a statement.</p>
                   </div>
-                  <div class="quote-thumbnails">
-                    <shopify-list-context type="image" query="product.images" first="3" style="display: contents;">
-                      <template>
-                        <shopify-media width="100" height="100" query="image"></shopify-media>
-                      </template>
-                    </shopify-list-context>
-                  </div>
+                  
                 </div>
 
                 <div class="pdp-accordion-box">
